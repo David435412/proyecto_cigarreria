@@ -21,7 +21,7 @@
       "correo": "darwin@gmail.com",
       "telefono": "3104222039",
       "direccion": "Cll 13 c N 17",
-      "estado": "activo",
+      "estado": "inactivo",
       "rol": "domiciliario",
       "tipoDocumento": "cedula",
       "numeroDocumento": "123456789"

@@ -27,32 +27,37 @@ const Login = () => {
 
             const user = response.data[0];
             if (user) {
-                localStorage.setItem('userId', user.id);
-                localStorage.setItem('role', user.rol);
-                localStorage.setItem('name', user.nombre);
+                // Verifica que el estado del usuario sea 'activo'
+                if (user.estado === 'activo') {
+                    localStorage.setItem('userId', user.id);
+                    localStorage.setItem('role', user.rol);
+                    localStorage.setItem('name', user.nombre);
 
-                switch (user.rol) {
-                    case 'administrador':
-                        alert("Ingreso exitoso como Administrador");
-                        navigate('/admin-dash');
-                        break;
-                    case 'cliente':
-                        alert("Ingreso exitoso como Cliente");
-                        navigate('/cliente-dash');
-                        break;
-                    case 'cajero':
-                        alert("Ingreso exitoso como Cajero");
-                        navigate('/cajero-dash');
-                        break;
-                    case 'domiciliario':
-                        alert("Ingreso exitoso como Domiciliario");
-                        navigate('/domiciliario-dash');
-                        break;
-                    default:
-                        navigate('/');
-                        break;
+                    switch (user.rol) {
+                        case 'administrador':
+                            alert("Ingreso exitoso como Administrador");
+                            navigate('/admin-dash');
+                            break;
+                        case 'cliente':
+                            alert("Ingreso exitoso como Cliente");
+                            navigate('/cliente-dash');
+                            break;
+                        case 'cajero':
+                            alert("Ingreso exitoso como Cajero");
+                            navigate('/cajero-dash');
+                            break;
+                        case 'domiciliario':
+                            alert("Ingreso exitoso como Domiciliario");
+                            navigate('/domiciliario-dash');
+                            break;
+                        default:
+                            navigate('/');
+                            break;
+                    }
+                    window.location.reload();
+                } else {
+                    setError('Tu cuenta no está activa. Contacta con soporte.');
                 }
-                window.location.reload();
             } else {
                 setError('Correo electrónico o contraseña incorrectos. Inténtalo de nuevo.');
             }
