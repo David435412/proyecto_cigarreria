@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [formData, setFormData] = useState({
-        nombreUsuario: '',
+        correo: '',
         contrasena: ''
     });
     const [error, setError] = useState('');
@@ -20,7 +20,7 @@ const Login = () => {
         try {
             const response = await axios.get('http://localhost:5000/usuarios', {
                 params: {
-                    nombreUsuario: formData.nombreUsuario,
+                    correo: formData.correo,
                     contrasena: formData.contrasena
                 }
             });
@@ -51,11 +51,10 @@ const Login = () => {
                     default:
                         navigate('/');
                         break;
-                    
                 }
                 window.location.reload();
             } else {
-                setError('Nombre de usuario o contraseña incorrectos. Inténtalo de nuevo.');
+                setError('Correo electrónico o contraseña incorrectos. Inténtalo de nuevo.');
             }
         } catch (error) {
             console.error('Error al iniciar sesión', error);
@@ -76,19 +75,19 @@ const Login = () => {
                             <form class="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
                                 <div>
                                     <label
-                                        htmlFor="nombreUsuario"
+                                        htmlFor="correo"
                                         class="block mb-2 text-sm font-medium text-gray-900"
                                     >
-                                        Nombre de Usuario
+                                        Correo Electrónico
                                     </label>
                                     <input
-                                        type="text"
-                                        name="nombreUsuario"
-                                        id="nombreUsuario"
-                                        value={formData.nombreUsuario}
+                                        type="email"
+                                        name="correo"
+                                        id="correo"
+                                        value={formData.correo}
                                         onChange={handleChange}
                                         class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                        placeholder="Tu nombre de usuario"
+                                        placeholder="Tu correo electrónico"
                                         required
                                     />
                                 </div>

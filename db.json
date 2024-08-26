@@ -22,7 +22,7 @@
       "telefono": "3104222039",
       "direccion": "Cll 13 c N 17",
       "estado": "activo",
-      "rol": "cajero",
+      "rol": "domiciliario",
       "tipoDocumento": "cedula",
       "numeroDocumento": "123456789"
     },
@@ -64,6 +64,17 @@
       "estado": "activo",
       "tipoDocumento": "cedula",
       "numeroDocumento": "827364510"
+    },
+    {
+      "id": "a49b",
+      "nombre": "Jhon jairo",
+      "contrasena": "jhon123",
+      "nombreUsuario": "cliente123",
+      "correo": "user@gmail.com",
+      "telefono": "3102233141",
+      "direccion": "K 12 N 41",
+      "estado": "activo",
+      "rol": "cliente"
     }
   ]
 }
