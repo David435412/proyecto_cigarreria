@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import UserContext from '../../context/UserContext';
 import { useNavigate } from 'react-router-dom';
-import Logo from '../../assets/images/Logo.png'
+import Logo from '../../assets/images/Logo.png';
 
 const HeaderAdmin = () => {
     const { logout } = useContext(UserContext);

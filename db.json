@@ -21,7 +21,7 @@
       "correo": "darwin@gmail.com",
       "telefono": "3104222039",
       "direccion": "Cll 13 c N 17",
-      "estado": "inactivo",
+      "estado": "activo",
       "rol": "domiciliario",
       "tipoDocumento": "cedula",
       "numeroDocumento": "123456789"
@@ -75,6 +75,151 @@
       "direccion": "K 12 N 41",
       "estado": "activo",
       "rol": "cliente"
+    },
+    {
+      "id": "4826",
+      "nombre": "daniel ",
+      "contrasena": "daniel123",
+      "nombreUsuario": "daniel123",
+      "correo": "daniel@gmail.com",
+      "telefono": "3103220123",
+      "direccion": "G 54 K 12",
+      "estado": "activo",
+      "rol": "cliente"
+    }
+  ],
+  "productos": [
+    {
+      "id": "a783",
+      "nombre": "Cerveza Club Colombia Dorada lata x6und x330ml c-u",
+      "precio": "18.700",
+      "descripcion": "Tipo de cerveza: Lager ABV: 4,7% País de origen: Colombia.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+      "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/491967-1600-1600?v=638216692937930000&width=1600&height=1600&aspect=true",
+      "categoria": "Licores",
+      "cantidad": "110",
+      "marca": "CLUB COLOMBIA",
+      "estado": "activo"
+    },
+    {
+      "id": "b5c6",
+      "nombre": "Cerveza Aguila Original lata x6und x330ml c-u",
+      "precio": "18.000",
+      "descripcion": "Tipo de cerveza: Lager. País de origen: Colombia. ABV: 4,0%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+      "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/439991-1600-1600?v=638043996501300000&width=1600&height=1600&aspect=true",
+      "categoria": "Licores",
+      "cantidad": "200",
+      "marca": "AGUILA",
+      "estado": "activo"
+    },
+    {
+      "id": "105c",
+      "nombre": "Cerveza Poker lata x6und x330ml c-u",
+      "precio": "18.000",
+      "descripcion": "Tipo de cerveza: Lager. País de origen: Colombia. ABV: 4,0%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+      "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440018-1600-1600?v=638043996576070000&width=1600&height=1600&aspect=true",
+      "categoria": "Licores",
+      "cantidad": "120",
+      "marca": "POKER",
+      "estado": "activo"
+    },
+    {
+      "id": "3445",
+      "nombre": "Cerveza Coronita botella x6und x210ml c-u",
+      "precio": "7.500",
+      "descripcion": "Tipo de cerveza: Lager. País de Origen: México ABV: 4,5%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+      "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440069-1600-1600?v=638043996740100000&width=1600&height=1600&aspect=true",
+      "categoria": "Licores",
+      "cantidad": "200",
+      "marca": "CORONITA",
+      "estado": "activo"
+    },
+    {
+      "id": "12ef",
+      "nombre": "cencosud cencosud cencosud Chocolatina Jet Leche x12und x132g",
+      "precio": "12.750",
+      "descripcion": "Regálate a ti mismo o a tus seres queridos un momento de felicidad con los productos que Jet trae para ti.",
+      "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/653021-1600-1600?v=638582162050400000&width=1600&height=1600&aspect=true",
+      "categoria": "Confitería",
+      "cantidad": "85",
+      "marca": "JET",
+      "estado": "activo"
+    },
+    {
+      "id": "0dc7",
+      "nombre": "Galleta Gol chocolate x3und x93g cu",
+      "precio": "4.690",
+      "descripcion": "Combinación del más delicioso chocolate, galleta, arroz crujiente, caramelo, maní y almendras para llenar de sensaciones tu boca.",
+      "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/194548-1600-1600?v=637814055458900000&width=1600&height=1600&aspect=true",
+      "categoria": "Confitería",
+      "cantidad": "120",
+      "marca": "GOL",
+      "estado": "activo"
+    },
+    {
+      "id": "ce57",
+      "nombre": "Snickers barra de chocolate y maní x52.7g",
+      "precio": "6.090",
+      "descripcion": "Deliciosa barra de chocolate de leche * Rellena de maní, cremoso caramelo y nougat",
+      "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/367867-1600-1600?v=637889251308670000&width=1600&height=1600&aspect=true",
+      "categoria": "Confitería",
+      "cantidad": "400",
+      "marca": "SNICKERS",
+      "estado": "activo"
+    },
+    {
+      "id": "3c27",
+      "nombre": "Atún En Agua Van Camps x 160g x 4und",
+      "precio": "35.270",
+      "descripcion": "Atun En Agua Van Camps, delicioso y nutritivo perfecto para acompañar tus comidas y crear maravillosas recetas y deleitar tu paladar y el de los tuyos.",
+      "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/652029-1600-1600?v=638578552980330000&width=1600&height=1600&aspect=true",
+      "categoria": "Enlatados",
+      "cantidad": "100",
+      "marca": "VAN CAMPS",
+      "estado": "activo"
+    },
+    {
+      "id": "383f",
+      "nombre": " Atún Cuisine&Co lomo aceite soya x4und x160g c-u",
+      "precio": "4.490",
+      "descripcion": "Lomos de atún (thunnus albacares), Aceite vegetal de soya, Agua, Sal, Pescado",
+      "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/381411-1600-1600?v=637923060574430000&width=1600&height=1600&aspect=true",
+      "categoria": "Enlatados",
+      "cantidad": "200",
+      "marca": " CUISINE & CO NBE MP",
+      "estado": "activo"
+    },
+    {
+      "id": "08a5",
+      "nombre": " Sardina Van Camps Premium Salsa Tomate x 225g",
+      "precio": "6.470",
+      "descripcion": "Sardina Vancamps Premium Salsa Tomate, deliciosas y nutritivas perfecto para acompañar tus comidas y crear maravillosas recetas y deleitar tu paladar y el de los tuyos.",
+      "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/652128-1600-1600?v=638578553793170000&width=1600&height=1600&aspect=true",
+      "categoria": "Enlatados",
+      "cantidad": "250",
+      "marca": "VAN CAMPS",
+      "estado": "activo"
+    },
+    {
+      "id": "05ec",
+      "nombre": " Desengrasante maxima citrico x1000ml",
+      "precio": ".090",
+      "descripcion": "Desengrasante maxima citrico x1000ml",
+      "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/198924-1600-1600?v=637814139078470000&width=1600&height=1600&aspect=true",
+      "categoria": "Aseo",
+      "cantidad": "500",
+      "marca": "MAXIMA MP",
+      "estado": "activo"
+    },
+    {
+      "id": "b3cd",
+      "nombre": "Desinfectante Home Care eliminador de malos olores Frutos Rojos x400ml",
+      "precio": "7.590",
+      "descripcion": "Desinfectante Home Care eliminador de malos olores Frutos Rojos x400ml",
+      "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/378871-1600-1600?v=637916947079700000&width=1600&height=1600&aspect=true",
+      "categoria": "Aseo",
+      "cantidad": "145",
+      "marca": " HOME CARE MP",
+      "estado": "activo"
     }
   ]
 }

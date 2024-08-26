@@ -1,19 +1,32 @@
 import React, { useContext } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';  
 import UserContext from './context/UserContext';
+
 import NavBar from './components/comun/NavBar';
 import NavBarAdmin from './components/administrador/NavBarAdmin';
 import NavBarCliente from './components/cliente/NavBarCliente';
 import NavBarCajero from './components/cajero/NavBarCajero';
 import NavBarDomiciliario from './components/domiciliario/NavBarDomiciliario'
+
 import RegistroCliente from './components/auth/RegistroCliente';
 import Login from './components/auth/Login';
+
 import AdminDash from './components/administrador/AdminDash';
-import GestionUsuarios from './components/administrador/GestionUsuarios';
-import RegistroEmpleado from './components/administrador/RegistroEmpleados';
-import EditarUsuario from './components/administrador/EdicionUsuarios';
+import GestionProductos from './components/administrador/productos/GestionProductos';
+import RegistroProductos from './components/administrador/productos/RegistroProductos';
+import EditarProducto from './components/administrador/productos/EdicionProducto';
+
+import GestionUsuarios from './components/administrador/usuarios/GestionUsuarios';
+import RegistroEmpleado from './components/administrador/usuarios/RegistroEmpleados';
+import EditarUsuario from './components/administrador/usuarios/EdicionUsuarios';
+
 import ClienteDashboard from './components/cliente/ClienteDash';
+import Productos from './components/cliente/Productos'
+import DetalleProducto from './components/cliente/DetallesProducto';
+import Carrito from './components/cliente/Cart';
+
 import CajeroDashboard from './components/cajero/CajeroDash';
+
 import DomiciliarioDashboard from './components/domiciliario/DomiciliarioDash';
 
 
@@ -44,12 +57,23 @@ const App = () => {
         <Routes>
           <Route path="/registro-cliente" element={<RegistroCliente />} />              
           <Route path="/login" element={<Login />} />              
-          <Route path="/admin-dash" element={<AdminDash />} />    
-          <Route path="/gestion-usuarios" element={<GestionUsuarios />} />    
+          <Route path="/admin-dash" element={<AdminDash />} />  
+
+          <Route path="/gestion-productos" element={<GestionProductos />} />
+          <Route path="/registro-productos" element={<RegistroProductos />} />
+          <Route path="/editar-producto/:id" element={<EditarProducto />} />
+
+          <Route path="/gestion-usuarios" element={<GestionUsuarios />} />  
           <Route path="/registro-empleado" element={<RegistroEmpleado />} />   
-          <Route path="/editar-usuario/:id" element={<EditarUsuario />} />   
+          <Route path="/editar-usuario/:id" element={<EditarUsuario />} /> 
+           
           <Route path="/cliente-dash" element={<ClienteDashboard />} />
+          <Route path="/productos" element={<Productos />} />
+          <Route path="/producto/:id" element={<DetalleProducto />} />
+          <Route path="/carrito" element={<Carrito />} />  
+
           <Route path="/cajero-dash" element={< CajeroDashboard />} />
+
           <Route path="/domiciliario-dash" element={< DomiciliarioDashboard />} />
         </Routes>
       </main>
