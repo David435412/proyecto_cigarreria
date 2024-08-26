@@ -1,3 +1,15 @@
 {
-    "usuarios": []
+  "usuarios": [
+    {
+      "id": "7473",
+      "nombre": "David Santiago Murcia",
+      "contrasena": "david123",
+      "nombreUsuario": "david123",
+      "correo": "david@gmail.com",
+      "telefono": "3103220039",
+      "direccion": "Cll 132 c N 137",
+      "estado": "activo",
+      "rol": "cliente"
+    }
+  ]
 }
