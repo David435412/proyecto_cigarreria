@@ -1,7 +1,7 @@
 {
   "usuarios": [
     {
-      "id": "7473",
+      "id": "001",
       "nombre": "David Santiago Murcia",
       "contrasena": "david123",
       "nombreUsuario": "david123",
@@ -9,7 +9,29 @@
       "telefono": "3103220039",
       "direccion": "Cll 132 c N 137",
       "estado": "activo",
-      "rol": "cliente"
+      "rol": "administrador"
+    },
+    {
+      "id": "002",
+      "nombre": "Darwin Santiago Lesmes",
+      "contrasena": "darwin123",
+      "nombreUsuario": "darwin123",
+      "correo": "darwin@gmail.com",
+      "telefono": "3103124123",
+      "direccion": "Cll 133 c N 37",
+      "estado": "activo",
+      "rol": "cajero"
+    },
+    {
+      "id": "79da",
+      "nombre": "Juan",
+      "contrasena": "juan123",
+      "nombreUsuario": "Juan123",
+      "correo": "juan@gmail.com",
+      "telefono": "3103220039",
+      "direccion": "cll 132 c n 137 - 15",
+      "rol": "cajero",
+      "estado": "activo"
     }
   ]
 }
