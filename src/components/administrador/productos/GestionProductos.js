@@ -68,29 +68,29 @@ const GestionProductos = () => {
     };
 
     return (
-        <div className="container mx-auto px-4 py-8">
-            <h1 className="text-3xl font-bold mb-4">Gestión de Productos</h1>
-            <p className="mb-8">
+        <div class="container mx-auto px-4 py-8">
+            <h1 class="text-3xl font-bold mb-4">Gestión de Productos</h1>
+            <p class="mb-8">
                 En esta sección podrás gestionar tus productos. Puedes agregar nuevos productos
                 y visualizar los productos que ya has registrado.
             </p>
 
-            {error && <p className="text-red-500 mb-4">{error}</p>}
+            {error && <p class="text-red-500 mb-4">{error}</p>}
 
-            <div className="mb-4">
+            <div class="mb-4">
                 <button
                     onClick={() => navigate('/registro-productos')}
-                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                    class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
                 >
-                    <FaPlus className="inline-block mr-2" /> Registrar Producto
+                    <FaPlus class="inline-block mr-2" /> Registrar Producto
                 </button>
             </div>
 
-            <div className="mb-6">
+            <div class="mb-6">
                 <select
                     value={categoriaSeleccionada}
                     onChange={(e) => setCategoriaSeleccionada(e.target.value)}
-                    className="p-2 border border-gray-300 rounded"
+                    class="p-2 border border-gray-300 rounded"
                 >
                     {categorias.map(categoria => (
                         <option key={categoria} value={categoria}>{categoria}</option>
@@ -98,60 +98,60 @@ const GestionProductos = () => {
                 </select>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {productos.length === 0 ? (
-                    <p className="text-gray-500">No hay productos disponibles en la base de datos.</p>
+                    <p class="text-gray-500">No hay productos disponibles en la base de datos.</p>
                 ) : productosFiltrados.length > 0 ? (
                     productosFiltrados.map((producto) => (
-                        <div key={producto.id} className="bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden">
-                            <div className="w-full h-64 relative">
+                        <div key={producto.id} class="bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden">
+                            <div class="w-full h-64 relative">
                                 <img
                                     src={producto.imagen}
                                     alt={producto.nombre}
-                                    className="object-cover w-full h-full absolute inset-0"
+                                    class="object-cover w-full h-full absolute inset-0"
                                 />
                             </div>
-                            <div className="p-4">
-                                <h2 className="text-xl font-semibold mb-2">{producto.nombre}</h2>
-                                <p className="text-gray-900 font-bold mb-4">${producto.precio}</p>
-                                <p className="text-gray-700 mb-4">Marca: {producto.marca}</p> 
-                                <div className="flex gap-2">
+                            <div class="p-4">
+                                <h2 class="text-xl font-semibold mb-2">{producto.nombre}</h2>
+                                <p class="text-gray-900 font-bold mb-4">${producto.precio}</p>
+                                <p class="text-gray-700 mb-4">Marca: {producto.marca}</p> 
+                                <div class="flex gap-2">
                                     <button
                                         onClick={() => navigate(`/editar-producto/${producto.id}`)}
-                                        className="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 flex items-center"
+                                        class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 flex items-center"
                                     >
-                                        <FaEdit className="mr-1" /> Editar
+                                        <FaEdit class="mr-1" /> Editar
                                     </button>
                                     <button
                                         onClick={() => handleEliminar(producto)}
-                                        className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 flex items-center"
+                                        class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 flex items-center"
                                     >
-                                        <FaTrash className="mr-1" /> Inactivar
+                                        <FaTrash class="mr-1" /> Inactivar
                                     </button>
                                 </div>
                             </div>
                         </div>
                     ))
                 ) : (
-                    <p className="text-gray-500">No hay productos en esta categoría.</p>
+                    <p class="text-gray-500">No hay productos en esta categoría.</p>
                 )}
             </div>
 
             {showModal && (
-                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                    <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm">
-                        <h2 className="text-xl font-semibold mb-4">Confirmar Inactivación</h2>
-                        <p className="mb-4">¿Estás seguro de que quieres inactivar el producto "{productoAEliminar?.nombre}"?</p>
-                        <div className="flex justify-end gap-4">
+                <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                    <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm">
+                        <h2 class="text-xl font-semibold mb-4">Confirmar Inactivación</h2>
+                        <p class="mb-4">¿Estás seguro de que quieres inactivar el producto "{productoAEliminar?.nombre}"?</p>
+                        <div class="flex justify-end gap-4">
                             <button
                                 onClick={() => setShowModal(false)}
-                                className="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400"
+                                class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400"
                             >
                                 Cancelar
                             </button>
                             <button
                                 onClick={handleDelete}
-                                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                                class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
                             >
                                 Inactivar
                             </button>

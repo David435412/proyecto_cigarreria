@@ -21,8 +21,8 @@ import RegistroEmpleado from './components/administrador/usuarios/RegistroEmplea
 import EditarUsuario from './components/administrador/usuarios/EdicionUsuarios';
 
 import ClienteDashboard from './components/cliente/ClienteDash';
-import Productos from './components/cliente/Productos'
-import DetalleProducto from './components/cliente/DetallesProducto';
+import Productos from './components/cliente/productos/Productos'
+import DetalleProducto from './components/cliente/productos/DetallesProducto';
 import Carrito from './components/cliente/Cart';
 
 import CajeroDashboard from './components/cajero/CajeroDash';
@@ -66,7 +66,7 @@ const App = () => {
           <Route path="/gestion-usuarios" element={<GestionUsuarios />} />  
           <Route path="/registro-empleado" element={<RegistroEmpleado />} />   
           <Route path="/editar-usuario/:id" element={<EditarUsuario />} /> 
-           
+
           <Route path="/cliente-dash" element={<ClienteDashboard />} />
           <Route path="/productos" element={<Productos />} />
           <Route path="/producto/:id" element={<DetalleProducto />} />

@@ -64,68 +64,68 @@ const EditarProducto = () => {
     };
 
     return (
-        <section className="bg-gray-50">
-            <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-                <h1 className="text-3xl font-bold mb-4">Editar Producto</h1>
+        <section class="bg-gray-50">
+            <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+                <h1 class="text-3xl font-bold mb-4">Editar Producto</h1>
 
-                {error && <p className="text-red-500 mb-4">{error}</p>}
+                {error && <p class="text-red-500 mb-4">{error}</p>}
                 {alertMessage && (
-                    <div className="mb-4 p-4 bg-green-100 text-green-800 border border-green-300 rounded">
+                    <div class="mb-4 p-4 bg-green-100 text-green-800 border border-green-300 rounded">
                         {alertMessage}
                     </div>
                 )}
 
-                <div className="w-full bg-white rounded-lg shadow-md md:mt-0 sm:max-w-4xl xl:p-0 border border-gray-200">
-                    <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-                        <form className="grid grid-cols-1 gap-6 md:grid-cols-2" onSubmit={handleSubmit}>
-                            <div className="col-span-1">
-                                <label className="block text-gray-700 font-medium">Nombre</label>
+                <div class="w-full bg-white rounded-lg shadow-md md:mt-0 sm:max-w-4xl xl:p-0 border border-gray-200">
+                    <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                        <form class="grid grid-cols-1 gap-6 md:grid-cols-2" onSubmit={handleSubmit}>
+                            <div class="col-span-1">
+                                <label class="block text-gray-700 font-medium">Nombre</label>
                                 <input
                                     type="text"
                                     name="nombre"
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
                                     value={formData.nombre}
                                     onChange={handleChange}
                                     required
                                 />
                             </div>
-                            <div className="col-span-1">
-                                <label className="block text-gray-700 font-medium">Precio</label>
+                            <div class="col-span-1">
+                                <label class="block text-gray-700 font-medium">Precio</label>
                                 <input
                                     type="number"
                                     name="precio"
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
                                     value={formData.precio}
                                     onChange={handleChange}
                                     required
                                 />
                             </div>
-                            <div className="col-span-1">
-                                <label className="block text-gray-700 font-medium">Descripción</label>
+                            <div class="col-span-1">
+                                <label class="block text-gray-700 font-medium">Descripción</label>
                                 <textarea
                                     name="descripcion"
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
                                     value={formData.descripcion}
                                     onChange={handleChange}
                                     required
                                 />
                             </div>
-                            <div className="col-span-1">
-                                <label className="block text-gray-700 font-medium">Imagen (URL)</label>
+                            <div class="col-span-1">
+                                <label class="block text-gray-700 font-medium">Imagen (URL)</label>
                                 <input
                                     type="text"
                                     name="imagen"
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
                                     value={formData.imagen}
                                     onChange={handleChange}
                                     required
                                 />
                             </div>
-                            <div className="col-span-1">
-                                <label className="block text-gray-700 font-medium">Categoría</label>
+                            <div class="col-span-1">
+                                <label class="block text-gray-700 font-medium">Categoría</label>
                                 <select
                                     name="categoria"
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
                                     value={formData.categoria}
                                     onChange={handleChange}
                                     required
@@ -135,12 +135,12 @@ const EditarProducto = () => {
                                     ))}
                                 </select>
                             </div>
-                            <div className="col-span-1">
-                                <label className="block text-gray-700 font-medium">Cantidad</label>
+                            <div class="col-span-1">
+                                <label class="block text-gray-700 font-medium">Cantidad</label>
                                 <input
                                     type="number"
                                     name="cantidad"
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
                                     value={formData.cantidad}
                                     onChange={handleChange}
                                     required
@@ -148,28 +148,28 @@ const EditarProducto = () => {
                                     max="1000"
                                 />
                             </div>
-                            <div className="col-span-2">
-                                <label className="block text-gray-700 font-medium">Marca</label>
+                            <div class="col-span-2">
+                                <label class="block text-gray-700 font-medium">Marca</label>
                                 <input
                                     type="text"
                                     name="marca"
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
                                     value={formData.marca}
                                     onChange={handleChange}
                                     required
                                 />
                             </div>
-                            <div className="col-span-2 flex justify-between mt-4">
+                            <div class="col-span-2 flex justify-between mt-4">
                                 <button
                                     type="button"
                                     onClick={() => navigate('/gestion-productos')}
-                                    className="px-8 py-4 bg-gradient-to-r from-gray-500 to-red-500 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
+                                    class="px-8 py-4 bg-gradient-to-r from-gray-500 to-red-500 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
                                 >
                                     Cancelar
                                 </button>
                                 <button
                                     type="submit"
-                                    className="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
+                                    class="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
                                 >
                                     Actualizar Producto
                                 </button>
