@@ -23,7 +23,7 @@ import EditarUsuario from './components/administrador/usuarios/EdicionUsuarios';
 import ClienteDashboard from './components/cliente/ClienteDash';
 import Productos from './components/cliente/productos/Productos'
 import DetalleProducto from './components/cliente/productos/DetallesProducto';
-import Carrito from './components/cliente/Cart';
+import Carrito from './components/cliente/productos/Cart';
 
 import CajeroDashboard from './components/cajero/CajeroDash';
 
