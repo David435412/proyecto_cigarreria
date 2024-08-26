@@ -65,19 +65,19 @@ const Login = () => {
 
     return (
         <div>
-            <section className="bg-gray-50">
-                <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-                    <div className="w-full bg-white rounded-lg shadow-md md:mt-0 sm:max-w-md xl:p-0 border border-gray-200">
-                        <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-                            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
+            <section class="bg-gray-50">
+                <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+                    <div class="w-full bg-white rounded-lg shadow-md md:mt-0 sm:max-w-md xl:p-0 border border-gray-200">
+                        <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                            <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
                                 Inicia Sesión con tu cuenta!
                             </h1>
-                            {error && <p className="text-red-500">{error}</p>}
-                            <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
+                            {error && <p class="text-red-500">{error}</p>}
+                            <form class="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
                                 <div>
                                     <label
                                         htmlFor="nombreUsuario"
-                                        className="block mb-2 text-sm font-medium text-gray-900"
+                                        class="block mb-2 text-sm font-medium text-gray-900"
                                     >
                                         Nombre de Usuario
                                     </label>
@@ -87,7 +87,7 @@ const Login = () => {
                                         id="nombreUsuario"
                                         value={formData.nombreUsuario}
                                         onChange={handleChange}
-                                        className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                         placeholder="Tu nombre de usuario"
                                         required
                                     />
@@ -95,7 +95,7 @@ const Login = () => {
                                 <div>
                                     <label
                                         htmlFor="contrasena"
-                                        className="block mb-2 text-sm font-medium text-gray-900"
+                                        class="block mb-2 text-sm font-medium text-gray-900"
                                     >
                                         Contraseña
                                     </label>
@@ -106,24 +106,24 @@ const Login = () => {
                                         value={formData.contrasena}
                                         onChange={handleChange}
                                         placeholder="••••••••"
-                                        className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                         required
                                     />
                                 </div>
-                                <div className="flex items-center justify-between">
-                                    <div className="flex items-start">
-                                        <div className="flex items-center h-5">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-start">
+                                        <div class="flex items-center h-5">
                                             <input
                                                 id="remember"
                                                 aria-describedby="remember"
                                                 type="checkbox"
-                                                className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300"
+                                                class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300"
                                             />
                                         </div>
-                                        <div className="ml-3 text-sm">
+                                        <div class="ml-3 text-sm">
                                             <label
                                                 htmlFor="remember"
-                                                className="text-gray-500"
+                                                class="text-gray-500"
                                             >
                                                 Recuérdame
                                             </label>
@@ -131,20 +131,20 @@ const Login = () => {
                                     </div>
                                     <a
                                         href="#"
-                                        className="text-sm font-medium text-blue-600 hover:underline"
+                                        class="text-sm font-medium text-blue-600 hover:underline"
                                     >
                                         ¿Olvidaste tu contraseña?
                                     </a>
                                 </div>
                                 <button
                                     type="submit"
-                                    className="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
+                                    class="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
                                 >
                                     Ingresar
                                 </button>
                             </form>
-                            <p className="text-sm text-gray-600">
-                                ¿Aún no tienes cuenta? <a href="/registro-cliente" className="text-sm font-bold text-black">Regístrate</a>
+                            <p class="text-sm text-gray-600">
+                                ¿Aún no tienes cuenta? <a href="/registro-cliente" class="text-sm font-bold text-black">Regístrate</a>
                             </p>
                         </div>
                     </div>

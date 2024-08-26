@@ -8,6 +8,7 @@ import Login from './components/auth/Login';
 import AdminDash from './pages/AdminDash';
 import GestionUsuarios from './components/administrador/GestionUsuarios';
 import RegistroEmpleado from './components/administrador/RegistroEmpleados';
+import EditarUsuario from './components/administrador/EdicionUsuarios';
 
 const App = () => {
   const { role } = useContext(UserContext);
@@ -31,7 +32,8 @@ const App = () => {
           <Route path="/login" element={<Login />} />              
           <Route path="/admin-dash" element={<AdminDash />} />    
           <Route path="/gestion-usuarios" element={<GestionUsuarios />} />    
-          <Route path="/registro-empleado" element={<RegistroEmpleado />} />      
+          <Route path="/registro-empleado" element={<RegistroEmpleado />} />   
+          <Route path="/editar-usuario/:id" element={<EditarUsuario />} />   
         </Routes>
       </main>
     </Router>

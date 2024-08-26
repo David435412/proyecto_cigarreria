@@ -9,29 +9,61 @@
       "telefono": "3103220039",
       "direccion": "Cll 132 c N 137",
       "estado": "activo",
-      "rol": "administrador"
+      "rol": "administrador",
+      "tipoDocumento": "cedula",
+      "numeroDocumento": "123456789"
     },
     {
       "id": "002",
       "nombre": "Darwin Santiago Lesmes",
-      "contrasena": "darwin123",
+      "contrasena": "darwin23",
       "nombreUsuario": "darwin123",
       "correo": "darwin@gmail.com",
-      "telefono": "3103124123",
-      "direccion": "Cll 133 c N 37",
+      "telefono": "3104222039",
+      "direccion": "Cll 13 c N 17",
       "estado": "activo",
-      "rol": "cajero"
+      "rol": "cajero",
+      "tipoDocumento": "cedula",
+      "numeroDocumento": "123456789"
     },
     {
       "id": "79da",
-      "nombre": "Juan",
+      "nombre": "Juan Esteban Murcia Ramirez",
       "contrasena": "juan123",
       "nombreUsuario": "Juan123",
       "correo": "juan@gmail.com",
       "telefono": "3103220039",
       "direccion": "cll 132 c n 137 - 15",
       "rol": "cajero",
-      "estado": "activo"
+      "estado": "activo",
+      "tipoDocumento": "cedula",
+      "numeroDocumento": "192837465"
+    },
+    {
+      "id": "c9c3",
+      "nombre": "Jeison David Rojas",
+      "contrasena": "jeison123",
+      "nombreUsuario": "Jeison12",
+      "correo": "jeison3213@gmail.com",
+      "telefono": "3102331123",
+      "direccion": "Cll 43 N 71",
+      "rol": "cajero",
+      "estado": "activo",
+      "tipoDocumento": "cedula",
+      "numeroDocumento": "564738291"
+    },
+    {
+      "id": "87f8",
+      "nombre": "Miguel Angel Ortiz",
+      "contrasena": "miguel123",
+      "nombreUsuario": "Miguel321",
+      "correo": "miguel4321@gmail.com",
+      "telefono": "3109231123",
+      "direccion": "Cll 71 N 1 - 18",
+      "rol": "domiciliario",
+      "estado": "activo",
+      "tipoDocumento": "cedula",
+      "numeroDocumento": "827364510"
     }
   ]
 }
