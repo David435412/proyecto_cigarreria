@@ -514,7 +514,7 @@
         }
       ],
       "fecha": "2024-08-27T08:56:39.108Z",
-      "estadoPedido": "pendiente",
+      "estadoPedido": "entregado",
       "estado": "activo"
     }
   ],
