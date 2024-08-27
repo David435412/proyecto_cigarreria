@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -27,8 +27,24 @@ const RegistroProducto = () => {
     });
     const [alertMessage, setAlertMessage] = useState('');
     const [error, setError] = useState('');
+    const [proveedores, setProveedores] = useState([]);
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        // Obtener la lista de proveedores desde la API
+        const fetchProveedores = async () => {
+            try {
+                const response = await axios.get('http://localhost:5000/proveedores');
+                setProveedores(response.data);
+            } catch (error) {
+                console.error('Error al obtener los proveedores', error);
+                setError('No se pudo cargar la lista de proveedores.');
+            }
+        };
+
+        fetchProveedores();
+    }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -67,8 +83,8 @@ const RegistroProducto = () => {
 
     return (
         <section class="bg-gray-50">
-            <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-                <div class="w-full bg-white rounded-lg shadow-md md:mt-0 sm:max-w-md xl:p-0 border border-gray-200">
+            <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto my-10 lg:py-0">
+                <div class="w-full bg-white rounded-xl shadow-2xl md:mt-0 sm:max-w-md xl:p-0 border border-gray-200">
                     <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                         <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
                             Registrar Nuevo Producto
@@ -176,31 +192,37 @@ const RegistroProducto = () => {
                                     </div>
                                 </div>
                                 <div>
-                                    <label class="block mb-2 text-sm font-medium text-gray-900">
+                                    <label className="block mb-2 text-sm font-medium text-gray-900">
                                         Marca
                                     </label>
-                                    <input
-                                        type="text"
+                                    <select
                                         name="marca"
-                                        value={formData.marca}
+                                        value={formData.proveedor}
                                         onChange={handleChange}
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                         required
-                                    />
+                                    >
+                                        <option value="" disabled>Seleccione un proveedor</option>
+                                        {proveedores.map((proveedor) => (
+                                            <option key={proveedor.id} value={proveedor.nombre}>
+                                                {proveedor.nombre}
+                                            </option>
+                                        ))}
+                                    </select>
                                 </div>
                             </div>
 
-                            <div class="flex justify-end gap-4">
+                            <div class="flex justify-center gap-4">
                                 <button
                                     type="button"
                                     onClick={() => navigate('/gestion-productos')}
-                                    class="px-8 py-4 bg-gradient-to-r from-gray-500 to-red-500 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
+                                    class="px-8 py-4 bg-gradient-to-r from-red-400 to-red-600 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
                                 >
                                     Cancelar
                                 </button>
                                 <button
                                     type="submit"
-                                    class="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
+                                    class="px-8 py-4 bg-gradient-to-r from-green-400 to-green-700  text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
                                 >
                                     Registrar Producto
                                 </button>

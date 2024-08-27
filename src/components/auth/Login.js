@@ -70,18 +70,18 @@ const Login = () => {
     return (
         <div>
             <section class="bg-gray-50">
-                <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-                    <div class="w-full bg-white rounded-lg shadow-md md:mt-0 sm:max-w-md xl:p-0 border border-gray-200">
+                <div class="flex flex-col items-center justify-center m-auto my-10 lg:py-0">
+                    <div class="w-full rounded-lg shadow-2xl md:mt-0 sm:max-w-md xl:p-0 border">
                         <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                             <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
                                 Inicia Sesión con tu cuenta!
                             </h1>
                             {error && <p class="text-red-500">{error}</p>}
-                            <form class="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
+                            <form class="space-y-4 md:space-y-6 text-center" onSubmit={handleSubmit}>
                                 <div>
                                     <label
                                         htmlFor="correo"
-                                        class="block mb-2 text-sm font-medium text-gray-900"
+                                        class="text-left block mb-2 text-sm font-medium text-gray-900"
                                     >
                                         Correo Electrónico
                                     </label>
@@ -99,7 +99,7 @@ const Login = () => {
                                 <div>
                                     <label
                                         htmlFor="contrasena"
-                                        class="block mb-2 text-sm font-medium text-gray-900"
+                                        class="text-left block mb-2 text-sm font-medium text-gray-900"
                                     >
                                         Contraseña
                                     </label>
@@ -114,35 +114,9 @@ const Login = () => {
                                         required
                                     />
                                 </div>
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-start">
-                                        <div class="flex items-center h-5">
-                                            <input
-                                                id="remember"
-                                                aria-describedby="remember"
-                                                type="checkbox"
-                                                class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300"
-                                            />
-                                        </div>
-                                        <div class="ml-3 text-sm">
-                                            <label
-                                                htmlFor="remember"
-                                                class="text-gray-500"
-                                            >
-                                                Recuérdame
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <a
-                                        href="#"
-                                        class="text-sm font-medium text-blue-600 hover:underline"
-                                    >
-                                        ¿Olvidaste tu contraseña?
-                                    </a>
-                                </div>
                                 <button
                                     type="submit"
-                                    class="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
+                                    class=" w-4/6 px-6 py-3 bg-gradient-to-r from-green-400 to-green-700 text-white font-bold rounded-2xl transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg m-auto"
                                 >
                                     Ingresar
                                 </button>

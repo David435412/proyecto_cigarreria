@@ -58,7 +58,7 @@ const EditarUsuario = () => {
 
     return (
         <section class="bg-gray-50">
-            <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+            <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto my-10 lg:py-0">
                 <h1 class="text-3xl font-bold mb-4">Editar Usuario</h1>
 
                 {error && <p class="text-red-500 mb-4">{error}</p>}
@@ -68,7 +68,7 @@ const EditarUsuario = () => {
                     </div>
                 )}
 
-                <div class="w-full bg-white rounded-lg shadow-md md:mt-0 sm:max-w-4xl xl:p-0 border border-gray-200">
+                <div class="w-full bg-white rounded-xl shadow-2xl md:mt-0 sm:max-w-4xl xl:p-0 border border-gray-200">
                     <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                         <form class="grid grid-cols-1 gap-6 md:grid-cols-3" onSubmit={handleSubmit}>
                             <div class="col-span-1">
@@ -181,13 +181,13 @@ const EditarUsuario = () => {
                                 <button
                                     type="button"
                                     onClick={() => navigate('/gestion-usuarios')}
-                                    class="px-8 py-4 bg-gradient-to-r from-gray-500 to-red-500 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
+                                    class="px-8 py-4 bg-gradient-to-r from-red-400 to-red-700 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
                                 >
                                     Cancelar
                                 </button>
                                 <button
                                     type="submit"
-                                    class="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
+                                    class="px-8 py-4 bg-gradient-to-r from-green-400 to-green-700  text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
                                 >
                                     Actualizar Usuario
                                 </button>

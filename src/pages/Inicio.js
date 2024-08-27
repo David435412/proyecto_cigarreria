@@ -63,7 +63,7 @@ const Inicio = () => {
     return (
 
         <section class=" place-content-center justify-items-center gap-8 mt-5 mb-5">
-            <h1 class="text-center mb-4 text-2xl font-bold tracking-tight text-gray-900">Bienvenido a la cigarreria Colonial</h1>
+            <h1 class="text-center mb-4 text-2xl font-bold tracking-tight text-gray-900">Bienvenido a la Cigarreria Colonial</h1>
             <p class="text-center mb-4 text-xl font-bold tracking-tight text-gray-900">En nuestra pagina podras realizar pedidos de los diversos productos que te ofrecemos</p>
 
             {/* carrusel */}

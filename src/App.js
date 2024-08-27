@@ -20,7 +20,9 @@ import GestionUsuarios from './components/administrador/usuarios/GestionUsuarios
 import RegistroEmpleado from './components/administrador/usuarios/RegistroEmpleados';
 import EditarUsuario from './components/administrador/usuarios/EdicionUsuarios';
 
-import GestionPedidos from './components/administrador/pedidos/PedidosAdmin'
+import GestionProveedores from './components/administrador/proveedores/GestionProveedores';
+import RegistroProveedor from './components/administrador/proveedores/RegistroProveedores';
+import EditarProveedor from './components/administrador/proveedores/EdicionProveedores';
 
 import ClienteDashboard from './components/cliente/ClienteDash';
 import Productos from './components/cliente/productos/Productos'
@@ -68,6 +70,7 @@ const App = () => {
       <NavBarComponent />
       <main>
         <Routes>
+          <Route path="/" element={<Inicio />} />          
           <Route path="/Inicio" element={<Inicio />} />          
 
 
@@ -82,6 +85,12 @@ const App = () => {
           <Route path="/gestion-usuarios" element={<GestionUsuarios />} />  
           <Route path="/registro-empleado" element={<RegistroEmpleado />} />   
           <Route path="/editar-usuario/:id" element={<EditarUsuario />} /> 
+          
+          <Route path="/gestion-proveedores" element={<GestionProveedores />} /> 
+          <Route path="/registro-proveedor" element={<RegistroProveedor />} />      
+          <Route path="/editar-proveedor/:id" element={<EditarProveedor />} /> 
+        
+
 
           <Route path="/gestion-pedidos" element={<GestionPedidos />} />
 

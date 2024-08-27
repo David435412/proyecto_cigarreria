@@ -26,6 +26,7 @@ const EditarProducto = () => {
         marca: '',
         estado: 'activo'
     });
+    const [proveedores, setProveedores] = useState([]);
     const [error, setError] = useState('');
     const [alertMessage, setAlertMessage] = useState('');
 
@@ -42,7 +43,19 @@ const EditarProducto = () => {
             }
         };
 
+        const fetchProveedores = async () => {
+            try {
+                const response = await axios.get('http://localhost:5000/proveedores');
+                setProveedores(response.data);
+            } catch (error) {
+                console.error('Error al obtener los proveedores', error);
+                setError('No se pudo cargar la lista de proveedores.');
+            }
+        };
+
+
         fetchProducto();
+        fetchProveedores();
     }, [id]);
 
     const handleChange = (e) => {
@@ -65,7 +78,7 @@ const EditarProducto = () => {
 
     return (
         <section class="bg-gray-50">
-            <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+            <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto my-10 lg:py-0">
                 <h1 class="text-3xl font-bold mb-4">Editar Producto</h1>
 
                 {error && <p class="text-red-500 mb-4">{error}</p>}
@@ -75,7 +88,7 @@ const EditarProducto = () => {
                     </div>
                 )}
 
-                <div class="w-full bg-white rounded-lg shadow-md md:mt-0 sm:max-w-4xl xl:p-0 border border-gray-200">
+                <div class="w-full bg-white rounded-xl shadow-2xl md:mt-0 sm:max-w-4xl xl:p-0 border border-gray-200">
                     <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                         <form class="grid grid-cols-1 gap-6 md:grid-cols-2" onSubmit={handleSubmit}>
                             <div class="col-span-1">
@@ -150,26 +163,31 @@ const EditarProducto = () => {
                             </div>
                             <div class="col-span-2">
                                 <label class="block text-gray-700 font-medium">Marca</label>
-                                <input
-                                    type="text"
+                                <select
                                     name="marca"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
                                     value={formData.marca}
                                     onChange={handleChange}
                                     required
-                                />
+                                >
+                                    {proveedores.map(proveedor => (
+                                        <option key={proveedor.id} value={proveedor.nombre}>
+                                            {proveedor.nombre}
+                                        </option>
+                                    ))}
+                                </select>
                             </div>
                             <div class="col-span-2 flex justify-between mt-4">
                                 <button
                                     type="button"
                                     onClick={() => navigate('/gestion-productos')}
-                                    class="px-8 py-4 bg-gradient-to-r from-gray-500 to-red-500 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
+                                    class="px-8 py-4 bg-gradient-to-r from-red-400 to-red-700 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
                                 >
                                     Cancelar
                                 </button>
                                 <button
                                     type="submit"
-                                    class="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
+                                    class="px-8 py-4 bg-gradient-to-r from-green-400 to-green-700  text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
                                 >
                                     Actualizar Producto
                                 </button>
