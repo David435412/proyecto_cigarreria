@@ -80,7 +80,7 @@ const GestionProductos = () => {
             <div class="mb-4">
                 <button
                     onClick={() => navigate('/registro-productos')}
-                    class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                    class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
                 >
                     <FaPlus class="inline-block mr-2" /> Registrar Producto
                 </button>
@@ -118,13 +118,13 @@ const GestionProductos = () => {
                                 <div class="flex gap-2">
                                     <button
                                         onClick={() => navigate(`/editar-producto/${producto.id}`)}
-                                        class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 flex items-center"
+                                        class="bg-orange-600 text-white px-3 py-1 rounded hover:bg-orange-700 flex items-center"
                                     >
                                         <FaEdit class="mr-1" /> Editar
                                     </button>
                                     <button
                                         onClick={() => handleEliminar(producto)}
-                                        class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 flex items-center"
+                                        class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 flex items-center"
                                     >
                                         <FaTrash class="mr-1" /> Inactivar
                                     </button>

@@ -67,8 +67,8 @@ const RegistroProducto = () => {
 
     return (
         <section class="bg-gray-50">
-            <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-                <div class="w-full bg-white rounded-lg shadow-md md:mt-0 sm:max-w-md xl:p-0 border border-gray-200">
+            <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto my-10 lg:py-0">
+                <div class="w-full bg-white rounded-xl shadow-2xl md:mt-0 sm:max-w-md xl:p-0 border border-gray-200">
                     <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                         <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
                             Registrar Nuevo Producto
@@ -190,17 +190,17 @@ const RegistroProducto = () => {
                                 </div>
                             </div>
 
-                            <div class="flex justify-end gap-4">
+                            <div class="flex justify-center gap-4">
                                 <button
                                     type="button"
                                     onClick={() => navigate('/gestion-productos')}
-                                    class="px-8 py-4 bg-gradient-to-r from-gray-500 to-red-500 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
+                                    class="px-8 py-4 bg-gradient-to-r from-red-400 to-red-600 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
                                 >
                                     Cancelar
                                 </button>
                                 <button
                                     type="submit"
-                                    class="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
+                                    class="px-8 py-4 bg-gradient-to-r from-green-400 to-green-700  text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
                                 >
                                     Registrar Producto
                                 </button>

@@ -20,7 +20,7 @@ const HeaderAdmin = () => {
                     <Link to="/admin-dash" class="flex items-center ">                        
                     <img src={Logo} alt="CigarreriaC - Logo" class="w-16 h-auto"  />
 
-                    <h1 class=" py-2 px-2  rounded-lg self-center text-3xl text-black hover:text-gray-500 font-mono">Colonial</h1>
+                    <h1 class=" py-2 px-2  rounded-lg self-center text-3xl text-black hover:text-gray-500 italic font-serif">Colonial</h1>
                     </Link>                  
                     <div class="flex items-center lg:order-2">
                         <button onClick={handleLogout} class="text-gray-800 hover:bg-black hover:text-white focus:ring-4 focus:ring-gray-300 font-medium rounded-lg px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none">

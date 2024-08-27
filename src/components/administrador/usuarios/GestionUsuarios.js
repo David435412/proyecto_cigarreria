@@ -62,7 +62,7 @@ const GestionUsuarios = () => {
             <div class="mb-4 flex space-x-4">
                 <button
                     onClick={() => navigate('/registro-empleado')}
-                    class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                    class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
                 >
                     <FaPlus class="inline-block mr-2" /> Registrar Nuevo Usuario
                 </button>
@@ -104,7 +104,7 @@ const GestionUsuarios = () => {
                                     <td class="p-4 flex gap-2">
                                         <button
                                             onClick={() => navigate(`/editar-usuario/${usuario.id}`)}
-                                            class="bg-yellow-500 text-white py-1 px-2 rounded hover:bg-yellow-600"
+                                            class="bg-orange-500 text-white py-1 px-2 rounded hover:bg-orange-600"
                                         >
                                             Editar
                                         </button>

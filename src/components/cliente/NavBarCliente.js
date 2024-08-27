@@ -21,7 +21,7 @@ const HeaderCliente = () => {
                         <Link to="/admin-dash" class="flex items-center ">
                             <img src={Logo} alt="CigarreriaC - Logo" class="w-16 h-auto" />
 
-                            <h1 class=" py-2 px-2  rounded-lg self-center text-3xl text-black hover:text-gray-500 font-mono">Colonial</h1>
+                            <h1 class=" py-2 px-2  rounded-lg self-center text-3xl text-black hover:text-gray-500 italic font-serif">Colonial</h1>
                         </Link>
                         <div class="flex items-center lg:order-2">
                             <button

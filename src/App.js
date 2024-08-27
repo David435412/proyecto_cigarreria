@@ -60,6 +60,7 @@ const App = () => {
       <NavBarComponent />
       <main>
         <Routes>
+          <Route path="/" element={<Inicio />} />          
           <Route path="/Inicio" element={<Inicio />} />          
 
 
