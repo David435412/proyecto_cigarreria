@@ -31,7 +31,6 @@ import RegistroVenta from './components/administrador/ventas/RegistroVentas';
 import ConfirmacionVenta from './components/administrador/ventas/ConfirmacionVenta';
 
 import ClienteDashboard from './components/cliente/ClienteDash';
-import Productos from './components/cliente/productos/Productos'
 import DetalleProducto from './components/cliente/productos/DetallesProducto';
 import Carrito from './components/cliente/productos/Cart';
 
@@ -44,10 +43,10 @@ import DetallesPedido from './components/cliente/pedidos/DetallesPedido';
 import CajeroDashboard from './components/cajero/CajeroDash';
 
 import DomiciliarioDashboard from './components/domiciliario/DomiciliarioDash';
+import PedidosDomiciliario from './components/domiciliario/pedidos/PedidosDomiciliario';
 
 import Footer from './components/comun/Footer';
 import Inicio from './pages/Inicio';
-import ProductosAntes from './components/comun/Productos'
 import PedidosAntes from './components/comun/Pedidos'
 import CartAntes from './components/comun/Cart'
 
@@ -79,8 +78,8 @@ const App = () => {
       <NavBarComponent />
       <main>
         <Routes>               
+          <Route path="/" element={<Inicio />} />  
           <Route path="/Inicio" element={<Inicio />} />  
-          <Route path="/productos-a" element={<ProductosAntes />} />  
           <Route path="/pedidos-a" element={<PedidosAntes />} /> 
           <Route path="/carrito-a" element={<CartAntes />} />
 
@@ -109,7 +108,6 @@ const App = () => {
 
 
           <Route path="/cliente-dash" element={<ClienteDashboard />} />
-          <Route path="/productos" element={<Productos />} />
           <Route path="/producto/:id" element={<DetalleProducto />} />
           <Route path="/carrito" element={<Carrito />} /> 
 
@@ -122,6 +120,8 @@ const App = () => {
           <Route path="/cajero-dash" element={< CajeroDashboard />} />
 
           <Route path="/domiciliario-dash" element={< DomiciliarioDashboard />} />
+          <Route path="/PedidosDomiciliario" element={< PedidosDomiciliario />} />
+
         </Routes>
 
         <Footer/>

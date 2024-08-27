@@ -9,27 +9,58 @@ import fuera_5 from "../assets/images/fuera_5.jpeg";
 import fuera_6 from "../assets/images/fuera_6.jpeg";
 import dentro_1 from "../assets/images/dentro_1.jpeg";
 
-const Inicio = () => {
+const categorias = [
+    'Licores',
+    'Confitería',
+    'Enlatados',
+    'Aseo',
+    'Medicamentos',
+    'Helados',
+    'Bebidas',
+    'Lacteos',
+    'Panadería'
+];
 
-    const [camiones, setCamiones] = useState([]); // Estado para almacenar los datos de los camiones
-    const navigate = useNavigate();
+const Inicio = () => {
+    const [productos, setProductos] = useState([]);
+    const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('');
+    const [filteredProducts, setFilteredProducts] = useState([]);
+    const [error, setError] = useState(null);
+    const navigate = useNavigate(); // Para la redirección
     const [currentImageIndex, setCurrentImageIndex] = useState(0); // Estado para el índice de la imagen actual
 
-    // Lista de imágenes para el carrusel
-    const images = [fuera_1, fuera_2, fuera_3, fuera_4, fuera_5, fuera_6, dentro_1];
 
-    useEffect(() => {
-        const obtenerCamiones = async () => {
+    useEffect(() => {        
+        const fetchProductos = async () => {
             try {
-                const response = await axios.get("http://localhost:4000/camiones"); // Ajusta la URL según tu API
-                setCamiones(response.data); // Guarda los datos en el estado
+                const response = await axios.get('http://localhost:5000/productos');
+                const productosActivos = response.data.filter(producto => producto.estado === 'activo');
+                setProductos(productosActivos);
+                setFilteredProducts(productosActivos); 
             } catch (error) {
-                console.error('Error al obtener los camiones:', error);
+                setError('Error al obtener los productos');
+                console.error('Error al obtener los productos', error);
             }
         };
 
-        obtenerCamiones(); // Llama a la función cuando el componente se monta
+        fetchProductos();
     }, []);
+
+    useEffect(() => {       
+        if (categoriaSeleccionada === '') {
+            setFilteredProducts(productos);
+        } else {
+            setFilteredProducts(productos.filter(producto => producto.categoria === categoriaSeleccionada));
+        }
+    }, [categoriaSeleccionada, productos]);
+
+    const handleVerMasClick = () => {
+        alert('Inicia sesión para poder comprar productos');
+        navigate('/login');
+    };
+
+    // Lista de imágenes para el carrusel
+    const images = [fuera_1, fuera_2, fuera_3, fuera_4, fuera_5, fuera_6, dentro_1];
 
     // Función para manejar la redirección
     const handleRedirect = (id) => {
@@ -110,8 +141,58 @@ const Inicio = () => {
                 </button>
             </div>
 
-            <p class="text-center mt-4 mb-4 text-2xl font-bold tracking-tight text-gray-900">Estas son las categorias de los productos que ofrecemos</p>
+            <div className="container mx-auto px-4 py-8">
+            <h1 className="text-3xl font-bold mb-4">Encuentra los Mejores Productos</h1>
+            <p className="mb-8">
+                En esta sección encontrarás una amplia selección de productos. 
+                Usa el filtro a continuación para encontrar exactamente lo que buscas por categoría.
+            </p>
 
+            {error && <p className="text-red-500 mb-4">{error}</p>}
+
+            {/* Filtros */}
+            <div className="mb-6 flex space-x-4">
+                <select 
+                    value={categoriaSeleccionada} 
+                    onChange={(e) => setCategoriaSeleccionada(e.target.value)} 
+                    className="p-2 border border-gray-300 rounded"
+                >
+                    <option value="">Seleccionar categoría</option>
+                    {categorias.map(categoria => (
+                        <option key={categoria} value={categoria}>{categoria}</option>
+                    ))}
+                </select>
+            </div>
+
+            {/* Productos */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                {filteredProducts.length > 0 ? (
+                    filteredProducts.map(producto => (
+                        <div key={producto.id} className="bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden">
+                            <div className="w-full h-64 relative">
+                                <img 
+                                    src={producto.imagen} 
+                                    alt={producto.nombre} 
+                                    className="object-cover w-full h-full absolute inset-0" 
+                                />
+                            </div>
+                            <div className="p-4">
+                                <h2 className="text-xl font-semibold mb-2">{producto.nombre}</h2>                                
+                                <p className="text-gray-900 font-bold mb-4">${producto.precio}</p>
+                                <button
+                                    onClick={handleVerMasClick}
+                                    className="w-full bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                >
+                                    Ver más
+                                </button>
+                            </div>
+                        </div>
+                    ))
+                ) : (
+                    <p className="text-gray-500">No hay productos disponibles.</p>
+                )}
+            </div>
+        </div>
 
         </section>
 

@@ -46,9 +46,6 @@ const HeaderCliente = () => {
                                     <Link to="/cliente-dash" class="block py-2 pr-4 pl-3 text-black border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-gray-600 lg:p-0" aria-current="page">Home</Link>
                                 </li>
                                 <li>
-                                    <Link to="/productos" class="block py-2 pr-4 pl-3 text-black border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-gray-600 lg:p-0">Productos</Link>
-                                </li>
-                                <li>
                                     <Link to="/pedidos" class="block py-2 pr-4 pl-3 text-black border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-gray-600 lg:p-0">Pedidos</Link>
                                 </li>
                                 <li>

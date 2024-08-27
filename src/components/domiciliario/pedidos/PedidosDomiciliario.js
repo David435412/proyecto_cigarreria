@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const PedidosAdmin = () => {
+const PedidosDomiciliario = () => {
   const [pedidos, setPedidos] = useState([]);
   const [pedidoSeleccionado, setPedidoSeleccionado] = useState(null);
   const [mostrarModal, setMostrarModal] = useState(false);
@@ -150,4 +150,4 @@ const PedidosAdmin = () => {
   );
 };
 
-export default PedidosAdmin;
+export default PedidosDomiciliario;
