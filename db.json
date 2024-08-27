@@ -107,7 +107,7 @@
       "descripcion": "Tipo de cerveza: Lager ABV: 4,7% País de origen: Colombia.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/491967-1600-1600?v=638216692937930000&width=1600&height=1600&aspect=true",
       "categoria": "Licores",
-      "cantidad": 110,
+      "cantidad": 104,
       "marca": "CLUB COLOMBIA",
       "estado": "activo"
     },
@@ -311,7 +311,7 @@
         }
       ],
       "fecha": "2024-08-27T03:42:30.464Z",
-      "estadoPedido": "pendiente",
+      "estadoPedido": "entregado",
       "estado": "activo"
     },
     {
@@ -467,6 +467,54 @@
       ],
       "fecha": "2024-08-27T07:54:00.642Z",
       "estadoPedido": "cancelado",
+      "estado": "activo"
+    },
+    {
+      "id": "84bc",
+      "usuarioId": "4826",
+      "direccion": "call 137 # 128 B - 01",
+      "nombre": "darwin",
+      "correo": "david@gmail.com",
+      "telefono": "3133138027",
+      "productos": [
+        {
+          "id": "a783",
+          "nombre": "Cerveza Club Colombia Dorada lata x6und x330ml c-u",
+          "precio": "18.700",
+          "descripcion": "Tipo de cerveza: Lager ABV: 4,7% País de origen: Colombia.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/491967-1600-1600?v=638216692937930000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 3,
+          "marca": "CLUB COLOMBIA",
+          "estado": "activo"
+        }
+      ],
+      "fecha": "2024-08-27T08:44:55.485Z",
+      "estadoPedido": "pendiente",
+      "estado": "activo"
+    },
+    {
+      "id": "1a0e",
+      "usuarioId": "4826",
+      "direccion": "call 137 # 128 B - 01",
+      "nombre": "darwin",
+      "correo": "david@gmail.com",
+      "telefono": "3133138027",
+      "productos": [
+        {
+          "id": "a783",
+          "nombre": "Cerveza Club Colombia Dorada lata x6und x330ml c-u",
+          "precio": "18.700",
+          "descripcion": "Tipo de cerveza: Lager ABV: 4,7% País de origen: Colombia.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/491967-1600-1600?v=638216692937930000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 3,
+          "marca": "CLUB COLOMBIA",
+          "estado": "activo"
+        }
+      ],
+      "fecha": "2024-08-27T08:56:39.108Z",
+      "estadoPedido": "pendiente",
       "estado": "activo"
     }
   ],
