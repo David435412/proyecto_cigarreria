@@ -29,6 +29,11 @@ import CajeroDashboard from './components/cajero/CajeroDash';
 
 import DomiciliarioDashboard from './components/domiciliario/DomiciliarioDash';
 
+import Footer from './components/comun/Footer';
+import Inicio from './pages/Inicio';
+
+
+
 
 const App = () => {
   const { role } = useContext(UserContext);
@@ -55,6 +60,9 @@ const App = () => {
       <NavBarComponent />
       <main>
         <Routes>
+          <Route path="/Inicio" element={<Inicio />} />          
+
+
           <Route path="/registro-cliente" element={<RegistroCliente />} />              
           <Route path="/login" element={<Login />} />              
           <Route path="/admin-dash" element={<AdminDash />} />  
@@ -76,6 +84,8 @@ const App = () => {
 
           <Route path="/domiciliario-dash" element={< DomiciliarioDashboard />} />
         </Routes>
+
+        <Footer/>
       </main>
     </Router>
   );
