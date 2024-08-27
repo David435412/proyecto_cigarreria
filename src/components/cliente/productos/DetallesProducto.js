@@ -62,14 +62,14 @@ const DetalleProducto = () => {
     }
 
     return (
-        <div class="container mx-auto px-4 py-8">
-            <div class="flex flex-col md:flex-row">
-                <div class="md:w-1/2">
+        <div class="container  mx-auto px-4 py-8">
+            <div class="flex flex-col md:flex-row justify-center">
+                <div class="md:w-1/3">
                     <img src={producto.imagen} alt={producto.nombre} class="w-full h-auto object-cover" />
                 </div>
                 <div class="md:w-1/2 md:pl-8">
                     <h1 class="text-3xl font-semibold mb-4">{producto.nombre}</h1>
-                    <p class="text-2xl text-indigo-600 font-bold mb-4">${precioTotal}</p>
+                    <p class="text-2xl text-black font-bold mb-4">${precioTotal}</p>
                     <p class="text-gray-700 mb-4">{producto.descripcion}</p>
                     <p class="text-gray-700 mb-4">Cantidad disponible: {producto.cantidad}</p>
                     <div class="mb-4">
@@ -85,7 +85,7 @@ const DetalleProducto = () => {
                     </div>
                     <button
                         onClick={handleAgregarCarrito}
-                        class="bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-500"
+                        class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600"
                     >
                         Agregar al Carrito
                     </button>

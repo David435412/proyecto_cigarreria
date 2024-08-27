@@ -47,7 +47,7 @@ const Carrito = () => {
     };
 
     return (
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto px-4 py-8 my-5">
             <h1 className="text-3xl font-semibold mb-6">Carrito de Compras</h1>
             {carrito.length === 0 ? (
                 <div className="text-center py-8">
@@ -103,7 +103,7 @@ const Carrito = () => {
                         <Link 
                             to="/datos-entrega"
                             onClick={handleProcederAlPago}
-                            className="px-8 py-4 bg-gradient-to-r from-green-700 to-green-500 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
+                            className="px-5 py-3 bg-gradient-to-r from-green-700 to-green-500 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
                         >
                             Proceder al Pago
                         </Link>
@@ -113,7 +113,7 @@ const Carrito = () => {
             <div className="mt-6 text-center">
                 <Link 
                     to="/cliente-dash" 
-                    className="px-8 py-4 bg-gradient-to-r from-green-400 to-green-700 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
+                    className="px-5 py-3 bg-gray-500 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
                 >
                     Seguir Comprando
                 </Link>

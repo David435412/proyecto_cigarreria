@@ -67,12 +67,6 @@ const GestionProveedores = () => {
                 >
                     <FaPlus class="inline-block mr-2" /> Registrar Nuevo proveedor
                 </button>
-                <button
-                    onClick={() => navigate('/proveedores-inactivos')}
-                    class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
-                >
-                    Proveedores Inactivos
-                </button>
             </div>
 
             <div class="overflow-x-auto">

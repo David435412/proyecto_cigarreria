@@ -49,17 +49,6 @@
       "direccion": "K 12 N 41",
       "estado": "activo",
       "rol": "cliente"
-    },
-    {
-      "id": "4862",
-      "nombre": "Juan",
-      "contrasena": "david123",
-      "nombreUsuario": "juan21",
-      "correo": "cliente2@gmail.com",
-      "telefono": "3102331123",
-      "direccion": "Cll 71 N 1 - 18",
-      "estado": "activo",
-      "rol": "cliente"
     }
   ],
   "productos": [
@@ -159,7 +148,7 @@
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/381411-1600-1600?v=637923060574430000&width=1600&height=1600&aspect=true",
       "categoria": "Enlatados",
       "cantidad": "200",
-      "marca": " CUISINE & CO NBE MP",
+      "marca": "CUISINE & CO NBE MP",
       "estado": "activo"
     },
     {
@@ -192,7 +181,7 @@
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/378871-1600-1600?v=637916947079700000&width=1600&height=1600&aspect=true",
       "categoria": "Aseo",
       "cantidad": "145",
-      "marca": " HOME CARE MP",
+      "marca": "HOME CARE MP",
       "estado": "activo"
     },
     {
@@ -262,6 +251,27 @@
       "nombre": "Jet",
       "telefono": "218772182",
       "correo": "j@gmail.com",
+      "estado": "activo"
+    },
+    {
+      "id": "c024",
+      "nombre": "CUISINE & CO NBE MP",
+      "telefono": "218002182",
+      "correo": "cuisine@gmail.com",
+      "estado": "activo"
+    },
+    {
+      "id": "c025",
+      "nombre": "MAXIMA MP",
+      "telefono": "218002112",
+      "correo": "maxima@gmail.com",
+      "estado": "activo"
+    },
+    {
+      "id": "c026",
+      "nombre": "HOME CARE MP",
+      "telefono": "218005512",
+      "correo": "home@gmail.com",
       "estado": "activo"
     }
   ],

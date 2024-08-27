@@ -66,12 +66,6 @@ const GestionUsuarios = () => {
                 >
                     <FaPlus class="inline-block mr-2" /> Registrar Nuevo Usuario
                 </button>
-                <button
-                    onClick={() => navigate('/usuarios-inactivos')}
-                    class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
-                >
-                    Usuarios Inactivos
-                </button>
             </div>
 
             <div class="overflow-x-auto">

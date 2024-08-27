@@ -58,7 +58,7 @@ const PedidosDomiciliario = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4 my-12">
       <h1 className="text-2xl font-bold mb-4">Pedidos Pendientes</h1>
       <table className="min-w-full bg-white border border-gray-200 rounded-lg">
         <thead>
