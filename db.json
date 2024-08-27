@@ -107,7 +107,7 @@
       "descripcion": "Tipo de cerveza: Lager ABV: 4,7% País de origen: Colombia.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/491967-1600-1600?v=638216692937930000&width=1600&height=1600&aspect=true",
       "categoria": "Licores",
-      "cantidad": "110",
+      "cantidad": 110,
       "marca": "CLUB COLOMBIA",
       "estado": "activo"
     },
@@ -337,6 +337,137 @@
       "fecha": "2024-08-27T06:45:27.045Z",
       "estadoPedido": "pendiente",
       "estado": "activo"
+    },
+    {
+      "id": "7638",
+      "usuarioId": "4826",
+      "direccion": "call 137 # 128 B - 01",
+      "nombre": "darwin",
+      "correo": "d@gmail.com",
+      "telefono": "12871213",
+      "productos": [
+        {
+          "id": "b5c6",
+          "nombre": "Cerveza Aguila Original lata x6und x330ml c-u",
+          "precio": "18.000",
+          "descripcion": "Tipo de cerveza: Lager. País de origen: Colombia. ABV: 4,0%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/439991-1600-1600?v=638043996501300000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 5,
+          "marca": "AGUILA",
+          "estado": "activo"
+        },
+        {
+          "id": "a783",
+          "nombre": "Cerveza Club Colombia Dorada lata x6und x330ml c-u",
+          "precio": "18.700",
+          "descripcion": "Tipo de cerveza: Lager ABV: 4,7% País de origen: Colombia.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/491967-1600-1600?v=638216692937930000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 3,
+          "marca": "CLUB COLOMBIA",
+          "estado": "activo"
+        }
+      ],
+      "fecha": "2024-08-27T07:22:37.204Z",
+      "estadoPedido": "pendiente",
+      "estado": "activo"
+    },
+    {
+      "id": "8352",
+      "usuarioId": "4826",
+      "direccion": "call 137 # 128 B - 01",
+      "nombre": "darwin",
+      "correo": "d@gmail.com",
+      "telefono": "3133138027",
+      "productos": [
+        {
+          "id": "105c",
+          "nombre": "Cerveza Poker lata x6und x330ml c-u",
+          "precio": "18.000",
+          "descripcion": "Tipo de cerveza: Lager. País de origen: Colombia. ABV: 4,0%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440018-1600-1600?v=638043996576070000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 3,
+          "marca": "POKER",
+          "estado": "activo"
+        }
+      ],
+      "fecha": "2024-08-27T07:31:43.331Z",
+      "estadoPedido": "pendiente",
+      "estado": "activo"
+    },
+    {
+      "id": "e622",
+      "usuarioId": "4826",
+      "direccion": "call 137 # 128 B - 01",
+      "nombre": "darwin",
+      "correo": "d@gmail.com",
+      "telefono": "3133138027",
+      "productos": [
+        {
+          "id": "a783",
+          "nombre": "Cerveza Club Colombia Dorada lata x6und x330ml c-u",
+          "precio": "18.700",
+          "descripcion": "Tipo de cerveza: Lager ABV: 4,7% País de origen: Colombia.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/491967-1600-1600?v=638216692937930000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 3,
+          "marca": "CLUB COLOMBIA",
+          "estado": "activo"
+        }
+      ],
+      "fecha": "2024-08-27T07:35:29.320Z",
+      "estadoPedido": "cancelado",
+      "estado": "activo"
+    },
+    {
+      "id": "ef33",
+      "usuarioId": "4826",
+      "direccion": "call 137 # 128 B - 01",
+      "nombre": "darwin",
+      "correo": "david@gmail.com",
+      "telefono": "3133138027",
+      "productos": [
+        {
+          "id": "a783",
+          "nombre": "Cerveza Club Colombia Dorada lata x6und x330ml c-u",
+          "precio": "18.700",
+          "descripcion": "Tipo de cerveza: Lager ABV: 4,7% País de origen: Colombia.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/491967-1600-1600?v=638216692937930000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 3,
+          "marca": "CLUB COLOMBIA",
+          "estado": "activo"
+        }
+      ],
+      "fecha": "2024-08-27T07:52:54.403Z",
+      "estadoPedido": "cancelado",
+      "estado": "activo"
+    },
+    {
+      "id": "38dd",
+      "usuarioId": "4826",
+      "direccion": "call 137 # 128 B - 01",
+      "nombre": "darwin",
+      "correo": "david@gmail.com",
+      "telefono": "3133138027",
+      "productos": [
+        {
+          "id": "a783",
+          "nombre": "Cerveza Club Colombia Dorada lata x6und x330ml c-u",
+          "precio": "18.700",
+          "descripcion": "Tipo de cerveza: Lager ABV: 4,7% País de origen: Colombia.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/491967-1600-1600?v=638216692937930000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 3,
+          "marca": "CLUB COLOMBIA",
+          "estado": "activo"
+        }
+      ],
+      "fecha": "2024-08-27T07:54:00.642Z",
+      "estadoPedido": "cancelado",
+      "estado": "activo"
     }
   ],
   "ventas": [
@@ -394,6 +525,50 @@
       "fechaVenta": "27/8/2024",
       "metodoPago": "Efectivo",
       "estado": "activo"
+    },
+    {
+      "id": "a8f2",
+      "productos": [
+        {
+          "id": "a783",
+          "nombre": "Cerveza Club Colombia Dorada lata x6und x330ml c-u",
+          "precio": "18.700",
+          "descripcion": "Tipo de cerveza: Lager ABV: 4,7% País de origen: Colombia.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/491967-1600-1600?v=638216692937930000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 3,
+          "marca": "CLUB COLOMBIA",
+          "estado": "activo"
+        }
+      ],
+      "tipoDocumento": "CC",
+      "numeroDocumento": "1021290812",
+      "total": 56.099999999999994,
+      "fechaVenta": "27/8/2024",
+      "metodoPago": "Efectivo",
+      "estado": "inactivo"
+    },
+    {
+      "id": "f101",
+      "productos": [
+        {
+          "id": "a783",
+          "nombre": "Cerveza Club Colombia Dorada lata x6und x330ml c-u",
+          "precio": "18.700",
+          "descripcion": "Tipo de cerveza: Lager ABV: 4,7% País de origen: Colombia.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/491967-1600-1600?v=638216692937930000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 3,
+          "marca": "CLUB COLOMBIA",
+          "estado": "activo"
+        }
+      ],
+      "tipoDocumento": "CC",
+      "numeroDocumento": "1021290812",
+      "total": 56.099999999999994,
+      "fechaVenta": "27/8/2024",
+      "metodoPago": "Efectivo",
+      "estado": "inactivo"
     }
   ]
 }

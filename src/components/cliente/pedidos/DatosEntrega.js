@@ -36,7 +36,7 @@ const DatosEntrega = () => {
         setTelefono(e.target.value);
     };
 
-    const handleConfirmar = () => {
+    const handleConfirmar = async () => {
         if (!direccion.trim() || !nombre.trim() || !correo.trim() || !telefono.trim()) {
             setError('Por favor, completa todos los campos.');
             return;
@@ -57,20 +57,34 @@ const DatosEntrega = () => {
                 estado: 'activo'            // Nuevo campo
             };
 
-            // Enviar los datos del pedido al backend
-            axios.post('http://localhost:5000/pedidos', pedido)
-                .then((response) => {
-                    // Limpiar el carrito en localStorage
-                    localStorage.removeItem(`carrito_${usuarioId}`);
-                    localStorage.removeItem('datosCarrito');
-                    localStorage.removeItem('direccionEntrega');
-                    // Redirigir a la página de confirmación
-                    navigate('/confirmar', { state: { pedidoId: response.data.id } });
-                })
-                .catch((error) => {
-                    console.error('Error al crear el pedido:', error);
-                    setError('Hubo un problema al procesar tu pedido.');
-                });
+            try {
+                // Enviar los datos del pedido al backend
+                const response = await axios.post('http://localhost:5000/pedidos', pedido);
+
+                // Descontar la cantidad de cada producto
+                await Promise.all(carrito.map(async (producto) => {
+                    // Obtener los datos actuales del producto
+                    const { data: productoActual } = await axios.get(`http://localhost:5000/productos/${producto.id}`);
+                    
+                    // Actualizar solo la cantidad del producto
+                    const productoActualizado = {
+                        ...productoActual,  // Mantener los otros campos del producto
+                        cantidad: productoActual.cantidad - producto.cantidad  // Ajustar la cantidad
+                    };
+                    await axios.put(`http://localhost:5000/productos/${producto.id}`, productoActualizado);
+                }));
+
+                // Limpiar el carrito en localStorage
+                localStorage.removeItem(`carrito_${usuarioId}`);
+                localStorage.removeItem('datosCarrito');
+                localStorage.removeItem('direccionEntrega');
+                
+                // Redirigir a la página de confirmación
+                navigate('/confirmar', { state: { pedidoId: response.data.id } });
+            } catch (error) {
+                console.error('Error al crear el pedido:', error);
+                setError('Hubo un problema al procesar tu pedido.');
+            }
         }
     };
 

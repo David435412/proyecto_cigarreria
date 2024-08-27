@@ -34,16 +34,36 @@ const GestionVentas = () => {
 
     const eliminarVenta = async () => {
         try {
+            // Obtener los detalles actuales de los productos en la venta
+            const productos = ventaAEliminar.productos;
+
+            // Devolver la cantidad de los productos al inventario
+            await Promise.all(productos.map(async (producto) => {
+                // Obtener los datos actuales del producto
+                const { data: productoActual } = await axios.get(`http://localhost:5000/productos/${producto.id}`);
+
+                // Calcular la nueva cantidad
+                const nuevaCantidad = productoActual.cantidad + producto.cantidad;
+
+                // Actualizar la cantidad del producto
+                await axios.put(`http://localhost:5000/productos/${producto.id}`, {
+                    ...productoActual,  // Mantener los otros campos del producto
+                    cantidad: nuevaCantidad  // Incrementar la cantidad
+                });
+            }));
+
+            // Cambiar el estado de la venta a 'inactivo'
             await axios.put(`http://localhost:5000/ventas/${ventaAEliminar.id}`, {
                 ...ventaAEliminar,
                 estado: 'inactivo'
             });
+
             // Actualizar la lista de ventas después de cambiar el estado
             setVentas(ventas.map(venta => venta.id === ventaAEliminar.id ? { ...venta, estado: 'inactivo' } : venta));
             setMostrarModal(false);
             setVentaAEliminar(null);
         } catch (error) {
-            console.error('Error al cambiar el estado de la venta:', error);
+            console.error('Error al eliminar la venta:', error);
         }
     };
 
@@ -63,12 +83,12 @@ const GestionVentas = () => {
         <div className="container mx-auto p-4">
             <h1 className="text-2xl font-bold mb-4">Gestión de Ventas</h1>
             <p className="mb-4">Aquí puedes gestionar las ventas registradas en el sistema. Puedes ver detalles de cada venta, así como eliminar ventas inactivas si es necesario.</p>
-            <div class="mb-4 flex space-x-4">
+            <div className="mb-4 flex space-x-4">
                 <button
                     onClick={() => window.location.href = '/registro-venta'}
-                    class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+                    className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
                 >
-                    <FaPlus class="inline-block mr-2" />  Registrar Nueva Venta
+                    <FaPlus className="inline-block mr-2" />  Registrar Nueva Venta
                 </button>
             </div>
             <table className="min-w-full bg-white border border-gray-200 rounded-lg">
