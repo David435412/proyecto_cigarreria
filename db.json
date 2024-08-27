@@ -220,6 +220,17 @@
       "cantidad": "145",
       "marca": " HOME CARE MP",
       "estado": "activo"
+    },
+    {
+      "id": "fd3f",
+      "nombre": "choco cono",
+      "precio": "3000",
+      "descripcion": "helado cubierto de chocolate",
+      "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmxTQcRR0IzYQU3aNfEK0R3bAWpHf0MzoPig&s",
+      "categoria": "Helados",
+      "cantidad": "10",
+      "marca": "crem-helado",
+      "estado": "activo"
     }
   ],
   "proveedores": [
@@ -235,6 +246,13 @@
       "nombre": "alpina",
       "telefono": "93218938",
       "correo": "alpina@gmail.com",
+      "estado": "activo"
+    },
+    {
+      "id": "b114",
+      "nombre": "crem-helado",
+      "telefono": "218772182",
+      "correo": "cremhelado@gmail.com",
       "estado": "activo"
     }
   ]

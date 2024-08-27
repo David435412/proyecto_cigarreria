@@ -26,6 +26,7 @@ const EditarProducto = () => {
         marca: '',
         estado: 'activo'
     });
+    const [proveedores, setProveedores] = useState([]);
     const [error, setError] = useState('');
     const [alertMessage, setAlertMessage] = useState('');
 
@@ -42,7 +43,19 @@ const EditarProducto = () => {
             }
         };
 
+        const fetchProveedores = async () => {
+            try {
+                const response = await axios.get('http://localhost:5000/proveedores');
+                setProveedores(response.data);
+            } catch (error) {
+                console.error('Error al obtener los proveedores', error);
+                setError('No se pudo cargar la lista de proveedores.');
+            }
+        };
+
+
         fetchProducto();
+        fetchProveedores();
     }, [id]);
 
     const handleChange = (e) => {
@@ -150,14 +163,19 @@ const EditarProducto = () => {
                             </div>
                             <div class="col-span-2">
                                 <label class="block text-gray-700 font-medium">Marca</label>
-                                <input
-                                    type="text"
+                                <select
                                     name="marca"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
                                     value={formData.marca}
                                     onChange={handleChange}
                                     required
-                                />
+                                >
+                                    {proveedores.map(proveedor => (
+                                        <option key={proveedor.id} value={proveedor.nombre}>
+                                            {proveedor.nombre}
+                                        </option>
+                                    ))}
+                                </select>
                             </div>
                             <div class="col-span-2 flex justify-between mt-4">
                                 <button
