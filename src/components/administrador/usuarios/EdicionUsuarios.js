@@ -9,7 +9,6 @@ const EditarUsuario = () => {
     const { id } = useParams();
     const [formData, setFormData] = useState({
         nombre: '',
-        contrasena: '',
         nombreUsuario: '',
         tipoDocumento: '',
         numeroDocumento: '',
@@ -70,7 +69,7 @@ const EditarUsuario = () => {
 
                 <div class="w-full bg-white rounded-xl shadow-2xl md:mt-0 sm:max-w-4xl xl:p-0 border border-gray-200">
                     <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-                        <form class="grid grid-cols-1 gap-6 md:grid-cols-3" onSubmit={handleSubmit}>
+                        <form class="grid grid-cols-1 gap-6 md:grid-cols-4" onSubmit={handleSubmit}>
                             <div class="col-span-1">
                                 <label class="block text-gray-700 font-medium">Nombre</label>
                                 <input
@@ -82,17 +81,7 @@ const EditarUsuario = () => {
                                     required
                                 />
                             </div>
-                            <div class="col-span-1">
-                                <label class="block text-gray-700 font-medium">Contraseña</label>
-                                <input
-                                    type="password"
-                                    name="contrasena"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
-                                    value={formData.contrasena}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </div>
+                            
                             <div class="col-span-1">
                                 <label class="block text-gray-700 font-medium">Nombre de Usuario</label>
                                 <input
@@ -177,7 +166,7 @@ const EditarUsuario = () => {
                                 </select>
                             </div>
 
-                            <div class="col-span-3 flex justify-between mt-4">
+                            <div class="col-span-4 flex justify-between mt-4">
                                 <button
                                     type="button"
                                     onClick={() => navigate('/gestion-usuarios')}

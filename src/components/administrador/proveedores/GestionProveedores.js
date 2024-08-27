@@ -77,6 +77,7 @@ const GestionProveedores = () => {
                             <th class="p-4 text-left">Teléfono</th>
                             <th class="p-4 text-left">Correo</th>
                             <th class="p-4 text-left">Estado</th>
+                            <th class="p-4 text-left">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -35,19 +35,15 @@ const Login = () => {
 
                     switch (user.rol) {
                         case 'administrador':
-                            alert("Ingreso exitoso como Administrador");
                             navigate('/admin-dash');
                             break;
                         case 'cliente':
-                            alert("Ingreso exitoso como Cliente");
                             navigate('/cliente-dash');
                             break;
                         case 'cajero':
-                            alert("Ingreso exitoso como Cajero");
                             navigate('/cajero-dash');
                             break;
                         case 'domiciliario':
-                            alert("Ingreso exitoso como Domiciliario");
                             navigate('/domiciliario-dash');
                             break;
                         default:

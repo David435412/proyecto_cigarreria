@@ -58,7 +58,7 @@ const PedidosAdmin = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto p-4 my-20">
       <h1 className="text-2xl font-bold mb-4">Pedidos Pendientes</h1>
       <table className="min-w-full bg-white border border-gray-200 rounded-lg">
         <thead>
@@ -81,7 +81,7 @@ const PedidosAdmin = () => {
                 <td className="py-2 px-4 border-b text-center">
                   <button
                     onClick={() => manejarEstadoEntrega(pedido)}
-                    className="bg-blue-500 text-white py-1 px-4 rounded hover:bg-blue-600 mr-2"
+                    className="bg-gray-500 text-white py-1 px-4 rounded hover:bg-gray-600 mr-2"
                   >
                     Estado Entrega
                   </button>
@@ -138,7 +138,7 @@ const PedidosAdmin = () => {
               </button>
               <button
                 onClick={confirmarEntrega}
-                className="bg-blue-500 text-white py-1 px-4 rounded hover:bg-blue-600"
+                className="bg-gray-500 text-white py-1 px-4 rounded hover:bg-gray-600"
               >
                 Confirmar
               </button>

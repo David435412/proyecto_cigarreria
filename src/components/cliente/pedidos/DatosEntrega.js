@@ -8,6 +8,7 @@ const DatosEntrega = () => {
     const [nombre, setNombre] = useState('');
     const [correo, setCorreo] = useState('');
     const [telefono, setTelefono] = useState('');
+    const [metodoPago, setMetodoPago] = useState(''); // Nuevo estado para el método de pago
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
@@ -36,6 +37,10 @@ const DatosEntrega = () => {
         setTelefono(e.target.value);
     };
 
+    const handleMetodoPagoChange = (e) => {
+        setMetodoPago(e.target.value);
+    };
+
     const handleConfirmar = async () => {
         if (!direccion.trim() || !nombre.trim() || !correo.trim() || !telefono.trim()) {
             setError('Por favor, completa todos los campos.');
@@ -54,7 +59,7 @@ const DatosEntrega = () => {
                 productos: carrito,
                 fecha: new Date().toISOString(),
                 estadoPedido: 'pendiente',  // Nuevo campo
-                estado: 'activo'            // Nuevo campo
+                estado: 'activo' ,           // Nuevo campo
             };
 
             try {
