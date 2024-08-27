@@ -59,6 +59,7 @@ import PedidosCajero from './components/cajero/pedidos/Pedidos'
 
 
 import DomiciliarioDashboard from './components/domiciliario/DomiciliarioDash';
+import PedidosDomiciliario from './components/domiciliario/pedidos/PedidosDomiciliario';
 
 
 import Footer from './components/comun/Footer';
@@ -146,7 +147,8 @@ const App = () => {
           <Route path="/registro-venta-cajero" element={<RegistroVentasCa />} />
           <Route path="/confirmar-ventas-cajero" element={<ConfirmarVentasCa />} />
 
-          <Route path="/pedidos-cajero" element={<PedidosCajero />} />
+          <Route path="/pedidos-cajero" element={<PedidosCajero />} />          
+          <Route path="/PedidosDomiciliario" element={<PedidosDomiciliario />} />
 
           <Route path="/domiciliario-dash" element={< DomiciliarioDashboard />} />
 

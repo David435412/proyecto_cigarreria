@@ -335,7 +335,7 @@
         }
       ],
       "fecha": "2024-08-27T06:45:27.045Z",
-      "estadoPedido": "pendiente",
+      "estadoPedido": "entregado",
       "estado": "activo"
     },
     {

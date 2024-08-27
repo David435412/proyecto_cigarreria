@@ -52,7 +52,6 @@ const Carrito = () => {
             {carrito.length === 0 ? (
                 <div className="text-center py-8">
                     <p className="text-xl mb-4">El carrito está vacío.</p>
-                    <Link to="/productos" className="bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-500">Volver a la tienda</Link>
                 </div>
             ) : (
                 <div>
@@ -113,7 +112,7 @@ const Carrito = () => {
             )}
             <div className="mt-6 text-center">
                 <Link 
-                    to="/productos" 
+                    to="/cliente-dash" 
                     className="px-8 py-4 bg-gradient-to-r from-green-400 to-green-700 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
                 >
                     Seguir Comprando
