@@ -31,8 +31,11 @@ import RegistroVenta from './components/administrador/ventas/RegistroVentas';
 import ConfirmacionVenta from './components/administrador/ventas/ConfirmacionVenta';
 
 import ClienteDashboard from './components/cliente/ClienteDash';
+<<<<<<< HEAD
 
 import Productos from './components/cliente/productos/Productos'
+=======
+>>>>>>> e3d54321d9c056ee45617d0d503e6a4ca73ac4e5
 import DetalleProducto from './components/cliente/productos/DetallesProducto';
 import Carrito from './components/cliente/productos/Cart';
 
@@ -61,9 +64,9 @@ import PedidosCajero from './components/cajero/pedidos/Pedidos'
 
 import DomiciliarioDashboard from './components/domiciliario/DomiciliarioDash';
 
+
 import Footer from './components/comun/Footer';
 import Inicio from './pages/Inicio';
-import ProductosAntes from './components/comun/Productos'
 import PedidosAntes from './components/comun/Pedidos'
 import CartAntes from './components/comun/Cart'
 
@@ -95,8 +98,8 @@ const App = () => {
       <NavBarComponent />
       <main>
         <Routes>               
+          <Route path="/" element={<Inicio />} />  
           <Route path="/Inicio" element={<Inicio />} />  
-          <Route path="/productos-a" element={<ProductosAntes />} />  
           <Route path="/pedidos-a" element={<PedidosAntes />} /> 
           <Route path="/carrito-a" element={<CartAntes />} />
 
@@ -125,7 +128,6 @@ const App = () => {
 
 
           <Route path="/cliente-dash" element={<ClienteDashboard />} />
-          <Route path="/productos" element={<Productos />} />
           <Route path="/producto/:id" element={<DetalleProducto />} />
           <Route path="/carrito" element={<Carrito />} /> 
 
@@ -151,6 +153,8 @@ const App = () => {
           <Route path="/pedidos-cajero" element={<PedidosCajero />} />
 
           <Route path="/domiciliario-dash" element={< DomiciliarioDashboard />} />
+
+
         </Routes>
 
         <Footer/>
