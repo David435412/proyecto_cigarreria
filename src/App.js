@@ -31,6 +31,7 @@ import RegistroVenta from './components/administrador/ventas/RegistroVentas';
 import ConfirmacionVenta from './components/administrador/ventas/ConfirmacionVenta';
 
 import ClienteDashboard from './components/cliente/ClienteDash';
+
 import Productos from './components/cliente/productos/Productos'
 import DetalleProducto from './components/cliente/productos/DetallesProducto';
 import Carrito from './components/cliente/productos/Cart';
@@ -42,6 +43,21 @@ import DetallesPedido from './components/cliente/pedidos/DetallesPedido';
 
 
 import CajeroDashboard from './components/cajero/CajeroDash';
+
+import ProductosCajero from './components/cajero/productos/Productos'
+import RegistroProdutosCa from './components/cajero/productos/RegistroProductos'
+import EdicionProductosCa from './components/cajero/productos/EdicionProductos'
+
+import ProveedoresCajero from './components/cajero/proveedores/Proveedores'
+import RegistroProveedoresCa from './components/cajero/proveedores/RegistroProveedores'
+import EdicionProveedoresCa from './components/cajero/proveedores/EdicionProveedores'
+
+import VentasCajero from './components/cajero/ventas/Ventas';
+import RegistroVentasCa from './components/cajero/ventas/RegistroVentas';
+import ConfirmarVentasCa from './components/cajero/ventas/Confirmacionventas'
+
+import PedidosCajero from './components/cajero/pedidos/Pedidos'
+
 
 import DomiciliarioDashboard from './components/domiciliario/DomiciliarioDash';
 
@@ -120,6 +136,19 @@ const App = () => {
           
 
           <Route path="/cajero-dash" element={< CajeroDashboard />} />
+          <Route path="/productos-cajero" element={<ProductosCajero />} />
+          <Route path="/registro-prod-cajero" element={<RegistroProdutosCa />} />
+          <Route path="/editar-prod-cajero/:id" element={<EdicionProductosCa />} />
+
+          <Route path="/proveedores-cajero" element={<ProveedoresCajero />} />
+          <Route path="/registro-prov-cajero" element={<RegistroProveedoresCa />} />
+          <Route path="/editar-prov-cajero/:id" element={<EdicionProveedoresCa />} />
+
+          <Route path="/ventas-cajero" element={<VentasCajero />} />
+          <Route path="/registro-venta-cajero" element={<RegistroVentasCa />} />
+          <Route path="/confirmar-ventas-cajero" element={<ConfirmarVentasCa />} />
+
+          <Route path="/pedidos-cajero" element={<PedidosCajero />} />
 
           <Route path="/domiciliario-dash" element={< DomiciliarioDashboard />} />
         </Routes>
