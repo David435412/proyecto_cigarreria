@@ -38,7 +38,7 @@ const Carrito = () => {
     };
 
     const calcularTotal = () => {
-        return carrito.reduce((total, producto) => total + parseFloat(producto.precio) * producto.cantidad, 0).toFixed(2);
+        return carrito.reduce((total, producto) => total + parseFloat(producto.precio) * producto.cantidad, 0).toFixed(3);
     };
 
     const handleProcederAlPago = () => {
@@ -85,7 +85,7 @@ const Carrito = () => {
                                             className="w-20 p-2 border border-gray-300 rounded"
                                         />
                                     </td>
-                                    <td className="py-4 px-4 border-b">${producto.precio}</td>
+                                    <td className="py-4 px-4 border-b"> ${parseFloat(producto.precio).toFixed(3)}</td>
                                     <td className="py-4 px-4 border-b">${(producto.precio * producto.cantidad).toFixed(3)}</td>
                                     <td className="py-4 px-4 border-b">
                                         <button
@@ -114,7 +114,7 @@ const Carrito = () => {
             <div className="mt-6 text-center">
                 <Link 
                     to="/productos" 
-                    className="px-8 py-4 bg-gradient-to-r from-violet-500 to-gray-500 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
+                    className="px-8 py-4 bg-gradient-to-r from-green-400 to-green-700 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
                 >
                     Seguir Comprando
                 </Link>

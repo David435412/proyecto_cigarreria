@@ -38,7 +38,7 @@ const DetalleProducto = () => {
         }
         
         setCantidadSeleccionada(cantidad);
-        setPrecioTotal((parseFloat(producto.precio) * cantidad).toFixed(2)); // Actualiza el precio total
+        setPrecioTotal((parseFloat(producto.precio) * cantidad).toFixed(3)); // Actualiza el precio total
     };
 
     const handleAgregarCarrito = () => {

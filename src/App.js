@@ -47,6 +47,9 @@ import DomiciliarioDashboard from './components/domiciliario/DomiciliarioDash';
 
 import Footer from './components/comun/Footer';
 import Inicio from './pages/Inicio';
+import ProductosAntes from './components/comun/Productos'
+import PedidosAntes from './components/comun/Pedidos'
+import CartAntes from './components/comun/Cart'
 
 
 
@@ -75,10 +78,11 @@ const App = () => {
     <Router>
       <NavBarComponent />
       <main>
-        <Routes>
-          <Route path="/" element={<Inicio />} />          
-          <Route path="/Inicio" element={<Inicio />} />          
-
+        <Routes>               
+          <Route path="/Inicio" element={<Inicio />} />  
+          <Route path="/productos-a" element={<ProductosAntes />} />  
+          <Route path="/pedidos-a" element={<PedidosAntes />} /> 
+          <Route path="/carrito-a" element={<CartAntes />} />
 
           <Route path="/registro-cliente" element={<RegistroCliente />} />              
           <Route path="/login" element={<Login />} />              
