@@ -61,7 +61,7 @@
       "telefono": "3109231123",
       "direccion": "Cll 71 N 1 - 18",
       "rol": "domiciliario",
-      "estado": "activo",
+      "estado": "inactivo",
       "tipoDocumento": "cedula",
       "numeroDocumento": "827364510"
     },
@@ -219,6 +219,22 @@
       "categoria": "Aseo",
       "cantidad": "145",
       "marca": " HOME CARE MP",
+      "estado": "activo"
+    }
+  ],
+  "proveedores": [
+    {
+      "id": "1",
+      "nombre": "Bimbo",
+      "telefono": "3133345083",
+      "correo": "bimbo@gmail.com",
+      "estado": "inactivo"
+    },
+    {
+      "id": "b8e1",
+      "nombre": "alpina",
+      "telefono": "93218938",
+      "correo": "alpina@gmail.com",
       "estado": "activo"
     }
   ]

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -27,8 +27,24 @@ const RegistroProducto = () => {
     });
     const [alertMessage, setAlertMessage] = useState('');
     const [error, setError] = useState('');
+    const [proveedores, setProveedores] = useState([]);
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        // Obtener la lista de proveedores desde la API
+        const fetchProveedores = async () => {
+            try {
+                const response = await axios.get('http://localhost:5000/proveedores');
+                setProveedores(response.data);
+            } catch (error) {
+                console.error('Error al obtener los proveedores', error);
+                setError('No se pudo cargar la lista de proveedores.');
+            }
+        };
+
+        fetchProveedores();
+    }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -176,17 +192,23 @@ const RegistroProducto = () => {
                                     </div>
                                 </div>
                                 <div>
-                                    <label class="block mb-2 text-sm font-medium text-gray-900">
+                                    <label className="block mb-2 text-sm font-medium text-gray-900">
                                         Marca
                                     </label>
-                                    <input
-                                        type="text"
+                                    <select
                                         name="marca"
-                                        value={formData.marca}
+                                        value={formData.proveedor}
                                         onChange={handleChange}
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                         required
-                                    />
+                                    >
+                                        <option value="" disabled>Seleccione un proveedor</option>
+                                        {proveedores.map((proveedor) => (
+                                            <option key={proveedor.id} value={proveedor.nombre}>
+                                                {proveedor.nombre}
+                                            </option>
+                                        ))}
+                                    </select>
                                 </div>
                             </div>
 
