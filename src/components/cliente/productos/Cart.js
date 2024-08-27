@@ -86,7 +86,7 @@ const Carrito = () => {
                                         />
                                     </td>
                                     <td className="py-4 px-4 border-b">${producto.precio}</td>
-                                    <td className="py-4 px-4 border-b">${(producto.precio * producto.cantidad).toFixed(2)}</td>
+                                    <td className="py-4 px-4 border-b">${(producto.precio * producto.cantidad).toFixed(3)}</td>
                                     <td className="py-4 px-4 border-b">
                                         <button
                                             onClick={() => handleEliminar(producto.id)}

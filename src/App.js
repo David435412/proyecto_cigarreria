@@ -24,6 +24,12 @@ import GestionProveedores from './components/administrador/proveedores/GestionPr
 import RegistroProveedor from './components/administrador/proveedores/RegistroProveedores';
 import EditarProveedor from './components/administrador/proveedores/EdicionProveedores';
 
+import GestionPedidos from './components/administrador/pedidos/PedidosAdmin'
+
+import GestionVentas from './components/administrador/ventas/GestionVentas';
+import RegistroVenta from './components/administrador/ventas/RegistroVentas';
+import ConfirmacionVenta from './components/administrador/ventas/ConfirmacionVenta';
+
 import ClienteDashboard from './components/cliente/ClienteDash';
 import Productos from './components/cliente/productos/Productos'
 import DetalleProducto from './components/cliente/productos/DetallesProducto';
@@ -89,10 +95,14 @@ const App = () => {
           <Route path="/gestion-proveedores" element={<GestionProveedores />} /> 
           <Route path="/registro-proveedor" element={<RegistroProveedor />} />      
           <Route path="/editar-proveedor/:id" element={<EditarProveedor />} /> 
-        
+
+          <Route path="/gestion-pedidos" element={<GestionPedidos />} /> 
+
+          <Route path="/gestion-ventas" element={<GestionVentas />} /> 
+          <Route path="/registro-venta" element={<RegistroVenta />} />
+          <Route path="/confirmar-venta" element={<ConfirmacionVenta />} />
 
 
-          <Route path="/gestion-pedidos" element={<GestionPedidos />} />
 
           <Route path="/cliente-dash" element={<ClienteDashboard />} />
           <Route path="/productos" element={<Productos />} />

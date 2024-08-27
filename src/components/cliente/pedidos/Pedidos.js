@@ -41,14 +41,13 @@ const Pedidos = () => {
                         {pedidos.map((pedido) => (
                             <tr key={pedido.id}>
                                 <td className="py-4 px-4 border-b">{new Date(pedido.fecha).toLocaleDateString()}</td>
-                                <td className="py-4 px-4 border-b">${pedido.productos.reduce((total, producto) => total + producto.precio * producto.cantidad, 0).toFixed(2)}</td>
+                                <td className="py-4 px-4 border-b">${pedido.productos.reduce((total, producto) => total + producto.precio * producto.cantidad, 0).toFixed(3)}</td>
                                 <td className="py-4 px-4 border-b">{pedido.estadoPedido}</td>
                                 <td className="py-4 px-4 border-b">
-                                    <Link
-                                        to={`/pedido/${pedido.id}`}
-                                        className="text-indigo-600 hover:text-indigo-800"
-                                    >
-                                        Ver más
+                                    <Link to={`/pedido/${pedido.id}`}>
+                                        <button className="bg-indigo-600 text-white px-3 py-1 rounded hover:bg-indigo-700">
+                                            Ver más
+                                        </button>
                                     </Link>
                                 </td>
                             </tr>

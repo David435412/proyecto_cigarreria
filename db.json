@@ -86,6 +86,17 @@
       "direccion": "G 54 K 12",
       "estado": "activo",
       "rol": "cliente"
+    },
+    {
+      "id": "4862",
+      "nombre": "Juan",
+      "contrasena": "david123",
+      "nombreUsuario": "juan21",
+      "correo": "cliente2@gmail.com",
+      "telefono": "3102331123",
+      "direccion": "Cll 71 N 1 - 18",
+      "estado": "activo",
+      "rol": "cliente"
     }
   ],
   "productos": [
@@ -135,7 +146,7 @@
     },
     {
       "id": "12ef",
-      "nombre": "cencosud cencosud cencosud Chocolatina Jet Leche x12und x132g",
+      "nombre": "Chocolatina Jet Leche x12und x132g",
       "precio": "12.750",
       "descripcion": "Regálate a ti mismo o a tus seres queridos un momento de felicidad con los productos que Jet trae para ti.",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/653021-1600-1600?v=638582162050400000&width=1600&height=1600&aspect=true",
@@ -224,12 +235,12 @@
     {
       "id": "fd3f",
       "nombre": "choco cono",
-      "precio": "3000",
+      "precio": "3.000",
       "descripcion": "helado cubierto de chocolate",
       "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmxTQcRR0IzYQU3aNfEK0R3bAWpHf0MzoPig&s",
       "categoria": "Helados",
       "cantidad": "10",
-      "marca": "crem-helado",
+      "marca": "CREM-HELADO",
       "estado": "activo"
     }
   ],
@@ -243,14 +254,14 @@
     },
     {
       "id": "b8e1",
-      "nombre": "alpina",
+      "nombre": "ALPINA",
       "telefono": "93218938",
       "correo": "alpina@gmail.com",
       "estado": "activo"
     },
     {
       "id": "b114",
-      "nombre": "crem-helado",
+      "nombre": "CREM-HELADO",
       "telefono": "218772182",
       "correo": "cremhelado@gmail.com",
       "estado": "activo"
@@ -301,6 +312,87 @@
       ],
       "fecha": "2024-08-27T03:42:30.464Z",
       "estadoPedido": "pendiente",
+      "estado": "activo"
+    },
+    {
+      "id": "2de8",
+      "usuarioId": "a49b",
+      "direccion": "cll 132 c n 137 - 15",
+      "nombre": "Juan Esteban Murcia Ramirez",
+      "correo": "juan@gmail.com",
+      "telefono": "3213513327",
+      "productos": [
+        {
+          "id": "a783",
+          "nombre": "Cerveza Club Colombia Dorada lata x6und x330ml c-u",
+          "precio": "18.700",
+          "descripcion": "Tipo de cerveza: Lager ABV: 4,7% País de origen: Colombia.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/491967-1600-1600?v=638216692937930000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 1,
+          "marca": "CLUB COLOMBIA",
+          "estado": "activo"
+        }
+      ],
+      "fecha": "2024-08-27T06:45:27.045Z",
+      "estadoPedido": "pendiente",
+      "estado": "activo"
+    }
+  ],
+  "ventas": [
+    {
+      "id": "cb5e",
+      "productos": [
+        {
+          "id": "105c",
+          "nombre": "Cerveza Poker lata x6und x330ml c-u",
+          "precio": "18.000",
+          "descripcion": "Tipo de cerveza: Lager. País de origen: Colombia. ABV: 4,0%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440018-1600-1600?v=638043996576070000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 1,
+          "marca": "POKER",
+          "estado": "activo"
+        },
+        {
+          "id": "3445",
+          "nombre": "Cerveza Coronita botella x6und x210ml c-u",
+          "precio": "7.500",
+          "descripcion": "Tipo de cerveza: Lager. País de Origen: México ABV: 4,5%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440069-1600-1600?v=638043996740100000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 3,
+          "marca": "CORONITA",
+          "estado": "activo"
+        }
+      ],
+      "tipoDocumento": "CC",
+      "numeroDocumento": "987654321",
+      "total": 40.5,
+      "fechaVenta": "27/8/2024",
+      "metodoPago": "Efectivo",
+      "estado": "activo"
+    },
+    {
+      "id": "199b",
+      "productos": [
+        {
+          "id": "a783",
+          "nombre": "Cerveza Club Colombia Dorada lata x6und x330ml c-u",
+          "precio": "18.700",
+          "descripcion": "Tipo de cerveza: Lager ABV: 4,7% País de origen: Colombia.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/491967-1600-1600?v=638216692937930000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 10,
+          "marca": "CLUB COLOMBIA",
+          "estado": "activo"
+        }
+      ],
+      "tipoDocumento": "TI",
+      "numeroDocumento": "1031653107",
+      "total": 187,
+      "fechaVenta": "27/8/2024",
+      "metodoPago": "Efectivo",
       "estado": "activo"
     }
   ]

@@ -93,13 +93,13 @@ const Confirmacion = () => {
                                     </td>
                                     <td className="py-4 px-4 border-b">{producto.cantidad}</td>
                                     <td className="py-4 px-4 border-b">${producto.precio}</td>
-                                    <td className="py-4 px-4 border-b">${(producto.precio * producto.cantidad).toFixed(2)}</td>
+                                    <td className="py-4 px-4 border-b">${(producto.precio * producto.cantidad).toFixed(3)}</td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
                     <div className="mt-4 text-xl font-semibold">
-                        <p><strong>Subtotal:</strong> ${productos.reduce((total, producto) => total + parseFloat(producto.precio) * producto.cantidad, 0).toFixed(2)}</p>
+                        <p><strong>Subtotal:</strong> ${productos.reduce((total, producto) => total + parseFloat(producto.precio) * producto.cantidad, 0).toFixed(3)}</p>
                     </div>
                 </div>
                 <button

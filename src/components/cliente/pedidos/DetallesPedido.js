@@ -54,13 +54,13 @@ const DetallesPedido = () => {
                             </td>
                             <td className="py-4 px-4 border-b">{producto.cantidad}</td>
                             <td className="py-4 px-4 border-b">${producto.precio}</td>
-                            <td className="py-4 px-4 border-b">${(producto.precio * producto.cantidad).toFixed(2)}</td>
+                            <td className="py-4 px-4 border-b">${(producto.precio * producto.cantidad).toFixed(3)}</td>
                         </tr>
                     ))}
                 </tbody>
             </table>
             <div className="mb-6">
-                <h2 className="text-xl font-semibold">Subtotal: ${pedido.productos.reduce((total, producto) => total + producto.precio * producto.cantidad, 0).toFixed(2)}</h2>
+                <h2 className="text-xl font-semibold">Subtotal: ${pedido.productos.reduce((total, producto) => total + producto.precio * producto.cantidad, 0).toFixed(3)}</h2>
             </div>
             {/* Botón de Cancelar solo se muestra si el estadoPedido es "pendiente" */}
             {pedido.estadoPedido === 'pendiente' && (

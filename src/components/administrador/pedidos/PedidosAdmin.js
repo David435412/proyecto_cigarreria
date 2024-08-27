@@ -24,7 +24,7 @@ const PedidosAdmin = () => {
   }, []);
 
   const calcularTotal = (productos) => {
-    return productos.reduce((total, producto) => total + (parseFloat(producto.precio) * producto.cantidad), 0).toFixed(2);
+    return productos.reduce((total, producto) => total + (parseFloat(producto.precio) * producto.cantidad), 0).toFixed(3);
   };
 
   const manejarEstadoEntrega = (pedido) => {
@@ -105,7 +105,7 @@ const PedidosAdmin = () => {
       {pedidoSeleccionado && (
         <div className="mt-4 p-4 bg-gray-100 border border-gray-200 rounded-lg">
           <h2 className="text-xl font-semibold mb-2">Detalles del Pedido</h2>
-          <p><strong>Nombre del Cliente:</strong> {pedidoSeleccionado.nombreCliente}</p>
+          <p><strong>Nombre del Cliente:</strong> {pedidoSeleccionado.nombre}</p>
           <p><strong>Fecha:</strong> {pedidoSeleccionado.fecha}</p>
           <p><strong>Estado:</strong> {pedidoSeleccionado.estadoPedido}</p>
           <h3 className="text-lg font-semibold mt-2">Productos:</h3>

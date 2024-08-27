@@ -75,7 +75,7 @@ const DatosEntrega = () => {
     };
 
     const calcularTotal = () => {
-        return carrito.reduce((total, producto) => total + producto.precio * producto.cantidad, 0).toFixed(2);
+        return carrito.reduce((total, producto) => total + producto.precio * producto.cantidad, 0).toFixed(3);
     };
 
     return (
@@ -108,7 +108,7 @@ const DatosEntrega = () => {
                                     </td>
                                     <td className="py-4 px-4 border-b">{producto.cantidad}</td>
                                     <td className="py-4 px-4 border-b">${producto.precio}</td>
-                                    <td className="py-4 px-4 border-b">${(producto.precio * producto.cantidad).toFixed(2)}</td>
+                                    <td className="py-4 px-4 border-b">${(producto.precio * producto.cantidad).toFixed(3)}</td>
                                 </tr>
                             ))}
                         </tbody>
