@@ -20,10 +20,18 @@ import GestionUsuarios from './components/administrador/usuarios/GestionUsuarios
 import RegistroEmpleado from './components/administrador/usuarios/RegistroEmpleados';
 import EditarUsuario from './components/administrador/usuarios/EdicionUsuarios';
 
+import GestionPedidos from './components/administrador/pedidos/PedidosAdmin'
+
 import ClienteDashboard from './components/cliente/ClienteDash';
 import Productos from './components/cliente/productos/Productos'
 import DetalleProducto from './components/cliente/productos/DetallesProducto';
 import Carrito from './components/cliente/productos/Cart';
+
+import DatosEntrega from './components/cliente/pedidos/DatosEntrega'
+import Confirmacion from './components/cliente/pedidos/Confirmacion'
+import Pedidos from './components/cliente/pedidos/Pedidos'
+import DetallesPedido from './components/cliente/pedidos/DetallesPedido';
+
 
 import CajeroDashboard from './components/cajero/CajeroDash';
 
@@ -75,10 +83,18 @@ const App = () => {
           <Route path="/registro-empleado" element={<RegistroEmpleado />} />   
           <Route path="/editar-usuario/:id" element={<EditarUsuario />} /> 
 
+          <Route path="/gestion-pedidos" element={<GestionPedidos />} />
+
           <Route path="/cliente-dash" element={<ClienteDashboard />} />
           <Route path="/productos" element={<Productos />} />
           <Route path="/producto/:id" element={<DetalleProducto />} />
-          <Route path="/carrito" element={<Carrito />} />  
+          <Route path="/carrito" element={<Carrito />} /> 
+
+          <Route path="/datos-entrega" element={<DatosEntrega />} /> 
+          <Route path="/confirmar" element={<Confirmacion />} />
+          <Route path="/pedidos" element={<Pedidos />} />
+          <Route path="/pedido/:id" element={<DetallesPedido />} />
+          
 
           <Route path="/cajero-dash" element={< CajeroDashboard />} />
 

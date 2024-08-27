@@ -202,7 +202,7 @@
     {
       "id": "05ec",
       "nombre": " Desengrasante maxima citrico x1000ml",
-      "precio": ".090",
+      "precio": "8.000",
       "descripcion": "Desengrasante maxima citrico x1000ml",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/198924-1600-1600?v=637814139078470000&width=1600&height=1600&aspect=true",
       "categoria": "Aseo",
@@ -219,6 +219,54 @@
       "categoria": "Aseo",
       "cantidad": "145",
       "marca": " HOME CARE MP",
+      "estado": "activo"
+    }
+  ],
+  "pedidos": [
+    {
+      "id": "1324",
+      "usuarioId": "a49b",
+      "direccion": "Cll 132 c N 137",
+      "nombre": "Darwin Santiago Lesmes",
+      "correo": "darwin@gmail.com",
+      "telefono": "3104222039",
+      "productos": [
+        {
+          "id": "a783",
+          "nombre": "Cerveza Club Colombia Dorada lata x6und x330ml c-u",
+          "precio": "18.700",
+          "descripcion": "Tipo de cerveza: Lager ABV: 4,7% País de origen: Colombia.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/491967-1600-1600?v=638216692937930000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 4,
+          "marca": "CLUB COLOMBIA",
+          "estado": "activo"
+        },
+        {
+          "id": "105c",
+          "nombre": "Cerveza Poker lata x6und x330ml c-u",
+          "precio": "18.000",
+          "descripcion": "Tipo de cerveza: Lager. País de origen: Colombia. ABV: 4,0%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440018-1600-1600?v=638043996576070000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 2,
+          "marca": "POKER",
+          "estado": "activo"
+        },
+        {
+          "id": "3c27",
+          "nombre": "Atún En Agua Van Camps x 160g x 4und",
+          "precio": "35.270",
+          "descripcion": "Atun En Agua Van Camps, delicioso y nutritivo perfecto para acompañar tus comidas y crear maravillosas recetas y deleitar tu paladar y el de los tuyos.",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/652029-1600-1600?v=638578552980330000&width=1600&height=1600&aspect=true",
+          "categoria": "Enlatados",
+          "cantidad": 5,
+          "marca": "VAN CAMPS",
+          "estado": "activo"
+        }
+      ],
+      "fecha": "2024-08-27T03:42:30.464Z",
+      "estadoPedido": "pendiente",
       "estado": "activo"
     }
   ]
