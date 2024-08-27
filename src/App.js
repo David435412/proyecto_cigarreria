@@ -31,11 +31,7 @@ import RegistroVenta from './components/administrador/ventas/RegistroVentas';
 import ConfirmacionVenta from './components/administrador/ventas/ConfirmacionVenta';
 
 import ClienteDashboard from './components/cliente/ClienteDash';
-<<<<<<< HEAD
 
-import Productos from './components/cliente/productos/Productos'
-=======
->>>>>>> e3d54321d9c056ee45617d0d503e6a4ca73ac4e5
 import DetalleProducto from './components/cliente/productos/DetallesProducto';
 import Carrito from './components/cliente/productos/Cart';
 
