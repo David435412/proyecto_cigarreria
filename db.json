@@ -81,7 +81,7 @@
       "descripcion": "Tipo de cerveza: Lager ABV: 4,7% País de origen: Colombia.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/491967-1600-1600?v=638216692937930000&width=1600&height=1600&aspect=true",
       "categoria": "Licores",
-      "cantidad": 112,
+      "cantidad": 110,
       "marca": "Babaria",
       "estado": "activo"
     },
@@ -224,7 +224,7 @@
       "descripcion": "chocobreak x10",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/652155-300-300?v=638578553904400000&width=300&height=300&aspect=true",
       "categoria": "Confitería",
-      "cantidad": 100,
+      "cantidad": 95,
       "marca": "colanta",
       "estado": "activo"
     }
@@ -781,7 +781,29 @@
       "total": 50,
       "fechaVenta": "8/9/2024",
       "metodoPago": "Efectivo",
-      "estado": "inactivo"
+      "estado": "activo"
+    },
+    {
+      "id": "fe22",
+      "productos": [
+        {
+          "id": "a783",
+          "nombre": "Cerveza Club Colombia Dorada lata x6und x330ml",
+          "precio": "18.700",
+          "descripcion": "Tipo de cerveza: Lager ABV: 4,7% País de origen: Colombia.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/491967-1600-1600?v=638216692937930000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 2,
+          "marca": "Babaria",
+          "estado": "activo"
+        }
+      ],
+      "tipoDocumento": "CC",
+      "numeroDocumento": "1031653107",
+      "total": 37.4,
+      "fechaVenta": "8/9/2024",
+      "metodoPago": "Tarjeta de Crédito",
+      "estado": "activo"
     }
   ]
 }

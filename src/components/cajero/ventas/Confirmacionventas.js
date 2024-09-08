@@ -57,12 +57,19 @@ const ConfirmacionVenta = () => {
                 });
             }));
 
+            // Limpiar el localStorage
+            localStorage.removeItem('productosSeleccionados');
+
             alert("Se registró la venta correctamente");
             navigate('/ventas-cajero');
         } catch (error) {
             setError(`Error al registrar la venta: ${error.message}`);
             console.error('Error al registrar la venta', error);
         }
+    };
+
+    const handleAddMoreProducts = () => {
+        navigate(-1);  // Volver a la página anterior sin recargar
     };
 
     return (
@@ -158,9 +165,17 @@ const ConfirmacionVenta = () => {
 
                 <button
                     type="submit"
-                    className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+                    className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 mr-4"
                 >
                     Confirmar Venta
+                </button>
+
+                <button
+                    type="button"
+                    onClick={handleAddMoreProducts}
+                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                >
+                    Agregar Más Productos
                 </button>
             </form>
         </div>

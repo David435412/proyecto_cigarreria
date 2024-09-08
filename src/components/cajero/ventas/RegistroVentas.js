@@ -12,6 +12,12 @@ const RegistroVentas = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        // Recuperar los productos seleccionados del localStorage al cargar el componente
+        const storedProducts = localStorage.getItem('productosSeleccionados');
+        if (storedProducts) {
+            setProductosSeleccionados(JSON.parse(storedProducts));
+        }
+
         const fetchProductos = async () => {
             try {
                 const response = await axios.get('http://localhost:5000/productos');
@@ -41,24 +47,27 @@ const RegistroVentas = () => {
 
     const handleAddProduct = (producto) => {
         if (!productosSeleccionados.find(p => p.id === producto.id)) {
-            setProductosSeleccionados(prev => [...prev, { ...producto, cantidad: 1 }]);
+            const updatedSelection = [...productosSeleccionados, { ...producto, cantidad: 1 }];
+            setProductosSeleccionados(updatedSelection);
+            localStorage.setItem('productosSeleccionados', JSON.stringify(updatedSelection));
         }
     };
 
     const handleRemoveProduct = (productoId) => {
-        setProductosSeleccionados(prev => prev.filter(producto => producto.id !== productoId));
+        const updatedSelection = productosSeleccionados.filter(producto => producto.id !== productoId);
+        setProductosSeleccionados(updatedSelection);
+        localStorage.setItem('productosSeleccionados', JSON.stringify(updatedSelection));
     };
 
     const handleQuantityChange = (productoId, cantidad) => {
-        setProductosSeleccionados(prev => 
-            prev.map(producto => 
-                producto.id === productoId ? { ...producto, cantidad: Number(cantidad) } : producto
-            )
+        const updatedSelection = productosSeleccionados.map(producto =>
+            producto.id === productoId ? { ...producto, cantidad: Number(cantidad) } : producto
         );
+        setProductosSeleccionados(updatedSelection);
+        localStorage.setItem('productosSeleccionados', JSON.stringify(updatedSelection));
     };
 
     const handleSubmit = () => {
-        // Redirige a la página de confirmación de venta y pasa los datos de los productos seleccionados
         navigate('/confirmar-ventas-cajero', { state: { productosSeleccionados } });
     };
 
@@ -77,29 +86,35 @@ const RegistroVentas = () => {
                 {productosSeleccionados.length > 0 && (
                     <div>
                         <h2 className="text-2xl font-semibold mb-4">Productos Seleccionados</h2>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                        <div className="flex flex-col space-y-4">
                             {productosSeleccionados.map(producto => (
-                                <div key={producto.id} className="bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden flex items-center p-4">
-                                    <div className="w-16 h-16 relative mr-4">
-                                        <img
-                                            src={producto.imagen}
-                                            alt={producto.nombre}
-                                            className="object-cover w-full h-full absolute inset-0"
-                                        />
-                                    </div>
-                                    <div className="flex-1">
-                                        <h2 className="text-lg font-semibold mb-2">{producto.nombre}</h2>
-                                        <input
-                                            type="number"
-                                            min="1"
-                                            value={producto.cantidad}
-                                            onChange={(e) => handleQuantityChange(producto.id, e.target.value)}
-                                            className="p-2 border border-gray-300 rounded w-full"
-                                        />
+                                <div key={producto.id} className="w-full bg-white border border-gray-200 rounded-lg shadow-md p-4">
+                                    <div className="flex items-center mb-4">
+                                        <div className="w-16 h-16 relative mr-4">
+                                            <img
+                                                src={producto.imagen}
+                                                alt={producto.nombre}
+                                                className="object-cover w-full h-full rounded"
+                                            />
+                                        </div>
+                                        <div className="flex-1">
+                                            <h2 className="text-lg font-semibold mb-2">{producto.nombre}</h2>
+                                            <p className="text-gray-900">Precio Unitario: ${Number(producto.precio).toFixed(3)}</p>
+                                            <input
+                                                type="number"
+                                                min="1"
+                                                value={producto.cantidad}
+                                                onChange={(e) => handleQuantityChange(producto.id, e.target.value)}
+                                                className="p-2 border border-gray-300 rounded w-full mt-2"
+                                            />
+                                            <p className="text-gray-900 mt-2">
+                                                Total: ${(Number(producto.precio) * Number(producto.cantidad)).toFixed(3)}
+                                            </p>
+                                        </div>
                                     </div>
                                     <button
                                         onClick={() => handleRemoveProduct(producto.id)}
-                                        className="bg-red-500 text-white py-1 px-2 rounded hover:bg-red-600"
+                                        className="bg-red-500 text-white py-1 px-2 rounded hover:bg-red-600 "
                                     >
                                         Eliminar
                                     </button>
@@ -144,7 +159,7 @@ const RegistroVentas = () => {
                                 </div>
                                 <div className="p-4">
                                     <h2 className="text-xl font-semibold mb-2">{producto.nombre}</h2>
-                                    <p className="text-gray-900 font-bold mb-4">${producto.precio}</p>
+                                    <p className="text-gray-900 font-bold mb-4">${Number(producto.precio).toFixed(3)}</p>
                                     <button
                                         onClick={() => handleAddProduct(producto)}
                                         className="w-full bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"

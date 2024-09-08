@@ -77,6 +77,7 @@ const GestionVentas = () => {
                                                 <h2 className="text-xl font-semibold mb-2">Detalles de la Venta</h2>
                                                 <p><strong>Número Documento:</strong> {ventaSeleccionada.numeroDocumento}</p>
                                                 <p><strong>Fecha Venta:</strong> {ventaSeleccionada.fechaVenta}</p>
+                                                <p><strong>Método de Pago:</strong> {ventaSeleccionada.metodoPago}</p>
                                                 <h3 className="text-lg font-semibold mt-2">Productos:</h3>
                                                 <ul>
                                                     {ventaSeleccionada.productos.map((producto, index) => (
