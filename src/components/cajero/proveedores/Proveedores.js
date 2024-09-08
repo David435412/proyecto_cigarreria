@@ -60,7 +60,7 @@ const GestionProveedores = () => {
                             <th class="p-4 text-left">Nombre</th>
                             <th class="p-4 text-left">Teléfono</th>
                             <th class="p-4 text-left">Correo</th>
-                            <th class="p-4 text-left">Estado</th>
+                            <th class="p-4 text-left">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -70,7 +70,6 @@ const GestionProveedores = () => {
                                     <td class="p-4">{proveedor.nombre}</td>
                                     <td class="p-4">{proveedor.telefono}</td>
                                     <td class="p-4">{proveedor.correo}</td>
-                                    <td class="p-4">{proveedor.estado}</td>
                                     <td class="p-4 flex gap-2">
                                         <button
                                             onClick={() => navigate(`/editar-prov-cajero/${proveedor.id}`)}

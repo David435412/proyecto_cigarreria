@@ -20,6 +20,7 @@ const GestionProductos = () => {
     const [productos, setProductos] = useState([]);
     const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('Todos');
     const [error, setError] = useState('');
+    const [mostrarAgotados, setMostrarAgotados] = useState(false);
 
     const navigate = useNavigate();
 
@@ -38,37 +39,44 @@ const GestionProductos = () => {
         fetchProductos();
     }, []);
 
-    // Filtrar productos según la categoría seleccionada y estado activo
-    const productosFiltrados = productos.filter(producto =>
-        (categoriaSeleccionada === 'Todos' || producto.categoria === categoriaSeleccionada) && producto.estado === 'activo'
-    );
-
-    
+    // Filtrar productos según la categoría seleccionada y estado activo o agotado
+    const productosFiltrados = productos.filter(producto => {
+        if (mostrarAgotados) {
+            return producto.cantidad === 0;
+        }
+        return (categoriaSeleccionada === 'Todos' || producto.categoria === categoriaSeleccionada) && producto.estado === 'activo';
+    });
 
     return (
-        <div class="container mx-auto px-4 py-8">
-            <h1 class="text-3xl font-bold mb-4">Gestión de Productos</h1>
-            <p class="mb-8">
+        <div className="container mx-auto px-4 py-8">
+            <h1 className="text-3xl font-bold mb-4">Gestión de Productos</h1>
+            <p className="mb-8">
                 En esta sección podrás gestionar tus productos. Puedes agregar nuevos productos
                 y visualizar los productos que ya has registrado.
             </p>
 
-            {error && <p class="text-red-500 mb-4">{error}</p>}
+            {error && <p className="text-red-500 mb-4">{error}</p>}
 
-            <div class="mb-4">
+            <div className="mb-4">
                 <button
                     onClick={() => navigate('/registro-prod-cajero')}
-                    class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+                    className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
                 >
-                    <FaPlus class="inline-block mr-2" /> Registrar Producto
+                    <FaPlus className="inline-block mr-2" /> Registrar Producto
+                </button>
+                <button
+                    onClick={() => navigate('/productos-agotados-cajero')}
+                    className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 m-3"
+                >
+                   Productos Agotados
                 </button>
             </div>
 
-            <div class="mb-6">
+            <div className="mb-6">
                 <select
                     value={categoriaSeleccionada}
                     onChange={(e) => setCategoriaSeleccionada(e.target.value)}
-                    class="p-2 border border-gray-300 rounded"
+                    className="p-2 border border-gray-300 rounded"
                 >
                     {categorias.map(categoria => (
                         <option key={categoria} value={categoria}>{categoria}</option>
@@ -76,39 +84,38 @@ const GestionProductos = () => {
                 </select>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {productos.length === 0 ? (
-                    <p class="text-gray-500">No hay productos disponibles en la base de datos.</p>
+                    <p className="text-gray-500">No hay productos disponibles en la base de datos.</p>
                 ) : productosFiltrados.length > 0 ? (
                     productosFiltrados.map((producto) => (
-                        <div key={producto.id} class="bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden">
-                            <div class="w-full h-64 relative">
+                        <div key={producto.id} className="bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden">
+                            <div className="w-full h-64 relative">
                                 <img
                                     src={producto.imagen}
                                     alt={producto.nombre}
-                                    class="object-cover w-full h-full absolute inset-0"
+                                    className="object-cover w-full h-full absolute inset-0"
                                 />
                             </div>
-                            <div class="p-4">
-                                <h2 class="text-xl font-semibold mb-2">{producto.nombre}</h2>
-                                <p class="text-gray-900 font-bold mb-4">${producto.precio}</p>
-                                <p class="text-gray-700 mb-4">Marca: {producto.marca}</p> 
-                                <div class="flex gap-2">
+                            <div className="p-4">
+                                <h2 className="text-xl font-semibold mb-2">{producto.nombre}</h2>
+                                <p className="text-gray-900 font-bold mb-4">${producto.precio}</p>
+                                <p className="text-gray-700 mb-4">Marca: {producto.marca}</p> 
+                                <div className="flex gap-2">
                                     <button
                                         onClick={() => navigate(`/editar-prod-cajero/${producto.id}`)}
-                                        class="bg-orange-600 text-white px-3 py-1 rounded hover:bg-orange-700 flex items-center"
+                                        className="bg-orange-600 text-white px-3 py-1 rounded hover:bg-orange-700 flex items-center"
                                     >
-                                        <FaEdit class="mr-1" /> Editar
+                                        <FaEdit className="mr-1" /> Editar
                                     </button>                                    
                                 </div>
                             </div>
                         </div>
                     ))
                 ) : (
-                    <p class="text-gray-500">No hay productos en esta categoría.</p>
+                    <p className="text-gray-500">No hay productos en esta categoría.</p>
                 )}
             </div>
-          
         </div>
     );
 };

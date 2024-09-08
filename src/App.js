@@ -16,6 +16,7 @@ import GestionProductos from './components/administrador/productos/GestionProduc
 import RegistroProductos from './components/administrador/productos/RegistroProductos';
 import EditarProducto from './components/administrador/productos/EdicionProducto';
 import InactivosProductos from './components/administrador/productos/InactivosProductos'
+import ProductosAgotados from './components/administrador/productos/AgotadosProductos';
 
 import GestionUsuarios from './components/administrador/usuarios/GestionUsuarios';
 import RegistroEmpleado from './components/administrador/usuarios/RegistroEmpleados';
@@ -49,6 +50,7 @@ import CajeroDashboard from './components/cajero/CajeroDash';
 import ProductosCajero from './components/cajero/productos/Productos'
 import RegistroProdutosCa from './components/cajero/productos/RegistroProductos'
 import EdicionProductosCa from './components/cajero/productos/EdicionProductos'
+import ProductosAgotadosCa from './components/cajero/productos/AgotadosProductos';
 
 import ProveedoresCajero from './components/cajero/proveedores/Proveedores'
 import RegistroProveedoresCa from './components/cajero/proveedores/RegistroProveedores'
@@ -108,6 +110,7 @@ const App = () => {
           <Route path="/registro-productos" element={<RegistroProductos />} />
           <Route path="/editar-producto/:id" element={<EditarProducto />} />
           <Route path="/productos-inactivos" element={<InactivosProductos />} />
+          <Route path="/productos-agotados" element={<ProductosAgotados />} />
 
           <Route path="/gestion-usuarios" element={<GestionUsuarios />} />  
           <Route path="/registro-empleado" element={<RegistroEmpleado />} />   
@@ -139,6 +142,7 @@ const App = () => {
           <Route path="/productos-cajero" element={<ProductosCajero />} />
           <Route path="/registro-prod-cajero" element={<RegistroProdutosCa />} />
           <Route path="/editar-prod-cajero/:id" element={<EdicionProductosCa />} />
+          <Route path="/productos-agotados-cajero" element={<ProductosAgotadosCa />} />
 
           <Route path="/proveedores-cajero" element={<ProveedoresCajero />} />
           <Route path="/registro-prov-cajero" element={<RegistroProveedoresCa />} />

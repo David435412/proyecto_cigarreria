@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { FaPlus, FaEdit, FaTrash, FaArchive } from 'react-icons/fa';
+import { FaPlus, FaEdit, FaTrash, FaArchive, FaBox } from 'react-icons/fa';
 
 const categorias = [
     'Todos',
@@ -89,6 +89,12 @@ const GestionProductos = () => {
                     className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
                 >
                     <FaArchive className="inline-block mr-2" /> Productos Inactivos
+                </button>
+                <button
+                    onClick={() => navigate('/productos-agotados')}
+                    className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                >
+                    <FaBox className="inline-block mr-2" /> Productos Agotados
                 </button>
             </div>
 

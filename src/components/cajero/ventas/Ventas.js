@@ -41,65 +41,67 @@ const GestionVentas = () => {
                     onClick={() => window.location.href = '/registro-venta-cajero'}
                     className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
                 >
-                    <FaPlus className="inline-block mr-2" />  Registrar Nueva Venta
+                    <FaPlus className="inline-block mr-2" /> Registrar Nueva Venta
                 </button>
             </div>
             <table className="min-w-full bg-white border border-gray-200 rounded-lg">
                 <thead>
                     <tr>
-                        <th className="py-2 px-4 border-b">Número Documento</th>
-                        <th className="py-2 px-4 border-b">Fecha Venta</th>
-                        <th className="py-2 px-4 border-b">Total</th>
-                        <th className="py-2 px-4 border-b">Estado</th>
-                        <th className="py-2 px-4 border-b">Acciones</th>
+                        <th className="py-2 px-4 border-b text-left">Número Documento</th>
+                        <th className="py-2 px-4 border-b text-left">Fecha Venta</th>
+                        <th className="py-2 px-4 border-b text-left">Total</th>
+                        <th className="py-2 px-4 border-b text-left">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     {ventasActivas.length > 0 ? (
                         ventasActivas.map(venta => (
-                            <tr key={venta.id}>
-                                <td className="py-2 px-4 border-b">{venta.numeroDocumento}</td>
-                                <td className="py-2 px-4 border-b">{venta.fechaVenta}</td>
-                                <td className="py-2 px-4 border-b">${calcularTotal(venta.productos)}</td>
-                                <td className="py-2 px-4 border-b">{venta.estado}</td>
-                                <td className="py-2 px-4 border-b text-center">                                    
-                                    <button
-                                        onClick={() => mostrarDetalles(venta)}
-                                        className={`bg-green-500 text-white py-1 px-4 rounded hover:bg-green-600 ${ventaSeleccionada && ventaSeleccionada.id === venta.id ? 'bg-green-600' : ''}`}
-                                    >
-                                        {ventaSeleccionada && ventaSeleccionada.id === venta.id ? 'Ocultar Detalles' : 'Detalles'}
-                                    </button>
-                                </td>
-                            </tr>
+                            <React.Fragment key={venta.id}>
+                                <tr>
+                                    <td className="py-2 px-4 border-b">{venta.numeroDocumento}</td>
+                                    <td className="py-2 px-4 border-b">{venta.fechaVenta}</td>
+                                    <td className="py-2 px-4 border-b">${calcularTotal(venta.productos)}</td>
+                                    <td className="py-2 px-4 border-b">
+                                        <button
+                                            onClick={() => mostrarDetalles(venta)}
+                                            className={`bg-green-500 text-white py-1 px-4 rounded hover:bg-green-600 ${ventaSeleccionada && ventaSeleccionada.id === venta.id ? 'bg-green-600' : ''}`}
+                                        >
+                                            {ventaSeleccionada && ventaSeleccionada.id === venta.id ? 'Ocultar Detalles' : 'Detalles'}
+                                        </button>
+                                    </td>
+                                </tr>
+                                {ventaSeleccionada && ventaSeleccionada.id === venta.id && (
+                                    <tr>
+                                        <td colSpan="4" className="p-4 bg-gray-100 border-b border-gray-200">
+                                            <div>
+                                                <h2 className="text-xl font-semibold mb-2">Detalles de la Venta</h2>
+                                                <p><strong>Número Documento:</strong> {ventaSeleccionada.numeroDocumento}</p>
+                                                <p><strong>Fecha Venta:</strong> {ventaSeleccionada.fechaVenta}</p>
+                                                <h3 className="text-lg font-semibold mt-2">Productos:</h3>
+                                                <ul>
+                                                    {ventaSeleccionada.productos.map((producto, index) => (
+                                                        <li key={index} className="flex items-center mb-2">
+                                                            {producto.imagen && (
+                                                                <img src={producto.imagen} alt={producto.nombre} className="w-16 h-16 object-cover mr-2" />
+                                                            )}
+                                                            <p>{producto.nombre} - ${producto.precio} x {producto.cantidad}</p>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                                <h2 className="text-xl font-semibold mt-2">Subtotal: ${calcularTotal(ventaSeleccionada.productos)}</h2>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                )}
+                            </React.Fragment>
                         ))
                     ) : (
                         <tr>
-                            <td colSpan="5" className="py-2 px-4 text-center">No hay ventas activas registradas</td>
+                            <td colSpan="4" className="py-2 px-4 text-center">No hay ventas activas registradas</td>
                         </tr>
                     )}
                 </tbody>
             </table>
-
-            {ventaSeleccionada && (
-                <div className="mt-4 p-4 bg-gray-100 border border-gray-200 rounded-lg">
-                    <h2 className="text-xl font-semibold mb-2">Detalles de la Venta</h2>
-                    <p><strong>Número Documento:</strong> {ventaSeleccionada.numeroDocumento}</p>
-                    <p><strong>Fecha Venta:</strong> {ventaSeleccionada.fechaVenta}</p>
-                    <p><strong>Estado:</strong> {ventaSeleccionada.estado}</p>
-                    <h3 className="text-lg font-semibold mt-2">Productos:</h3>
-                    <ul>
-                        {ventaSeleccionada.productos.map((producto, index) => (
-                            <li key={index} className="flex items-center mb-2">
-                                {producto.imagen && (
-                                    <img src={producto.imagen} alt={producto.nombre} className="w-16 h-16 object-cover mr-2" />
-                                )}
-                                <p>{producto.nombre} - ${producto.precio} x {producto.cantidad}</p>
-                            </li>
-                        ))}
-                    </ul>
-                    <h2 className="text-xl font-semibold mt-2">Subtotal: ${calcularTotal(ventaSeleccionada.productos)}</h2>
-                </div>
-            )}
         </div>
     );
 };
