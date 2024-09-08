@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const Carrito = () => {
     const [carrito, setCarrito] = useState([]);
+    const [productosDisponibles, setProductosDisponibles] = useState({});
 
     useEffect(() => {
         const usuarioId = localStorage.getItem('userId');
@@ -10,6 +12,23 @@ const Carrito = () => {
             // Obtener datos del carrito del localStorage
             const carritoData = JSON.parse(localStorage.getItem(`carrito_${usuarioId}`)) || [];
             setCarrito(carritoData);
+
+            // Obtener la disponibilidad de productos
+            const fetchDisponibilidad = async () => {
+                try {
+                    const response = await axios.get('http://localhost:5000/productos'); // O la URL que devuelva todos los productos
+                    const productos = response.data;
+                    const disponibilidad = productos.reduce((acc, producto) => {
+                        acc[producto.id] = producto.cantidad;
+                        return acc;
+                    }, {});
+                    setProductosDisponibles(disponibilidad);
+                } catch (error) {
+                    console.error('Error al cargar la disponibilidad de productos:', error);
+                }
+            };
+
+            fetchDisponibilidad();
         }
     }, []);
 
@@ -27,9 +46,12 @@ const Carrito = () => {
     const handleCantidadChange = (id, cantidad) => {
         const usuarioId = localStorage.getItem('userId');
         if (usuarioId) {
+            const cantidadDisponible = productosDisponibles[id] || 0;
+            // Limitar la cantidad a la disponible
+            const nuevaCantidad = Math.max(1, Math.min(cantidadDisponible, cantidad));
             // Actualizar la cantidad del producto en el carrito
             const nuevoCarrito = carrito.map((producto) =>
-                producto.id === id ? { ...producto, cantidad: Math.max(1, Math.min(10, cantidad)) } : producto
+                producto.id === id ? { ...producto, cantidad: nuevaCantidad } : producto
             );
             setCarrito(nuevoCarrito);
             // Actualizar localStorage con el nuevo carrito
@@ -79,7 +101,7 @@ const Carrito = () => {
                                             type="number"
                                             value={producto.cantidad}
                                             min="1"
-                                            max="10"
+                                            max={productosDisponibles[producto.id] || 10}
                                             onChange={(e) => handleCantidadChange(producto.id, parseInt(e.target.value, 10))}
                                             className="w-20 p-2 border border-gray-300 rounded"
                                         />

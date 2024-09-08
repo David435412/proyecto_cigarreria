@@ -38,10 +38,23 @@ const Pedidos = () => {
 
     const cancelarPedido = async () => {
         try {
+            // Sumar nuevamente las cantidades de los productos al cancelar el pedido
+            await Promise.all(pedidoACancelar.productos.map(async (producto) => {
+                const { data: productoActual } = await axios.get(`http://localhost:5000/productos/${producto.id}`);
+                const productoActualizado = {
+                    ...productoActual,
+                    cantidad: productoActual.cantidad + producto.cantidad,
+                };
+                await axios.put(`http://localhost:5000/productos/${producto.id}`, productoActualizado);
+            }));
+    
+            // Cambiar el estado del pedido a "cancelado"
             await axios.put(`http://localhost:5000/pedidos/${pedidoACancelar.id}`, {
                 ...pedidoACancelar,
-                estadoPedido: 'cancelado'
+                estadoPedido: 'cancelado',
+                estado: 'inactivo'
             });
+    
             // Actualizar la lista de pedidos después de cambiar el estado
             setPedidos(pedidos.map(pedido => pedido.id === pedidoACancelar.id ? { ...pedido, estadoPedido: 'cancelado' } : pedido));
             setMostrarModal(false);
@@ -50,6 +63,7 @@ const Pedidos = () => {
             console.error('Error al cancelar el pedido:', error);
         }
     };
+    
 
     const cancelarConfirmacion = () => {
         setMostrarModal(false);

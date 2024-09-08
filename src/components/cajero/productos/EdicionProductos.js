@@ -53,7 +53,6 @@ const EditarProducto = () => {
             }
         };
 
-
         fetchProducto();
         fetchProveedores();
     }, [id]);
@@ -66,8 +65,14 @@ const EditarProducto = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        // Actualizar el estado del producto basado en la cantidad
+        const updatedFormData = {
+            ...formData,
+            estado: formData.cantidad > 0 ? 'activo' : 'inactivo'
+        };
+
         try {
-            await axios.put(`http://localhost:5000/productos/${id}`, formData);
+            await axios.put(`http://localhost:5000/productos/${id}`, updatedFormData);
             alert('Producto actualizado exitosamente.');
             navigate('/productos-cajero');
         } catch (error) {

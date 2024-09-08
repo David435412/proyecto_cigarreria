@@ -10,6 +10,7 @@ const DetalleProducto = () => {
     const [error, setError] = useState(null);
     const [cantidadSeleccionada, setCantidadSeleccionada] = useState(1); // Estado para la cantidad seleccionada
     const [precioTotal, setPrecioTotal] = useState('0.00'); // Estado para el precio total
+    const [mensajeAdvertencia, setMensajeAdvertencia] = useState(''); // Estado para el mensaje de advertencia
 
     useEffect(() => {
         const fetchProducto = async () => {
@@ -29,63 +30,82 @@ const DetalleProducto = () => {
 
     const handleCantidadChange = (e) => {
         let cantidad = parseInt(e.target.value, 10);
-        
-        // Asegúrate de que la cantidad sea entre 1 y 10
         if (isNaN(cantidad) || cantidad < 1) {
             cantidad = 1;
         } else if (cantidad > 10) {
             cantidad = 10;
         }
-        
-        setCantidadSeleccionada(cantidad);
-        setPrecioTotal((parseFloat(producto.precio) * cantidad).toFixed(3)); // Actualiza el precio total
+
+        if (producto && cantidad > producto.cantidad) {
+            setMensajeAdvertencia('La cantidad deseada excede la cantidad disponible.');
+        } else {
+            setMensajeAdvertencia('');
+            setCantidadSeleccionada(cantidad);
+            setPrecioTotal((parseFloat(producto.precio) * cantidad).toFixed(3)); // Actualiza el precio total
+        }
     };
 
     const handleAgregarCarrito = () => {
+        if (producto && cantidadSeleccionada > producto.cantidad) {
+            setMensajeAdvertencia('La cantidad deseada excede la cantidad disponible.');
+            return;
+        }
+
         const usuarioId = localStorage.getItem('userId'); // Obtener ID de usuario del localStorage
         const carrito = JSON.parse(localStorage.getItem(`carrito_${usuarioId}`)) || [];
+        
+        // Verificar si el producto ya está en el carrito
+        const productoExistente = carrito.find(p => p.id === producto.id);
+        if (productoExistente) {
+            alert('Este producto ya está en el carrito.');
+            return;
+        }
+
         carrito.push({ ...producto, cantidad: cantidadSeleccionada });
         localStorage.setItem(`carrito_${usuarioId}`, JSON.stringify(carrito));
         navigate('/carrito'); 
     };
 
     if (loading) {
-        return <div class="text-center py-4">Cargando...</div>;
+        return <div className="text-center py-4">Cargando...</div>;
     }
 
     if (error) {
-        return <div class="text-center py-4 text-red-500">{error}</div>;
+        return <div className="text-center py-4 text-red-500">{error}</div>;
     }
 
     if (!producto) {
-        return <div class="text-center py-4">Producto no encontrado</div>;
+        return <div className="text-center py-4">Producto no encontrado</div>;
     }
 
     return (
-        <div class="container  mx-auto px-4 py-8">
-            <div class="flex flex-col md:flex-row justify-center">
-                <div class="md:w-1/3">
-                    <img src={producto.imagen} alt={producto.nombre} class="w-full h-auto object-cover" />
+        <div className="container mx-auto px-4 py-8">
+            <div className="flex flex-col md:flex-row justify-center">
+                <div className="md:w-1/3">
+                    <img src={producto.imagen} alt={producto.nombre} className="w-full h-auto object-cover" />
                 </div>
-                <div class="md:w-1/2 md:pl-8">
-                    <h1 class="text-3xl font-semibold mb-4">{producto.nombre}</h1>
-                    <p class="text-2xl text-black font-bold mb-4">${precioTotal}</p>
-                    <p class="text-gray-700 mb-4">{producto.descripcion}</p>
-                    <p class="text-gray-700 mb-4">Cantidad disponible: {producto.cantidad}</p>
-                    <div class="mb-4">
-                        <label class="block text-gray-700 mb-2">Cantidad</label>
+                <div className="md:w-1/2 md:pl-8">
+                    <h1 className="text-3xl font-semibold mb-4">{producto.nombre}</h1>
+                    <p className="text-2xl text-black font-bold mb-4">${precioTotal}</p>
+                    <p className="text-gray-700 mb-4">{producto.descripcion}</p>
+                    <p className="text-gray-700 mb-4">Cantidad disponible: {producto.cantidad}</p>
+                    <div className="mb-4">
+                        <label className="block text-gray-700 mb-2">Cantidad</label>
                         <input
                             type="number"
                             value={cantidadSeleccionada}
                             onChange={handleCantidadChange}
                             min="1"
                             max="10"
-                            class="w-full px-3 py-2 border border-gray-300 rounded"
+                            className="w-full px-3 py-2 border border-gray-300 rounded"
                         />
+                        {mensajeAdvertencia && (
+                            <p className="text-red-500 mt-2">{mensajeAdvertencia}</p>
+                        )}
                     </div>
                     <button
                         onClick={handleAgregarCarrito}
-                        class="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600"
+                        className="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600"
                     >
                         Agregar al Carrito
                     </button>

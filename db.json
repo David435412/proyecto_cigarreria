@@ -213,7 +213,7 @@
       "descripcion": "helado cubierto de chocolate",
       "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmxTQcRR0IzYQU3aNfEK0R3bAWpHf0MzoPig&s",
       "categoria": "Helados",
-      "cantidad": "10",
+      "cantidad": "100",
       "marca": "CREM-HELADO",
       "estado": "activo"
     },
@@ -224,9 +224,9 @@
       "descripcion": "chocobreak x10",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/652155-300-300?v=638578553904400000&width=300&height=300&aspect=true",
       "categoria": "Confitería",
-      "cantidad": 0,
+      "cantidad": 100,
       "marca": "colanta",
-      "estado": "inactivo"
+      "estado": "activo"
     }
   ],
   "proveedores": [
@@ -603,9 +603,9 @@
       "metodoPago": "efectivo"
     },
     {
-      "id": "ce5e",
+      "id": "ac2d",
       "usuarioId": "5376",
-      "direccion": "Cll 133 c N 37",
+      "direccion": "Cll 132 c N 137",
       "nombre": "Daniel Murcia",
       "correo": "daniel123@gmail.com",
       "telefono": "3102221123",
@@ -622,9 +622,9 @@
           "estado": "activo"
         }
       ],
-      "fecha": "2024-09-08T19:52:31.840Z",
-      "estadoPedido": "pendiente",
-      "estado": "activo",
+      "fecha": "2024-09-08T21:22:26.265Z",
+      "estadoPedido": "cancelado",
+      "estado": "inactivo",
       "metodoPago": "efectivo"
     }
   ],
@@ -760,6 +760,28 @@
       "fechaVenta": "27/8/2024",
       "metodoPago": "Efectivo",
       "estado": "activo"
+    },
+    {
+      "id": "c7d5",
+      "productos": [
+        {
+          "id": "3e7d",
+          "nombre": "chocobreak",
+          "precio": "10.000",
+          "descripcion": "chocobreak x10",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/652155-300-300?v=638578553904400000&width=300&height=300&aspect=true",
+          "categoria": "Confitería",
+          "cantidad": 5,
+          "marca": "colanta",
+          "estado": "activo"
+        }
+      ],
+      "tipoDocumento": "TI",
+      "numeroDocumento": "1031653107",
+      "total": 50,
+      "fechaVenta": "8/9/2024",
+      "metodoPago": "Efectivo",
+      "estado": "inactivo"
     }
   ]
 }
