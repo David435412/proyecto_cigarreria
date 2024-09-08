@@ -3,9 +3,9 @@
     {
       "id": "001",
       "nombre": "David Santiago Murcia",
-      "contrasena": "david123",
+      "contrasena": "admin123",
       "nombreUsuario": "david123",
-      "correo": "david@gmail.com",
+      "correo": "admin@gmail.com",
       "telefono": "3103220039",
       "direccion": "Cll 132 c N 137",
       "estado": "activo",
@@ -16,9 +16,9 @@
     {
       "id": "002",
       "nombre": "Darwin Santiago Lesmes",
-      "contrasena": "darwin23",
+      "contrasena": "dom123",
       "nombreUsuario": "darwin123",
-      "correo": "darwin@gmail.com",
+      "correo": "dom@gmail.com",
       "telefono": "3104222039",
       "direccion": "Cll 13 c N 17",
       "estado": "activo",
@@ -29,9 +29,9 @@
     {
       "id": "79da",
       "nombre": "Juan Esteban Murcia Ramirez",
-      "contrasena": "juan123",
+      "contrasena": "cajero123",
       "nombreUsuario": "Juan123",
-      "correo": "juan@gmail.com",
+      "correo": "cajero@gmail.com",
       "telefono": "3103220039",
       "direccion": "cll 132 c n 137 - 15",
       "rol": "cajero",
@@ -40,61 +40,24 @@
       "numeroDocumento": "192837465"
     },
     {
-      "id": "c9c3",
-      "nombre": "Jeison David Rojas",
-      "contrasena": "jeison123",
-      "nombreUsuario": "Jeison12",
-      "correo": "jeison3213@gmail.com",
-      "telefono": "3102331123",
-      "direccion": "Cll 43 N 71",
-      "rol": "cajero",
-      "estado": "activo",
-      "tipoDocumento": "cedula",
-      "numeroDocumento": "564738291"
-    },
-    {
-      "id": "87f8",
-      "nombre": "Miguel Angel Ortiz",
-      "contrasena": "miguel123",
-      "nombreUsuario": "Miguel321",
-      "correo": "miguel4321@gmail.com",
-      "telefono": "3109231123",
-      "direccion": "Cll 71 N 1 - 18",
-      "rol": "domiciliario",
-      "estado": "inactivo",
-      "tipoDocumento": "cedula",
-      "numeroDocumento": "827364510"
-    },
-    {
       "id": "a49b",
       "nombre": "Jhon jairo",
-      "contrasena": "jhon123",
+      "contrasena": "cliente123",
       "nombreUsuario": "cliente123",
-      "correo": "user@gmail.com",
+      "correo": "cliente@gmail.com",
       "telefono": "3102233141",
       "direccion": "K 12 N 41",
       "estado": "activo",
       "rol": "cliente"
     },
     {
-      "id": "4826",
-      "nombre": "daniel ",
-      "contrasena": "daniel123",
-      "nombreUsuario": "daniel123",
-      "correo": "daniel@gmail.com",
-      "telefono": "3103220123",
-      "direccion": "G 54 K 12",
-      "estado": "activo",
-      "rol": "cliente"
-    },
-    {
-      "id": "4862",
-      "nombre": "Juan",
-      "contrasena": "david123",
-      "nombreUsuario": "juan21",
-      "correo": "cliente2@gmail.com",
-      "telefono": "3102331123",
-      "direccion": "Cll 71 N 1 - 18",
+      "id": "9681",
+      "nombre": "erik granados",
+      "contrasena": "erick123",
+      "nombreUsuario": "erick",
+      "correo": "erick@gmail.com",
+      "telefono": "31871632212",
+      "direccion": "Cll 13 c N 17",
       "estado": "activo",
       "rol": "cliente"
     }
@@ -102,13 +65,13 @@
   "productos": [
     {
       "id": "a783",
-      "nombre": "Cerveza Club Colombia Dorada lata x6und x330ml c-u",
+      "nombre": "Cerveza Club Colombia Dorada lata x6und x330ml",
       "precio": "18.700",
       "descripcion": "Tipo de cerveza: Lager ABV: 4,7% País de origen: Colombia.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/491967-1600-1600?v=638216692937930000&width=1600&height=1600&aspect=true",
       "categoria": "Licores",
-      "cantidad": 104,
-      "marca": "CLUB COLOMBIA",
+      "cantidad": 105,
+      "marca": "Babaria",
       "estado": "activo"
     },
     {
@@ -118,8 +81,8 @@
       "descripcion": "Tipo de cerveza: Lager. País de origen: Colombia. ABV: 4,0%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/439991-1600-1600?v=638043996501300000&width=1600&height=1600&aspect=true",
       "categoria": "Licores",
-      "cantidad": "200",
-      "marca": "AGUILA",
+      "cantidad": 171,
+      "marca": "Babaria",
       "estado": "activo"
     },
     {
@@ -129,8 +92,8 @@
       "descripcion": "Tipo de cerveza: Lager. País de origen: Colombia. ABV: 4,0%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440018-1600-1600?v=638043996576070000&width=1600&height=1600&aspect=true",
       "categoria": "Licores",
-      "cantidad": "120",
-      "marca": "POKER",
+      "cantidad": 115,
+      "marca": "Babaria",
       "estado": "activo"
     },
     {
@@ -140,8 +103,8 @@
       "descripcion": "Tipo de cerveza: Lager. País de Origen: México ABV: 4,5%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440069-1600-1600?v=638043996740100000&width=1600&height=1600&aspect=true",
       "categoria": "Licores",
-      "cantidad": "200",
-      "marca": "CORONITA",
+      "cantidad": 195,
+      "marca": "Babaria",
       "estado": "activo"
     },
     {
@@ -152,7 +115,7 @@
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/653021-1600-1600?v=638582162050400000&width=1600&height=1600&aspect=true",
       "categoria": "Confitería",
       "cantidad": "85",
-      "marca": "JET",
+      "marca": "Jet",
       "estado": "activo"
     },
     {
@@ -163,7 +126,7 @@
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/194548-1600-1600?v=637814055458900000&width=1600&height=1600&aspect=true",
       "categoria": "Confitería",
       "cantidad": "120",
-      "marca": "GOL",
+      "marca": "Gol",
       "estado": "activo"
     },
     {
@@ -174,7 +137,7 @@
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/367867-1600-1600?v=637889251308670000&width=1600&height=1600&aspect=true",
       "categoria": "Confitería",
       "cantidad": "400",
-      "marca": "SNICKERS",
+      "marca": "Snickers",
       "estado": "activo"
     },
     {
@@ -185,7 +148,7 @@
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/652029-1600-1600?v=638578552980330000&width=1600&height=1600&aspect=true",
       "categoria": "Enlatados",
       "cantidad": "100",
-      "marca": "VAN CAMPS",
+      "marca": "Van Camps",
       "estado": "activo"
     },
     {
@@ -196,18 +159,18 @@
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/381411-1600-1600?v=637923060574430000&width=1600&height=1600&aspect=true",
       "categoria": "Enlatados",
       "cantidad": "200",
-      "marca": " CUISINE & CO NBE MP",
+      "marca": "CUISINE & CO NBE MP",
       "estado": "activo"
     },
     {
       "id": "08a5",
-      "nombre": " Sardina Van Camps Premium Salsa Tomate x 225g",
+      "nombre": " Sardina Van Camps Salsa Tomate x 225g",
       "precio": "6.470",
       "descripcion": "Sardina Vancamps Premium Salsa Tomate, deliciosas y nutritivas perfecto para acompañar tus comidas y crear maravillosas recetas y deleitar tu paladar y el de los tuyos.",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/652128-1600-1600?v=638578553793170000&width=1600&height=1600&aspect=true",
       "categoria": "Enlatados",
       "cantidad": "250",
-      "marca": "VAN CAMPS",
+      "marca": "Van Camps",
       "estado": "activo"
     },
     {
@@ -223,13 +186,13 @@
     },
     {
       "id": "b3cd",
-      "nombre": "Desinfectante Home Care eliminador de malos olores Frutos Rojos x400ml",
+      "nombre": "Home Care eliminador de olores Frutos Rojos x400ml",
       "precio": "7.590",
       "descripcion": "Desinfectante Home Care eliminador de malos olores Frutos Rojos x400ml",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/378871-1600-1600?v=637916947079700000&width=1600&height=1600&aspect=true",
       "categoria": "Aseo",
       "cantidad": "145",
-      "marca": " HOME CARE MP",
+      "marca": "HOME CARE MP",
       "estado": "activo"
     },
     {
@@ -241,6 +204,17 @@
       "categoria": "Helados",
       "cantidad": "10",
       "marca": "CREM-HELADO",
+      "estado": "activo"
+    },
+    {
+      "id": "3e7d",
+      "nombre": "chocobreak",
+      "precio": "10.000",
+      "descripcion": "chocobreak x10",
+      "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/652155-300-300?v=638578553904400000&width=300&height=300&aspect=true",
+      "categoria": "Confitería",
+      "cantidad": "10",
+      "marca": "colanta",
       "estado": "activo"
     }
   ],
@@ -264,6 +238,69 @@
       "nombre": "CREM-HELADO",
       "telefono": "218772182",
       "correo": "cremhelado@gmail.com",
+      "estado": "activo"
+    },
+    {
+      "id": "b214",
+      "nombre": "Babaria",
+      "telefono": "218772182",
+      "correo": "babaria@gmail.com",
+      "estado": "activo"
+    },
+    {
+      "id": "b514",
+      "nombre": "Van Camps",
+      "telefono": "218772182",
+      "correo": "Van@gmail.com",
+      "estado": "activo"
+    },
+    {
+      "id": "b522",
+      "nombre": "Snickers",
+      "telefono": "218772182",
+      "correo": "S@gmail.com",
+      "estado": "activo"
+    },
+    {
+      "id": "c022",
+      "nombre": "Gol",
+      "telefono": "218772182",
+      "correo": "g@gmail.com",
+      "estado": "activo"
+    },
+    {
+      "id": "c023",
+      "nombre": "Jet",
+      "telefono": "218772182",
+      "correo": "j@gmail.com",
+      "estado": "activo"
+    },
+    {
+      "id": "c024",
+      "nombre": "CUISINE & CO NBE MP",
+      "telefono": "218002182",
+      "correo": "cuisine@gmail.com",
+      "estado": "activo"
+    },
+    {
+      "id": "c025",
+      "nombre": "MAXIMA MP",
+      "telefono": "218002112",
+      "correo": "maxima@gmail.com",
+      "estado": "activo"
+    },
+    {
+      "id": "c026",
+      "nombre": "HOME CARE MP",
+      "telefono": "218005512",
+      "correo": "home@gmail.com",
+      "estado": "activo"
+    },
+    {
+      "id": "1474",
+      "nombre": "colanta",
+      "telefono": "1297187313",
+      "correo": "colanta@gmail.com",
       "estado": "activo"
     }
   ],
@@ -370,7 +407,7 @@
         }
       ],
       "fecha": "2024-08-27T07:22:37.204Z",
-      "estadoPedido": "pendiente",
+      "estadoPedido": "entregado",
       "estado": "activo"
     },
     {
@@ -394,7 +431,7 @@
         }
       ],
       "fecha": "2024-08-27T07:31:43.331Z",
-      "estadoPedido": "pendiente",
+      "estadoPedido": "entregado",
       "estado": "activo"
     },
     {
@@ -422,98 +459,74 @@
       "estado": "activo"
     },
     {
-      "id": "ef33",
-      "usuarioId": "4826",
-      "direccion": "call 137 # 128 B - 01",
-      "nombre": "darwin",
-      "correo": "david@gmail.com",
-      "telefono": "3133138027",
+      "id": "f799",
+      "usuarioId": "a49b",
+      "direccion": "calle 52 #13-12",
+      "nombre": "david",
+      "correo": "admin@gmail.com",
+      "telefono": "128613",
       "productos": [
         {
-          "id": "a783",
-          "nombre": "Cerveza Club Colombia Dorada lata x6und x330ml c-u",
-          "precio": "18.700",
-          "descripcion": "Tipo de cerveza: Lager ABV: 4,7% País de origen: Colombia.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
-          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/491967-1600-1600?v=638216692937930000&width=1600&height=1600&aspect=true",
+          "id": "b5c6",
+          "nombre": "Cerveza Aguila Original lata x6und x330ml c-u",
+          "precio": "18.000",
+          "descripcion": "Tipo de cerveza: Lager. País de origen: Colombia. ABV: 4,0%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/439991-1600-1600?v=638043996501300000&width=1600&height=1600&aspect=true",
           "categoria": "Licores",
-          "cantidad": 3,
-          "marca": "CLUB COLOMBIA",
+          "cantidad": 5,
+          "marca": "Babaria",
           "estado": "activo"
         }
       ],
-      "fecha": "2024-08-27T07:52:54.403Z",
-      "estadoPedido": "cancelado",
-      "estado": "activo"
-    },
-    {
-      "id": "38dd",
-      "usuarioId": "4826",
-      "direccion": "call 137 # 128 B - 01",
-      "nombre": "darwin",
-      "correo": "david@gmail.com",
-      "telefono": "3133138027",
-      "productos": [
-        {
-          "id": "a783",
-          "nombre": "Cerveza Club Colombia Dorada lata x6und x330ml c-u",
-          "precio": "18.700",
-          "descripcion": "Tipo de cerveza: Lager ABV: 4,7% País de origen: Colombia.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
-          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/491967-1600-1600?v=638216692937930000&width=1600&height=1600&aspect=true",
-          "categoria": "Licores",
-          "cantidad": 3,
-          "marca": "CLUB COLOMBIA",
-          "estado": "activo"
-        }
-      ],
-      "fecha": "2024-08-27T07:54:00.642Z",
-      "estadoPedido": "cancelado",
-      "estado": "activo"
-    },
-    {
-      "id": "84bc",
-      "usuarioId": "4826",
-      "direccion": "call 137 # 128 B - 01",
-      "nombre": "darwin",
-      "correo": "david@gmail.com",
-      "telefono": "3133138027",
-      "productos": [
-        {
-          "id": "a783",
-          "nombre": "Cerveza Club Colombia Dorada lata x6und x330ml c-u",
-          "precio": "18.700",
-          "descripcion": "Tipo de cerveza: Lager ABV: 4,7% País de origen: Colombia.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
-          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/491967-1600-1600?v=638216692937930000&width=1600&height=1600&aspect=true",
-          "categoria": "Licores",
-          "cantidad": 3,
-          "marca": "CLUB COLOMBIA",
-          "estado": "activo"
-        }
-      ],
-      "fecha": "2024-08-27T08:44:55.485Z",
+      "fecha": "2024-08-27T19:14:50.874Z",
       "estadoPedido": "pendiente",
       "estado": "activo"
     },
     {
-      "id": "1a0e",
-      "usuarioId": "4826",
-      "direccion": "call 137 # 128 B - 01",
-      "nombre": "darwin",
-      "correo": "david@gmail.com",
-      "telefono": "3133138027",
+      "id": "86c2",
+      "usuarioId": "a49b",
+      "direccion": "calle 52 #13-12",
+      "nombre": "david",
+      "correo": "juan@test.com",
+      "telefono": "128613",
+      "productos": [
+        {
+          "id": "b5c6",
+          "nombre": "Cerveza Aguila Original lata x6und x330ml c-u",
+          "precio": "18.000",
+          "descripcion": "Tipo de cerveza: Lager. País de origen: Colombia. ABV: 4,0%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/439991-1600-1600?v=638043996501300000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 5,
+          "marca": "Babaria",
+          "estado": "activo"
+        }
+      ],
+      "fecha": "2024-08-27T19:15:58.693Z",
+      "estadoPedido": "entregado",
+      "estado": "activo"
+    },
+    {
+      "id": "6596",
+      "usuarioId": "a49b",
+      "direccion": "calle 52 #13-12",
+      "nombre": "david",
+      "correo": "admin@gmail.com",
+      "telefono": "128613",
       "productos": [
         {
           "id": "a783",
-          "nombre": "Cerveza Club Colombia Dorada lata x6und x330ml c-u",
+          "nombre": "Cerveza Club Colombia Dorada lata x6und x330ml",
           "precio": "18.700",
           "descripcion": "Tipo de cerveza: Lager ABV: 4,7% País de origen: Colombia.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
           "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/491967-1600-1600?v=638216692937930000&width=1600&height=1600&aspect=true",
           "categoria": "Licores",
-          "cantidad": 3,
-          "marca": "CLUB COLOMBIA",
+          "cantidad": 5,
+          "marca": "Babaria",
           "estado": "activo"
         }
       ],
-      "fecha": "2024-08-27T08:56:39.108Z",
+      "fecha": "2024-08-27T19:58:41.670Z",
       "estadoPedido": "pendiente",
       "estado": "activo"
     }
@@ -572,7 +585,7 @@
       "total": 187,
       "fechaVenta": "27/8/2024",
       "metodoPago": "Efectivo",
-      "estado": "activo"
+      "estado": "inactivo"
     },
     {
       "id": "a8f2",
@@ -617,6 +630,39 @@
       "fechaVenta": "27/8/2024",
       "metodoPago": "Efectivo",
       "estado": "inactivo"
+    },
+    {
+      "id": "04d8",
+      "productos": [
+        {
+          "id": "105c",
+          "nombre": "Cerveza Poker lata x6und x330ml c-u",
+          "precio": "18.000",
+          "descripcion": "Tipo de cerveza: Lager. País de origen: Colombia. ABV: 4,0%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440018-1600-1600?v=638043996576070000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 5,
+          "marca": "Babaria",
+          "estado": "activo"
+        },
+        {
+          "id": "b5c6",
+          "nombre": "Cerveza Aguila Original lata x6und x330ml c-u",
+          "precio": "18.000",
+          "descripcion": "Tipo de cerveza: Lager. País de origen: Colombia. ABV: 4,0%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/439991-1600-1600?v=638043996501300000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 4,
+          "marca": "Babaria",
+          "estado": "activo"
+        }
+      ],
+      "tipoDocumento": "CC",
+      "numeroDocumento": "1256125163",
+      "total": 162,
+      "fechaVenta": "27/8/2024",
+      "metodoPago": "Efectivo",
+      "estado": "activo"
     }
   ]
 }
