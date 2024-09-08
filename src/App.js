@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';  
 import UserContext from './context/UserContext';
 
-import NavBar from './components/comun/NavBar';
+import Header from './components/comun/NavBar';
 import NavBarAdmin from './components/administrador/NavBarAdmin';
 import NavBarCliente from './components/cliente/NavBarCliente';
 import NavBarCajero from './components/cajero/NavBarCajero';
@@ -73,7 +73,7 @@ import CartAntes from './components/comun/Cart'
 const App = () => {
   const { role } = useContext(UserContext);
 
-  let NavBarComponent;
+  let NavBarComponent = Header; // Valor por defecto
 
   if (role === 'administrador') {
     NavBarComponent = NavBarAdmin;
@@ -84,9 +84,6 @@ const App = () => {
   } else if (role === 'domiciliario'){
     NavBarComponent = NavBarDomiciliario;
   } 
-  else {
-    NavBarComponent = NavBar;
-  }
 
   console.log('Current role:', role); 
 

@@ -33,7 +33,7 @@ const GestionVentas = () => {
     const ventasActivas = ventas.filter(venta => venta.estado === 'activo');
 
     return (
-        <div className="container mx-auto p-4">
+        <div className="container mx-auto p-4 my-5">
             <h1 className="text-2xl font-bold mb-4">Gestión de Ventas</h1>
             <p className="mb-4">Aquí puedes gestionar las ventas registradas en el sistema. Puedes ver detalles de cada venta</p>
             <div className="mb-4 flex space-x-4">

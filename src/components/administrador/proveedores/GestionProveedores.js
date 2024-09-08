@@ -67,12 +67,6 @@ const GestionProveedores = () => {
                 >
                     <FaPlus class="inline-block mr-2" /> Registrar Nuevo proveedor
                 </button>
-                <button
-                    onClick={() => navigate('/proveedores-inactivos')}
-                    class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
-                >
-                    Proveedores Inactivos
-                </button>
             </div>
 
             <div class="overflow-x-auto">
@@ -83,6 +77,7 @@ const GestionProveedores = () => {
                             <th class="p-4 text-left">Teléfono</th>
                             <th class="p-4 text-left">Correo</th>
                             <th class="p-4 text-left">Estado</th>
+                            <th class="p-4 text-left">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>

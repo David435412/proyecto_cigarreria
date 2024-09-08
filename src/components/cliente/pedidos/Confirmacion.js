@@ -53,7 +53,7 @@ const Confirmacion = () => {
         correo,
         telefono,
         direccion,
-        metodoPago,
+        metodoPago="efectivo",
         productos,
         fecha,
     } = pedidoData;

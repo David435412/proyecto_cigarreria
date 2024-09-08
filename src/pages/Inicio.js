@@ -165,10 +165,10 @@ const Inicio = () => {
             </div>
 
             {/* Productos */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ">
                 {filteredProducts.length > 0 ? (
                     filteredProducts.map(producto => (
-                        <div key={producto.id} className="bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden">
+                        <div key={producto.id} className="bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden ">
                             <div className="w-full h-64 relative">
                                 <img 
                                     src={producto.imagen} 
@@ -181,7 +181,7 @@ const Inicio = () => {
                                 <p className="text-gray-900 font-bold mb-4">${producto.precio}</p>
                                 <button
                                     onClick={handleVerMasClick}
-                                    className="w-full bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                    className="w-full  bg-green-800 text-white py-2 px-4 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-black "
                                 >
                                     Ver más
                                 </button>

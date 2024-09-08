@@ -22,7 +22,7 @@ const Pedidos = () => {
     }, []);
 
     return (
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto px-4 py-8 my-5">
             <h1 className="text-3xl font-semibold mb-6">Mis Pedidos</h1>
             {error && <p className="text-red-500 mb-4">{error}</p>}
             {pedidos.length === 0 ? (

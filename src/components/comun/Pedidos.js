@@ -5,7 +5,7 @@ const Pedidos = () => {
 
     return (
         <div className="container mx-auto my-24 px-4 py-8">
-            <h1 className="text-3xl font-semibold mb-6">Mis Pedidos</h1>          
+            <h1 className="text-3xl font-semibold mb-6 text-center">Mis Pedidos</h1>          
                 <div className="text-center py-8">
                     <p className="text-xl mb-4">No tienes pedidos realizados aún.</p>
                     <p className="text-lg mb-4">¿No tienes una cuenta? Inicia sesión para comenzar a comprar.</p>
