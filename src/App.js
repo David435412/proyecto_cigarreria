@@ -15,20 +15,24 @@ import AdminDash from './components/administrador/AdminDash';
 import GestionProductos from './components/administrador/productos/GestionProductos';
 import RegistroProductos from './components/administrador/productos/RegistroProductos';
 import EditarProducto from './components/administrador/productos/EdicionProducto';
+import InactivosProductos from './components/administrador/productos/InactivosProductos'
 
 import GestionUsuarios from './components/administrador/usuarios/GestionUsuarios';
 import RegistroEmpleado from './components/administrador/usuarios/RegistroEmpleados';
 import EditarUsuario from './components/administrador/usuarios/EdicionUsuarios';
+import InactivosUsuarios from './components/administrador/usuarios/InactivosUsuarios'
 
 import GestionProveedores from './components/administrador/proveedores/GestionProveedores';
 import RegistroProveedor from './components/administrador/proveedores/RegistroProveedores';
 import EditarProveedor from './components/administrador/proveedores/EdicionProveedores';
+import InactivosProveedores from './components/administrador/proveedores/InactivosProveedores'
 
 import GestionPedidos from './components/administrador/pedidos/PedidosAdmin'
 
 import GestionVentas from './components/administrador/ventas/GestionVentas';
 import RegistroVenta from './components/administrador/ventas/RegistroVentas';
 import ConfirmacionVenta from './components/administrador/ventas/ConfirmacionVenta';
+import InactivasVentas from './components/administrador/ventas/InactivasVentas'
 
 import ClienteDashboard from './components/cliente/ClienteDash';
 
@@ -38,7 +42,6 @@ import Carrito from './components/cliente/productos/Cart';
 import DatosEntrega from './components/cliente/pedidos/DatosEntrega'
 import Confirmacion from './components/cliente/pedidos/Confirmacion'
 import Pedidos from './components/cliente/pedidos/Pedidos'
-import DetallesPedido from './components/cliente/pedidos/DetallesPedido';
 
 
 import CajeroDashboard from './components/cajero/CajeroDash';
@@ -104,22 +107,24 @@ const App = () => {
           <Route path="/gestion-productos" element={<GestionProductos />} />
           <Route path="/registro-productos" element={<RegistroProductos />} />
           <Route path="/editar-producto/:id" element={<EditarProducto />} />
+          <Route path="/productos-inactivos" element={<InactivosProductos />} />
 
           <Route path="/gestion-usuarios" element={<GestionUsuarios />} />  
           <Route path="/registro-empleado" element={<RegistroEmpleado />} />   
           <Route path="/editar-usuario/:id" element={<EditarUsuario />} /> 
+          <Route path="/usuarios-inactivos" element={<InactivosUsuarios />} />
           
           <Route path="/gestion-proveedores" element={<GestionProveedores />} /> 
           <Route path="/registro-proveedor" element={<RegistroProveedor />} />      
           <Route path="/editar-proveedor/:id" element={<EditarProveedor />} /> 
+          <Route path="/proveedores-inactivos" element={<InactivosProveedores />} />
 
           <Route path="/gestion-pedidos" element={<GestionPedidos />} /> 
 
           <Route path="/gestion-ventas" element={<GestionVentas />} /> 
           <Route path="/registro-venta" element={<RegistroVenta />} />
           <Route path="/confirmar-venta" element={<ConfirmacionVenta />} />
-
-
+          <Route path="/ventas-inactivas" element={<InactivasVentas />} />
 
           <Route path="/cliente-dash" element={<ClienteDashboard />} />
           <Route path="/producto/:id" element={<DetalleProducto />} />
@@ -128,7 +133,6 @@ const App = () => {
           <Route path="/datos-entrega" element={<DatosEntrega />} /> 
           <Route path="/confirmar" element={<Confirmacion />} />
           <Route path="/pedidos" element={<Pedidos />} />
-          <Route path="/pedido/:id" element={<DetallesPedido />} />
           
 
           <Route path="/cajero-dash" element={< CajeroDashboard />} />

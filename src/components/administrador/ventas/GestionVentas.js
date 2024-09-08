@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { FaPlus } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
+import { FaPlus, FaArchive } from 'react-icons/fa';
 
 const GestionVentas = () => {
     const [ventas, setVentas] = useState([]);
     const [ventaSeleccionada, setVentaSeleccionada] = useState(null);
     const [mostrarModal, setMostrarModal] = useState(false);
     const [ventaAEliminar, setVentaAEliminar] = useState(null);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         // Función para obtener ventas desde la API
@@ -82,48 +85,77 @@ const GestionVentas = () => {
     return (
         <div className="container mx-auto p-4 my-10">
             <h1 className="text-2xl font-bold mb-4">Gestión de Ventas</h1>
-            <p className="mb-4">Aquí puedes gestionar las ventas registradas en el sistema. Puedes ver detalles de cada venta, así como eliminar ventas inactivas si es necesario.</p>
+            <p className="mb-4">Aquí puedes gestionar las ventas registradas en el sistema. Puedes ver detalles de cada venta, así como inactivar ventas si es necesario.</p>
             <div className="mb-4 flex space-x-4">
                 <button
                     onClick={() => window.location.href = '/registro-venta'}
                     className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
                 >
-                    <FaPlus className="inline-block mr-2" />  Registrar Nueva Venta
+                    <FaPlus className="inline-block mr-2" /> Registrar Nueva Venta
+                </button>
+                <button
+                    onClick={() => navigate('/ventas-inactivas')}
+                    className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+                >
+                    <FaArchive className="inline-block mr-2" /> Ventas Inactivas
                 </button>
             </div>
             <table className="min-w-full bg-white border border-gray-200 rounded-lg">
                 <thead>
                     <tr>
-                        <th className="py-2 px-4 border-b">Número Documento</th>
-                        <th className="py-2 px-4 border-b">Fecha Venta</th>
-                        <th className="py-2 px-4 border-b">Total</th>
-                        <th className="py-2 px-4 border-b">Estado</th>
-                        <th className="py-2 px-4 border-b">Acciones</th>
+                        <th className="py-2 px-4 border-b text-center">Número Documento</th>
+                        <th className="py-2 px-4 border-b text-center">Fecha Venta</th>
+                        <th className="py-2 px-4 border-b text-center">Total</th>
+                        <th className="py-2 px-4 border-b text-center">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     {ventasActivas.length > 0 ? (
                         ventasActivas.map(venta => (
-                            <tr key={venta.id}>
-                                <td className="py-2 px-4 border-b">{venta.numeroDocumento}</td>
-                                <td className="py-2 px-4 border-b">{venta.fechaVenta}</td>
-                                <td className="py-2 px-4 border-b">${calcularTotal(venta.productos)}</td>
-                                <td className="py-2 px-4 border-b">{venta.estado}</td>
-                                <td className="py-2 px-4 border-b text-center">
-                                    <button
-                                        onClick={() => manejarEliminarVenta(venta)}
-                                        className="bg-red-500 text-white py-1 px-4 rounded hover:bg-red-600 mr-2"
-                                    >
-                                        Eliminar
-                                    </button>
-                                    <button
-                                        onClick={() => mostrarDetalles(venta)}
-                                        className={`bg-green-500 text-white py-1 px-4 rounded hover:bg-green-600 ${ventaSeleccionada && ventaSeleccionada.id === venta.id ? 'bg-green-600' : ''}`}
-                                    >
-                                        {ventaSeleccionada && ventaSeleccionada.id === venta.id ? 'Ocultar Detalles' : 'Detalles'}
-                                    </button>
-                                </td>
-                            </tr>
+                            <React.Fragment key={venta.id}>
+                                <tr>
+                                    <td className="py-2 px-4 border-b text-center">{venta.numeroDocumento}</td>
+                                    <td className="py-2 px-4 border-b text-center">{venta.fechaVenta}</td>
+                                    <td className="py-2 px-4 border-b text-center">${calcularTotal(venta.productos)}</td>
+                                    <td className="py-2 px-4 border-b text-center">
+                                        <button
+                                            onClick={() => mostrarDetalles(venta)}
+                                            className={`bg-green-500 text-white py-1 px-4 rounded hover:bg-green-600 mr-2 ${ventaSeleccionada && ventaSeleccionada.id === venta.id ? 'bg-green-600' : ''}`}
+                                        >
+                                            {ventaSeleccionada && ventaSeleccionada.id === venta.id ? 'Ocultar Detalles' : 'Detalles'}
+                                        </button>
+                                        <button
+                                            onClick={() => manejarEliminarVenta(venta)}
+                                            className="bg-red-500 text-white py-1 px-4 rounded hover:bg-red-600 "
+                                        >
+                                            Inactivar
+                                        </button>
+                                    </td>
+                                </tr>
+                                {ventaSeleccionada && ventaSeleccionada.id === venta.id && (
+                                    <tr>
+                                        <td colSpan="5" className="py-4 px-4 border-b bg-gray-100">
+                                            <div>
+                                                <h2 className="text-xl font-semibold mb-2">Detalles de la Venta</h2>
+                                                <p><strong>Número Documento:</strong> {venta.numeroDocumento}</p>
+                                                <p><strong>Fecha Venta:</strong> {venta.fechaVenta}</p>
+                                                <h3 className="text-lg font-semibold mt-2">Productos:</h3>
+                                                <ul>
+                                                    {venta.productos.map((producto, index) => (
+                                                        <li key={index} className="flex items-center mb-2">
+                                                            {producto.imagen && (
+                                                                <img src={producto.imagen} alt={producto.nombre} className="w-16 h-16 object-cover mr-2" />
+                                                            )}
+                                                            <p>{producto.nombre} - ${producto.precio} x {producto.cantidad}</p>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                                <h2 className="text-xl font-semibold mt-2">Subtotal: ${calcularTotal(venta.productos)}</h2>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                )}
+                            </React.Fragment>
                         ))
                     ) : (
                         <tr>
@@ -132,27 +164,6 @@ const GestionVentas = () => {
                     )}
                 </tbody>
             </table>
-
-            {ventaSeleccionada && (
-                <div className="mt-4 p-4 bg-gray-100 border border-gray-200 rounded-lg">
-                    <h2 className="text-xl font-semibold mb-2">Detalles de la Venta</h2>
-                    <p><strong>Número Documento:</strong> {ventaSeleccionada.numeroDocumento}</p>
-                    <p><strong>Fecha Venta:</strong> {ventaSeleccionada.fechaVenta}</p>
-                    <p><strong>Estado:</strong> {ventaSeleccionada.estado}</p>
-                    <h3 className="text-lg font-semibold mt-2">Productos:</h3>
-                    <ul>
-                        {ventaSeleccionada.productos.map((producto, index) => (
-                            <li key={index} className="flex items-center mb-2">
-                                {producto.imagen && (
-                                    <img src={producto.imagen} alt={producto.nombre} className="w-16 h-16 object-cover mr-2" />
-                                )}
-                                <p>{producto.nombre} - ${producto.precio} x {producto.cantidad}</p>
-                            </li>
-                        ))}
-                    </ul>
-                    <h2 className="text-xl font-semibold mt-2">Subtotal: ${calcularTotal(ventaSeleccionada.productos)}</h2>
-                </div>
-            )}
 
             {mostrarModal && (
                 <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50 z-50">

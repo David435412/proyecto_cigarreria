@@ -1,56 +1,54 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { FaPlus } from 'react-icons/fa';
-import { FaUsers } from 'react-icons/fa'; // Importar el ícono para usuarios inactivos
+import { FaPlus, FaUsers } from 'react-icons/fa'; // Importar el ícono para usuarios inactivos
 
-const GestionUsuarios = () => {
+const UsuariosInactivos = () => {
     const [usuarios, setUsuarios] = useState([]);
     const [error, setError] = useState('');
     const [alertMessage, setAlertMessage] = useState('');
-    const [usuarioAEliminar, setUsuarioAEliminar] = useState(null);
+    const [usuarioAActivar, setUsuarioAActivar] = useState(null);
 
     const navigate = useNavigate();
 
-    // Obtener los usuarios desde la API
-    const fetchUsuarios = async () => {
+    // Obtener los usuarios inactivos desde la API
+    const fetchUsuariosInactivos = async () => {
         try {
             const response = await axios.get('http://localhost:5000/usuarios');
-            const usuariosFiltrados = response.data.filter(usuario =>
-                (usuario.rol === 'cajero' || usuario.rol === 'domiciliario') && usuario.estado === 'activo'
+            const usuariosInactivos = response.data.filter(usuario =>
+                (usuario.rol === 'cajero' || usuario.rol === 'domiciliario') && usuario.estado === 'inactivo'
             );
-            setUsuarios(usuariosFiltrados);
+            setUsuarios(usuariosInactivos);
         } catch (error) {
-            console.error('Error al obtener los usuarios', error);
-            setError('No se pudieron cargar los usuarios.');
+            console.error('Error al obtener los usuarios inactivos', error);
+            setError('No se pudieron cargar los usuarios inactivos.');
         }
     };
 
     useEffect(() => {
-        fetchUsuarios();
+        fetchUsuariosInactivos();
     }, []);
 
-    const handleDelete = async () => {
-        if (!usuarioAEliminar) return;
+    const handleActivate = async () => {
+        if (!usuarioAActivar) return;
 
         try {
-            await axios.put(`http://localhost:5000/usuarios/${usuarioAEliminar.id}`, { ...usuarioAEliminar, estado: 'inactivo' });
-            fetchUsuarios();
-            setAlertMessage('Usuario inactivado exitosamente.');
+            await axios.put(`http://localhost:5000/usuarios/${usuarioAActivar.id}`, { ...usuarioAActivar, estado: 'activo' });
+            fetchUsuariosInactivos();
+            setAlertMessage('Usuario activado exitosamente.');
         } catch (error) {
-            console.error('Error al inactivar el usuario', error);
-            setError('No se pudo inactivar el usuario.');
+            console.error('Error al activar el usuario', error);
+            setError('No se pudo activar el usuario.');
         } finally {
-            setUsuarioAEliminar(null); 
+            setUsuarioAActivar(null); 
         }
     };
 
     return (
         <div className="container mx-auto px-4 py-8">
-            <h1 className="text-3xl font-bold mb-4">Gestión de Usuarios</h1>
+            <h1 className="text-3xl font-bold mb-4">Usuarios Inactivos</h1>
             <p className="mb-8">
-                En esta sección podrás gestionar a los usuarios del sistema. Puedes registrar nuevos usuarios,
-                visualizar los usuarios que ya has registrado y desactivarlos según sea necesario.
+                En esta sección podrás gestionar a los usuarios inactivos del sistema. Puedes visualizar los usuarios que están inactivos y activarlos si es necesario.
             </p>
 
             {error && <p className="text-red-500 mb-4">{error}</p>}
@@ -60,18 +58,12 @@ const GestionUsuarios = () => {
                 </div>
             )}
 
-            <div className="mb-4 flex space-x-4">
+            <div className="mb-4 flex space-x-4">               
                 <button
-                    onClick={() => navigate('/registro-empleado')}
-                    className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
-                >
-                    <FaPlus className="inline-block mr-2" /> Registrar Nuevo Usuario
-                </button>
-                <button
-                    onClick={() => navigate('/usuarios-inactivos')} // Cambia esta ruta a la adecuada
+                    onClick={() => navigate('/gestion-usuarios')}
                     className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
                 >
-                    <FaUsers className="inline-block mr-2" /> Usuarios Inactivos
+                    <FaUsers className="inline-block mr-2" /> Volver a Usuarios Activos
                 </button>
             </div>
 
@@ -102,18 +94,12 @@ const GestionUsuarios = () => {
                                     <td className="p-4">{usuario.telefono}</td>
                                     <td className="p-4">{usuario.direccion}</td>
                                     <td className="p-4">{usuario.rol}</td>
-                                    <td className="p-4 flex gap-2">
+                                    <td className="p-4 flex gap-1">                                        
                                         <button
-                                            onClick={() => navigate(`/editar-usuario/${usuario.id}`)}
-                                            className="bg-orange-500 text-white py-1 px-2 rounded hover:bg-orange-600"
+                                            onClick={() => setUsuarioAActivar(usuario)}
+                                            className="bg-green-500 text-white py-1 px-2 rounded hover:bg-green-600"
                                         >
-                                            Editar
-                                        </button>
-                                        <button
-                                            onClick={() => setUsuarioAEliminar(usuario)}
-                                            className="bg-red-500 text-white py-1 px-2 rounded hover:bg-red-600"
-                                        >
-                                            Inactivar
+                                            Activar
                                         </button>
                                     </td>
                                 </tr>
@@ -121,7 +107,7 @@ const GestionUsuarios = () => {
                         ) : (
                             <tr>
                                 <td colSpan="9" className="p-4 text-center text-gray-500">
-                                    No hay usuarios registrados en el sistema.
+                                    No hay usuarios inactivos en el sistema.
                                 </td>
                             </tr>
                         )}
@@ -130,22 +116,22 @@ const GestionUsuarios = () => {
             </div>
 
             {/* Modal de confirmación */}
-            {usuarioAEliminar && (
+            {usuarioAActivar && (
                 <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
                     <div className="bg-white p-6 rounded-lg shadow-lg">
-                        <h3 className="text-xl mb-4">¿Estás seguro de que deseas inactivar este usuario?</h3>
+                        <h3 className="text-xl mb-4">¿Estás seguro de que deseas activar este usuario?</h3>
                         <div className="flex justify-end gap-4">
                             <button
-                                onClick={() => setUsuarioAEliminar(null)}
+                                onClick={() => setUsuarioAActivar(null)}
                                 className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
                             >
                                 Cancelar
                             </button>
                             <button
-                                onClick={handleDelete}
-                                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                                onClick={handleActivate}
+                                className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
                             >
-                                Inactivar
+                                Activar
                             </button>
                         </div>
                     </div>
@@ -155,4 +141,4 @@ const GestionUsuarios = () => {
     );
 };
 
-export default GestionUsuarios;
+export default UsuariosInactivos;

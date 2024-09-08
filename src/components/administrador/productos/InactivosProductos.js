@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { FaPlus, FaEdit, FaTrash, FaArchive } from 'react-icons/fa';
+import { FaEdit, FaRedo, FaArrowLeft } from 'react-icons/fa';
 
 const categorias = [
     'Todos',
@@ -16,11 +16,11 @@ const categorias = [
     'Panadería'
 ];
 
-const GestionProductos = () => {
+const ProductosInactivos = () => {
     const [productos, setProductos] = useState([]);
     const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('Todos');
     const [error, setError] = useState('');
-    const [productoAEliminar, setProductoAEliminar] = useState(null);
+    const [productoAReactivar, setProductoAReactivar] = useState(null);
     const [showModal, setShowModal] = useState(false);
 
     const navigate = useNavigate();
@@ -40,55 +40,48 @@ const GestionProductos = () => {
         fetchProductos();
     }, []);
 
-    // Filtrar productos según la categoría seleccionada y estado activo
+    // Filtrar productos según la categoría seleccionada y estado inactivo
     const productosFiltrados = productos.filter(producto =>
-        (categoriaSeleccionada === 'Todos' || producto.categoria === categoriaSeleccionada) && producto.estado === 'activo'
+        (categoriaSeleccionada === 'Todos' || producto.categoria === categoriaSeleccionada) && producto.estado === 'inactivo'
     );
 
-    // Maneja el cambio de estado a inactivo
-    const handleEliminar = (producto) => {
-        setProductoAEliminar(producto);
+    // Maneja el cambio de estado a activo
+    const handleReactivar = (producto) => {
+        setProductoAReactivar(producto);
         setShowModal(true);
     };
 
-    // Cambia el estado del producto a inactivo
-    const handleDelete = async () => {
-        if (!productoAEliminar) return;
+    // Cambia el estado del producto a activo
+    const handleActivate = async () => {
+        if (!productoAReactivar) return;
 
         try {
-            await axios.put(`http://localhost:5000/productos/${productoAEliminar.id}`, { ...productoAEliminar, estado: 'inactivo' });
+            await axios.put(`http://localhost:5000/productos/${productoAReactivar.id}`, { ...productoAReactivar, estado: 'activo' });
             fetchProductos();
             setShowModal(false);
         } catch (error) {
-            console.error('Error al inactivar el producto', error);
-            setError('No se pudo inactivar el producto.');
+            console.error('Error al reactivar el producto', error);
+            setError('No se pudo reactivar el producto.');
         } finally {
-            setProductoAEliminar(null);
+            setProductoAReactivar(null);
         }
     };
 
     return (
         <div className="container mx-auto px-4 py-8">
-            <h1 className="text-3xl font-bold mb-4">Gestión de Productos</h1>
+            <h1 className="text-3xl font-bold mb-4">Productos Inactivos</h1>
             <p className="mb-8">
-                En esta sección podrás gestionar tus productos. Puedes agregar nuevos productos
-                y visualizar los productos que ya has registrado.
+                Aquí puedes gestionar los productos que han sido inactivados. Puedes reactivar los productos según sea necesario.
             </p>
 
             {error && <p className="text-red-500 mb-4">{error}</p>}
 
-            <div className="mb-4 flex space-x-4">
+            <div className="mb-4 flex items-center gap-4">
                 <button
-                    onClick={() => navigate('/registro-productos')}
-                    className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+                    onClick={() => navigate('/gestion-productos')}
+                    className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 flex items-center"
                 >
-                    <FaPlus className="inline-block mr-2" /> Registrar Producto
-                </button>
-                <button
-                    onClick={() => navigate('/productos-inactivos')}
-                    className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
-                >
-                    <FaArchive className="inline-block mr-2" /> Productos Inactivos
+                    <FaArrowLeft className="mr-2" /> Volver a Productos Activos
                 </button>
             </div>
 
@@ -121,18 +114,12 @@ const GestionProductos = () => {
                                 <h2 className="text-xl font-semibold mb-2">{producto.nombre}</h2>
                                 <p className="text-gray-900 font-bold mb-4">${producto.precio}</p>
                                 <p className="text-gray-700 mb-4">Marca: {producto.marca}</p> 
-                                <div className="flex gap-2">
+                                <div className="flex gap-1">                                    
                                     <button
-                                        onClick={() => navigate(`/editar-producto/${producto.id}`)}
-                                        className="bg-orange-600 text-white px-3 py-1 rounded hover:bg-orange-700 flex items-center"
+                                        onClick={() => handleReactivar(producto)}
+                                        className="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 flex items-center"
                                     >
-                                        <FaEdit className="mr-1" /> Editar
-                                    </button>
-                                    <button
-                                        onClick={() => handleEliminar(producto)}
-                                        className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 flex items-center"
-                                    >
-                                        <FaTrash className="mr-1" /> Inactivar
+                                        <FaRedo className="mr-1" /> Reactivar
                                     </button>
                                 </div>
                             </div>
@@ -146,8 +133,8 @@ const GestionProductos = () => {
             {showModal && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
                     <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm">
-                        <h2 className="text-xl font-semibold mb-4">Confirmar Inactivación</h2>
-                        <p className="mb-4">¿Estás seguro de que quieres inactivar el producto "{productoAEliminar?.nombre}"?</p>
+                        <h2 className="text-xl font-semibold mb-4">Confirmar Reactivación</h2>
+                        <p className="mb-4">¿Estás seguro de que quieres reactivar el producto "{productoAReactivar?.nombre}"?</p>
                         <div className="flex justify-end gap-4">
                             <button
                                 onClick={() => setShowModal(false)}
@@ -156,10 +143,10 @@ const GestionProductos = () => {
                                 Cancelar
                             </button>
                             <button
-                                onClick={handleDelete}
-                                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                                onClick={handleActivate}
+                                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
                             >
-                                Inactivar
+                                Reactivar
                             </button>
                         </div>
                     </div>
@@ -169,4 +156,4 @@ const GestionProductos = () => {
     );
 };
 
-export default GestionProductos;
+export default ProductosInactivos;

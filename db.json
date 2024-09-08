@@ -60,6 +60,17 @@
       "direccion": "Cll 13 c N 17",
       "estado": "activo",
       "rol": "cliente"
+    },
+    {
+      "id": "5376",
+      "nombre": "Daniel Murcia",
+      "contrasena": "1231",
+      "nombreUsuario": "daniel1",
+      "correo": "daniel123@gmail.com",
+      "telefono": "3102221123",
+      "direccion": "cll 132 c n 137 - 15",
+      "estado": "activo",
+      "rol": "cliente"
     }
   ],
   "productos": [
@@ -70,7 +81,7 @@
       "descripcion": "Tipo de cerveza: Lager ABV: 4,7% País de origen: Colombia.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/491967-1600-1600?v=638216692937930000&width=1600&height=1600&aspect=true",
       "categoria": "Licores",
-      "cantidad": 105,
+      "cantidad": 112,
       "marca": "Babaria",
       "estado": "activo"
     },
@@ -81,7 +92,7 @@
       "descripcion": "Tipo de cerveza: Lager. País de origen: Colombia. ABV: 4,0%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/439991-1600-1600?v=638043996501300000&width=1600&height=1600&aspect=true",
       "categoria": "Licores",
-      "cantidad": 171,
+      "cantidad": 175,
       "marca": "Babaria",
       "estado": "activo"
     },
@@ -92,7 +103,7 @@
       "descripcion": "Tipo de cerveza: Lager. País de origen: Colombia. ABV: 4,0%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440018-1600-1600?v=638043996576070000&width=1600&height=1600&aspect=true",
       "categoria": "Licores",
-      "cantidad": 115,
+      "cantidad": 118,
       "marca": "Babaria",
       "estado": "activo"
     },
@@ -103,7 +114,7 @@
       "descripcion": "Tipo de cerveza: Lager. País de Origen: México ABV: 4,5%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440069-1600-1600?v=638043996740100000&width=1600&height=1600&aspect=true",
       "categoria": "Licores",
-      "cantidad": 195,
+      "cantidad": 197,
       "marca": "Babaria",
       "estado": "activo"
     },
@@ -224,7 +235,7 @@
       "nombre": "Bimbo",
       "telefono": "3133345083",
       "correo": "bimbo@gmail.com",
-      "estado": "inactivo"
+      "estado": "activo"
     },
     {
       "id": "b8e1",
@@ -529,6 +540,67 @@
       "fecha": "2024-08-27T19:58:41.670Z",
       "estadoPedido": "pendiente",
       "estado": "activo"
+    },
+    {
+      "id": "5aee",
+      "usuarioId": "5376",
+      "direccion": "cll 132 c n 137 - 15",
+      "nombre": "Daniel Murcia",
+      "correo": "daniel123@gmail.com",
+      "telefono": "3102221123",
+      "productos": [
+        {
+          "id": "a783",
+          "nombre": "Cerveza Club Colombia Dorada lata x6und x330ml",
+          "precio": "18.700",
+          "descripcion": "Tipo de cerveza: Lager ABV: 4,7% País de origen: Colombia.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/491967-1600-1600?v=638216692937930000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 2,
+          "marca": "Babaria",
+          "estado": "activo"
+        }
+      ],
+      "fecha": "2024-09-08T17:08:58.504Z",
+      "estadoPedido": "cancelado",
+      "estado": "activo",
+      "metodoPago": "efectivo"
+    },
+    {
+      "id": "7935",
+      "usuarioId": "5376",
+      "direccion": "Cll 132 c N 137",
+      "nombre": "Daniel Murcia",
+      "correo": "daniel123@gmail.com",
+      "telefono": "3102221123",
+      "productos": [
+        {
+          "id": "105c",
+          "nombre": "Cerveza Poker lata x6und x330ml c-u",
+          "precio": "18.000",
+          "descripcion": "Tipo de cerveza: Lager. País de origen: Colombia. ABV: 4,0%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440018-1600-1600?v=638043996576070000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 3,
+          "marca": "Babaria",
+          "estado": "activo"
+        },
+        {
+          "id": "3445",
+          "nombre": "Cerveza Coronita botella x6und x210ml c-u",
+          "precio": "7.500",
+          "descripcion": "Tipo de cerveza: Lager. País de Origen: México ABV: 4,5%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440069-1600-1600?v=638043996740100000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 1,
+          "marca": "Babaria",
+          "estado": "activo"
+        }
+      ],
+      "fecha": "2024-09-08T18:17:58.623Z",
+      "estadoPedido": "entregado",
+      "estado": "activo",
+      "metodoPago": "efectivo"
     }
   ],
   "ventas": [
@@ -585,7 +657,7 @@
       "total": 187,
       "fechaVenta": "27/8/2024",
       "metodoPago": "Efectivo",
-      "estado": "inactivo"
+      "estado": "activo"
     },
     {
       "id": "a8f2",
@@ -607,7 +679,7 @@
       "total": 56.099999999999994,
       "fechaVenta": "27/8/2024",
       "metodoPago": "Efectivo",
-      "estado": "inactivo"
+      "estado": "activo"
     },
     {
       "id": "f101",
@@ -629,7 +701,7 @@
       "total": 56.099999999999994,
       "fechaVenta": "27/8/2024",
       "metodoPago": "Efectivo",
-      "estado": "inactivo"
+      "estado": "activo"
     },
     {
       "id": "04d8",

@@ -8,48 +8,50 @@ const DatosEntrega = () => {
     const [nombre, setNombre] = useState('');
     const [correo, setCorreo] = useState('');
     const [telefono, setTelefono] = useState('');
-    const [metodoPago, setMetodoPago] = useState(''); // Nuevo estado para el método de pago
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
+        console.log('localStorage contents:');
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            console.log(`${key}: ${localStorage.getItem(key)}`);
+        }
         // Obtener datos del carrito del localStorage
         const usuarioId = localStorage.getItem('userId');
         if (usuarioId) {
             const carritoData = JSON.parse(localStorage.getItem(`carrito_${usuarioId}`)) || [];
             setCarrito(carritoData);
         }
+
+        // Obtener datos del usuario desde localStorage
+        const userName = localStorage.getItem('name');
+        if (userName) {
+            setNombre(userName);
+        }
+        const userEmail = localStorage.getItem('email');
+        if (userEmail) {
+            setCorreo(userEmail);
+        }
+        const userPhone = localStorage.getItem('phone');
+        if (userPhone) {
+            setTelefono(userPhone);
+        }
+
     }, []);
 
     const handleDireccionChange = (e) => {
         setDireccion(e.target.value);
     };
 
-    const handleNombreChange = (e) => {
-        setNombre(e.target.value);
-    };
-
-    const handleCorreoChange = (e) => {
-        setCorreo(e.target.value);
-    };
-
-    const handleTelefonoChange = (e) => {
-        setTelefono(e.target.value);
-    };
-
-    const handleMetodoPagoChange = (e) => {
-        setMetodoPago(e.target.value);
-    };
-
     const handleConfirmar = async () => {
-        if (!direccion.trim() || !nombre.trim() || !correo.trim() || !telefono.trim()) {
+        if (!direccion.trim()) {
             setError('Por favor, completa todos los campos.');
             return;
         }
-        
+
         const usuarioId = localStorage.getItem('userId');
         if (usuarioId) {
-            // Crear un objeto con los datos del pedido
             const pedido = {
                 usuarioId,
                 direccion,
@@ -58,33 +60,27 @@ const DatosEntrega = () => {
                 telefono,
                 productos: carrito,
                 fecha: new Date().toISOString(),
-                estadoPedido: 'pendiente',  // Nuevo campo
-                estado: 'activo' ,           // Nuevo campo
+                estadoPedido: 'pendiente',
+                estado: 'activo',
+                metodoPago: 'efectivo',
             };
 
             try {
-                // Enviar los datos del pedido al backend
                 const response = await axios.post('http://localhost:5000/pedidos', pedido);
 
-                // Descontar la cantidad de cada producto
                 await Promise.all(carrito.map(async (producto) => {
-                    // Obtener los datos actuales del producto
                     const { data: productoActual } = await axios.get(`http://localhost:5000/productos/${producto.id}`);
-                    
-                    // Actualizar solo la cantidad del producto
                     const productoActualizado = {
-                        ...productoActual,  // Mantener los otros campos del producto
-                        cantidad: productoActual.cantidad - producto.cantidad  // Ajustar la cantidad
+                        ...productoActual,
+                        cantidad: productoActual.cantidad - producto.cantidad,
                     };
                     await axios.put(`http://localhost:5000/productos/${producto.id}`, productoActualizado);
                 }));
 
-                // Limpiar el carrito en localStorage
                 localStorage.removeItem(`carrito_${usuarioId}`);
                 localStorage.removeItem('datosCarrito');
                 localStorage.removeItem('direccionEntrega');
-                
-                // Redirigir a la página de confirmación
+
                 navigate('/confirmar', { state: { pedidoId: response.data.id } });
             } catch (error) {
                 console.error('Error al crear el pedido:', error);
@@ -135,38 +131,15 @@ const DatosEntrega = () => {
                     <div className="mb-6">
                         <h2 className="text-xl font-semibold">Subtotal: ${calcularTotal()}</h2>
                     </div>
+                    {/* Mostrar datos de usuario como texto en lugar de inputs */}
                     <div className="mb-6">
-                        <label htmlFor="nombre" className="block text-sm font-medium text-gray-700 mb-2">Nombre</label>
-                        <input
-                            type="text"
-                            id="nombre"
-                            value={nombre}
-                            onChange={handleNombreChange}
-                            className="w-full p-2 border border-gray-300 rounded"
-                            placeholder="Ingresa tu nombre"
-                        />
+                        <p className="text-sm font-medium text-gray-700 mb-2">Nombre: {nombre}</p>
                     </div>
                     <div className="mb-6">
-                        <label htmlFor="correo" className="block text-sm font-medium text-gray-700 mb-2">Correo Electrónico</label>
-                        <input
-                            type="email"
-                            id="correo"
-                            value={correo}
-                            onChange={handleCorreoChange}
-                            className="w-full p-2 border border-gray-300 rounded"
-                            placeholder="Ingresa tu correo electrónico"
-                        />
+                        <p className="text-sm font-medium text-gray-700 mb-2">Correo Electrónico: {correo}</p>
                     </div>
                     <div className="mb-6">
-                        <label htmlFor="telefono" className="block text-sm font-medium text-gray-700 mb-2">Teléfono</label>
-                        <input
-                            type="tel"
-                            id="telefono"
-                            value={telefono}
-                            onChange={handleTelefonoChange}
-                            className="w-full p-2 border border-gray-300 rounded"
-                            placeholder="Ingresa tu teléfono"
-                        />
+                        <p className="text-sm font-medium text-gray-700 mb-2">Teléfono: {telefono}</p>
                     </div>
                     <div className="mb-6">
                         <label htmlFor="direccion" className="block text-sm font-medium text-gray-700 mb-2">Dirección de Entrega</label>
