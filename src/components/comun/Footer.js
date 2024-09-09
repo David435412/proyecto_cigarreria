@@ -1,28 +1,36 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Logo from "../../assets/images/Logo.png"
+import { FaMapMarkerAlt, FaWhatsapp, FaPhone } from "react-icons/fa"; // Importa los íconos que necesitas
+import Logo from "../../assets/images/Logo.png";
 
 const Footer = () => {
+  return (
+    <footer className="bg-gray-200 px-4 lg:px-6 py-4 rounded-t-lg border-t border-gray-200">
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between">
+        {/* Logo y Título */}
+        <Link to="/" className="flex items-center mb-4 lg:mb-0 space-x-3">
+          <img src={Logo} alt="Logo" className="w-16 h-16" />
+          <span className="text-2xl text-gray-900 font-bold italic">Colonial</span>
+        </Link>
 
-    return (
-        <>
-        <footer class="bg-green-500 border-gray-200 px-4 lg:px-6 py-2.5 rounded-t-lg">
-            <div class="w-full mx-auto p-2 ">
-                <div>
-                    <a class="flex items-center mb-2 sm:mb-0 space-x-3 rtl:space-x-reverse">
-                        <img src={Logo} class="w-16 h-16"></img>
-                        <span class="self-center text-3xl italic font-serif whitespace-nowrap text-black"> Colonial</span>
-                    </a>
-                </div>
-                <hr class="my-3 border-black sm:mx-auto lg:my-4" />
-                <span class="block text-sm text-gray-900 sm:text-center ">Estamos ubicados en chapinero alto Calle 57 #5-04</span>
-                <span class="block text-sm text-gray-900 sm:text-center ">Contactenos al número fijo 3475838</span>
-                <span class="block text-sm text-gray-900 sm:text-center ">o por whatsapp a los números 313 3000604 - 321 3313788</span>
-
-            </div>
-        </footer>
-        </>
-    );
+        {/* Información de Contacto */}
+        <div className="flex flex-col lg:flex-row items-center text-gray-600">
+          <div className="flex items-center mb-2 lg:mb-0 lg:mr-6">
+            <FaMapMarkerAlt className="text-gray-700 mr-2" />
+            <p className="text-sm">Chapinero Alto, Calle 57 #5-04</p>
+          </div>
+          <div className="flex items-center mb-2 lg:mb-0 lg:mr-6">
+            <FaWhatsapp className="text-green-500 mr-2" />
+            <p className="text-sm">313 3000604 - 321 3313788</p>
+          </div>
+          <div className="flex items-center">
+            <FaPhone className="text-gray-700 mr-2" />
+            <p className="text-sm">3475838</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
 };
 
 export default Footer;
