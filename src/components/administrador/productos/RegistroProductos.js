@@ -1,6 +1,8 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'; // Importa SweetAlert2
+import 'sweetalert2/dist/sweetalert2.min.css'; // Importa los estilos de SweetAlert2
 
 const categorias = [
     'Licores',
@@ -25,7 +27,6 @@ const RegistroProducto = () => {
         marca: '',
         estado: 'activo'
     });
-    const [alertMessage, setAlertMessage] = useState('');
     const [error, setError] = useState('');
     const [proveedores, setProveedores] = useState([]);
 
@@ -59,48 +60,57 @@ const RegistroProducto = () => {
 
         try {
             await axios.post('http://localhost:5000/productos', formData);
-            setAlertMessage('Producto registrado exitosamente.');
 
-            // Limpiar el formulario
-            setFormData({
-                nombre: '',
-                precio: '',
-                descripcion: '',
-                imagen: '',
-                categoria: categorias[0], 
-                cantidad: '',
-                marca: '', 
-                estado: 'activo'
+            Swal.fire({
+                title: 'Éxito',
+                text: 'Producto registrado exitosamente.',
+                icon: 'success',
+                timer: 1500, // La alerta se mostrará durante 1.5 segundos
+                showConfirmButton: false, // No mostrar botón de confirmación
+                willClose: () => {
+                    // Limpiar el formulario
+                    setFormData({
+                        nombre: '',
+                        precio: '',
+                        descripcion: '',
+                        imagen: '',
+                        categoria: categorias[0], 
+                        cantidad: '',
+                        marca: '', 
+                        estado: 'activo'
+                    });
+
+                    // Redirigir a la vista de gestión de productos
+                    navigate('/gestion-productos');
+                }
             });
-
-            // Redirigir a la vista de gestión de productos
-            navigate('/gestion-productos');
         } catch (error) {
             console.error('Error al registrar el producto', error);
-            setError('No se pudo registrar el producto.');
+            Swal.fire({
+                title: 'Error',
+                text: 'No se pudo registrar el producto.',
+                icon: 'error',
+                timer: 1500, // La alerta se mostrará durante 1.5 segundos
+                showConfirmButton: false // No mostrar botón de confirmación
+            });
         }
     };
 
     return (
-        <section class="bg-gray-50">
-            <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto my-10 lg:py-0">
-                <div class="w-full bg-white rounded-xl shadow-2xl md:mt-0 sm:max-w-md xl:p-0 border border-gray-200">
-                    <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-                        <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
+        <section className="bg-gray-50">
+            <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto my-10 lg:py-0">
+                <div className="w-full bg-white rounded-xl shadow-2xl md:mt-0 sm:max-w-md xl:p-0 border border-gray-200">
+                    <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+                        <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
                             Registrar Nuevo Producto
                         </h1>
 
-                        {error && <p class="text-red-500">{error}</p>}
-                        {alertMessage && (
-                            <div class="mb-4 p-4 bg-green-100 text-green-800 border border-green-300 rounded">
-                                {alertMessage}
-                            </div>
-                        )}
+                        {error && <p className="text-red-500">{error}</p>}
 
-                        <form class="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
-                            <div class="grid grid-cols-2 gap-4">
+                        <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
+                            <div className="grid grid-cols-2 gap-4">
                                 <div>
-                                    <label class="block mb-2 text-sm font-medium text-gray-900">
+                                    <label className="block mb-2 text-sm font-medium text-gray-900">
                                         Nombre
                                     </label>
                                     <input
@@ -108,12 +118,12 @@ const RegistroProducto = () => {
                                         name="nombre"
                                         value={formData.nombre}
                                         onChange={handleChange}
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                         required
                                     />
                                 </div>
                                 <div>
-                                    <label class="block mb-2 text-sm font-medium text-gray-900">
+                                    <label className="block mb-2 text-sm font-medium text-gray-900">
                                         Precio
                                     </label>
                                     <input
@@ -121,27 +131,27 @@ const RegistroProducto = () => {
                                         name="precio"
                                         value={formData.precio}
                                         onChange={handleChange}
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                         required
                                     />
                                 </div>
                             </div>
 
-                            <div class="grid grid-cols-2 gap-4">
+                            <div className="grid grid-cols-2 gap-4">
                                 <div>
-                                    <label class="block mb-2 text-sm font-medium text-gray-900">
+                                    <label className="block mb-2 text-sm font-medium text-gray-900">
                                         Descripción
                                     </label>
                                     <textarea
                                         name="descripcion"
                                         value={formData.descripcion}
                                         onChange={handleChange}
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                         required
                                     ></textarea>
                                 </div>
                                 <div>
-                                    <label class="block mb-2 text-sm font-medium text-gray-900">
+                                    <label className="block mb-2 text-sm font-medium text-gray-900">
                                         Imagen (URL)
                                     </label>
                                     <input
@@ -149,23 +159,23 @@ const RegistroProducto = () => {
                                         name="imagen"
                                         value={formData.imagen}
                                         onChange={handleChange}
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                         required
                                     />
                                 </div>
                             </div>
 
-                            <div class="grid grid-cols-1">
-                                <div class="grid grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1">
+                                <div className="grid grid-cols-2 gap-4">
                                     <div>
-                                        <label class="block mb-2 text-sm font-medium text-gray-900">
+                                        <label className="block mb-2 text-sm font-medium text-gray-900">
                                             Categoría
                                         </label>
                                         <select
                                             name="categoria"
                                             value={formData.categoria}
                                             onChange={handleChange}
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                             required
                                         >
                                             {categorias.map(categoria => (
@@ -176,7 +186,7 @@ const RegistroProducto = () => {
                                         </select>
                                     </div>
                                     <div>
-                                        <label class="block mb-2 text-sm font-medium text-gray-900">
+                                        <label className="block mb-2 text-sm font-medium text-gray-900">
                                             Cantidad
                                         </label>
                                         <input
@@ -184,7 +194,7 @@ const RegistroProducto = () => {
                                             name="cantidad"
                                             value={formData.cantidad}
                                             onChange={handleChange}
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                             required
                                             min="1"
                                             max="1000"
@@ -197,7 +207,7 @@ const RegistroProducto = () => {
                                     </label>
                                     <select
                                         name="marca"
-                                        value={formData.proveedor}
+                                        value={formData.marca}
                                         onChange={handleChange}
                                         className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                         required
@@ -212,17 +222,17 @@ const RegistroProducto = () => {
                                 </div>
                             </div>
 
-                            <div class="flex justify-center gap-4">
+                            <div className="flex justify-center gap-4">
                                 <button
                                     type="button"
                                     onClick={() => navigate('/gestion-productos')}
-                                    class="px-8 py-4 bg-gradient-to-r from-red-400 to-red-600 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
+                                    className="px-8 py-4 bg-gradient-to-r from-red-400 to-red-600 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
                                 >
                                     Cancelar
                                 </button>
                                 <button
                                     type="submit"
-                                    class="px-8 py-4 bg-gradient-to-r from-green-400 to-green-700  text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
+                                    className="px-8 py-4 bg-gradient-to-r from-green-400 to-green-700 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
                                 >
                                     Registrar Producto
                                 </button>

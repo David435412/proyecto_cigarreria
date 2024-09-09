@@ -2,20 +2,18 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { FaPlus, FaArchive } from 'react-icons/fa';
+import Swal from 'sweetalert2';
 
 const GestionVentas = () => {
     const [ventas, setVentas] = useState([]);
     const [ventaSeleccionada, setVentaSeleccionada] = useState(null);
-    const [mostrarModal, setMostrarModal] = useState(false);
-    const [ventaAEliminar, setVentaAEliminar] = useState(null);
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Función para obtener ventas desde la API
         const fetchVentas = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/ventas'); // Ajusta la URL según tu configuración
+                const response = await axios.get('http://localhost:5000/ventas');
                 setVentas(response.data);
             } catch (error) {
                 console.error('Error al obtener las ventas:', error);
@@ -30,56 +28,61 @@ const GestionVentas = () => {
         return total.toFixed(3);
     };
 
-    const manejarEliminarVenta = (venta) => {
-        setVentaAEliminar(venta);
-        setMostrarModal(true);
-    };
+    const manejarEliminarVenta = async (venta) => {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "Cambiar el estado de esta venta a inactivo no se puede deshacer.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Sí, inactivar',
+            cancelButtonText: 'Cancelar'
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    const productos = venta.productos;
 
-    const eliminarVenta = async () => {
-        try {
-            // Obtener los detalles actuales de los productos en la venta
-            const productos = ventaAEliminar.productos;
+                    // Devolver la cantidad de los productos al inventario
+                    await Promise.all(productos.map(async (producto) => {
+                        const { data: productoActual } = await axios.get(`http://localhost:5000/productos/${producto.id}`);
+                        const nuevaCantidad = productoActual.cantidad + producto.cantidad;
+                        await axios.put(`http://localhost:5000/productos/${producto.id}`, {
+                            ...productoActual,
+                            cantidad: nuevaCantidad
+                        });
+                    }));
 
-            // Devolver la cantidad de los productos al inventario
-            await Promise.all(productos.map(async (producto) => {
-                // Obtener los datos actuales del producto
-                const { data: productoActual } = await axios.get(`http://localhost:5000/productos/${producto.id}`);
+                    // Cambiar el estado de la venta a 'inactivo'
+                    await axios.put(`http://localhost:5000/ventas/${venta.id}`, {
+                        ...venta,
+                        estado: 'inactivo'
+                    });
 
-                // Calcular la nueva cantidad
-                const nuevaCantidad = productoActual.cantidad + producto.cantidad;
+                    // Actualizar la lista de ventas
+                    setVentas(ventas.map(v => v.id === venta.id ? { ...v, estado: 'inactivo' } : v));
 
-                // Actualizar la cantidad del producto
-                await axios.put(`http://localhost:5000/productos/${producto.id}`, {
-                    ...productoActual,  // Mantener los otros campos del producto
-                    cantidad: nuevaCantidad  // Incrementar la cantidad
-                });
-            }));
-
-            // Cambiar el estado de la venta a 'inactivo'
-            await axios.put(`http://localhost:5000/ventas/${ventaAEliminar.id}`, {
-                ...ventaAEliminar,
-                estado: 'inactivo'
-            });
-
-            // Actualizar la lista de ventas después de cambiar el estado
-            setVentas(ventas.map(venta => venta.id === ventaAEliminar.id ? { ...venta, estado: 'inactivo' } : venta));
-            setMostrarModal(false);
-            setVentaAEliminar(null);
-        } catch (error) {
-            console.error('Error al eliminar la venta:', error);
-        }
-    };
-
-    const cancelarConfirmacion = () => {
-        setMostrarModal(false);
-        setVentaAEliminar(null);
+                    Swal.fire(
+                        '¡Venta inactivada!',
+                        'La venta ha sido cambiada a estado inactivo.',
+                        'success'
+                    );
+                } catch (error) {
+                    console.error('Error al inactivar la venta:', error);
+                    Swal.fire(
+                        'Error',
+                        'Hubo un error al intentar inactivar la venta.',
+                        'error'
+                    );
+                }
+            }
+        });
     };
 
     const mostrarDetalles = (venta) => {
         setVentaSeleccionada(ventaSeleccionada && ventaSeleccionada.id === venta.id ? null : venta);
     };
 
-    // Filtrar ventas para mostrar solo las activas
     const ventasActivas = ventas.filter(venta => venta.estado === 'activo');
 
     return (
@@ -126,7 +129,7 @@ const GestionVentas = () => {
                                         </button>
                                         <button
                                             onClick={() => manejarEliminarVenta(venta)}
-                                            className="bg-red-500 text-white py-1 px-4 rounded hover:bg-red-600 "
+                                            className="bg-red-500 text-white py-1 px-4 rounded hover:bg-red-600"
                                         >
                                             Inactivar
                                         </button>
@@ -165,29 +168,6 @@ const GestionVentas = () => {
                     )}
                 </tbody>
             </table>
-
-            {mostrarModal && (
-                <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50 z-50">
-                    <div className="bg-white p-6 rounded-lg shadow-lg">
-                        <h2 className="text-lg font-semibold mb-4">Confirmación</h2>
-                        <p>¿Estás seguro de que deseas cambiar el estado de esta venta a inactivo? Esta acción no se puede deshacer.</p>
-                        <div className="mt-4 flex justify-end">
-                            <button
-                                onClick={cancelarConfirmacion}
-                                className="bg-gray-500 text-white py-1 px-4 rounded hover:bg-gray-600 mr-2"
-                            >
-                                Cancelar
-                            </button>
-                            <button
-                                onClick={eliminarVenta}
-                                className="bg-red-500 text-white py-1 px-4 rounded hover:bg-red-600"
-                            >
-                                Confirmar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            )}
         </div>
     );
 };

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const ConfirmacionVenta = () => {
     const location = useLocation();
@@ -59,9 +60,16 @@ const ConfirmacionVenta = () => {
 
             localStorage.removeItem('productosSeleccionados');
 
-
-            alert("Se registró la venta correctamente");
-            navigate('/gestion-ventas');
+            // Mostrar alerta con SweetAlert2
+            Swal.fire({
+                title: 'Éxito',
+                text: 'La venta se registró correctamente.',
+                icon: 'success',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Aceptar'
+            }).then(() => {
+                navigate('/gestion-ventas');
+            });
         } catch (error) {
             setError(`Error al registrar la venta: ${error.message}`);
             console.error('Error al registrar la venta', error);

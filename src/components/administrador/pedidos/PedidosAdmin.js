@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaFilter, FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
+import Swal from 'sweetalert2';
 
 const PedidosAdmin = () => {
   const [pedidos, setPedidos] = useState([]);
   const [pedidoSeleccionado, setPedidoSeleccionado] = useState(null);
-  const [mostrarModal, setMostrarModal] = useState(false);
   const [pedidoAConfirmar, setPedidoAConfirmar] = useState(null);
   const [filtroEstado, setFiltroEstado] = useState('todos'); // Estado del filtro
 
@@ -29,8 +29,22 @@ const PedidosAdmin = () => {
 
   const manejarEstadoEntrega = (pedido) => {
     setPedidoAConfirmar(pedido);
-    setMostrarModal(true);
+    Swal.fire({
+      title: 'Confirmar Entrega',
+      html: `<p>¿Estás seguro de que deseas marcar el pedido de "<strong>${pedido.nombre}</strong>" como entregado?</p>
+             <p><strong>Esta acción no se puede deshacer</strong></p>`,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Confirmar',
+      cancelButtonText: 'Cancelar',
+      confirmButtonColor: '#FF4D4D' 
+    }).then((result) => {
+      if (result.isConfirmed) {
+        confirmarEntrega();
+      }
+    });
   };
+  
 
   const confirmarEntrega = async () => {
     try {
@@ -41,16 +55,12 @@ const PedidosAdmin = () => {
       setPedidos(pedidos.map(pedido =>
         pedido.id === pedidoAConfirmar.id ? { ...pedido, estadoPedido: 'entregado' } : pedido
       ));
-      setMostrarModal(false);
       setPedidoAConfirmar(null);
+      Swal.fire('Pedido Marcado', `El pedido de "${pedidoAConfirmar.nombre}" ha sido marcado como entregado.`, 'success');
     } catch (error) {
       console.error('Error al actualizar el estado del pedido:', error);
+      Swal.fire('Error', 'No se pudo marcar el pedido como entregado.', 'error');
     }
-  };
-
-  const cancelarConfirmacion = () => {
-    setMostrarModal(false);
-    setPedidoAConfirmar(null);
   };
 
   const mostrarDetalles = (pedido) => {
@@ -181,30 +191,6 @@ const PedidosAdmin = () => {
           </tbody>
         </table>
       </div>
-
-      {/* Modal de confirmación */}
-      {mostrarModal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm">
-            <h2 className="text-xl font-semibold mb-4">Confirmar Entrega</h2>
-            <p className="mb-4">¿Estás seguro de que deseas marcar el pedido de "{pedidoAConfirmar?.nombre}" como entregado?</p>
-            <div className="flex justify-end space-x-4">
-              <button
-                onClick={confirmarEntrega}
-                className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600"
-              >
-                Confirmar
-              </button>
-              <button
-                onClick={cancelarConfirmacion}
-                className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600"
-              >
-                Cancelar
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

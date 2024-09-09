@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { FaPlus, FaUsers } from 'react-icons/fa';
+import Swal from 'sweetalert2'; // Importa SweetAlert2
+import 'sweetalert2/dist/sweetalert2.min.css'; // Importa los estilos de SweetAlert2
+import { FaUsers } from 'react-icons/fa';
 
 const ProveedoresInactivos = () => {
     const [proveedores, setProveedores] = useState([]);
@@ -27,19 +29,30 @@ const ProveedoresInactivos = () => {
         fetchProveedoresInactivos();
     }, []);
 
-    const handleActivate = async () => {
-        if (!proveedorAActivar) return;
-
-        try {
-            await axios.put(`http://localhost:5000/proveedores/${proveedorAActivar.id}`, { ...proveedorAActivar, estado: 'activo' });
-            fetchProveedoresInactivos();
-            setAlertMessage('Proveedor activado exitosamente.');
-        } catch (error) {
-            console.error('Error al activar el proveedor', error);
-            setError('No se pudo activar el proveedor.');
-        } finally {
-            setProveedorAActivar(null);
-        }
+    // Maneja la activación del proveedor con SweetAlert2
+    const handleActivate = (proveedor) => {
+        Swal.fire({
+            title: 'Confirmar Activación',
+            text: `¿Estás seguro de que deseas activar al proveedor ${proveedor.nombre}?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#40cb35',
+            cancelButtonColor: '#ff0000',
+            confirmButtonText: 'Activar',
+            cancelButtonText: 'Cancelar',
+           
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    await axios.put(`http://localhost:5000/proveedores/${proveedor.id}`, { ...proveedor, estado: 'activo' });
+                    fetchProveedoresInactivos();
+                    setAlertMessage('Proveedor activado exitosamente.');
+                } catch (error) {
+                    console.error('Error al activar el proveedor', error);
+                    setError('No se pudo activar el proveedor.');
+                }
+            }
+        });
     };
 
     return (
@@ -84,7 +97,7 @@ const ProveedoresInactivos = () => {
                                     <td className="p-4">{proveedor.correo}</td>
                                     <td className="p-4 flex gap-1">                                        
                                         <button
-                                            onClick={() => setProveedorAActivar(proveedor)}
+                                            onClick={() => handleActivate(proveedor)}
                                             className="bg-green-500 text-white py-1 px-2 rounded hover:bg-green-600"
                                         >
                                             Activar
@@ -102,32 +115,8 @@ const ProveedoresInactivos = () => {
                     </tbody>
                 </table>
             </div>
-
-            {/* Modal de confirmación */}
-            {proveedorAActivar && (
-                <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-                    <div className="bg-white p-6 rounded-lg shadow-lg">
-                        <h3 className="text-xl mb-4">¿Estás seguro de que deseas activar este proveedor?</h3>
-                        <div className="flex justify-end gap-4">
-                            <button
-                                onClick={() => setProveedorAActivar(null)}
-                                className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
-                            >
-                                Cancelar
-                            </button>
-                            <button
-                                onClick={handleActivate}
-                                className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
-                            >
-                                Activar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            )}
         </div>
     );
 };
 
 export default ProveedoresInactivos;
-    

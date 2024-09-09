@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'; // Importa SweetAlert2
 import fuera_1 from "../../assets/images/fuera_2.jpeg";
 
 const Login = () => {
@@ -8,7 +9,6 @@ const Login = () => {
         correo: '',
         contrasena: ''
     });
-    const [error, setError] = useState('');
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -35,33 +35,55 @@ const Login = () => {
                     localStorage.setItem('email', user.correo);
                     localStorage.setItem('phone', user.telefono);
 
-                    switch (user.rol) {
-                        case 'administrador':
-                            navigate('/admin-dash');
-                            break;
-                        case 'cliente':
-                            navigate('/cliente-dash');
-                            break;
-                        case 'cajero':
-                            navigate('/cajero-dash');
-                            break;
-                        case 'domiciliario':
-                            navigate('/domiciliario-dash');
-                            break;
-                        default:
-                            navigate('/');
-                            break;
-                    }
-                    window.location.reload();
+                    // Muestra una notificación de éxito usando SweetAlert2
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Inicio de sesión exitoso',
+                        text: 'Redirigiendo al panel...',
+                        timer: 1500,
+                        timerProgressBar: true,
+                        showConfirmButton: false
+                    }).then(() => {
+                        switch (user.rol) {
+                            case 'administrador':
+                                navigate('/admin-dash');
+                                break;
+                            case 'cliente':
+                                navigate('/cliente-dash');
+                                break;
+                            case 'cajero':
+                                navigate('/cajero-dash');
+                                break;
+                            case 'domiciliario':
+                                navigate('/domiciliario-dash');
+                                break;
+                            default:
+                                navigate('/');
+                                break;
+                        }
+                        window.location.reload();
+                    });
                 } else {
-                    setError('Tu cuenta no está activa. Contacta con soporte.');
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Cuenta inactiva',
+                        text: 'Tu cuenta no está activa. Contacta con soporte.',
+                    });
                 }
             } else {
-                setError('Correo electrónico o contraseña incorrectos. Inténtalo de nuevo.');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Credenciales incorrectas',
+                    text: 'Correo electrónico o contraseña incorrectos. Inténtalo de nuevo.',
+                });
             }
         } catch (error) {
             console.error('Error al iniciar sesión', error);
-            setError('Ocurrió un error al intentar iniciar sesión.');
+            Swal.fire({
+                icon: 'error',
+                title: 'Error en el inicio de sesión',
+                text: 'Ocurrió un error al intentar iniciar sesión.',
+            });
         }
     };
 
@@ -87,7 +109,6 @@ const Login = () => {
                         <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
                             Inicia Sesión con tu cuenta!
                         </h1>
-                        {error && <p className="text-red-500">{error}</p>}
                         <form className="space-y-4 text-center" onSubmit={handleSubmit}>
                             <div>
                                 <label

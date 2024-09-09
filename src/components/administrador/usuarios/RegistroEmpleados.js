@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'; // Importa SweetAlert2
 
 const RegistroEmpleado = () => {
     const [formData, setFormData] = useState({
@@ -27,25 +28,40 @@ const RegistroEmpleado = () => {
         e.preventDefault();
         try {
             await axios.post('http://localhost:5000/usuarios', formData);
-            alert('Empleado registrado con éxito');
-            navigate("/gestion-usuarios");  
+            
+            Swal.fire({
+                icon: 'success',
+                title: 'Éxito',
+                text: 'Empleado registrado con éxito.',
+                confirmButtonColor: '#28a745', // Verde
+                confirmButtonText: 'Aceptar'
+            }).then(() => {
+                navigate("/gestion-usuarios");  
+            });
         } catch (error) {
             console.error('Error al registrar el empleado', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Ocurrió un error al registrar el empleado.',
+                confirmButtonColor: '#d33', // Rojo
+                confirmButtonText: 'Aceptar'
+            });
         }
     };
 
     return (
         <div>
-            <section class="bg-gray-50">
-                <div class="flex flex-col items-center justify-center px-6 py-16 mx-auto my-10 lg:py-0">
-                    <div class="w-full bg-white rounded-lg shadow-2xl md:mt-0 sm:max-w-md xl:p-0">
-                        <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-                            <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
+            <section className="bg-gray-50">
+                <div className="flex flex-col items-center justify-center px-6 py-16 mx-auto my-10 lg:py-0">
+                    <div className="w-full bg-white rounded-lg shadow-2xl md:mt-0 sm:max-w-md xl:p-0">
+                        <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+                            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
                                 Registro de Empleado
                             </h1>
-                            <form class="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8" onSubmit={handleSubmit}>
+                            <form className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8" onSubmit={handleSubmit}>
                                 <div>
-                                    <label htmlFor="nombre" class="block mb-2 text-sm font-medium text-gray-900">
+                                    <label htmlFor="nombre" className="block mb-2 text-sm font-medium text-gray-900">
                                         Nombre
                                     </label>
                                     <input
@@ -54,13 +70,13 @@ const RegistroEmpleado = () => {
                                         id="nombre"
                                         value={formData.nombre}
                                         onChange={handleChange}
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                         placeholder="Nombre del empleado"
                                         required
                                     />
                                 </div>
                                 <div>
-                                    <label htmlFor="contrasena" class="block mb-2 text-sm font-medium text-gray-900">
+                                    <label htmlFor="contrasena" className="block mb-2 text-sm font-medium text-gray-900">
                                         Contraseña
                                     </label>
                                     <input
@@ -70,12 +86,12 @@ const RegistroEmpleado = () => {
                                         value={formData.contrasena}
                                         onChange={handleChange}
                                         placeholder="••••••••"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                         required
                                     />
                                 </div>
                                 <div>
-                                    <label htmlFor="nombreUsuario" class="block mb-2 text-sm font-medium text-gray-900">
+                                    <label htmlFor="nombreUsuario" className="block mb-2 text-sm font-medium text-gray-900">
                                         Nombre de Usuario
                                     </label>
                                     <input
@@ -84,13 +100,13 @@ const RegistroEmpleado = () => {
                                         id="nombreUsuario"
                                         value={formData.nombreUsuario}
                                         onChange={handleChange}
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                         placeholder="Nombre de usuario"
                                         required
                                     />
                                 </div>
                                 <div>
-                                    <label htmlFor="tipoDocumento" class="block mb-2 text-sm font-medium text-gray-900">
+                                    <label htmlFor="tipoDocumento" className="block mb-2 text-sm font-medium text-gray-900">
                                         Tipo de Documento
                                     </label>
                                     <select
@@ -98,7 +114,7 @@ const RegistroEmpleado = () => {
                                         id="tipoDocumento"
                                         value={formData.tipoDocumento}
                                         onChange={handleChange}
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                         required
                                     >
                                         <option value="">Selecciona un tipo de documento</option>
@@ -108,7 +124,7 @@ const RegistroEmpleado = () => {
                                     </select>
                                 </div>
                                 <div>
-                                    <label htmlFor="numeroDocumento" class="block mb-2 text-sm font-medium text-gray-900">
+                                    <label htmlFor="numeroDocumento" className="block mb-2 text-sm font-medium text-gray-900">
                                         Número de Documento
                                     </label>
                                     <input
@@ -117,13 +133,13 @@ const RegistroEmpleado = () => {
                                         id="numeroDocumento"
                                         value={formData.numeroDocumento}
                                         onChange={handleChange}
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                         placeholder="Número de documento"
                                         required
                                     />
                                 </div>
                                 <div>
-                                    <label htmlFor="correo" class="block mb-2 text-sm font-medium text-gray-900">
+                                    <label htmlFor="correo" className="block mb-2 text-sm font-medium text-gray-900">
                                         Correo Electrónico
                                     </label>
                                     <input
@@ -132,13 +148,13 @@ const RegistroEmpleado = () => {
                                         id="correo"
                                         value={formData.correo}
                                         onChange={handleChange}
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                         placeholder="correo@ejemplo.com"
                                         required
                                     />
                                 </div>
                                 <div>
-                                    <label htmlFor="telefono" class="block mb-2 text-sm font-medium text-gray-900">
+                                    <label htmlFor="telefono" className="block mb-2 text-sm font-medium text-gray-900">
                                         Teléfono
                                     </label>
                                     <input
@@ -147,13 +163,13 @@ const RegistroEmpleado = () => {
                                         id="telefono"
                                         value={formData.telefono}
                                         onChange={handleChange}
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                         placeholder="3123456789"
                                         required
                                     />
                                 </div>
                                 <div>
-                                    <label htmlFor="direccion" class="block mb-2 text-sm font-medium text-gray-900">
+                                    <label htmlFor="direccion" className="block mb-2 text-sm font-medium text-gray-900">
                                         Dirección
                                     </label>
                                     <input
@@ -162,13 +178,13 @@ const RegistroEmpleado = () => {
                                         id="direccion"
                                         value={formData.direccion}
                                         onChange={handleChange}
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                         placeholder="Dirección del empleado"
                                         required
                                     />
                                 </div>
-                                <div class="md:col-span-2">
-                                    <label htmlFor="rol" class="block mb-2 text-sm font-medium text-gray-900">
+                                <div className="md:col-span-2">
+                                    <label htmlFor="rol" className="block mb-2 text-sm font-medium text-gray-900">
                                         Rol
                                     </label>
                                     <select
@@ -176,7 +192,7 @@ const RegistroEmpleado = () => {
                                         id="rol"
                                         value={formData.rol}
                                         onChange={handleChange}
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                     >
                                         <option value="cajero">Cajero</option>
                                         <option value="domiciliario">Domiciliario</option>
@@ -184,7 +200,7 @@ const RegistroEmpleado = () => {
                                 </div>
                                 <button
                                     type="submit"
-                                    class="col-span-2 px-8 py-4 bg-gradient-to-r from-green-400 to-green-700  text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
+                                    className="col-span-2 px-8 py-4 bg-gradient-to-r from-green-400 to-green-700 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
                                 >
                                     Registrar Empleado
                                 </button>

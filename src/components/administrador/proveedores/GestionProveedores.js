@@ -2,13 +2,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { FaPlus, FaEdit, FaTrash, FaArchive } from 'react-icons/fa';
+import Swal from 'sweetalert2';
 
 const GestionProveedores = () => {
     const [proveedores, setProveedores] = useState([]);
     const [error, setError] = useState('');
     const [alertMessage, setAlertMessage] = useState('');
-    const [proveedorAEliminar, setProveedorAEliminar] = useState(null);
-    const [showModal, setShowModal] = useState(false);
     const [mostrarInactivos, setMostrarInactivos] = useState(false);
 
     const navigate = useNavigate();
@@ -31,27 +30,29 @@ const GestionProveedores = () => {
         fetchProveedores();
     }, [mostrarInactivos]);
 
-    // Maneja el cambio de estado a inactivo
+    // Maneja el cambio de estado a inactivo utilizando SweetAlert
     const handleEliminar = (proveedor) => {
-        setProveedorAEliminar(proveedor);
-        setShowModal(true);
-    };
-
-    // Cambia el estado del proveedor a inactivo
-    const handleDelete = async () => {
-        if (!proveedorAEliminar) return;
-
-        try {
-            await axios.put(`http://localhost:5000/proveedores/${proveedorAEliminar.id}`, { ...proveedorAEliminar, estado: 'inactivo' });
-            fetchProveedores();
-            setAlertMessage('Proveedor inactivado exitosamente.');
-        } catch (error) {
-            console.error('Error al inactivar el proveedor', error);
-            setError('No se pudo inactivar el proveedor.');
-        } finally {
-            setProveedorAEliminar(null);
-            setShowModal(false);
-        }
+        Swal.fire({
+            title: 'Confirmar Inactivación',
+            text: `¿Estás seguro de que quieres inactivar el proveedor "${proveedor.nombre}"?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Inactivar',
+            cancelButtonText: 'Cancelar'
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    await axios.put(`http://localhost:5000/proveedores/${proveedor.id}`, { ...proveedor, estado: 'inactivo' });
+                    fetchProveedores();
+                    setAlertMessage('Proveedor inactivado exitosamente.');
+                } catch (error) {
+                    console.error('Error al inactivar el proveedor', error);
+                    setError('No se pudo inactivar el proveedor.');
+                }
+            }
+        });
     };
 
     return (
@@ -127,30 +128,6 @@ const GestionProveedores = () => {
                     </tbody>
                 </table>
             </div>
-
-            {/* Modal de confirmación */}
-            {showModal && (
-                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                    <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm">
-                        <h2 className="text-xl font-semibold mb-4">Confirmar Inactivación</h2>
-                        <p className="mb-4">¿Estás seguro de que quieres inactivar el proveedor "{proveedorAEliminar?.nombre}"?</p>
-                        <div className="flex justify-end gap-4">
-                            <button
-                                onClick={() => setShowModal(false)}
-                                className="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400"
-                            >
-                                Cancelar
-                            </button>
-                            <button
-                                onClick={handleDelete}
-                                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-                            >
-                                Inactivar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            )}
         </div>
     );
 };

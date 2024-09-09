@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { FaUsers } from 'react-icons/fa';
+import Swal from 'sweetalert2'; // Importar SweetAlert2
 
 const VentasInactivas = () => {
     const [ventas, setVentas] = useState([]);
     const [error, setError] = useState('');
     const [alertMessage, setAlertMessage] = useState('');
-    const [ventaAActivar, setVentaAActivar] = useState(null);
     const [ventaSeleccionada, setVentaSeleccionada] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -31,14 +31,12 @@ const VentasInactivas = () => {
         fetchVentasInactivas();
     }, []);
 
-    const handleActivate = async () => {
-        if (!ventaAActivar) return;
-
+    const handleActivate = async (venta) => {
         try {
-            await axios.put(`http://localhost:5000/ventas/${ventaAActivar.id}`, { ...ventaAActivar, estado: 'activo' });
+            await axios.put(`http://localhost:5000/ventas/${venta.id}`, { ...venta, estado: 'activo' });
 
             // Actualizar el inventario de productos
-            await Promise.all(ventaAActivar.productos.map(async (producto) => {
+            await Promise.all(venta.productos.map(async (producto) => {
                 const { data: productoActual } = await axios.get(`http://localhost:5000/productos/${producto.id}`);
                 const nuevaCantidad = productoActual.cantidad - producto.cantidad;
                 await axios.put(`http://localhost:5000/productos/${producto.id}`, {
@@ -48,17 +46,33 @@ const VentasInactivas = () => {
             }));
 
             fetchVentasInactivas();
-            setAlertMessage('Venta activada exitosamente.');
+            Swal.fire('Éxito', 'Venta activada exitosamente.', 'success');
         } catch (error) {
             console.error('Error al activar la venta', error);
-            setError('No se pudo activar la venta.');
-        } finally {
-            setVentaAActivar(null);
+            Swal.fire('Error', 'No se pudo activar la venta.', 'error');
         }
     };
 
     const mostrarDetalles = (venta) => {
         setVentaSeleccionada(ventaSeleccionada && ventaSeleccionada.id === venta.id ? null : venta);
+    };
+
+    // Mostrar la confirmación usando SweetAlert2
+    const confirmActivate = (venta) => {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: 'Esta acción activará la venta seleccionada.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, activar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                handleActivate(venta);
+            }
+        });
     };
 
     return (
@@ -108,7 +122,7 @@ const VentasInactivas = () => {
                                         <td className="p-4">${venta.total.toFixed(3)}</td>
                                         <td className="p-4 flex gap-1">
                                             <button
-                                                onClick={() => setVentaAActivar(venta)}
+                                                onClick={() => confirmActivate(venta)}
                                                 className="bg-green-500 text-white py-1 px-2 rounded hover:bg-green-600"
                                             >
                                                 Activar
@@ -156,29 +170,6 @@ const VentasInactivas = () => {
                     </tbody>
                 </table>
             </div>
-
-            {/* Modal de confirmación */}
-            {ventaAActivar && (
-                <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-                    <div className="bg-white p-6 rounded-lg shadow-lg">
-                        <h3 className="text-xl mb-4">¿Estás seguro de que deseas activar esta venta?</h3>
-                        <div className="flex justify-end gap-4">
-                            <button
-                                onClick={() => setVentaAActivar(null)}
-                                className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
-                            >
-                                Cancelar
-                            </button>
-                            <button
-                                onClick={handleActivate}
-                                className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
-                            >
-                                Activar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            )}
         </div>
     );
 };

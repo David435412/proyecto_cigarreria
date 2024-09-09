@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { FaEdit, FaRedo, FaArrowLeft } from 'react-icons/fa';
+import Swal from 'sweetalert2'; // Importa SweetAlert2
+import 'sweetalert2/dist/sweetalert2.min.css'; // Importa los estilos de SweetAlert2
+import { FaArrowLeft, FaRedo } from 'react-icons/fa';
 
 const categorias = [
     'Todos',
@@ -21,7 +23,6 @@ const ProductosInactivos = () => {
     const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('Todos');
     const [error, setError] = useState('');
     const [productoAReactivar, setProductoAReactivar] = useState(null);
-    const [showModal, setShowModal] = useState(false);
 
     const navigate = useNavigate();
 
@@ -48,23 +49,33 @@ const ProductosInactivos = () => {
     // Maneja el cambio de estado a activo
     const handleReactivar = (producto) => {
         setProductoAReactivar(producto);
-        setShowModal(true);
-    };
 
-    // Cambia el estado del producto a activo
-    const handleActivate = async () => {
-        if (!productoAReactivar) return;
-
-        try {
-            await axios.put(`http://localhost:5000/productos/${productoAReactivar.id}`, { ...productoAReactivar, estado: 'activo' });
-            fetchProductos();
-            setShowModal(false);
-        } catch (error) {
-            console.error('Error al reactivar el producto', error);
-            setError('No se pudo reactivar el producto.');
-        } finally {
-            setProductoAReactivar(null);
-        }
+        Swal.fire({
+            title: 'Confirmar Reactivación',
+            text: `¿Estás seguro de que quieres reactivar el producto "${producto.nombre}"?`,
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Reactivar',
+            cancelButtonText: 'Cancelar',           
+           
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    await axios.put(`http://localhost:5000/productos/${producto.id}`, { ...producto, estado: 'activo' });
+                    fetchProductos();
+                } catch (error) {
+                    console.error('Error al reactivar el producto', error);
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'No se pudo reactivar el producto.',
+                        icon: 'error'
+                    });
+                }
+                setProductoAReactivar(null);
+            }
+        });
     };
 
     return (
@@ -129,29 +140,6 @@ const ProductosInactivos = () => {
                     <p className="text-gray-500">No hay productos en esta categoría.</p>
                 )}
             </div>
-
-            {showModal && (
-                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                    <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm">
-                        <h2 className="text-xl font-semibold mb-4">Confirmar Reactivación</h2>
-                        <p className="mb-4">¿Estás seguro de que quieres reactivar el producto "{productoAReactivar?.nombre}"?</p>
-                        <div className="flex justify-end gap-4">
-                            <button
-                                onClick={() => setShowModal(false)}
-                                className="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400"
-                            >
-                                Cancelar
-                            </button>
-                            <button
-                                onClick={handleActivate}
-                                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-                            >
-                                Reactivar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            )}
         </div>
     );
 };

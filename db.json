@@ -21,7 +21,7 @@
       "correo": "dom@gmail.com",
       "telefono": "3104222039",
       "direccion": "Cll 13 c N 17",
-      "estado": "activo",
+      "estado": "inactivo",
       "rol": "domiciliario",
       "tipoDocumento": "cedula",
       "numeroDocumento": "123456789"
@@ -71,6 +71,30 @@
       "direccion": "cll 132 c n 137 - 15",
       "estado": "activo",
       "rol": "cliente"
+    },
+    {
+      "id": "be19",
+      "nombre": "Duvan Jairo",
+      "contrasena": "duvan123",
+      "nombreUsuario": "duvan21",
+      "correo": "duvan@gmail.com",
+      "telefono": "3102883312",
+      "direccion": "Cll 43 12 n 1",
+      "estado": "activo",
+      "rol": "cliente"
+    },
+    {
+      "id": "0f85",
+      "nombre": "Sara Sofia",
+      "contrasena": "sara123",
+      "nombreUsuario": "Sara12",
+      "tipoDocumento": "cedula",
+      "numeroDocumento": "1031653107",
+      "correo": "sara@gmail.com",
+      "telefono": "3102113123",
+      "direccion": "Cll 133 c N 31",
+      "rol": "cajero",
+      "estado": "activo"
     }
   ],
   "productos": [
@@ -81,7 +105,7 @@
       "descripcion": "Tipo de cerveza: Lager ABV: 4,7% País de origen: Colombia.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/491967-1600-1600?v=638216692937930000&width=1600&height=1600&aspect=true",
       "categoria": "Licores",
-      "cantidad": 110,
+      "cantidad": "110",
       "marca": "Babaria",
       "estado": "activo"
     },
@@ -227,13 +251,24 @@
       "cantidad": 95,
       "marca": "colanta",
       "estado": "activo"
+    },
+    {
+      "id": "1610",
+      "nombre": "Malta Pony Malta Botella Pet X6 Unidades X200ml",
+      "precio": "9.320",
+      "descripcion": "Pony Malta es elaborada a base de malta, agua, azúcar, malta de cebada, vitaminas, entre otros ingredientes.",
+      "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/658712-1600-1600?v=638598447225300000&width=1600&height=1600&aspect=true",
+      "categoria": "Bebidas",
+      "cantidad": "65",
+      "marca": "colanta",
+      "estado": "activo"
     }
   ],
   "proveedores": [
     {
       "id": "1",
       "nombre": "Bimbo",
-      "telefono": "3133345083",
+      "telefono": "3133345082",
       "correo": "bimbo@gmail.com",
       "estado": "activo"
     },
@@ -312,6 +347,13 @@
       "nombre": "colanta",
       "telefono": "1297187313",
       "correo": "colanta@gmail.com",
+      "estado": "activo"
+    },
+    {
+      "id": "03fe",
+      "nombre": "Pony Malta",
+      "telefono": "3103220123",
+      "correo": "ponymalta@gmail.com",
       "estado": "activo"
     }
   ],
@@ -625,6 +667,31 @@
       "fecha": "2024-09-08T21:22:26.265Z",
       "estadoPedido": "cancelado",
       "estado": "inactivo",
+      "metodoPago": "efectivo"
+    },
+    {
+      "id": "f6e5",
+      "usuarioId": "5376",
+      "direccion": "Cll 13 c N 17",
+      "nombre": "Daniel Murcia",
+      "correo": "daniel123@gmail.com",
+      "telefono": "3102221123",
+      "productos": [
+        {
+          "id": "fd3f",
+          "nombre": "choco cono",
+          "precio": "3.000",
+          "descripcion": "helado cubierto de chocolate",
+          "imagen": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmxTQcRR0IzYQU3aNfEK0R3bAWpHf0MzoPig&s",
+          "categoria": "Helados",
+          "cantidad": 10,
+          "marca": "CREM-HELADO",
+          "estado": "activo"
+        }
+      ],
+      "fecha": "2024-09-09T02:16:19.004Z",
+      "estadoPedido": "entregado",
+      "estado": "activo",
       "metodoPago": "efectivo"
     }
   ],

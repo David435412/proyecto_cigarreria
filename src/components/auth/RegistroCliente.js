@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';  // Importa SweetAlert2
 import fuera_1 from "../../assets/images/fuera_2.jpeg"; // Asegúrate de tener esta imagen en la ruta correcta
 
 const RegistroCliente = () => {
@@ -26,10 +27,21 @@ const RegistroCliente = () => {
         e.preventDefault();
         try {
             await axios.post('http://localhost:5000/usuarios', datosFormulario);
-            alert('Cliente registrado con éxito');
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Cliente registrado con éxito',
+                showConfirmButton: false,
+                timer: 1500
+            });
             navigate('/login');
         } catch (error) {
             console.error('Error al registrar el cliente', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'No se pudo registrar el cliente. Intenta nuevamente.',
+            });
         }
     };
 
@@ -59,7 +71,7 @@ const RegistroCliente = () => {
                             <div className="col-span-2">
                                 <label
                                     htmlFor="correo"
-                                    className="block mb-1 text-sm font-medium text-gray-900"
+                                    className="block text-sm font-medium text-gray-900"
                                 >
                                     Correo Electrónico
                                 </label>
@@ -77,7 +89,7 @@ const RegistroCliente = () => {
                             <div>
                                 <label
                                     htmlFor="nombreUsuario"
-                                    className="block mb-1 text-sm font-medium text-gray-900"
+                                    className="block text-sm font-medium text-gray-900"
                                 >
                                     Nombre de Usuario
                                 </label>
@@ -95,7 +107,7 @@ const RegistroCliente = () => {
                             <div>
                                 <label
                                     htmlFor="nombre"
-                                    className="block mb-1 text-sm font-medium text-gray-900"
+                                    className="block text-sm font-medium text-gray-900"
                                 >
                                     Nombre
                                 </label>
@@ -113,7 +125,7 @@ const RegistroCliente = () => {
                             <div>
                                 <label
                                     htmlFor="telefono"
-                                    className="block mb-1 text-sm font-medium text-gray-900"
+                                    className="block text-sm font-medium text-gray-900"
                                 >
                                     Teléfono
                                 </label>
@@ -131,7 +143,7 @@ const RegistroCliente = () => {
                             <div>
                                 <label
                                     htmlFor="direccion"
-                                    className="block mb-1 text-sm font-medium text-gray-900"
+                                    className="block text-sm font-medium text-gray-900"
                                 >
                                     Dirección
                                 </label>
@@ -149,7 +161,7 @@ const RegistroCliente = () => {
                             <div className="col-span-2">
                                 <label
                                     htmlFor="contrasena"
-                                    className="block mb-1 text-sm font-medium text-gray-900"
+                                    className="block text-sm font-medium text-gray-900"
                                 >
                                     Contraseña
                                 </label>

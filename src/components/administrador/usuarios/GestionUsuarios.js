@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { FaPlus } from 'react-icons/fa';
-import { FaUsers } from 'react-icons/fa'; // Importar el ícono para usuarios inactivos
+import { FaPlus, FaUsers } from 'react-icons/fa';
+import Swal from 'sweetalert2';
 
 const GestionUsuarios = () => {
     const [usuarios, setUsuarios] = useState([]);
@@ -30,18 +30,38 @@ const GestionUsuarios = () => {
         fetchUsuarios();
     }, []);
 
-    const handleDelete = async () => {
-        if (!usuarioAEliminar) return;
-
+    const handleDelete = async (usuario) => {
         try {
-            await axios.put(`http://localhost:5000/usuarios/${usuarioAEliminar.id}`, { ...usuarioAEliminar, estado: 'inactivo' });
-            fetchUsuarios();
-            setAlertMessage('Usuario inactivado exitosamente.');
+            const result = await Swal.fire({
+                title: '¿Estás seguro?',
+                text: "¿Deseas inactivar este usario?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí, inactivar',
+                cancelButtonText: 'Cancelar'
+            });
+
+            if (result.isConfirmed) {
+                await axios.put(`http://localhost:5000/usuarios/${usuario.id}`, { ...usuario, estado: 'inactivo' });
+                fetchUsuarios();
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Usuario inactivado',
+                    text: 'El usuario ha sido inactivado exitosamente.',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
         } catch (error) {
             console.error('Error al inactivar el usuario', error);
-            setError('No se pudo inactivar el usuario.');
-        } finally {
-            setUsuarioAEliminar(null); 
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'No se pudo inactivar el usuario.',
+                confirmButtonText: 'Aceptar'
+            });
         }
     };
 
@@ -68,7 +88,7 @@ const GestionUsuarios = () => {
                     <FaPlus className="inline-block mr-2" /> Registrar Nuevo Usuario
                 </button>
                 <button
-                    onClick={() => navigate('/usuarios-inactivos')} // Cambia esta ruta a la adecuada
+                    onClick={() => navigate('/usuarios-inactivos')}
                     className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
                 >
                     <FaUsers className="inline-block mr-2" /> Usuarios Inactivos
@@ -110,7 +130,7 @@ const GestionUsuarios = () => {
                                             Editar
                                         </button>
                                         <button
-                                            onClick={() => setUsuarioAEliminar(usuario)}
+                                            onClick={() => handleDelete(usuario)}
                                             className="bg-red-500 text-white py-1 px-2 rounded hover:bg-red-600"
                                         >
                                             Inactivar
@@ -128,29 +148,6 @@ const GestionUsuarios = () => {
                     </tbody>
                 </table>
             </div>
-
-            {/* Modal de confirmación */}
-            {usuarioAEliminar && (
-                <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-                    <div className="bg-white p-6 rounded-lg shadow-lg">
-                        <h3 className="text-xl mb-4">¿Estás seguro de que deseas inactivar este usuario?</h3>
-                        <div className="flex justify-end gap-4">
-                            <button
-                                onClick={() => setUsuarioAEliminar(null)}
-                                className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
-                            >
-                                Cancelar
-                            </button>
-                            <button
-                                onClick={handleDelete}
-                                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-                            >
-                                Inactivar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            )}
         </div>
     );
 };

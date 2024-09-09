@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { FaPlus, FaUsers } from 'react-icons/fa'; // Importar el ícono para usuarios inactivos
+import Swal from 'sweetalert2'; // Importar SweetAlert2
+import { FaUsers } from 'react-icons/fa'; // Importar el ícono para usuarios inactivos
 
 const UsuariosInactivos = () => {
     const [usuarios, setUsuarios] = useState([]);
@@ -29,19 +30,37 @@ const UsuariosInactivos = () => {
         fetchUsuariosInactivos();
     }, []);
 
-    const handleActivate = async () => {
-        if (!usuarioAActivar) return;
-
+    const handleActivate = async (usuario) => {
         try {
-            await axios.put(`http://localhost:5000/usuarios/${usuarioAActivar.id}`, { ...usuarioAActivar, estado: 'activo' });
+            await axios.put(`http://localhost:5000/usuarios/${usuario.id}`, { ...usuario, estado: 'activo' });
             fetchUsuariosInactivos();
             setAlertMessage('Usuario activado exitosamente.');
         } catch (error) {
             console.error('Error al activar el usuario', error);
             setError('No se pudo activar el usuario.');
-        } finally {
-            setUsuarioAActivar(null); 
         }
+    };
+
+    const confirmarActivacion = (usuario) => {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: `¿Deseas activar al usuario ${usuario.nombre}?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, activar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                handleActivate(usuario);
+                Swal.fire(
+                    'Activado!',
+                    'El usuario ha sido activado.',
+                    'success'
+                );
+            }
+        });
     };
 
     return (
@@ -96,7 +115,7 @@ const UsuariosInactivos = () => {
                                     <td className="p-4">{usuario.rol}</td>
                                     <td className="p-4 flex gap-1">                                        
                                         <button
-                                            onClick={() => setUsuarioAActivar(usuario)}
+                                            onClick={() => confirmarActivacion(usuario)}
                                             className="bg-green-500 text-white py-1 px-2 rounded hover:bg-green-600"
                                         >
                                             Activar
@@ -114,29 +133,6 @@ const UsuariosInactivos = () => {
                     </tbody>
                 </table>
             </div>
-
-            {/* Modal de confirmación */}
-            {usuarioAActivar && (
-                <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-                    <div className="bg-white p-6 rounded-lg shadow-lg">
-                        <h3 className="text-xl mb-4">¿Estás seguro de que deseas activar este usuario?</h3>
-                        <div className="flex justify-end gap-4">
-                            <button
-                                onClick={() => setUsuarioAActivar(null)}
-                                className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600"
-                            >
-                                Cancelar
-                            </button>
-                            <button
-                                onClick={handleActivate}
-                                className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
-                            >
-                                Activar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            )}
         </div>
     );
 };
