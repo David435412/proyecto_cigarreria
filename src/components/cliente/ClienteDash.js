@@ -3,13 +3,6 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-import fuera_1 from "../../assets/images/fuera_1.jpeg";
-import fuera_2 from "../../assets/images/fuera_2.jpeg";
-import fuera_3 from "../../assets/images/fuera_3.jpeg";
-import fuera_4 from "../../assets/images/fuera_4.jpeg";
-import fuera_5 from "../../assets/images/fuera_5.jpeg";
-import fuera_6 from "../../assets/images/fuera_6.jpeg";
-import dentro_1 from "../../assets/images/dentro_1.jpeg";
 
 const categorias = [
     'Licores',

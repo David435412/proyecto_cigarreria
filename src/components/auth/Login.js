@@ -75,61 +75,69 @@ const Login = () => {
                 />
                 <div className="absolute inset-0 bg-gray-900 opacity-40"></div>
             </div>
-            <section className="relative z-10 w-full max-w-md p-6 mx-auto bg-white bg-opacity-60 rounded-lg shadow-2xl">
-                <div className="space-y-4">
-                    <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
-                        Inicia Sesión con tu cuenta!
-                    </h1>
-                    {error && <p className="text-red-500">{error}</p>}
-                    <form className="space-y-4 text-center" onSubmit={handleSubmit}>
-                        <div>
-                            <label
-                                htmlFor="correo"
-                                className="text-left block mb-2 text-sm font-medium text-gray-900"
-                            >
-                                Correo Electrónico
-                            </label>
-                            <input
-                                type="email"
-                                name="correo"
-                                id="correo"
-                                value={formData.correo}
-                                onChange={handleChange}
-                                className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                placeholder="Tu correo electrónico"
-                                required
-                            />
-                        </div>
-                        <div>
-                            <label
-                                htmlFor="contrasena"
-                                className="text-left block mb-2 text-sm font-medium text-gray-900"
-                            >
-                                Contraseña
-                            </label>
-                            <input
-                                type="password"
-                                name="contrasena"
-                                id="contrasena"
-                                value={formData.contrasena}
-                                onChange={handleChange}
-                                placeholder="••••••••"
-                                className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                required
-                            />
-                        </div>
-                        <button
-                            type="submit"
-                            className="w-full px-6 py-3 bg-gradient-to-r from-green-600 via-green-600 to-green-700 text-white font-bold rounded-2xl shadow-lg transition-transform transform-gpu hover:scale-105 hover:shadow-xl"
-                        >
-                            Ingresar
-                        </button>
-                    </form>
-                    <p className="text-sm text-gray-600">
-                        ¿Aún no tienes cuenta? <a href="/registro-cliente" className="text-sm font-bold text-black">Regístrate</a>
-                    </p>
+            <div className="relative z-10 w-full max-w-md p-6 mx-auto">
+                {/* Texto "Colonial" fuera del div blanco */}
+                <div className="text-center mb-6">
+                    <a href="/inicio" className="text-4xl font-bold text-gray-300 hover:text-gray-100 transition-colors">
+                        Colonial
+                    </a>
                 </div>
-            </section>
+                <section className="bg-white bg-opacity-60 rounded-lg shadow-2xl">
+                    <div className="space-y-4 p-6">
+                        <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
+                            Inicia Sesión con tu cuenta!
+                        </h1>
+                        {error && <p className="text-red-500">{error}</p>}
+                        <form className="space-y-4 text-center" onSubmit={handleSubmit}>
+                            <div>
+                                <label
+                                    htmlFor="correo"
+                                    className="text-left block mb-2 text-sm font-medium text-gray-900"
+                                >
+                                    Correo Electrónico
+                                </label>
+                                <input
+                                    type="email"
+                                    name="correo"
+                                    id="correo"
+                                    value={formData.correo}
+                                    onChange={handleChange}
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                    placeholder="Tu correo electrónico"
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label
+                                    htmlFor="contrasena"
+                                    className="text-left block mb-2 text-sm font-medium text-gray-900"
+                                >
+                                    Contraseña
+                                </label>
+                                <input
+                                    type="password"
+                                    name="contrasena"
+                                    id="contrasena"
+                                    value={formData.contrasena}
+                                    onChange={handleChange}
+                                    placeholder="••••••••"
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                    required
+                                />
+                            </div>
+                            <button
+                                type="submit"
+                                className="w-full px-6 py-3 bg-gradient-to-r from-green-600 via-green-600 to-green-700 text-white font-bold rounded-2xl shadow-lg transition-transform transform-gpu hover:scale-105 hover:shadow-xl"
+                            >
+                                Ingresar
+                            </button>
+                        </form>
+                        <p className="text-sm text-gray-600">
+                            ¿Aún no tienes cuenta? <a href="/registro-cliente" className="text-sm font-bold text-black">Regístrate</a>
+                        </p>
+                    </div>
+                </section>
+            </div>
         </div>
     );
 };
