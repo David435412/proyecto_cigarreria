@@ -89,7 +89,10 @@ const GestionProductos = () => {
                     <p className="text-gray-500">No hay productos disponibles en la base de datos.</p>
                 ) : productosFiltrados.length > 0 ? (
                     productosFiltrados.map((producto) => (
-                        <div key={producto.id} className="bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden">
+                        <div 
+                            key={producto.id} 
+                            className="bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden transform transition-transform duration-300 hover:scale-105"
+                        >
                             <div className="w-full h-64 relative">
                                 <img
                                     src={producto.imagen}

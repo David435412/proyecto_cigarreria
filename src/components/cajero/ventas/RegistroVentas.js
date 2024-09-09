@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const RegistroVentas = () => {
     const [productos, setProductos] = useState([]);
@@ -12,7 +13,6 @@ const RegistroVentas = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Recuperar los productos seleccionados del localStorage al cargar el componente
         const storedProducts = localStorage.getItem('productosSeleccionados');
         if (storedProducts) {
             setProductosSeleccionados(JSON.parse(storedProducts));
@@ -68,7 +68,16 @@ const RegistroVentas = () => {
     };
 
     const handleSubmit = () => {
-        navigate('/confirmar-ventas-cajero', { state: { productosSeleccionados } });
+        if (productosSeleccionados.length === 0) {
+            Swal.fire({
+                title: 'Error',
+                text: 'Debe seleccionar al menos un producto antes de continuar.',
+                icon: 'warning',
+                confirmButtonColor: '#197419', // Color verde oscuro para el botón
+            });
+        } else {
+            navigate('/confirmar-ventas-cajero', { state: { productosSeleccionados } });
+        }
     };
 
     return (
@@ -88,7 +97,7 @@ const RegistroVentas = () => {
                         <h2 className="text-2xl font-semibold mb-4">Productos Seleccionados</h2>
                         <div className="flex flex-col space-y-4">
                             {productosSeleccionados.map(producto => (
-                                <div key={producto.id} className="w-full bg-white border border-gray-200 rounded-lg shadow-md p-4">
+                                <div key={producto.id} className="w-full bg-white border border-gray-200 rounded-lg shadow-md p-4 transition-transform duration-300 hover:scale-105 hover:bg-green-100">
                                     <div className="flex items-center mb-4">
                                         <div className="w-16 h-16 relative mr-4">
                                             <img
@@ -114,7 +123,7 @@ const RegistroVentas = () => {
                                     </div>
                                     <button
                                         onClick={() => handleRemoveProduct(producto.id)}
-                                        className="bg-red-500 text-white py-1 px-2 rounded hover:bg-red-600 "
+                                        className="bg-red-500 text-white py-1 px-2 rounded hover:bg-red-600"
                                     >
                                         Eliminar
                                     </button>
@@ -129,7 +138,7 @@ const RegistroVentas = () => {
             <div className="mb-8 flex justify-end">
                 <button
                     onClick={handleSubmit}
-                    className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+                    className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
                 >
                     Continuar
                 </button>
@@ -149,7 +158,10 @@ const RegistroVentas = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                     {filteredProducts.length > 0 ? (
                         filteredProducts.map(producto => (
-                            <div key={producto.id} className="bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden">
+                            <div
+                                key={producto.id}
+                                className="bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105 hover:bg-green-100"
+                            >
                                 <div className="w-full h-64 relative">
                                     <img
                                         src={producto.imagen}
@@ -162,7 +174,7 @@ const RegistroVentas = () => {
                                     <p className="text-gray-900 font-bold mb-4">${Number(producto.precio).toFixed(3)}</p>
                                     <button
                                         onClick={() => handleAddProduct(producto)}
-                                        className="w-full bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                        className="w-full bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
                                     >
                                         Agregar
                                     </button>

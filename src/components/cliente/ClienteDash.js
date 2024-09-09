@@ -106,7 +106,7 @@ const ClienteDashboard = () => {
                                 <h2 className="text-xl font-semibold mb-2">{producto.nombre}</h2>
                                 <p className="text-gray-900 font-bold mb-4">${producto.precio}</p>
                                 <button
-                                    className="w-full bg-green-800 text-white py-2 px-4 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                    className="w-full bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                                 >
                                     Ver más
                                 </button>

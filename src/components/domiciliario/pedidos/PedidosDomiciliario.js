@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
+import { FaCheckCircle } from 'react-icons/fa';
+import { format } from 'date-fns'; // Importar la función format de date-fns
 
 const PedidosDomiciliario = () => {
   const [pedidos, setPedidos] = useState([]);
   const [pedidoSeleccionado, setPedidoSeleccionado] = useState(null);
-  const [mostrarModal, setMostrarModal] = useState(false);
   const [pedidoAConfirmar, setPedidoAConfirmar] = useState(null);
 
   useEffect(() => {
-    // Función para obtener pedidos desde la API
     const fetchPedidos = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/pedidos'); // Ajusta la URL según tu configuración
-        // Filtrar pedidos con estado 'pendiente'
+        const response = await axios.get('http://localhost:5000/pedidos');
         const pedidosPendientes = response.data.filter(pedido => pedido.estadoPedido === 'pendiente');
         setPedidos(pedidosPendientes);
       } catch (error) {
@@ -29,7 +29,20 @@ const PedidosDomiciliario = () => {
 
   const manejarEstadoEntrega = (pedido) => {
     setPedidoAConfirmar(pedido);
-    setMostrarModal(true);
+    Swal.fire({
+      title: 'Confirmar Entrega',
+      html: `<p>¿Estás seguro de que deseas marcar el pedido de "<strong>${pedido.nombre}</strong>" como entregado?</p>
+             <p><strong>Esta acción no se puede deshacer</strong></p>`,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Confirmar',
+      cancelButtonText: 'Cancelar',
+      confirmButtonColor: '#FF4D4D'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        confirmarEntrega();
+      }
+    });
   };
 
   const confirmarEntrega = async () => {
@@ -37,24 +50,34 @@ const PedidosDomiciliario = () => {
       await axios.patch(`http://localhost:5000/pedidos/${pedidoAConfirmar.id}`, {
         estadoPedido: 'entregado'
       });
-      // Actualizar el estado de los pedidos después de la confirmación
       setPedidos(pedidos.map(pedido =>
         pedido.id === pedidoAConfirmar.id ? { ...pedido, estadoPedido: 'entregado' } : pedido
       ));
-      setMostrarModal(false);
       setPedidoAConfirmar(null);
+      Swal.fire({
+        title: 'Pedido entregado',
+        text: 'El estado del pedido ha sido actualizado a "entregado".',
+        icon: 'success',
+        confirmButtonText: 'OK'
+      });
     } catch (error) {
       console.error('Error al actualizar el estado del pedido:', error);
+      Swal.fire({
+        title: 'Error',
+        text: 'Hubo un problema al actualizar el estado del pedido.',
+        icon: 'error',
+        confirmButtonText: 'OK'
+      });
     }
-  };
-
-  const cancelarConfirmacion = () => {
-    setMostrarModal(false);
-    setPedidoAConfirmar(null);
   };
 
   const mostrarDetalles = (pedido) => {
     setPedidoSeleccionado(pedidoSeleccionado && pedidoSeleccionado.id === pedido.id ? null : pedido);
+  };
+
+  // Función para formatear la fecha
+  const formatFecha = (fecha) => {
+    return format(new Date(fecha), 'dd/MM/yyyy HH:mm:ss');
   };
 
   return (
@@ -73,26 +96,51 @@ const PedidosDomiciliario = () => {
         <tbody>
           {pedidos.length > 0 ? (
             pedidos.map(pedido => (
-              <tr key={pedido.id}>
-                <td className="py-2 px-4 border-b">{pedido.nombre}</td>
-                <td className="py-2 px-4 border-b">{pedido.fecha}</td>
-                <td className="py-2 px-4 border-b">${calcularTotal(pedido.productos)}</td>
-                <td className="py-2 px-4 border-b">{pedido.estadoPedido}</td>
-                <td className="py-2 px-4 border-b text-center">
-                  <button
-                    onClick={() => manejarEstadoEntrega(pedido)}
-                    className="bg-blue-500 text-white py-1 px-4 rounded hover:bg-blue-600 mr-2"
-                  >
-                    Estado Entrega
-                  </button>
-                  <button
-                    onClick={() => mostrarDetalles(pedido)}
-                    className={`bg-green-500 text-white py-1 px-4 rounded hover:bg-green-600 ${pedidoSeleccionado && pedidoSeleccionado.id === pedido.id ? 'bg-green-600' : ''}`}
-                  >
-                    {pedidoSeleccionado && pedidoSeleccionado.id === pedido.id ? 'Ocultar Detalles' : 'Detalles'}
-                  </button>
-                </td>
-              </tr>
+              <React.Fragment key={pedido.id}>
+                <tr>
+                  <td className="py-2 px-4 border-b">{pedido.nombre}</td>
+                  <td className="py-2 px-4 border-b">{formatFecha(pedido.fecha)}</td>
+                  <td className="py-2 px-4 border-b">${calcularTotal(pedido.productos)}</td>
+                  <td className="py-2 px-4 border-b">{pedido.estadoPedido}</td>
+                  <td className="py-2 px-4 border-b text-center">
+                    <button
+                      onClick={() => manejarEstadoEntrega(pedido)}
+                      className="bg-gray-500 text-white py-1 px-2 rounded hover:bg-gray-600"
+                    >
+                      <FaCheckCircle className="inline-block mr-1" /> Marcar Entregado
+                    </button>
+                    <button
+                      onClick={() => mostrarDetalles(pedido)}
+                      className={`ml-2 bg-green-500 text-white py-1 px-4 rounded hover:bg-green-600 ${pedidoSeleccionado && pedidoSeleccionado.id === pedido.id ? 'bg-green-600' : ''}`}
+                    >
+                      {pedidoSeleccionado && pedidoSeleccionado.id === pedido.id ? 'Ocultar Detalles' : 'Detalles'}
+                    </button>
+                  </td>
+                </tr>
+                {pedidoSeleccionado && pedidoSeleccionado.id === pedido.id && (
+                  <tr>
+                    <td colSpan="5" className="bg-gray-100 p-4 border-b">
+                      <h2 className="text-xl font-semibold mb-2">Detalles del Pedido</h2>
+                      <p><strong>Nombre del Cliente:</strong> {pedidoSeleccionado.nombre}</p>
+                      <p><strong>Fecha:</strong> {formatFecha(pedidoSeleccionado.fecha)}</p>
+                      <p><strong>Dirección de Entrega:</strong> {pedidoSeleccionado.direccion}</p>
+                      <p><strong>Estado:</strong> {pedidoSeleccionado.estadoPedido}</p>
+                      <h3 className="text-lg font-semibold mt-2">Productos:</h3>
+                      <ul>
+                        {pedidoSeleccionado.productos.map((producto, index) => (
+                          <li key={index} className="flex items-center mb-2">
+                            {producto.imagen && (
+                              <img src={producto.imagen} alt={producto.nombre} className="w-16 h-16 object-cover mr-2" />
+                            )}
+                            <p>{producto.nombre} - ${producto.precio} x {producto.cantidad}</p>
+                          </li>
+                        ))}
+                      </ul>
+                      <h2 className="text-xl font-semibold mt-2">Subtotal: ${calcularTotal(pedidoSeleccionado.productos)}</h2>
+                    </td>
+                  </tr>
+                )}
+              </React.Fragment>
             ))
           ) : (
             <tr>
@@ -101,51 +149,6 @@ const PedidosDomiciliario = () => {
           )}
         </tbody>
       </table>
-
-      {pedidoSeleccionado && (
-        <div className="mt-4 p-4 bg-gray-100 border border-gray-200 rounded-lg">
-          <h2 className="text-xl font-semibold mb-2">Detalles del Pedido</h2>
-          <p><strong>Nombre del Cliente:</strong> {pedidoSeleccionado.nombre}</p>
-          <p><strong>Fecha:</strong> {pedidoSeleccionado.fecha}</p>
-          <p><strong>Dirección de Entrega:</strong> {pedidoSeleccionado.direccion}</p>
-          <p><strong>Estado:</strong> {pedidoSeleccionado.estadoPedido}</p>
-          <h3 className="text-lg font-semibold mt-2">Productos:</h3>
-          <ul>
-            {pedidoSeleccionado.productos.map((producto, index) => (
-              <li key={index} className="flex items-center mb-2">
-                {producto.imagen && (
-                  <img src={producto.imagen} alt={producto.nombre} className="w-16 h-16 object-cover mr-2" />
-                )}
-                <p>{producto.nombre} - ${producto.precio} x {producto.cantidad}</p>
-              </li>
-            ))}
-          </ul>
-          <h2 className="text-xl font-semibold mt-2">Subtotal: ${calcularTotal(pedidoSeleccionado.productos)}</h2>
-        </div>
-      )}
-
-      {mostrarModal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50 z-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg">
-            <h2 className="text-lg font-semibold mb-4">Confirmación</h2>
-            <p>¿Estás seguro de que deseas marcar este pedido como entregado? Esta acción no se puede deshacer.</p>
-            <div className="mt-4 flex justify-end">
-              <button
-                onClick={cancelarConfirmacion}
-                className="bg-gray-500 text-white py-1 px-4 rounded hover:bg-gray-600 mr-2"
-              >
-                Cancelar
-              </button>
-              <button
-                onClick={confirmarEntrega}
-                className="bg-blue-500 text-white py-1 px-4 rounded hover:bg-blue-600"
-              >
-                Confirmar
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

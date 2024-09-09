@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'; // Importa SweetAlert2
+
 
 const RegistroProveedor = () => {
     const [formData, setFormData] = useState({
@@ -21,10 +23,22 @@ const RegistroProveedor = () => {
         e.preventDefault();
         try {
             await axios.post('http://localhost:5000/proveedores', formData);
-            alert('Proveedor registrado con éxito');
-            navigate("/proveedores-cajero");  
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Registrado',
+                text: 'Proveedor registrado con éxito',
+                showConfirmButton: false,
+                timer: 1500 // tiempo de 1.5 segundos antes de redirigir
+            }).then(() => {            
+                navigate("/proveedores-cajero");
+            });  
         } catch (error) {
-            console.error('Error al registrar el proveedor', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'No se pudo registrar el proveedor. Inténtalo de nuevo más tarde.',
+            });       
         }
     };
 

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
+import Swal from 'sweetalert2';
+
 
 const categorias = [
     'Licores', 
@@ -73,7 +75,14 @@ const EditarProducto = () => {
 
         try {
             await axios.put(`http://localhost:5000/productos/${id}`, updatedFormData);
-            alert('Producto actualizado exitosamente.');
+            Swal.fire({
+                icon: 'success',
+                title: 'Actualizado',
+                text: 'Producto actualizado exitosamente',
+                showConfirmButton: false,
+                timer: 1500
+            });
+
             navigate('/productos-cajero');
         } catch (error) {
             console.error('Error al actualizar el producto', error);

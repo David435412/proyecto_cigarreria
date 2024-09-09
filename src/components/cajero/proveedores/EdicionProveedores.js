@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
+import Swal from 'sweetalert2'; // Importar SweetAlert2
+
 
 const EditarProveedor = () => {
     const { id } = useParams();
@@ -39,9 +41,18 @@ const EditarProveedor = () => {
 
         try {
             await axios.put(`http://localhost:5000/proveedores/${id}`, formData);
-            alert('Proveedor actualizado exitosamente.');
-            
-            navigate('/proveedores-cajero');
+            Swal.fire({
+                icon: 'success',
+                title: 'Actualizado',
+                text: 'Proveedor actualizado exitosamente.',
+                showConfirmButton: false,
+                timer: 2000, // Cierre automático después de 2 segundos
+            });
+
+            // Redirigir después de la alerta
+            setTimeout(() => {            
+                navigate('/proveedores-cajero');
+            }, 2000);
         } catch (error) {
             console.error('Error al actualizar el proveedor', error);
             setError('No se pudo actualizar el proveedor.');

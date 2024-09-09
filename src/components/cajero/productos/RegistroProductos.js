@@ -1,6 +1,9 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'; // Importa SweetAlert2
+import 'sweetalert2/dist/sweetalert2.min.css'; // Importa los estilos de SweetAlert2
+
 
 const categorias = [
     'Licores',
@@ -59,21 +62,30 @@ const RegistroProducto = () => {
 
         try {
             await axios.post('http://localhost:5000/productos', formData);
-            setAlertMessage('Producto registrado exitosamente.');
 
-            // Limpiar el formulario
-            setFormData({
-                nombre: '',
-                precio: '',
-                descripcion: '',
-                imagen: '',
-                categoria: categorias[0], 
-                cantidad: '',
-                marca: '', 
-                estado: 'activo'
+            Swal.fire({
+                title: 'Éxito',
+                text: 'Producto registrado exitosamente.',
+                icon: 'success',
+                timer: 1500, // La alerta se mostrará durante 1.5 segundos
+                showConfirmButton: false, // No mostrar botón de confirmación
+                // Limpiar el formulario
+                willClose: () => {
+                    // Limpiar el formulario
+                    setFormData({
+                        nombre: '',
+                        precio: '',
+                        descripcion: '',
+                        imagen: '',
+                        categoria: categorias[0],
+                        cantidad: '',
+                        marca: '',
+                        estado: 'activo'
+                    });
+
+                    navigate('/productos-cajero');
+                }
             });
-
-            navigate('/productos-cajero');
         } catch (error) {
             console.error('Error al registrar el producto', error);
             setError('No se pudo registrar el producto.');

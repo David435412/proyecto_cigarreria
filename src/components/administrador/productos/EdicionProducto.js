@@ -82,6 +82,7 @@ const EditarProducto = () => {
                 showConfirmButton: false,
                 timer: 1500
             });
+            
             navigate('/gestion-productos');
         } catch (error) {
             console.error('Error al actualizar el producto', error);
