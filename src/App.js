@@ -8,6 +8,7 @@ import NavBarAdmin from './components/administrador/NavBarAdmin';
 import NavBarCliente from './components/cliente/NavBarCliente';
 import NavBarCajero from './components/cajero/NavBarCajero';
 import NavBarDomiciliario from './components/domiciliario/NavBarDomiciliario';
+import Perfil from './components/comun/Perfil';
 
 // Componentes de Página
 import RegistroCliente from './components/auth/RegistroCliente';
@@ -86,6 +87,7 @@ const App = () => {
             <Route path="/carrito-a" element={<CartAntes />} />
             <Route path="/registro-cliente" element={<RegistroCliente />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/perfil" element={<Perfil />} />
             <Route path="/admin-dash" element={<AdminDash />} />
             <Route path="/gestion-productos" element={<GestionProductos />} />
             <Route path="/registro-productos" element={<RegistroProductos />} />

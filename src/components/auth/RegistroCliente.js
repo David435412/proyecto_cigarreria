@@ -12,6 +12,8 @@ const RegistroCliente = () => {
         correo: '',
         telefono: '',
         direccion: '',
+        tipoDocumento: '',  // Nuevo campo
+        numeroDocumento: '',  // Nuevo campo
         estado: 'activo',
         rol: 'cliente'
     });
@@ -155,6 +157,45 @@ const RegistroCliente = () => {
                                     onChange={manejarCambio}
                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
                                     placeholder="Tu dirección"
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label
+                                    htmlFor="tipoDocumento"
+                                    className="block text-sm font-medium text-gray-900"
+                                >
+                                    Tipo de Documento
+                                </label>
+                                <select
+                                    name="tipoDocumento"
+                                    id="tipoDocumento"
+                                    value={datosFormulario.tipoDocumento}
+                                    onChange={manejarCambio}
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
+                                    required
+                                >
+                                    <option value="" disabled>Selecciona el tipo de documento</option>
+                                    <option value="cedula">Cédula de Ciudadanía</option>
+                                    <option value="cedulae">Cédula de Extranjería</option>
+                                    <option value="nit">NIT</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label
+                                    htmlFor="numeroDocumento"
+                                    className="block text-sm font-medium text-gray-900"
+                                >
+                                    Número de Documento
+                                </label>
+                                <input
+                                    type="text"
+                                    name="numeroDocumento"
+                                    id="numeroDocumento"
+                                    value={datosFormulario.numeroDocumento}
+                                    onChange={manejarCambio}
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
+                                    placeholder="Número de documento"
                                     required
                                 />
                             </div>

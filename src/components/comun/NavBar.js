@@ -19,7 +19,7 @@ const Header = () => {
                         <h1 className="text-2xl text-gray-900 font-bold italic">Colonial</h1>
                     </Link>
                     <div className="flex items-center lg:order-2 space-x-2">
-                        <Link to="/login" className="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-4 py-2 transition duration-300">Log in</Link>
+                        <Link to="/login" className="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-4 py-2 transition duration-300">Inicia Sesión</Link>
                     </div>
                     {/* Icono de hamburguesa */}
                     <div className="lg:hidden flex items-center z-50">

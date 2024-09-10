@@ -29,11 +29,18 @@ const Login = () => {
             const user = response.data[0];
             if (user) {
                 if (user.estado === 'activo') {
+                    // Guardar todos los datos del usuario en localStorage
                     localStorage.setItem('userId', user.id);
                     localStorage.setItem('role', user.rol);
                     localStorage.setItem('name', user.nombre);
+                    localStorage.setItem('password', user.contrasena);
+                    localStorage.setItem('username', user.nombreUsuario);
                     localStorage.setItem('email', user.correo);
                     localStorage.setItem('phone', user.telefono);
+                    localStorage.setItem('address', user.direccion);
+                    localStorage.setItem('documentType', user.tipoDocumento);
+                    localStorage.setItem('documentNumber', user.numeroDocumento);
+                    localStorage.setItem('status', user.estado);
 
                     // Muestra una notificación de éxito usando SweetAlert2
                     Swal.fire({

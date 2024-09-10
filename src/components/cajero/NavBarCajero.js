@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes, FaUserCircle } from "react-icons/fa";
 import UserContext from '../../context/UserContext';
 import { useNavigate } from 'react-router-dom';
 import Logo from '../../assets/images/Logo.png';
@@ -9,6 +9,7 @@ const HeaderCajero = () => {
     const { logout } = useContext(UserContext);
     const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
+    const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
     const handleLogout = () => {
         logout();
@@ -19,6 +20,10 @@ const HeaderCajero = () => {
         setIsOpen(!isOpen);
     };
 
+    const toggleUserMenu = () => {
+        setIsUserMenuOpen(!isUserMenuOpen);
+    };
+
     return (
         <header>
             <nav className="bg-gray-200 border-b border-gray-300 px-4 py-3 rounded-b-lg shadow-md relative">
@@ -27,13 +32,37 @@ const HeaderCajero = () => {
                         <img src={Logo} alt="Logo" className="w-16 h-auto" />
                         <h1 className="text-2xl text-gray-900 font-bold italic">Colonial</h1>
                     </Link>
-                    <div className="flex items-center lg:order-2 space-x-2">
-                        <button
-                            onClick={handleLogout}
-                            className="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:ring-red-300 font-medium rounded-lg px-4 py-2 transition duration-300"
-                        >
-                            Cerrar sesión
-                        </button>
+                    <div className="flex items-center lg:order-2 space-x-2 relative">
+                        {/* Menú desplegable de usuario */}
+                        <div className="relative">
+                            <button onClick={toggleUserMenu} className="text-gray-900 focus:outline-none">
+                                <FaUserCircle className="w-6 h-6" />
+                            </button>
+                            {isUserMenuOpen && (
+                                <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-300 rounded-lg shadow-lg z-50">
+                                    <ul className="py-2">
+                                        <li>
+                                            <Link
+                                                to="/perfil"
+                                                className="block px-4 py-2 text-gray-900 hover:bg-gray-100"
+                                                onClick={toggleUserMenu}
+                                            >
+                                                Mi perfil
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <button
+                                                onClick={handleLogout}
+                                                className="block w-full text-left px-4 py-2 text-gray-900 hover:bg-gray-100"
+                                            >
+                                                Cerrar sesión
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            )}
+                        </div>
+                        {/* Icono de hamburguesa */}
                         <button onClick={toggleMenu} className="lg:hidden text-gray-900">
                             {isOpen ? <FaTimes className="w-6 h-6" /> : <FaBars className="w-6 h-6" />}
                         </button>

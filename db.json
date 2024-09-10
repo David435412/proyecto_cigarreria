@@ -1,17 +1,17 @@
 {
   "usuarios": [
     {
-      "id": "001",
       "nombre": "David Santiago Murcia",
-      "contrasena": "admin123",
-      "nombreUsuario": "david123",
+      "nombreUsuario": "david12",
       "correo": "admin@gmail.com",
       "telefono": "3103220039",
       "direccion": "Cll 132 c N 137",
-      "estado": "activo",
-      "rol": "administrador",
       "tipoDocumento": "cedula",
-      "numeroDocumento": "123456789"
+      "numeroDocumento": "123456789",
+      "rol": "administrador",
+      "estado": "activo",
+      "contrasena": "admin123",
+      "id": "001"
     },
     {
       "id": "002",
@@ -37,7 +37,7 @@
       "rol": "cajero",
       "estado": "activo",
       "tipoDocumento": "cedula",
-      "numeroDocumento": "192837465"
+      "numeroDocumento": "191537465"
     },
     {
       "id": "a49b",
@@ -48,7 +48,9 @@
       "telefono": "3102233141",
       "direccion": "K 12 N 41",
       "estado": "activo",
-      "rol": "cliente"
+      "rol": "cliente",
+      "tipoDocumento": "cedula",
+      "numeroDocumento": "192831235"
     },
     {
       "id": "9681",
@@ -59,18 +61,22 @@
       "telefono": "31871632212",
       "direccion": "Cll 13 c N 17",
       "estado": "activo",
-      "rol": "cliente"
+      "rol": "cliente",
+      "tipoDocumento": "cedula",
+      "numeroDocumento": "193127465"
     },
     {
-      "id": "5376",
       "nombre": "Daniel Murcia",
-      "contrasena": "1231",
-      "nombreUsuario": "daniel1",
+      "nombreUsuario": "daniel",
       "correo": "daniel123@gmail.com",
       "telefono": "3102221123",
       "direccion": "cll 132 c n 137 - 15",
+      "tipoDocumento": "CC",
+      "numeroDocumento": "192833165",
+      "rol": "cliente",
       "estado": "activo",
-      "rol": "cliente"
+      "contrasena": "1231",
+      "id": "5376"
     },
     {
       "id": "be19",
@@ -81,7 +87,9 @@
       "telefono": "3102883312",
       "direccion": "Cll 43 12 n 1",
       "estado": "activo",
-      "rol": "cliente"
+      "rol": "cliente",
+      "tipoDocumento": "cedula",
+      "numeroDocumento": "191137465"
     },
     {
       "id": "0f85",
@@ -93,8 +101,8 @@
       "correo": "sara@gmail.com",
       "telefono": "3102113123",
       "direccion": "Cll 133 c N 31",
-      "rol": "cajero",
-      "estado": "activo"
+      "estado": "activo",
+      "rol": "cajero"
     }
   ],
   "productos": [
