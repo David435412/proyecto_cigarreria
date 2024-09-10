@@ -17,7 +17,7 @@ const Footer = () => {
         <div className="flex flex-col lg:flex-row items-center text-gray-600">
           <div className="flex items-center mb-2 lg:mb-0 lg:mr-6">
             <FaMapMarkerAlt className="text-gray-700 mr-2" />
-            <p className="text-sm">Chapinero Alto, Calle 57 #5-04</p>
+            <a href="https://maps.app.goo.gl/VKw7i6ouKbvR7jzU9" className="text-sm">Chapinero Alto, Calle 57 #5-04</a>
           </div>
           <div className="flex items-center mb-2 lg:mb-0 lg:mr-6">
             <FaWhatsapp className="text-green-500 mr-2" />

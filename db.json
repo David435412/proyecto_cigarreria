@@ -21,7 +21,7 @@
       "correo": "dom@gmail.com",
       "telefono": "3104222039",
       "direccion": "Cll 13 c N 17",
-      "estado": "activo",
+      "estado": "inactivo",
       "rol": "domiciliario",
       "tipoDocumento": "cedula",
       "numeroDocumento": "123456789"
@@ -405,7 +405,7 @@
     },
     {
       "id": "2839",
-      "nombre": "Toallitas Desinfectantes Clorox Expert Fresco Flowpack x30und",
+      "nombre": "Toallitas Desinfectantes Expert x30und",
       "precio": "9.790",
       "descripcion": "Las Toallitas Desinfectantes Clorox Expert limpian y desinfectan con rapidez las múltiples superficies de tu hogar, mientras que eliminan el 99,9% de virus y bacterias. Además, brindan 48 horas de prevención contra las bacterias",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/533941-1600-1600?v=638332407812900000&width=1600&height=1600&aspect=true",
@@ -416,7 +416,7 @@
     },
     {
       "id": "ca95",
-      "nombre": "Tabletas Dolex gripa alivia los multiYESntomas de la Gripa x12 tabs",
+      "nombre": "Tabletas Dolex gripa multisintomas x12 tabs",
       "precio": "17.000",
       "descripcion": "Uso oral. No exceder la dosis diaria recomendada o la frecuencia de administración. No tomar con otros productos que contienen acetaminofén, descongestionantes o antihistamínicos, incluyendo medicinas para el alivio de la tos o el resfriado. Mayores de 12 años y adultos (Incluyendo adultos mayores): 1-2 tabletas cada 4-6 horas, según sea requerido.",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/568713-1600-1600?v=638427548366930000&width=1600&height=1600&aspect=true",
@@ -467,17 +467,6 @@
       "categoria": "Medicamentos",
       "cantidad": "110",
       "marca": "VICK",
-      "estado": "activo"
-    },
-    {
-      "id": "77d4",
-      "nombre": "Capsulas Advil gripa alivio de los multiYESntomas de la gripa x10 caps",
-      "precio": "19.650",
-      "descripcion": "Advil Gripa, avanzada fórmula con potente descongestionante alivia en minutos la congestión nasal y los múltiples YESntomas de la gripa. • Tecnología líquida para un rápido alivio de los sintomas de la gripa como: Congestion nasal, fiebre, dolor de cabeza, cuerpo y garganta",
-      "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/568748-1600-1600?v=638427549065430000&width=1600&height=1600&aspect=true",
-      "categoria": "Medicamentos",
-      "cantidad": "45",
-      "marca": "ADVIL",
       "estado": "activo"
     },
     {
@@ -653,13 +642,6 @@
       "estado": "activo"
     },
     {
-      "id": "adb9",
-      "nombre": "ADVIL",
-      "telefono": "3109883123",
-      "correo": "advil@gmail.com",
-      "estado": "activo"
-    },
-    {
       "id": "53f9",
       "nombre": "POLET",
       "telefono": "3227661131",
@@ -743,161 +725,6 @@
       ],
       "fecha": "2024-08-27T06:45:27.045Z",
       "estadoPedido": "entregado",
-      "estado": "activo"
-    },
-    {
-      "id": "7638",
-      "usuarioId": "4826",
-      "direccion": "call 137 # 128 B - 01",
-      "nombre": "darwin",
-      "correo": "d@gmail.com",
-      "telefono": "12871213",
-      "productos": [
-        {
-          "id": "b5c6",
-          "nombre": "Cerveza Aguila Original lata x6und x330ml c-u",
-          "precio": "18.000",
-          "descripcion": "Tipo de cerveza: Lager. País de origen: Colombia. ABV: 4,0%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
-          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/439991-1600-1600?v=638043996501300000&width=1600&height=1600&aspect=true",
-          "categoria": "Licores",
-          "cantidad": 5,
-          "marca": "AGUILA",
-          "estado": "activo"
-        },
-        {
-          "id": "a783",
-          "nombre": "Cerveza Club Colombia Dorada lata x6und x330ml c-u",
-          "precio": "18.700",
-          "descripcion": "Tipo de cerveza: Lager ABV: 4,7% País de origen: Colombia.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
-          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/491967-1600-1600?v=638216692937930000&width=1600&height=1600&aspect=true",
-          "categoria": "Licores",
-          "cantidad": 3,
-          "marca": "CLUB COLOMBIA",
-          "estado": "activo"
-        }
-      ],
-      "fecha": "2024-08-27T07:22:37.204Z",
-      "estadoPedido": "entregado",
-      "estado": "activo"
-    },
-    {
-      "id": "8352",
-      "usuarioId": "4826",
-      "direccion": "call 137 # 128 B - 01",
-      "nombre": "darwin",
-      "correo": "d@gmail.com",
-      "telefono": "3133138027",
-      "productos": [
-        {
-          "id": "105c",
-          "nombre": "Cerveza Poker lata x6und x330ml c-u",
-          "precio": "18.000",
-          "descripcion": "Tipo de cerveza: Lager. País de origen: Colombia. ABV: 4,0%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
-          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440018-1600-1600?v=638043996576070000&width=1600&height=1600&aspect=true",
-          "categoria": "Licores",
-          "cantidad": 3,
-          "marca": "POKER",
-          "estado": "activo"
-        }
-      ],
-      "fecha": "2024-08-27T07:31:43.331Z",
-      "estadoPedido": "entregado",
-      "estado": "activo"
-    },
-    {
-      "id": "e622",
-      "usuarioId": "4826",
-      "direccion": "call 137 # 128 B - 01",
-      "nombre": "darwin",
-      "correo": "d@gmail.com",
-      "telefono": "3133138027",
-      "productos": [
-        {
-          "id": "a783",
-          "nombre": "Cerveza Club Colombia Dorada lata x6und x330ml c-u",
-          "precio": "18.700",
-          "descripcion": "Tipo de cerveza: Lager ABV: 4,7% País de origen: Colombia.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
-          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/491967-1600-1600?v=638216692937930000&width=1600&height=1600&aspect=true",
-          "categoria": "Licores",
-          "cantidad": 3,
-          "marca": "CLUB COLOMBIA",
-          "estado": "activo"
-        }
-      ],
-      "fecha": "2024-08-27T07:35:29.320Z",
-      "estadoPedido": "cancelado",
-      "estado": "activo"
-    },
-    {
-      "id": "f799",
-      "usuarioId": "a49b",
-      "direccion": "calle 52 #13-12",
-      "nombre": "david",
-      "correo": "admin@gmail.com",
-      "telefono": "128613",
-      "productos": [
-        {
-          "id": "b5c6",
-          "nombre": "Cerveza Aguila Original lata x6und x330ml c-u",
-          "precio": "18.000",
-          "descripcion": "Tipo de cerveza: Lager. País de origen: Colombia. ABV: 4,0%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
-          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/439991-1600-1600?v=638043996501300000&width=1600&height=1600&aspect=true",
-          "categoria": "Licores",
-          "cantidad": 5,
-          "marca": "Babaria",
-          "estado": "activo"
-        }
-      ],
-      "fecha": "2024-08-27T19:14:50.874Z",
-      "estadoPedido": "cancelado",
-      "estado": "inactivo"
-    },
-    {
-      "id": "86c2",
-      "usuarioId": "a49b",
-      "direccion": "calle 52 #13-12",
-      "nombre": "david",
-      "correo": "juan@test.com",
-      "telefono": "128613",
-      "productos": [
-        {
-          "id": "b5c6",
-          "nombre": "Cerveza Aguila Original lata x6und x330ml c-u",
-          "precio": "18.000",
-          "descripcion": "Tipo de cerveza: Lager. País de origen: Colombia. ABV: 4,0%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
-          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/439991-1600-1600?v=638043996501300000&width=1600&height=1600&aspect=true",
-          "categoria": "Licores",
-          "cantidad": 5,
-          "marca": "Babaria",
-          "estado": "activo"
-        }
-      ],
-      "fecha": "2024-08-27T19:15:58.693Z",
-      "estadoPedido": "entregado",
-      "estado": "activo"
-    },
-    {
-      "id": "6596",
-      "usuarioId": "a49b",
-      "direccion": "calle 52 #13-12",
-      "nombre": "david",
-      "correo": "admin@gmail.com",
-      "telefono": "128613",
-      "productos": [
-        {
-          "id": "a783",
-          "nombre": "Cerveza Club Colombia Dorada lata x6und x330ml",
-          "precio": "18.700",
-          "descripcion": "Tipo de cerveza: Lager ABV: 4,7% País de origen: Colombia.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
-          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/491967-1600-1600?v=638216692937930000&width=1600&height=1600&aspect=true",
-          "categoria": "Licores",
-          "cantidad": 5,
-          "marca": "Babaria",
-          "estado": "activo"
-        }
-      ],
-      "fecha": "2024-08-27T19:58:41.670Z",
-      "estadoPedido": "pendiente",
       "estado": "activo"
     },
     {

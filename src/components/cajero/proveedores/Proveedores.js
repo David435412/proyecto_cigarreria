@@ -73,7 +73,7 @@ const GestionProveedores = () => {
                                     <td class="p-4 flex gap-2">
                                         <button
                                             onClick={() => navigate(`/editar-prov-cajero/${proveedor.id}`)}
-                                            class="bg-orange-500 text-white py-1 px-2 rounded hover:bg-orange-600"
+                                            class="bg-gray-500 text-white py-1 px-2 rounded hover:bg-gray-600"
                                         >
                                             Editar
                                         </button>                                        
