@@ -42,7 +42,7 @@ const PedidosAdmin = () => {
       <h1 className="text-2xl font-bold mt-2 mb-4">Pedidos Pendientes</h1>
       <table className="min-w-full bg-gray-300 border border-gray-200 rounded-lg">
         <thead class="bg-green-600 border-b border-gray-200">
-          <tr>
+          <tr className="text-white">
             <th className="py-2 px-4 border-b border-gray-300 text-left">Nombre del Cliente</th>
             <th className="py-2 px-4 border-b border-gray-300 text-left">Fecha</th>
             <th className="py-2 px-4 border-b border-gray-300 text-left">Total</th>
@@ -62,7 +62,7 @@ const PedidosAdmin = () => {
                   <td className="py-2 px-4 border-b border-gray-200">
                     <button
                       onClick={() => mostrarDetalles(pedido)}
-                      className={`bg-green-500 text-white py-1 px-4 rounded hover:bg-green-600 ${pedidoSeleccionado && pedidoSeleccionado.id === pedido.id ? 'bg-green-600' : ''}`}
+                      className={`bg-blue-500 text-white py-1 px-4 rounded hover:bg-blue-600 ${pedidoSeleccionado && pedidoSeleccionado.id === pedido.id ? 'bg-blue-600' : ''}`}
                     >
                       {pedidoSeleccionado && pedidoSeleccionado.id === pedido.id ? 'Ocultar Detalles' : 'Detalles'}
                     </button>

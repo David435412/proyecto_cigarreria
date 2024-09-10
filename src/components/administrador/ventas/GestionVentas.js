@@ -92,7 +92,7 @@ const GestionVentas = () => {
             <div className="mb-4 flex space-x-4">
                 <button
                     onClick={() => window.location.href = '/registro-venta'}
-                    className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+                    className="bg-green-800 text-white px-4 py-2 rounded hover:bg-green-900"
                 >
                     <FaPlus className="inline-block mr-2" /> Registrar Nueva Venta
                 </button>
@@ -105,7 +105,7 @@ const GestionVentas = () => {
             </div>
             <table className="min-w-full bg-gray-300 border border-gray-200 rounded-lg">
                 <thead className="bg-green-600 border-b border-gray-200">
-                    <tr>
+                    <tr className="text-white">
                         <th className="py-2 px-4 border-b text-center">Número Documento</th>
                         <th className="py-2 px-4 border-b text-center">Fecha Venta</th>
                         <th className="py-2 px-4 border-b text-center">Total</th>
@@ -123,7 +123,7 @@ const GestionVentas = () => {
                                     <td className="py-2 px-4 border-b text-center">
                                         <button
                                             onClick={() => mostrarDetalles(venta)}
-                                            className={`bg-green-500 text-white py-1 px-4 rounded hover:bg-green-600 mr-2 ${ventaSeleccionada && ventaSeleccionada.id === venta.id ? 'bg-green-600' : ''}`}
+                                            className={`bg-blue-500 text-white py-1 px-4 rounded hover:bg-blue-600 mr-2 ${ventaSeleccionada && ventaSeleccionada.id === venta.id ? 'bg-blue-600' : ''}`}
                                         >
                                             {ventaSeleccionada && ventaSeleccionada.id === venta.id ? 'Ocultar Detalles' : 'Detalles'}
                                         </button>

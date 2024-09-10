@@ -122,7 +122,7 @@ const PedidosAdmin = () => {
       <div className="overflow-x-auto">
         <table className="min-w-full bg-gray-300 border border-gray-200 rounded-lg shadow-md">
           <thead className="bg-green-600 border-b border-gray-200">
-            <tr>
+            <tr className="text-white"> 
               <th className="p-4 text-left">Nombre del Cliente</th>
               <th className="p-4 text-left">Fecha</th>
               <th className="p-4 text-left">Total</th>
@@ -142,7 +142,7 @@ const PedidosAdmin = () => {
                     <td className="p-4 flex gap-2">
                       <button
                         onClick={() => mostrarDetalles(pedido)}
-                        className={`bg-green-500 text-white py-1 px-2 rounded hover:bg-green-600 ${pedidoSeleccionado && pedidoSeleccionado.id === pedido.id ? 'bg-green-600' : ''}`}
+                        className={`bg-blue-500 text-white py-1 px-2 rounded hover:bg-blue-600 ${pedidoSeleccionado && pedidoSeleccionado.id === pedido.id ? 'bg-blue-600' : ''}`}
                       >
                         {pedidoSeleccionado && pedidoSeleccionado.id === pedido.id ? 'Ocultar Detalles' : 'Detalles'}
                       </button>

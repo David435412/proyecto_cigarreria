@@ -47,7 +47,7 @@ const GestionProveedores = () => {
             <div class="mb-4 flex space-x-4">
                 <button
                     onClick={() => navigate('/registro-prov-cajero')}
-                    class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+                    class="bg-green-800 text-white px-4 py-2 rounded hover:bg-green-900"
                 >
                     <FaPlus class="inline-block mr-2" /> Registrar Nuevo proveedor
                 </button>               
@@ -56,7 +56,7 @@ const GestionProveedores = () => {
             <div class="overflow-x-auto">
                 <table class="min-w-full bg-gray-300 border border-gray-200 rounded-lg shadow-md">
                     <thead class="bg-green-600 border-b border-gray-200">
-                        <tr>
+                        <tr class='text-white'>
                             <th class="p-4 text-left">Nombre</th>
                             <th class="p-4 text-left">Teléfono</th>
                             <th class="p-4 text-left">Correo</th>

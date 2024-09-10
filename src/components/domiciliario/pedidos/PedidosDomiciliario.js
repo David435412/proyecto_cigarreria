@@ -85,7 +85,7 @@ const PedidosDomiciliario = () => {
       <h1 className="text-2xl font-bold mb-4">Pedidos Pendientes</h1>
       <table className="min-w-full bg-gray-300 border border-gray-200 rounded-lg">
         <thead class="bg-green-600 border-b border-gray-200">
-          <tr>
+          <tr className="text-white">
             <th className="py-2 px-4 border-b">Nombre del Cliente</th>
             <th className="py-2 px-4 border-b">Fecha</th>
             <th className="py-2 px-4 border-b">Total</th>
@@ -111,7 +111,7 @@ const PedidosDomiciliario = () => {
                     </button>
                     <button
                       onClick={() => mostrarDetalles(pedido)}
-                      className={`ml-2 bg-green-500 text-white py-1 px-4 rounded hover:bg-green-600 ${pedidoSeleccionado && pedidoSeleccionado.id === pedido.id ? 'bg-green-600' : ''}`}
+                      className={`ml-2 bg-blue-500 text-white py-1 px-4 rounded hover:bg-blue-600 ${pedidoSeleccionado && pedidoSeleccionado.id === pedido.id ? 'bg-blue-600' : ''}`}
                     >
                       {pedidoSeleccionado && pedidoSeleccionado.id === pedido.id ? 'Ocultar Detalles' : 'Detalles'}
                     </button>
