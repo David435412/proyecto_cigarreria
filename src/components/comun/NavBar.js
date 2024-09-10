@@ -12,7 +12,7 @@ const Header = () => {
 
     return (
         <header>
-            <nav className="bg-gray-200 border-b border-gray-300 px-4 py-3 rounded-b-lg shadow-md relative">
+            <nav className="bg-gray-300 border-b border-gray-300 px-4 py-3 rounded-b-lg shadow-md relative">
                 <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
                     <Link to="/inicio" className="flex items-center space-x-3">
                         <img src={Logo} alt="CigarreriaC - Logo" className="w-16 h-auto" />
