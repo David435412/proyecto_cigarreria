@@ -30,7 +30,7 @@ const HeaderCliente = () => {
 
     return (
         <header>
-            <nav className="bg-gray-200 border-b border-gray-300 px-4 py-3 rounded-b-lg shadow-md relative">
+            <nav className="bg-gray-300 border-b border-gray-300 px-4 py-3 rounded-b-lg shadow-md relative">
                 <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
                     <Link to="/cliente-dash" className="flex items-center space-x-3">
                         <img src={Logo} alt="Logo" className="w-16 h-auto" />

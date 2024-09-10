@@ -44,8 +44,8 @@ const GestionVentas = () => {
                     <FaPlus className="inline-block mr-2" /> Registrar Nueva Venta
                 </button>
             </div>
-            <table className="min-w-full bg-white border border-gray-200 rounded-lg">
-                <thead>
+            <table className="min-w-full bg-gray-300 border border-gray-200 rounded-lg">
+                <thead class="bg-green-600 border-b border-gray-200">
                     <tr>
                         <th className="py-2 px-4 border-b text-left">Número Documento</th>
                         <th className="py-2 px-4 border-b text-left">Fecha Venta</th>

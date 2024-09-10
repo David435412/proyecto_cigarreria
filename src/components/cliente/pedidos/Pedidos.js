@@ -77,37 +77,29 @@ const Pedidos = () => {
             {pedidos.length === 0 ? (
                 <p className="text-center text-xl">No tienes pedidos realizados aún.</p>
             ) : (
-                <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
-                    <thead className="bg-gray-100">
+                <table className="min-w-full bg-gray-300 border border-gray-200 rounded-lg shadow-lg">
+                    <thead className="bg-green-600">
                         <tr>
-                            <th className="py-3 px-4 border-b text-left text-sm font-medium text-gray-600">Fecha</th>
-                            <th className="py-3 px-4 border-b text-left text-sm font-medium text-gray-600">Total</th>
-                            <th className="py-3 px-4 border-b text-left text-sm font-medium text-gray-600">Estado</th>
-                            <th className="py-3 px-4 border-b text-left text-sm font-medium text-gray-600">Acciones</th>
+                            <th className="py-3 px-4 border-b text-center text-md font-medium text-white">Fecha</th>
+                            <th className="py-3 px-4 border-b text-center text-md font-medium text-white">Total</th>
+                            <th className="py-3 px-4 border-b text-center text-md font-medium text-white">Estado</th>
+                            <th className="py-3 px-4 border-b text-center text-md font-medium text-white">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         {pedidos.map((pedido) => (
                             <React.Fragment key={pedido.id}>
                                 <tr>
-                                    <td className="py-4 px-4 border-b">{new Date(pedido.fecha).toLocaleDateString()}</td>
-                                    <td className="py-4 px-4 border-b">${calcularTotal(pedido.productos)}</td>
-                                    <td className="py-4 px-4 border-b">{pedido.estadoPedido}</td>
-                                    <td className="py-4 px-4 border-b">
+                                    <td className="py-4 px-4 border-b text-center">{new Date(pedido.fecha).toLocaleDateString()}</td>
+                                    <td className="py-4 px-4 border-b text-center">${calcularTotal(pedido.productos)}</td>
+                                    <td className="py-4 px-4 border-b text-center">{pedido.estadoPedido}</td>
+                                    <td className="py-4 px-4 border-b text-center">
                                         <button
                                             onClick={() => mostrarDetalles(pedido)}
                                             className={`bg-indigo-600 text-white px-3 py-1 rounded hover:bg-indigo-700 ${pedidoSeleccionado && pedidoSeleccionado.id === pedido.id ? 'bg-indigo-700' : ''}`}
                                         >
                                             {pedidoSeleccionado && pedidoSeleccionado.id === pedido.id ? 'Ocultar Detalles' : 'Ver Detalles'}
                                         </button>
-                                        {pedido.estadoPedido === 'pendiente' && (
-                                            <button
-                                                onClick={() => manejarCancelarPedido(pedido)}
-                                                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 ml-2"
-                                            >
-                                                Cancelar Pedido
-                                            </button>
-                                        )}
                                     </td>
                                 </tr>
                                 {pedidoSeleccionado && pedidoSeleccionado.id === pedido.id && (
@@ -127,7 +119,17 @@ const Pedidos = () => {
                                                     </li>
                                                 ))}
                                             </ul>
-                                            <h2 className="text-xl font-semibold mt-2">Subtotal: ${calcularTotal(pedidoSeleccionado.productos)}</h2>
+                                            <h2 className="text-xl font-semibold mt-2">Subtotal: ${calcularTotal(pedidoSeleccionado.productos)}
+
+                                            {pedido.estadoPedido === 'pendiente' && (
+                                                <button
+                                                    onClick={() => manejarCancelarPedido(pedido)}
+                                                    className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 ml-2"
+                                                >
+                                                    Cancelar Pedido
+                                                </button>
+                                            )}
+                                            </h2>
                                         </td>
                                     </tr>
                                 )}

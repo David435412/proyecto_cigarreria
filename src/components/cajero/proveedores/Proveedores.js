@@ -54,8 +54,8 @@ const GestionProveedores = () => {
             </div>
 
             <div class="overflow-x-auto">
-                <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
-                    <thead class="bg-gray-100 border-b border-gray-200">
+                <table class="min-w-full bg-gray-300 border border-gray-200 rounded-lg shadow-md">
+                    <thead class="bg-green-600 border-b border-gray-200">
                         <tr>
                             <th class="p-4 text-left">Nombre</th>
                             <th class="p-4 text-left">Teléfono</th>
