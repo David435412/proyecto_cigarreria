@@ -120,8 +120,8 @@ const PedidosAdmin = () => {
       </div>
 
       <div className="overflow-x-auto">
-        <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
-          <thead className="bg-gray-100 border-b border-gray-200">
+        <table className="min-w-full bg-gray-300 border border-gray-200 rounded-lg shadow-md">
+          <thead className="bg-green-600 border-b border-gray-200">
             <tr>
               <th className="p-4 text-left">Nombre del Cliente</th>
               <th className="p-4 text-left">Fecha</th>
@@ -140,14 +140,6 @@ const PedidosAdmin = () => {
                     <td className="p-4">${calcularTotal(pedido.productos)}</td>
                     <td className="p-4">{pedido.estadoPedido}</td>
                     <td className="p-4 flex gap-2">
-                      {pedido.estadoPedido === 'pendiente' && (
-                        <button
-                          onClick={() => manejarEstadoEntrega(pedido)}
-                          className="bg-gray-500 text-white py-1 px-2 rounded hover:bg-gray-600"
-                        >
-                          <FaCheckCircle className="inline-block mr-1" /> Marcar Entregado
-                        </button>
-                      )}
                       <button
                         onClick={() => mostrarDetalles(pedido)}
                         className={`bg-green-500 text-white py-1 px-2 rounded hover:bg-green-600 ${pedidoSeleccionado && pedidoSeleccionado.id === pedido.id ? 'bg-green-600' : ''}`}
@@ -176,6 +168,15 @@ const PedidosAdmin = () => {
                           ))}
                         </ul>
                         <h2 className="text-xl font-semibold mt-2">Subtotal: ${calcularTotal(pedidoSeleccionado.productos)}</h2>
+
+                        {pedido.estadoPedido === 'pendiente' && (
+                          <button
+                            onClick={() => manejarEstadoEntrega(pedido)}
+                            className="bg-gray-500 text-white py-1 px-2 rounded hover:bg-gray-600"
+                          >
+                            <FaCheckCircle className="inline-block mr-1" /> Marcar Entregado
+                          </button>
+                      )}
                       </td>
                     </tr>
                   )}

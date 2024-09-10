@@ -79,8 +79,8 @@ const ProveedoresInactivos = () => {
             </div>
 
             <div className="overflow-x-auto">
-                <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
-                    <thead className="bg-gray-100 border-b border-gray-200">
+                <table className="min-w-full bg-gray-300 border border-gray-200 rounded-lg shadow-md">
+                    <thead className="bg-green-600 border-b border-gray-200">
                         <tr>
                             <th className="p-4 text-left">Nombre</th>
                             <th className="p-4 text-left">Teléfono</th>
