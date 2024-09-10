@@ -71,22 +71,16 @@ const HeaderDomiciliario = () => {
                     <div className={`lg:hidden fixed top-0 left-0 w-full bg-gray-200 border-b border-gray-300 py-4 px-6 transition-transform transform ${isOpen ? "translate-y-0" : "-translate-y-full"} z-50`}>
                         <ul className="space-y-4">
                             <li>
-                                <Link to="/domiciliario-dash" className="block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300" onClick={toggleMenu}>Inicio</Link>
-                            </li>
-                            <li>
-                                <Link to="/pedidos-domiciliario" className="block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300" onClick={toggleMenu}>Pedidos</Link>
-                            </li>
+                                <Link to="/domiciliario-dash" className="block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300" onClick={toggleMenu}>Pedidos</Link>
+                            </li>                            
                         </ul>
                     </div>
                     {/* Menú para pantallas grandes */}
                     <div className="hidden lg:flex lg:w-auto">
                         <ul className="flex flex-col mt-2 space-y-1 font-medium lg:flex-row lg:space-x-8 lg:space-y-0 lg:mt-0">
                             <li>
-                                <Link to="/domiciliario-dash" className="block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300" aria-current="page">Inicio</Link>
-                            </li>
-                            <li>
-                                <Link to="/pedidos-domiciliario" className="block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300">Pedidos</Link>
-                            </li>
+                                <Link to="/domiciliario-dash" className="block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300" aria-current="page">Pedidos</Link>
+                            </li>                            
                         </ul>
                     </div>
                 </div>
