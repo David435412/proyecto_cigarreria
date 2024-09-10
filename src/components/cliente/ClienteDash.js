@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-
 const categorias = [
     'Licores',
     'Confitería',
@@ -94,7 +93,11 @@ const ClienteDashboard = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {filteredProducts.length > 0 ? (
                     filteredProducts.map(producto => (
-                        <Link to={`/producto/${producto.id}`} key={producto.id} className="bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden">
+                        <Link 
+                            to={`/producto/${producto.id}`} 
+                            key={producto.id} 
+                            className="bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden transform transition-transform duration-300 hover:scale-105"
+                        >
                             <div className="w-full h-64 relative">
                                 <img 
                                     src={producto.imagen} 
