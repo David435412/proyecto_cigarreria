@@ -3,10 +3,23 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
+const categorias = [
+    'Licores', 
+    'Confitería', 
+    'Enlatados', 
+    'Aseo', 
+    'Medicamentos', 
+    'Helados', 
+    'Bebidas', 
+    'Lacteos', 
+    'Panadería'
+];
+
 const RegistroVentas = () => {
     const [productos, setProductos] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
+    const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('Todos');
     const [productosSeleccionados, setProductosSeleccionados] = useState([]);
     const [error, setError] = useState(null);
 
@@ -34,16 +47,22 @@ const RegistroVentas = () => {
     }, []);
 
     useEffect(() => {
-        if (searchQuery === '') {
-            setFilteredProducts(productos);
-        } else {
-            setFilteredProducts(
-                productos.filter(producto =>
-                    producto.nombre.toLowerCase().includes(searchQuery.toLowerCase())
-                )
+        let productosFiltrados = productos;
+
+        if (searchQuery !== '') {
+            productosFiltrados = productosFiltrados.filter(producto =>
+                producto.nombre.toLowerCase().includes(searchQuery.toLowerCase())
             );
         }
-    }, [searchQuery, productos]);
+
+        if (categoriaSeleccionada !== 'Todos') {
+            productosFiltrados = productosFiltrados.filter(producto =>
+                producto.categoria === categoriaSeleccionada
+            );
+        }
+
+        setFilteredProducts(productosFiltrados);
+    }, [searchQuery, categoriaSeleccionada, productos]);
 
     const handleAddProduct = (producto) => {
         if (!productosSeleccionados.find(p => p.id === producto.id)) {
@@ -73,7 +92,7 @@ const RegistroVentas = () => {
                 title: 'Error',
                 text: 'Debe seleccionar al menos un producto antes de continuar.',
                 icon: 'warning',
-                confirmButtonColor: '#197419', // Color verde oscuro para el botón
+                confirmButtonColor: '#197419',
             });
         } else {
             navigate('/confirmar-ventas-cajero', { state: { productosSeleccionados } });
@@ -153,6 +172,29 @@ const RegistroVentas = () => {
                     placeholder="Buscar productos por nombre"
                     className="p-2 border border-gray-300 rounded w-full"
                 />
+
+                {/* Filtros por categorías */}
+                <div className="mb-4 m-auto">
+                    <h2 className="text-2xl font-semibold mb-2 text-center">Categorías</h2>
+                    <div className="flex flex-wrap gap-4">
+                        <div
+                            onClick={() => setCategoriaSeleccionada('Todos')}
+                            className={`cursor-pointer p-3 border rounded-full shadow-xl text-sm font-medium text-center transition-transform duration-300 ease-in-out w-24 h-24 flex items-center justify-center transform ${categoriaSeleccionada === 'Todos' ? 'bg-green-500 text-white border-green-500' : 'bg-gray-100 text-black border-gray-300'} hover:bg-green-500 hover:text-white hover:scale-110 hover:-translate-y-2 hover:shadow-2xl`}
+                        >
+                            Todos
+                        </div>
+
+                        {categorias.map(categoria => (
+                            <div
+                                key={categoria}
+                                onClick={() => setCategoriaSeleccionada(categoria)}
+                                className={`cursor-pointer p-3 border rounded-full shadow-xl text-sm font-medium text-center transition-transform duration-300 ease-in-out w-24 h-24 flex items-center justify-center transform ${categoriaSeleccionada === categoria ? 'bg-green-500 text-white border-green-500' : 'bg-gray-100 text-black border-gray-300'} hover:bg-green-500 hover:text-white hover:scale-110 hover:-translate-y-2 hover:shadow-2xl`}
+                            >
+                                {categoria}
+                            </div>
+                        ))}
+                    </div>
+                </div>
 
                 {/* Productos */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">

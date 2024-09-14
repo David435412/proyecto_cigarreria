@@ -40,6 +40,9 @@ const HeaderCajero = () => {
                             </button>
                             {isUserMenuOpen && (
                                 <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-300 rounded-lg shadow-lg z-50">
+                                    <div className="px-4 py-2 text-gray-900 bg-gray-100 border-b border-gray-300">
+                                        <p className="text-sm">Rol: Cajero</p>
+                                    </div>
                                     <ul className="py-2">
                                         <li>
                                             <Link

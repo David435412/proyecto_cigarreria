@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { FaPlus, FaEdit, FaTrash } from 'react-icons/fa';
 
 const categorias = [
-    'Todos',
     'Licores', 
     'Confitería', 
     'Enlatados', 
@@ -47,23 +46,24 @@ const GestionProductos = () => {
         return (categoriaSeleccionada === 'Todos' || producto.categoria === categoriaSeleccionada) && producto.estado === 'activo';
     });
 
+    const handleCategoriaClick = (categoria) => {
+        setCategoriaSeleccionada(categoria);
+    };
+
+    const handleVerTodosClick = () => {
+        setCategoriaSeleccionada('Todos'); // Establecer a 'Todos' para mostrar todos los productos
+    };
+    
     return (
         <div className="container mx-auto px-4 py-8">
-            <h1 className="text-3xl font-bold mb-4">Gestión de Productos</h1>
-            <p className="mb-8">
-                En esta sección podrás gestionar tus productos. Puedes agregar nuevos productos
-                y visualizar los productos que ya has registrado.
+            <h1 className="text-3xl font-bold mb-4 text-center">Gestión de Productos</h1>
+            <p className="mb-8 text-center">
+                En esta sección podrás consultar todos los productos que ofrecemos y los productos agotados
             </p>
 
-            {error && <p className="text-red-500 mb-4">{error}</p>}
+            {error && <p className="text-red-500 mb-4 text-center">{error}</p>}
 
-            <div className="mb-4">
-                <button
-                    onClick={() => navigate('/registro-prod-cajero')}
-                    className="bg-green-800 text-white px-4 py-2 rounded hover:bg-green-900"
-                >
-                    <FaPlus className="inline-block mr-2" /> Registrar Producto
-                </button>
+            <div className="mb-4 flex space-x-4 place-content-center">
                 <button
                     onClick={() => navigate('/productos-agotados-cajero')}
                     className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 m-3"
@@ -72,16 +72,29 @@ const GestionProductos = () => {
                 </button>
             </div>
 
-            <div className="mb-6">
-                <select
-                    value={categoriaSeleccionada}
-                    onChange={(e) => setCategoriaSeleccionada(e.target.value)}
-                    className="p-2 border border-gray-300 rounded"
+            <h2 className="text-3xl font-bold mt-8 mb-8 text-center">
+                Categorías
+            </h2>
+
+            {/* Filtros */}
+            <div className="mb-6 flex flex-wrap justify-center gap-4">
+                {/* Círculo para mostrar todos los productos */}
+                <div
+                    onClick={handleVerTodosClick}
+                    className={`bg-gray-300 cursor-pointer p-3 border rounded-full shadow-xl text-sm font-medium text-center transition-transform duration-300 ease-in-out w-24 h-24 flex items-center justify-center transform ${categoriaSeleccionada === 'Todos' ? 'bg-green-500 text-white border-green-500' : 'bg-gray-100 text-black border-gray-300'} hover:bg-green-500 hover:text-white hover:scale-110 hover:-translate-y-2 hover:shadow-2xl`}
                 >
-                    {categorias.map(categoria => (
-                        <option key={categoria} value={categoria}>{categoria}</option>
-                    ))}
-                </select>
+                    Todos
+                </div>
+
+                {categorias.map(categoria => (
+                    <div
+                        key={categoria}
+                        onClick={() => handleCategoriaClick(categoria)}
+                        className={`bg-gray-300 cursor-pointer p-3 border rounded-full shadow-xl text-sm font-medium text-center transition-transform duration-300 ease-in-out w-24 h-24 flex items-center justify-center transform ${categoriaSeleccionada === categoria ? 'bg-green-500 text-white border-green-500' : 'bg-gray-100 text-black border-gray-300'} hover:bg-green-500 hover:text-white hover:scale-110 hover:-translate-y-2 hover:shadow-2xl`}
+                    >
+                        {categoria}
+                    </div>
+                ))}
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">

@@ -31,20 +31,20 @@ const GestionProveedores = () => {
 
     return (
         <div class="container mx-auto px-4 py-8">
-            <h1 class="text-3xl font-bold mb-4">Gestión de Proveedores</h1>
-            <p class="mb-8">
+            <h1 class="text-3xl font-bold mb-4 text-center">Gestión de Proveedores</h1>
+            <p class="mb-8 text-center">
                 En esta sección podrás gestionar a los proveedores del sistema. Puedes registrar nuevos proveedores,
                 visualizar los proveedores que ya has registrado y editarlos.
             </p>
 
-            {error && <p class="text-red-500 mb-4">{error}</p>}
+            {error && <p class="text-red-500 mb-4 text-center">{error}</p>}
             {alertMessage && (
                 <div class="mb-4 p-4 bg-green-100 text-green-800 border border-green-300 rounded">
                     {alertMessage}
                 </div>
             )}
 
-            <div class="mb-4 flex space-x-4">
+            <div class="mb-4 flex space-x-4 place-content-center">
                 <button
                     onClick={() => navigate('/registro-prov-cajero')}
                     class="bg-green-800 text-white px-4 py-2 rounded hover:bg-green-900"

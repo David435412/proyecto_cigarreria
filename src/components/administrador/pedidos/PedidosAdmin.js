@@ -86,13 +86,13 @@ const PedidosAdmin = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-4">Gestión de Pedidos</h1>
-      <p className="mb-8">
+      <h1 className="text-3xl font-bold mb-4 text-center">Gestión de Pedidos</h1>
+      <p className="mb-8 text-center">
         En esta sección puedes gestionar los pedidos del sistema. Aquí podrás revisar los pedidos realizados, 
         marcar los pedidos como entregados y filtrar los pedidos según su estado (pendiente, entregado, cancelado).
       </p>
 
-      <div className="mb-4 flex space-x-4">
+      <div className="mb-4 flex space-x-4 place-content-center">
         <button
           onClick={() => setFiltroEstado('todos')}
           className={`py-2 px-4 rounded ${filtroEstado === 'todos' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}

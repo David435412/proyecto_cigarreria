@@ -3,6 +3,9 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import { FaCheckCircle } from 'react-icons/fa';
 import { format } from 'date-fns'; // Importar la función format de date-fns
+import fuera_4 from "../../assets/images/fuera_4.jpeg";
+import css from "../../pages/css.css";
+
 
 const DomiciliarioDashboard = () => {
     const [userName, setUserName] = useState('');
@@ -88,11 +91,16 @@ const DomiciliarioDashboard = () => {
 
     return (
         <>
-            <div className="bg-green-600 text-white p-6 shadow-md mt-5">
-                <h2 className="text-center mb-4 text-4xl font-bold">¡Bienvenido, {userName}!</h2>
-                <p className="text-center mb-4 text-xl">
-                    Este es tu dashboard, donde puedes gestionar todo el sistema de manera integral. Desde aquí podrás administrar pedidos.
-                </p>
+            <div className="bg-black text-white pb-5">
+                <img 
+                    src={fuera_4} 
+                    alt="Fondo" 
+                    className="w-full h-96 object-cover filter imagen brightness-50"
+                />
+                <div className="container mx-auto text-center">
+                    <h1 className="text-4xl font-bold">¡Bienvenido, {userName}!</h1>
+                    <p className="text-xl mt-2">Este es el dashboard de domiciliarios, donde puedes realizar la entrega de los pedidos que tienes asignados</p>
+                </div>
             </div>
             <div className="container mx-auto px-4 py-8">
                 <div className="grid grid-cols-1 gap-6 mb-8">

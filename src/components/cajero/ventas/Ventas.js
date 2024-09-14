@@ -34,9 +34,9 @@ const GestionVentas = () => {
 
     return (
         <div className="container mx-auto p-4 my-5">
-            <h1 className="text-2xl font-bold mb-4">Gestión de Ventas</h1>
-            <p className="mb-4">Aquí puedes gestionar las ventas registradas en el sistema. Puedes ver detalles de cada venta</p>
-            <div className="mb-4 flex space-x-4">
+            <h1 className="text-2xl font-bold mb-4 text-center">Gestión de Ventas</h1>
+            <p className="mb-4 text-center">Aquí puedes gestionar las ventas registradas en el sistema. Puedes ver detalles de cada venta</p>
+            <div className="mb-4 flex space-x-4 place-content-center">
                 <button
                     onClick={() => window.location.href = '/registro-venta-cajero'}
                     className="bg-green-800 text-white px-4 py-2 rounded hover:bg-green-900"

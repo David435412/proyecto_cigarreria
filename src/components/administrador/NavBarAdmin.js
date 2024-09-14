@@ -1,8 +1,7 @@
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaBars, FaTimes, FaUserCircle } from "react-icons/fa";
 import UserContext from '../../context/UserContext';
-import { useNavigate } from 'react-router-dom';
 import Logo from '../../assets/images/Logo.png';
 
 const HeaderAdmin = () => {
@@ -40,6 +39,9 @@ const HeaderAdmin = () => {
                             </button>
                             {isUserMenuOpen && (
                                 <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-300 rounded-lg shadow-lg z-50">
+                                    <div className="px-4 py-2 text-gray-900 bg-gray-100 border-b border-gray-300">
+                                        <p className="text-sm">Rol: Administrador</p>
+                                    </div>
                                     <ul className="py-2">
                                         <li>
                                             <Link
@@ -90,7 +92,7 @@ const HeaderAdmin = () => {
                             </li>
                         </ul>
                     </div>
-                    {/* Menú para pantallas grandes */}
+                    {/* Menú para pantallas grandes */} 
                     <div className="hidden lg:flex lg:w-auto">
                         <ul className="flex flex-col mt-2 space-y-1 font-medium lg:flex-row lg:space-x-8 lg:space-y-0 lg:mt-0">
                             <li>
