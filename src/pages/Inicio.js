@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import Swal from 'sweetalert2'; 
+import fuera_1 from "../assets/images/fuera_4.jpeg";
+import css from "./css.css"
 
 const categorias = [
     'Licores',
@@ -63,9 +65,22 @@ const Inicio = () => {
         });
     };
 
+    const handleCategoriaClick = (categoria) => {
+        setCategoriaSeleccionada(categoria);
+    };
+
+    const handleVerTodosClick = () => {
+        setCategoriaSeleccionada(''); // Limpiar categoría seleccionada para mostrar todos los productos
+    };
+
     return (
-        <section className="place-content-center justify-items-center gap-8 mt-5 mb-5 bg-gray-100 min-h-screen">
-            <header className="bg-green-600 text-white py-6">
+        <section className="place-content-center justify-items-center gap-8 mb-5 bg-gray-100 min-h-screen">
+            <header className="bg-black text-white pb-5">
+                <img 
+                    src={fuera_1} 
+                    alt="Fondo" 
+                    className="w-full h-96 object-cover filter imagen brightness-50"
+                />
                 <div className="container mx-auto text-center">
                     <h1 className="text-4xl font-bold">Bienvenido a la Cigarrería Colonial</h1>
                     <p className="text-xl mt-2">Encuentra y realiza pedidos de los mejores productos</p>
@@ -73,25 +88,33 @@ const Inicio = () => {
             </header>
 
             <div className="container mx-auto px-4 py-8">
-                <h2 className="text-3xl font-bold mb-4">Encuentra los Mejores Productos</h2>
-                <p className="mb-8 text-lg text-gray-700">
-                    Usa el filtro a continuación para encontrar exactamente lo que buscas por categoría.
-                </p>
+                <h2 className="text-3xl font-bold mb-4 text-center">Categorías</h2>
 
                 {error && <p className="text-red-500 mb-4">{error}</p>}
 
                 {/* Filtros */}
-                <div className="mb-6 flex items-center space-x-4">
-                    <select 
-                        value={categoriaSeleccionada} 
-                        onChange={(e) => setCategoriaSeleccionada(e.target.value)} 
-                        className="p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+                <div className="mb-6 flex flex-wrap justify-center gap-4">
+                    {/* Círculo para mostrar todos los productos */}
+                    <div
+                        onClick={handleVerTodosClick}
+                        className={`bg-gray-300 cursor-pointer p-3 border rounded-full shadow-xl text-sm font-medium text-center transition-transform duration-300 ease-in-out w-24 h-24 flex items-center justify-center transform ${
+                            categoriaSeleccionada === '' ? 'bg-green-500 text-white border-green-500' : 'bg-gray-100 text-black border-gray-300'
+                        } hover:bg-green-500 hover:text-white hover:scale-110 hover:-translate-y-2 hover:shadow-2xl`}
                     >
-                        <option value="">Seleccionar categoría</option>
-                        {categorias.map(categoria => (
-                            <option key={categoria} value={categoria}>{categoria}</option>
-                        ))}
-                    </select>
+                        Todos
+                    </div>
+
+                    {categorias.map(categoria => (
+                        <div
+                            key={categoria}
+                            onClick={() => handleCategoriaClick(categoria)}
+                            className={`bg-gray-300 cursor-pointer p-3 border rounded-full shadow-xl text-sm font-medium text-center transition-transform duration-300 ease-in-out w-24 h-24 flex items-center justify-center transform ${
+                                categoriaSeleccionada === categoria ? 'bg-green-500 text-white border-green-500' : 'bg-gray-100 text-black border-gray-300'
+                            } hover:bg-green-500 hover:text-white hover:scale-110 hover:-translate-y-2 hover:shadow-2xl`}
+                        >
+                            {categoria}
+                        </div>
+                    ))}
                 </div>
 
                 {/* Productos */}
