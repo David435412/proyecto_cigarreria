@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Swal from 'sweetalert2';  // Importa SweetAlert2
-import fuera_1 from "../../assets/images/fuera_2.jpeg"; // Asegúrate de tener esta imagen en la ruta correcta
+import Swal from 'sweetalert2';
+import fuera_1 from "../../assets/images/fuera_2.jpeg";
 
 const RegistroCliente = () => {
     const [datosFormulario, setDatosFormulario] = useState({
@@ -12,23 +12,91 @@ const RegistroCliente = () => {
         correo: '',
         telefono: '',
         direccion: '',
-        tipoDocumento: '',  // Nuevo campo
-        numeroDocumento: '',  // Nuevo campo
+        tipoDocumento: '',
+        numeroDocumento: '',
         estado: 'activo',
         rol: 'cliente'
     });
 
+    const [validacionesContrasena, setValidacionesContrasena] = useState({
+        longitud: false,
+        mayusculas: false,
+        minusculas: false,
+        numeros: false
+    });
+
+    const [mensajeValidacion, setMensajeValidacion] = useState('');
+    
     const navigate = useNavigate();
+
+    // Función simple para "encriptar" la contraseña
+    const encriptarContrasena = (contrasena) => {
+        let contrasenaEncriptada = '';
+        for (let i = 0; i < contrasena.length; i++) {
+            // Cambia el carácter al siguiente en el código ASCII
+            contrasenaEncriptada += String.fromCharCode(contrasena.charCodeAt(i) + 3);
+        }
+        return contrasenaEncriptada;
+    };
+
+    // Función para validar la contraseña
+    const validarContrasena = (contrasena) => {
+        const minLength = 8;
+        const longitudValida = contrasena.length >= minLength;
+        const tieneMayusculas = /[A-Z]/.test(contrasena);
+        const tieneMinusculas = /[a-z]/.test(contrasena);
+        const tieneNumeros = /[0-9]/.test(contrasena);
+
+        setValidacionesContrasena({
+            longitud: longitudValida,
+            mayusculas: tieneMayusculas,
+            minusculas: tieneMinusculas,
+            numeros: tieneNumeros
+        });
+
+        if (!longitudValida) {
+            setMensajeValidacion('La contraseña debe tener al menos 8 caracteres.');
+        } else if (!tieneMayusculas) {
+            setMensajeValidacion('La contraseña debe contener al menos una letra mayúscula.');
+        } else if (!tieneMinusculas) {
+            setMensajeValidacion('La contraseña debe contener al menos una letra minúscula.');
+        } else if (!tieneNumeros) {
+            setMensajeValidacion('La contraseña debe contener al menos un número.');
+        } else {
+            setMensajeValidacion('Contraseña segura.');
+        }
+    };
 
     const manejarCambio = (e) => {
         const { name, value } = e.target;
+        if (name === 'contrasena') {
+            // Valida la contraseña cuando cambia
+            validarContrasena(value);
+        }
         setDatosFormulario({ ...datosFormulario, [name]: value });
     };
 
     const manejarEnvio = async (e) => {
         e.preventDefault();
+        const errorContrasena = validarContrasena(datosFormulario.contrasena);
+        if (mensajeValidacion !== 'Contraseña segura.') {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: mensajeValidacion,
+            });
+            return;
+        }
         try {
-            await axios.post('http://localhost:5000/usuarios', datosFormulario);
+            // Encripta la contraseña antes de enviarla
+            const contrasenaEncriptada = encriptarContrasena(datosFormulario.contrasena);
+
+            const datosAEnviar = {
+                ...datosFormulario,
+                contrasena: contrasenaEncriptada // Guarda la contraseña encriptada
+            };
+
+            await axios.post('http://localhost:5000/usuarios', datosAEnviar);
             Swal.fire({
                 position: 'top-end',
                 icon: 'success',
@@ -58,7 +126,6 @@ const RegistroCliente = () => {
                 <div className="absolute inset-0 bg-gray-900 opacity-40"></div>
             </div>
             <div className="relative z-10 w-full max-w-md p-6 mx-auto">
-                {/* Texto "Colonial" fuera del div blanco */}
                 <div className="text-center mb-6">
                     <a href="/inicio" className="text-4xl font-bold text-gray-300 hover:text-gray-100 transition-colors">
                         Colonial
@@ -160,44 +227,46 @@ const RegistroCliente = () => {
                                     required
                                 />
                             </div>
-                            <div>
-                                <label
-                                    htmlFor="tipoDocumento"
-                                    className="block text-sm font-medium text-gray-900"
-                                >
-                                    Tipo de Documento
-                                </label>
-                                <select
-                                    name="tipoDocumento"
-                                    id="tipoDocumento"
-                                    value={datosFormulario.tipoDocumento}
-                                    onChange={manejarCambio}
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
-                                    required
-                                >
-                                    <option value="" disabled>Selecciona el tipo de documento</option>
-                                    <option value="cedula">Cédula de Ciudadanía</option>
-                                    <option value="cedulae">Cédula de Extranjería</option>
-                                    <option value="nit">NIT</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label
-                                    htmlFor="numeroDocumento"
-                                    className="block text-sm font-medium text-gray-900"
-                                >
-                                    Número de Documento
-                                </label>
-                                <input
-                                    type="text"
-                                    name="numeroDocumento"
-                                    id="numeroDocumento"
-                                    value={datosFormulario.numeroDocumento}
-                                    onChange={manejarCambio}
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
-                                    placeholder="Número de documento"
-                                    required
-                                />
+                            <div className="flex gap-4 col-span-2">
+                                <div className="w-full">
+                                    <label
+                                        htmlFor="tipoDocumento"
+                                        className="block text-sm font-medium text-gray-900"
+                                    >
+                                        Tipo de Documento
+                                    </label>
+                                    <select
+                                        name="tipoDocumento"
+                                        id="tipoDocumento"
+                                        value={datosFormulario.tipoDocumento}
+                                        onChange={manejarCambio}
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
+                                        required
+                                    >
+                                        <option value="">Selecciona un tipo de documento</option>
+                                        <option value="CC">Cédula de Ciudadanía</option>
+                                        <option value="PT">Pasaporte</option>
+                                        <option value="CE">Cédula de Extranjería</option>
+                                    </select>
+                                </div>
+                                <div className="w-full">
+                                    <label
+                                        htmlFor="numeroDocumento"
+                                        className="block text-sm font-medium text-gray-900"
+                                    >
+                                        Número de Documento
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="numeroDocumento"
+                                        id="numeroDocumento"
+                                        value={datosFormulario.numeroDocumento}
+                                        onChange={manejarCambio}
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
+                                        placeholder="Número de documento"
+                                        required
+                                    />
+                                </div>
                             </div>
                             <div className="col-span-2">
                                 <label
@@ -212,22 +281,27 @@ const RegistroCliente = () => {
                                     id="contrasena"
                                     value={datosFormulario.contrasena}
                                     onChange={manejarCambio}
-                                    placeholder="••••••••"
                                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
+                                    placeholder="Introduce tu contraseña"
                                     required
                                 />
+                                {mensajeValidacion && (
+                                    <p className={`text-sm ${mensajeValidacion.includes('segura') ? 'text-green-600' : 'text-red-600'}`}>
+                                        {mensajeValidacion}
+                                    </p>
+                                )}
                             </div>
-                            <input type="hidden" name="rol" value={datosFormulario.rol} />
-                            <input type="hidden" name="estado" value={datosFormulario.estado} />
-                            <div className="col-span-2 flex justify-center">
-                                <button type="submit" className="px-8 py-3 bg-gradient-to-r from-green-600 to-green-700 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg">
-                                    Crear
-                                </button>
-                            </div>
+                            <button
+                                type="submit"
+                                className="w-full px-6 py-3 bg-gradient-to-r from-green-600 via-green-600 to-green-700 text-white font-bold rounded-2xl shadow-lg transition-transform transform-gpu hover:scale-105 hover:shadow-xl"
+                            >
+                                Registrar
+                            </button>
                         </form>
                         <p className="text-sm text-gray-600">
                             ¿Ya tienes cuenta? <a href="/login" className="text-sm font-bold text-black">Inicia Sesión</a>
                         </p>
+
                     </div>
                 </section>
             </div>

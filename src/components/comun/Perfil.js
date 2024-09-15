@@ -13,6 +13,8 @@ const Profile = () => {
         numeroDocumento: '',
         contrasena: ''  // Para comparación de contraseña
     });
+    const [validacionesContrasena, setValidacionesContrasena] = useState({});
+    const [mensajeValidacion, setMensajeValidacion] = useState('');
     const [editedData, setEditedData] = useState({ ...userData });
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [userId, setUserId] = useState('');
@@ -93,6 +95,41 @@ const Profile = () => {
         } catch (error) {
             console.error('Error al actualizar el perfil:', error);
         }
+    };  
+    
+
+    const encriptarContrasena = (contrasena) => {
+        return contrasena
+            .split('')
+            .map((char) => String.fromCharCode(char.charCodeAt(0) + 3)) // Desplaza 3 posiciones en ASCII
+            .join('');
+    };
+
+    const validarContrasena = (contrasena) => {
+        const minLength = 8;
+        const longitudValida = contrasena.length >= minLength;
+        const tieneMayusculas = /[A-Z]/.test(contrasena);
+        const tieneMinusculas = /[a-z]/.test(contrasena);
+        const tieneNumeros = /[0-9]/.test(contrasena);
+
+        setValidacionesContrasena({
+            longitud: longitudValida,
+            mayusculas: tieneMayusculas,
+            minusculas: tieneMinusculas,
+            numeros: tieneNumeros
+        });
+
+        if (!longitudValida) {
+            return 'La contraseña debe tener al menos 8 caracteres.';
+        } else if (!tieneMayusculas) {
+            return 'La contraseña debe contener al menos una letra mayúscula.';
+        } else if (!tieneMinusculas) {
+            return 'La contraseña debe contener al menos una letra minúscula.';
+        } else if (!tieneNumeros) {
+            return 'La contraseña debe contener al menos un número.';
+        } else {
+            return 'Contraseña segura.';
+        }
     };
 
     const handleChangePassword = async () => {
@@ -110,37 +147,49 @@ const Profile = () => {
                 }
             }
         });
-    
+
         if (currentPassword) {
+            const cifradaCurrentPassword = encriptarContrasena(currentPassword);
+
             try {
                 const response = await axios.get(`http://localhost:5000/usuarios/${userId}`);
                 const user = response.data;
-    
-                if (currentPassword === user.contrasena) {
-                    const { value: newPassword } = await Swal.fire({
+
+                // Comparar la contraseña cifrada con la contraseña almacenada en la base de datos
+                if (cifradaCurrentPassword === user.contrasena) {
+                    // Mostrar el formulario para la nueva contraseña
+                    const { value: newPassword, dismiss } = await Swal.fire({
                         title: 'Ingrese su nueva contraseña',
                         input: 'password',
                         inputLabel: 'Nueva contraseña',
                         inputPlaceholder: 'Ingrese su nueva contraseña',
+                        inputAttributes: {
+                            'aria-label': 'Nueva contraseña'
+                        },
                         showCancelButton: true,
                         confirmButtonText: 'Cambiar',
                         cancelButtonText: 'Cancelar',
-                        inputValidator: (value) => {
-                            if (!value) {
-                                return 'Debe ingresar una nueva contraseña';
+                        preConfirm: (newPassword) => {
+                            // Validar la nueva contraseña
+                            const mensajeValidacion = validarContrasena(newPassword);
+                            if (mensajeValidacion !== 'Contraseña segura.') {
+                                Swal.showValidationMessage(mensajeValidacion);
                             }
+                            return newPassword;
                         }
                     });
-    
+
                     if (newPassword) {
+                        const cifradaNewPassword = encriptarContrasena(newPassword);
+
                         await axios.put(`http://localhost:5000/usuarios/${userId}`, {
                             ...user,
-                            contrasena: newPassword
+                            contrasena: cifradaNewPassword
                         });
 
                         localStorage.setItem('password', newPassword);
                         setUserData({ ...userData, contrasena: newPassword });
-    
+
                         Swal.fire({
                             title: 'Éxito',
                             text: 'Contraseña cambiada con éxito',
@@ -165,7 +214,8 @@ const Profile = () => {
                 });
             }
         }
-    };
+    };    
+    
 
     return (
         <div className="max-w-4xl bg-gray-200 mx-auto my-10 p-8 rounded-lg shadow-lg">

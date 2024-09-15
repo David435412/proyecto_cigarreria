@@ -4,6 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'; // Importa SweetAlert2
 import fuera_1 from "../../assets/images/fuera_2.jpeg";
 
+// Función para encriptar la contraseña (método ASCII)
+const encriptarContrasena = (contrasena) => {
+    return contrasena
+        .split('')
+        .map((char) => String.fromCharCode(char.charCodeAt(0) + 3)) // Desplaza 3 posiciones en ASCII
+        .join('');
+};
+
 const Login = () => {
     const [formData, setFormData] = useState({
         correo: '',
@@ -19,57 +27,68 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            // Encriptar la contraseña ingresada por el usuario antes de hacer la comparación
+            const contrasenaEncriptada = encriptarContrasena(formData.contrasena);
+
             const response = await axios.get('http://localhost:5000/usuarios', {
                 params: {
-                    correo: formData.correo,
-                    contrasena: formData.contrasena
+                    correo: formData.correo
                 }
             });
 
             const user = response.data[0];
             if (user) {
                 if (user.estado === 'activo') {
-                    // Guardar todos los datos del usuario en localStorage
-                    localStorage.setItem('userId', user.id);
-                    localStorage.setItem('role', user.rol);
-                    localStorage.setItem('name', user.nombre);
-                    localStorage.setItem('password', user.contrasena);
-                    localStorage.setItem('username', user.nombreUsuario);
-                    localStorage.setItem('email', user.correo);
-                    localStorage.setItem('phone', user.telefono);
-                    localStorage.setItem('address', user.direccion);
-                    localStorage.setItem('documentType', user.tipoDocumento);
-                    localStorage.setItem('documentNumber', user.numeroDocumento);
-                    localStorage.setItem('status', user.estado);
+                    // Verificar que la contraseña encriptada coincida con la almacenada en la base de datos
+                    if (contrasenaEncriptada === user.contrasena) {
+                        // Guardar todos los datos del usuario en localStorage
+                        localStorage.setItem('userId', user.id);
+                        localStorage.setItem('role', user.rol);
+                        localStorage.setItem('name', user.nombre);
+                        localStorage.setItem('password', user.contrasena);
+                        localStorage.setItem('username', user.nombreUsuario);
+                        localStorage.setItem('email', user.correo);
+                        localStorage.setItem('phone', user.telefono);
+                        localStorage.setItem('address', user.direccion);
+                        localStorage.setItem('documentType', user.tipoDocumento);
+                        localStorage.setItem('documentNumber', user.numeroDocumento);
+                        localStorage.setItem('status', user.estado);
 
-                    // Muestra una notificación de éxito usando SweetAlert2
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Inicio de sesión exitoso',
-                        text: 'Redirigiendo al panel...',
-                        timer: 1500,
-                        timerProgressBar: true,
-                        showConfirmButton: false
-                    }).then(() => {
-                        switch (user.rol) {
-                            case 'administrador':
-                                navigate('/admin-dash');
-                                break;
-                            case 'cliente':
-                                navigate('/cliente-dash');
-                                break;
-                            case 'cajero':
-                                navigate('/cajero-dash');
-                                break;
-                            case 'domiciliario':
-                                navigate('/domiciliario-dash');
-                                break;
-                            default:
-                                navigate('/');
-                                break;
-                        }
-                        window.location.reload();
-                    });
+                        // Muestra una notificación de éxito usando SweetAlert2
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Inicio de sesión exitoso',
+                            text: 'Redirigiendo al panel...',
+                            timer: 1500,
+                            timerProgressBar: true,
+                            showConfirmButton: false
+                        }).then(() => {
+                            switch (user.rol) {
+                                case 'administrador':
+                                    navigate('/admin-dash');
+                                    break;
+                                case 'cliente':
+                                    navigate('/cliente-dash');
+                                    break;
+                                case 'cajero':
+                                    navigate('/cajero-dash');
+                                    break;
+                                case 'domiciliario':
+                                    navigate('/domiciliario-dash');
+                                    break;
+                                default:
+                                    navigate('/');
+                                    break;
+                            }
+                            window.location.reload();
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Credenciales incorrectas',
+                            text: 'Correo electrónico o contraseña incorrectos. Inténtalo de nuevo.',
+                        });
+                    }
                 } else {
                     Swal.fire({
                         icon: 'error',
