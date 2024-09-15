@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaFilter, FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import emailjs from 'emailjs-com';
+
 
 const PedidosAdmin = () => {
   const [pedidos, setPedidos] = useState([]);
@@ -57,11 +59,23 @@ const PedidosAdmin = () => {
       ));
       setPedidoAConfirmar(null);
       Swal.fire('Pedido Marcado', `El pedido de "${pedidoAConfirmar.nombre}" ha sido marcado como entregado.`, 'success');
+  
+      // Enviar correo de confirmación
+      await emailjs.send('service_vlpu06s', 'template_2lgkzzq', {
+        to_correo: pedidoAConfirmar.correo,
+        customer_name: pedidoAConfirmar.nombre,
+        delivery_date: formatearFecha(new Date()),
+        products: pedidoAConfirmar.productos.map(p => `${p.nombre} - ${p.precio} x ${p.cantidad}`).join(" --- "),
+        total: calcularTotal(pedidoAConfirmar.productos)
+      }, 'JS01zy1f3DQ02Ojb0');
+      
+      
     } catch (error) {
       console.error('Error al actualizar el estado del pedido:', error);
       Swal.fire('Error', 'No se pudo marcar el pedido como entregado.', 'error');
     }
   };
+  
 
   const mostrarDetalles = (pedido) => {
     setPedidoSeleccionado(pedidoSeleccionado && pedidoSeleccionado.id === pedido.id ? null : pedido);
@@ -146,6 +160,14 @@ const PedidosAdmin = () => {
                       >
                         {pedidoSeleccionado && pedidoSeleccionado.id === pedido.id ? 'Ocultar Detalles' : 'Detalles'}
                       </button>
+                      {pedido.estadoPedido === 'pendiente' && (
+                          <button
+                            onClick={() => manejarEstadoEntrega(pedido)}
+                            className="bg-gray-500 text-white py-1 px-2 rounded hover:bg-gray-600"
+                          >
+                            <FaCheckCircle className="inline-block mr-1" /> Marcar Entregado
+                          </button>
+                        )}
                     </td>
                   </tr>
                   {pedidoSeleccionado && pedidoSeleccionado.id === pedido.id && (
@@ -153,6 +175,7 @@ const PedidosAdmin = () => {
                       <td colSpan="5" className="p-4 bg-gray-100">
                         <h2 className="text-xl font-semibold mb-2">Detalles del Pedido</h2>
                         <p><strong>Nombre del Cliente:</strong> {pedidoSeleccionado.nombre}</p>
+                        <p><strong>Correo Electrónico:</strong> {pedidoSeleccionado.correo}</p> {/* Agregado aquí */}
                         <p><strong>Fecha:</strong> {formatearFecha(pedidoSeleccionado.fecha)}</p>
                         <p><strong>Dirección de Entrega:</strong> {pedidoSeleccionado.direccion}</p>
                         <p><strong>Estado:</strong> {pedidoSeleccionado.estadoPedido}</p>
@@ -169,14 +192,7 @@ const PedidosAdmin = () => {
                         </ul>
                         <h2 className="text-xl font-semibold mt-2">Subtotal: ${calcularTotal(pedidoSeleccionado.productos)}</h2>
 
-                        {pedido.estadoPedido === 'pendiente' && (
-                          <button
-                            onClick={() => manejarEstadoEntrega(pedido)}
-                            className="bg-gray-500 text-white py-1 px-2 rounded hover:bg-gray-600"
-                          >
-                            <FaCheckCircle className="inline-block mr-1" /> Marcar Entregado
-                          </button>
-                      )}
+                       
                       </td>
                     </tr>
                   )}
@@ -184,9 +200,7 @@ const PedidosAdmin = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="5" className="p-4 text-center text-gray-500">
-                  No hay pedidos {filtroEstado === 'todos' ? '' : filtroEstado}s registrados.
-                </td>
+                <td colSpan="5" className="p-4 text-center">No hay pedidos disponibles.</td>
               </tr>
             )}
           </tbody>

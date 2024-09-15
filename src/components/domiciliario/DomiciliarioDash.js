@@ -5,6 +5,8 @@ import { FaCheckCircle } from 'react-icons/fa';
 import { format } from 'date-fns'; // Importar la función format de date-fns
 import fuera_4 from "../../assets/images/fuera_4.jpeg";
 import css from "../../pages/css.css";
+import emailjs from 'emailjs-com'; // Importar emailjs
+
 
 
 const DomiciliarioDashboard = () => {
@@ -69,6 +71,16 @@ const DomiciliarioDashboard = () => {
                 icon: 'success',
                 confirmButtonText: 'OK'
             });
+
+            // Enviar correo de confirmación
+            await emailjs.send('service_vlpu06s', 'template_2lgkzzq', {
+                to_correo: pedidoAConfirmar.correo,
+                customer_name: pedidoAConfirmar.nombre,
+                delivery_date: formatFecha(new Date()),
+                products: pedidoAConfirmar.productos.map(p => `${p.nombre} - ${p.precio} x ${p.cantidad}`).join(" --- "),
+                total: calcularTotal(pedidoAConfirmar.productos)
+            }, 'JS01zy1f3DQ02Ojb0');
+
         } catch (error) {
             console.error('Error al actualizar el estado del pedido:', error);
             Swal.fire({
@@ -92,9 +104,9 @@ const DomiciliarioDashboard = () => {
     return (
         <>
             <div className="bg-black text-white pb-5">
-                <img 
-                    src={fuera_4} 
-                    alt="Fondo" 
+                <img
+                    src={fuera_4}
+                    alt="Fondo"
                     className="w-full h-96 object-cover filter imagen brightness-50"
                 />
                 <div className="container mx-auto text-center">
@@ -148,6 +160,7 @@ const DomiciliarioDashboard = () => {
                                                     <td colSpan="5" className="bg-gray-100 p-4 border-b">
                                                         <h2 className="text-xl font-semibold mb-2">Detalles del Pedido</h2>
                                                         <p><strong>Nombre del Cliente:</strong> {pedidoSeleccionado.nombre}</p>
+                                                        <p><strong>Correo Electrónico:</strong> {pedidoSeleccionado.correo}</p> {/* Agregado aquí */}
                                                         <p><strong>Fecha:</strong> {formatFecha(pedidoSeleccionado.fecha)}</p>
                                                         <p><strong>Dirección de Entrega:</strong> {pedidoSeleccionado.direccion}</p>
                                                         <p><strong>Estado:</strong> {pedidoSeleccionado.estadoPedido}</p>

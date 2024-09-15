@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { FaCheckCircle } from 'react-icons/fa';
-import { format } from 'date-fns'; // Importar la función format de date-fns
+import { format } from 'date-fns';
+import emailjs from 'emailjs-com'; // Importar emailjs
 
 const PedidosDomiciliario = () => {
   const [pedidos, setPedidos] = useState([]);
@@ -60,6 +61,23 @@ const PedidosDomiciliario = () => {
         icon: 'success',
         confirmButtonText: 'OK'
       });
+
+      // Enviar correo de confirmación
+      await emailjs.send('service_vlpu06s', 'template_2lgkzzq', {
+        to_correo: pedidoAConfirmar.correo,
+        customer_name: pedidoAConfirmar.nombre,
+        delivery_date: formatFecha(new Date()),
+        products: pedidoAConfirmar.productos.map(p => `${p.nombre} - ${p.precio} x ${p.cantidad}`).join(" --- "),
+        total: calcularTotal(pedidoAConfirmar.productos)
+      }, 'JS01zy1f3DQ02Ojb0');
+
+      Swal.fire({
+        title: 'Correo Enviado',
+        text: 'Se ha enviado un correo de confirmación al cliente.',
+        icon: 'success',
+        confirmButtonText: 'OK'
+      });
+
     } catch (error) {
       console.error('Error al actualizar el estado del pedido:', error);
       Swal.fire({
@@ -75,7 +93,6 @@ const PedidosDomiciliario = () => {
     setPedidoSeleccionado(pedidoSeleccionado && pedidoSeleccionado.id === pedido.id ? null : pedido);
   };
 
-  // Función para formatear la fecha
   const formatFecha = (fecha) => {
     return format(new Date(fecha), 'dd/MM/yyyy HH:mm:ss');
   };
@@ -84,7 +101,7 @@ const PedidosDomiciliario = () => {
     <div className="container mx-auto p-4 my-12">
       <h1 className="text-2xl font-bold mb-4">Pedidos Pendientes</h1>
       <table className="min-w-full bg-gray-300 border border-gray-200 rounded-lg">
-        <thead class="bg-green-600 border-b border-gray-200">
+        <thead className="bg-green-600 border-b border-gray-200">
           <tr className="text-white">
             <th className="py-2 px-4 border-b">Nombre del Cliente</th>
             <th className="py-2 px-4 border-b">Fecha</th>
@@ -122,6 +139,7 @@ const PedidosDomiciliario = () => {
                     <td colSpan="5" className="bg-gray-100 p-4 border-b">
                       <h2 className="text-xl font-semibold mb-2">Detalles del Pedido</h2>
                       <p><strong>Nombre del Cliente:</strong> {pedidoSeleccionado.nombre}</p>
+                      <p><strong>Correo Electrónico:</strong> {pedidoSeleccionado.correo}</p> {/* Agregado aquí */}
                       <p><strong>Fecha:</strong> {formatFecha(pedidoSeleccionado.fecha)}</p>
                       <p><strong>Dirección de Entrega:</strong> {pedidoSeleccionado.direccion}</p>
                       <p><strong>Estado:</strong> {pedidoSeleccionado.estadoPedido}</p>

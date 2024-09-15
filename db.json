@@ -44,14 +44,14 @@
       "nombre": "Jhon jairo",
       "contrasena": "Folhqwh456",
       "nombreUsuario": "cliente123",
-      "correo": "cliente@gmail.com",
+      "correo": "davidm435465123@gmail.com",
       "telefono": "3102233141",
       "direccion": "K 12 N 41",
       "estado": "activo",
       "rol": "cliente",
       "tipoDocumento": "cedula",
       "numeroDocumento": "192831235"
-    },    
+    },
     {
       "nombre": "Daniel Murcia",
       "nombreUsuario": "daniel",
@@ -64,7 +64,7 @@
       "estado": "activo",
       "contrasena": "1231",
       "id": "5376"
-    },   
+    },
     {
       "id": "ce64",
       "nombre": "Daniel Augusto",
@@ -120,7 +120,7 @@
       "descripcion": "Tipo de cerveza: Lager. País de Origen: México ABV: 4,5%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440069-1600-1600?v=638043996740100000&width=1600&height=1600&aspect=true",
       "categoria": "Licores",
-      "cantidad": 197,
+      "cantidad": 194,
       "marca": "Babaria",
       "estado": "activo"
     },
@@ -153,7 +153,7 @@
       "descripcion": "Deliciosa barra de chocolate de leche * Rellena de maní, cremoso caramelo y nougat",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/367867-1600-1600?v=637889251308670000&width=1600&height=1600&aspect=true",
       "categoria": "Confitería",
-      "cantidad": 397,
+      "cantidad": 394,
       "marca": "Snickers",
       "estado": "activo"
     },
@@ -164,7 +164,7 @@
       "descripcion": "Atun En Agua Van Camps, delicioso y nutritivo perfecto para acompañar tus comidas y crear maravillosas recetas y deleitar tu paladar y el de los tuyos.",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/652029-1600-1600?v=638578552980330000&width=1600&height=1600&aspect=true",
       "categoria": "Enlatados",
-      "cantidad": "100",
+      "cantidad": 97,
       "marca": "Van Camps",
       "estado": "activo"
     },
@@ -676,6 +676,67 @@
       "fecha": "2024-08-27T03:42:30.464Z",
       "estadoPedido": "entregado",
       "estado": "activo"
+    },
+    {
+      "id": "755b",
+      "usuarioId": "a49b",
+      "direccion": "Cll 132 c N 137",
+      "nombre": "Jhon jairo",
+      "correo": "cliente@gmail.com",
+      "telefono": "3102233141",
+      "productos": [
+        {
+          "id": "3c27",
+          "nombre": "Atún En Agua Van Camps x 160g x 4und",
+          "precio": "35.270",
+          "descripcion": "Atun En Agua Van Camps, delicioso y nutritivo perfecto para acompañar tus comidas y crear maravillosas recetas y deleitar tu paladar y el de los tuyos.",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/652029-1600-1600?v=638578552980330000&width=1600&height=1600&aspect=true",
+          "categoria": "Enlatados",
+          "cantidad": 3,
+          "marca": "Van Camps",
+          "estado": "activo"
+        }
+      ],
+      "fecha": "2024-09-15T21:05:40.574Z",
+      "estadoPedido": "pendiente",
+      "estado": "activo",
+      "metodoPago": "efectivo"
+    },
+    {
+      "id": "0a23",
+      "usuarioId": "a49b",
+      "direccion": "Cll 132 c N 137",
+      "nombre": "Jhon jairo",
+      "correo": "davidm435465123@gmail.com",
+      "telefono": "3102233141",
+      "productos": [
+        {
+          "id": "3445",
+          "nombre": "Cerveza Coronita botella x6und x210ml",
+          "precio": "7.500",
+          "descripcion": "Tipo de cerveza: Lager. País de Origen: México ABV: 4,5%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440069-1600-1600?v=638043996740100000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 3,
+          "marca": "Babaria",
+          "estado": "activo"
+        },
+        {
+          "id": "ce57",
+          "nombre": "Snickers barra de chocolate y maní x52.7g",
+          "precio": "6.090",
+          "descripcion": "Deliciosa barra de chocolate de leche * Rellena de maní, cremoso caramelo y nougat",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/367867-1600-1600?v=637889251308670000&width=1600&height=1600&aspect=true",
+          "categoria": "Confitería",
+          "cantidad": 3,
+          "marca": "Snickers",
+          "estado": "activo"
+        }
+      ],
+      "fecha": "2024-09-15T22:50:23.037Z",
+      "estadoPedido": "pendiente",
+      "estado": "activo",
+      "metodoPago": "efectivo"
     }
   ],
   "ventas": [
