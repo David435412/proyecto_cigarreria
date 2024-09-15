@@ -10,13 +10,13 @@
       "numeroDocumento": "123456789",
       "rol": "administrador",
       "estado": "activo",
-      "contrasena": "admin123",
+      "contrasena": "Dgplq456",
       "id": "001"
     },
     {
       "id": "002",
       "nombre": "Darwin Santiago Lesmes",
-      "contrasena": "dom123",
+      "contrasena": "Grplfl456",
       "nombreUsuario": "darwin123",
       "correo": "dom@gmail.com",
       "telefono": "3104222039",
@@ -29,7 +29,7 @@
     {
       "id": "79da",
       "nombre": "Juan Esteban Murcia Ramirez",
-      "contrasena": "cajero123",
+      "contrasena": "Fdmhur456",
       "nombreUsuario": "Juan123",
       "correo": "cajero@gmail.com",
       "telefono": "3103220039",
@@ -42,7 +42,7 @@
     {
       "id": "a49b",
       "nombre": "Jhon jairo",
-      "contrasena": "cliente123",
+      "contrasena": "Folhqwh456",
       "nombreUsuario": "cliente123",
       "correo": "cliente@gmail.com",
       "telefono": "3102233141",
@@ -51,20 +51,7 @@
       "rol": "cliente",
       "tipoDocumento": "cedula",
       "numeroDocumento": "192831235"
-    },
-    {
-      "id": "9681",
-      "nombre": "erik granados",
-      "contrasena": "erick123",
-      "nombreUsuario": "erick",
-      "correo": "erick@gmail.com",
-      "telefono": "31871632212",
-      "direccion": "Cll 13 c N 17",
-      "estado": "activo",
-      "rol": "cliente",
-      "tipoDocumento": "cedula",
-      "numeroDocumento": "193127465"
-    },
+    },    
     {
       "nombre": "Daniel Murcia",
       "nombreUsuario": "daniel",
@@ -77,32 +64,19 @@
       "estado": "activo",
       "contrasena": "1231",
       "id": "5376"
-    },
+    },   
     {
-      "id": "be19",
-      "nombre": "Duvan Jairo",
-      "contrasena": "duvan123",
-      "nombreUsuario": "duvan21",
-      "correo": "duvan@gmail.com",
-      "telefono": "3102883312",
-      "direccion": "Cll 43 12 n 1",
+      "id": "ce64",
+      "nombre": "Daniel Augusto",
+      "contrasena": "Gdqlho456",
+      "nombreUsuario": "Daniel23",
+      "correo": "daniel4354@gmail.com",
+      "telefono": "3213213312",
+      "direccion": "Cll 13 c N 17",
+      "tipoDocumento": "CC",
+      "numeroDocumento": "1019231231",
       "estado": "activo",
-      "rol": "cliente",
-      "tipoDocumento": "cedula",
-      "numeroDocumento": "191137465"
-    },
-    {
-      "id": "0f85",
-      "nombre": "Sara Sofia",
-      "contrasena": "sara123",
-      "nombreUsuario": "Sara12",
-      "tipoDocumento": "cedula",
-      "numeroDocumento": "1031653107",
-      "correo": "sara@gmail.com",
-      "telefono": "3102113123",
-      "direccion": "Cll 133 c N 31",
-      "estado": "activo",
-      "rol": "cajero"
+      "rol": "cliente"
     }
   ],
   "productos": [
@@ -169,7 +143,7 @@
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/194548-1600-1600?v=637814055458900000&width=1600&height=1600&aspect=true",
       "categoria": "Confitería",
       "cantidad": "120",
-      "marca": "Gol",
+      "marca": "GOL",
       "estado": "activo"
     },
     {
@@ -559,7 +533,7 @@
     },
     {
       "id": "c022",
-      "nombre": "Gol",
+      "nombre": "GOL",
       "telefono": "218772182",
       "correo": "g@gmail.com",
       "estado": "activo"
