@@ -31,7 +31,7 @@
       "nombre": "Juan Esteban Murcia Ramirez",
       "contrasena": "Fdmhur456",
       "nombreUsuario": "Juan123",
-      "correo": "cajero@gmail.com",
+      "correo": "davidm435465123@gmail.com",
       "telefono": "3103220039",
       "direccion": "cll 132 c n 137 - 15",
       "rol": "cajero",
@@ -77,6 +77,32 @@
       "numeroDocumento": "1019231231",
       "estado": "activo",
       "rol": "cliente"
+    },
+    {
+      "id": "ed93",
+      "nombre": "James Rodriguez",
+      "contrasena": "Mdphv7687",
+      "nombreUsuario": "James10",
+      "tipoDocumento": "Cédula",
+      "numeroDocumento": "1303212313",
+      "correo": "patodonaldcajon2@gmail.com",
+      "telefono": "31098833123",
+      "direccion": "Cll 13 c N 17",
+      "rol": "domiciliario",
+      "estado": "activo"
+    },
+    {
+      "id": "aer1",
+      "nombre": "Luis Rodriguez",
+      "contrasena": "Mdphv7687",
+      "nombreUsuario": "Luis7",
+      "tipoDocumento": "Cédula",
+      "numeroDocumento": "1303212313",
+      "correo": "patodonaldcajon2@gmail.com",
+      "telefono": "31098833123",
+      "direccion": "Cll 13 c N 17",
+      "rol": "cajero",
+      "estado": "activo"
     }
   ],
   "productos": [
@@ -87,7 +113,7 @@
       "descripcion": "Tipo de cerveza: Lager ABV: 4,7% País de origen: Colombia.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/491967-1600-1600?v=638216692937930000&width=1600&height=1600&aspect=true",
       "categoria": "Licores",
-      "cantidad": 105,
+      "cantidad": 103,
       "marca": "Babaria",
       "estado": "activo"
     },
@@ -142,7 +168,7 @@
       "descripcion": "Combinación del más delicioso chocolate, galleta, arroz crujiente, caramelo, maní y almendras para llenar de sensaciones tu boca.",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/194548-1600-1600?v=637814055458900000&width=1600&height=1600&aspect=true",
       "categoria": "Confitería",
-      "cantidad": "120",
+      "cantidad": 117,
       "marca": "GOL",
       "estado": "activo"
     },
@@ -153,7 +179,7 @@
       "descripcion": "Deliciosa barra de chocolate de leche * Rellena de maní, cremoso caramelo y nougat",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/367867-1600-1600?v=637889251308670000&width=1600&height=1600&aspect=true",
       "categoria": "Confitería",
-      "cantidad": 394,
+      "cantidad": 388,
       "marca": "Snickers",
       "estado": "activo"
     },
@@ -700,7 +726,8 @@
       "fecha": "2024-09-15T21:05:40.574Z",
       "estadoPedido": "pendiente",
       "estado": "activo",
-      "metodoPago": "efectivo"
+      "metodoPago": "efectivo",
+      "asignado": "ed93"
     },
     {
       "id": "0a23",
@@ -734,6 +761,43 @@
         }
       ],
       "fecha": "2024-09-15T22:50:23.037Z",
+      "estadoPedido": "pendiente",
+      "estado": "activo",
+      "metodoPago": "efectivo",
+      "asignado": "002"
+    },
+    {
+      "id": "8104",
+      "usuarioId": "ce64",
+      "direccion": "cll 132 c n 137 - 15",
+      "nombre": "Daniel Augusto",
+      "correo": "daniel4354@gmail.com",
+      "telefono": "3213213312",
+      "productos": [
+        {
+          "id": "ce57",
+          "nombre": "Snickers barra de chocolate y maní x52.7g",
+          "precio": "6.090",
+          "descripcion": "Deliciosa barra de chocolate de leche * Rellena de maní, cremoso caramelo y nougat",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/367867-1600-1600?v=637889251308670000&width=1600&height=1600&aspect=true",
+          "categoria": "Confitería",
+          "cantidad": 4,
+          "marca": "Snickers",
+          "estado": "activo"
+        },
+        {
+          "id": "a783",
+          "nombre": "Cerveza Club Colombia Dorada lata x6und x330ml",
+          "precio": "18.700",
+          "descripcion": "Tipo de cerveza: Lager ABV: 4,7% País de origen: Colombia.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/491967-1600-1600?v=638216692937930000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 2,
+          "marca": "Babaria",
+          "estado": "activo"
+        }
+      ],
+      "fecha": "2024-09-16T01:52:19.950Z",
       "estadoPedido": "pendiente",
       "estado": "activo",
       "metodoPago": "efectivo"

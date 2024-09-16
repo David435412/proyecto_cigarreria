@@ -217,6 +217,21 @@ const RegistroEmpleado = () => {
                             />
                         </div>
                         <div>
+                            <label htmlFor="rol" className="block mb-2 text-sm font-medium text-gray-900">
+                                Rol
+                            </label>
+                            <select
+                                name="rol"
+                                id="rol"
+                                value={formData.rol}
+                                onChange={handleChange}
+                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                            >
+                                <option value="cajero">Cajero</option>
+                                <option value="domiciliario">Domiciliario</option>
+                            </select>
+                        </div>
+                        <div>
                             <label htmlFor="contrasena" className="block mb-2 text-sm font-medium text-gray-900">
                                 Contraseña
                             </label>

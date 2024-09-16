@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const PedidosAdmin = () => {
   const [pedidos, setPedidos] = useState([]);
+  const [domiciliarios, setDomiciliarios] = useState([]);
   const [pedidoSeleccionado, setPedidoSeleccionado] = useState(null);
 
   useEffect(() => {
@@ -10,7 +12,6 @@ const PedidosAdmin = () => {
     const fetchPedidos = async () => {
       try {
         const response = await axios.get('http://localhost:5000/pedidos'); // Ajusta la URL según tu configuración
-        // Filtrar pedidos con estado 'pendiente'
         const pedidosPendientes = response.data.filter(pedido => pedido.estadoPedido === 'pendiente');
         setPedidos(pedidosPendientes);
       } catch (error) {
@@ -18,7 +19,17 @@ const PedidosAdmin = () => {
       }
     };
 
+    const fetchDomiciliarios = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/usuarios?rol=domiciliario'); // Ajusta la URL según tu configuración
+        setDomiciliarios(response.data);
+      } catch (error) {
+        console.error('Error al obtener los domiciliarios:', error);
+      }
+    };
+
     fetchPedidos();
+    fetchDomiciliarios();
   }, []);
 
   const calcularTotal = (productos) => {
@@ -29,19 +40,46 @@ const PedidosAdmin = () => {
     setPedidoSeleccionado(pedidoSeleccionado && pedidoSeleccionado.id === pedido.id ? null : pedido);
   };
 
-  // Función para formatear la fecha
+  const asignarPedido = async (pedido) => {
+    const { value: domiciliarioId } = await Swal.fire({
+      title: 'Selecciona un domiciliario',
+      input: 'select',
+      inputOptions: domiciliarios.reduce((acc, domiciliario) => {
+        acc[domiciliario.id] = domiciliario.nombre;
+        return acc;
+      }, {}),
+      inputPlaceholder: 'Selecciona un domiciliario',
+      showCancelButton: true,
+    });
+
+    if (domiciliarioId) {
+      try {
+        await axios.put(`http://localhost:5000/pedidos/${pedido.id}`, {
+          ...pedido,
+          asignado: domiciliarioId,
+        });
+        Swal.fire('Asignado', 'El pedido ha sido asignado correctamente', 'success');
+        // Recargar la página después de asignar
+        window.location.reload();
+      } catch (error) {
+        console.error('Error al asignar domiciliario:', error);
+        Swal.fire('Error', 'Hubo un error al asignar el domiciliario', 'error');
+      }
+    }
+  };
+
   const formatearFecha = (fecha, mostrarHora = false) => {
     const fechaObj = new Date(fecha);
     return mostrarHora 
-      ? fechaObj.toLocaleString() // Fecha y hora
-      : fechaObj.toLocaleDateString(); // Solo fecha
+      ? fechaObj.toLocaleString() 
+      : fechaObj.toLocaleDateString();
   };
 
   return (
     <div className="container mx-auto p-4 my-16">
       <h1 className="text-2xl font-bold mt-2 mb-4">Pedidos Pendientes</h1>
       <table className="min-w-full bg-gray-300 border border-gray-200 rounded-lg">
-        <thead class="bg-green-600 border-b border-gray-200">
+        <thead className="bg-green-600 border-b border-gray-200">
           <tr className="text-white">
             <th className="py-2 px-4 border-b border-gray-300 text-left">Nombre del Cliente</th>
             <th className="py-2 px-4 border-b border-gray-300 text-left">Fecha</th>
@@ -65,6 +103,12 @@ const PedidosAdmin = () => {
                       className={`bg-blue-500 text-white py-1 px-4 rounded hover:bg-blue-600 ${pedidoSeleccionado && pedidoSeleccionado.id === pedido.id ? 'bg-blue-600' : ''}`}
                     >
                       {pedidoSeleccionado && pedidoSeleccionado.id === pedido.id ? 'Ocultar Detalles' : 'Detalles'}
+                    </button>
+                    <button
+                      onClick={() => asignarPedido(pedido)}
+                      className="ml-2 bg-green-500 text-white py-1 px-4 rounded hover:bg-green-600"
+                    >
+                      {pedido.asignado ? 'Editar' : 'Asignar'}
                     </button>
                   </td>
                 </tr>

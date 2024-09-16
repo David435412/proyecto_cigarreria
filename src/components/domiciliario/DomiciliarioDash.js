@@ -7,8 +7,6 @@ import fuera_4 from "../../assets/images/fuera_4.jpeg";
 import css from "../../pages/css.css";
 import emailjs from 'emailjs-com'; // Importar emailjs
 
-
-
 const DomiciliarioDashboard = () => {
     const [userName, setUserName] = useState('');
     const [pedidos, setPedidos] = useState([]);
@@ -17,6 +15,8 @@ const DomiciliarioDashboard = () => {
 
     useEffect(() => {
         const storedName = localStorage.getItem('name');
+        const userId = localStorage.getItem('userId'); // Obtener userId del localStorage
+
         if (storedName) {
             setUserName(storedName);
         }
@@ -24,7 +24,7 @@ const DomiciliarioDashboard = () => {
         const fetchPedidos = async () => {
             try {
                 const response = await axios.get('http://localhost:5000/pedidos');
-                const pedidosPendientes = response.data.filter(pedido => pedido.estadoPedido === 'pendiente');
+                const pedidosPendientes = response.data.filter(pedido => pedido.estadoPedido === 'pendiente' && pedido.asignado === userId); // Filtrar por userId
                 setPedidos(pedidosPendientes);
             } catch (error) {
                 console.error('Error al obtener los pedidos:', error);
@@ -160,7 +160,7 @@ const DomiciliarioDashboard = () => {
                                                     <td colSpan="5" className="bg-gray-100 p-4 border-b">
                                                         <h2 className="text-xl font-semibold mb-2">Detalles del Pedido</h2>
                                                         <p><strong>Nombre del Cliente:</strong> {pedidoSeleccionado.nombre}</p>
-                                                        <p><strong>Correo Electrónico:</strong> {pedidoSeleccionado.correo}</p> {/* Agregado aquí */}
+                                                        <p><strong>Correo Electrónico:</strong> {pedidoSeleccionado.correo}</p>
                                                         <p><strong>Fecha:</strong> {formatFecha(pedidoSeleccionado.fecha)}</p>
                                                         <p><strong>Dirección de Entrega:</strong> {pedidoSeleccionado.direccion}</p>
                                                         <p><strong>Estado:</strong> {pedidoSeleccionado.estadoPedido}</p>
@@ -175,7 +175,7 @@ const DomiciliarioDashboard = () => {
                                                                 </li>
                                                             ))}
                                                         </ul>
-                                                        <h2 className="text-xl font-semibold mt-2">Subtotal: ${calcularTotal(pedidoSeleccionado.productos)}</h2>
+                                                        <p><strong>Total:</strong> ${calcularTotal(pedidoSeleccionado.productos)}</p>
                                                     </td>
                                                 </tr>
                                             )}
@@ -183,7 +183,7 @@ const DomiciliarioDashboard = () => {
                                     ))
                                 ) : (
                                     <tr>
-                                        <td colSpan="5" className="py-2 px-4 text-center">No hay pedidos pendientes</td>
+                                        <td colSpan="5" className="py-4 text-center text-gray-600">No hay pedidos pendientes.</td>
                                     </tr>
                                 )}
                             </tbody>
