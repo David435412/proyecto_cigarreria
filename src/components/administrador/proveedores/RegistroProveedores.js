@@ -102,8 +102,7 @@ const RegistroProveedor = () => {
                                 </div>
                                 <button
                                     type="submit"
-                                    className="col-span-2 px-8 py-4 bg-gradient-to-r from-green-400 to-green-700 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
-                                >
+                                    className="bg-green-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-green-700"                                >
                                     Registrar Proveedor
                                 </button>
                             </form>

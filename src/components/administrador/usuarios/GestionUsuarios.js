@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import axios from 'axios';
 import { useTable, useFilters, usePagination } from 'react-table';
 import { useNavigate } from 'react-router-dom';
-import { FaPlus, FaEye, FaEyeSlash } from 'react-icons/fa';
+import { FaPlus, FaEye, FaEyeSlash, FaArchive, FaUndo} from 'react-icons/fa';
 import Swal from 'sweetalert2';
 
 const GestionUsuarios = () => {
@@ -164,8 +164,9 @@ const GestionUsuarios = () => {
                     {row.original.estado === 'activo' && !showInactivos ? (
                         <button
                             onClick={() => handleDelete(row.original)}
-                            className="bg-red-500 text-white py-1 px-2 rounded hover:bg-red-600"
-                        >
+                            className="bg-red-600 text-white py-1 px-2 rounded hover:bg-red-700"
+                            >
+                                <FaArchive className="inline-block mr-1" /> 
                             Inactivar
                         </button>
                     ) : (
@@ -173,6 +174,7 @@ const GestionUsuarios = () => {
                             onClick={() => handleReactivar(row.original)} // Debes crear esta función para reactivar usuarios
                             className="bg-green-500 text-white py-1 px-2 rounded hover:bg-green-600"
                         >
+                            <FaUndo className="inline-block mr-1" /> 
                             Reactivar
                         </button>
                     )}

@@ -226,14 +226,12 @@ const RegistroProducto = () => {
                                 <button
                                     type="button"
                                     onClick={() => navigate('/gestion-productos')}
-                                    className="px-8 py-4 bg-gradient-to-r from-red-400 to-red-600 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
-                                >
+                                    className="bg-red-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-red-700"                                >
                                     Cancelar
                                 </button>
                                 <button
                                     type="submit"
-                                    className="px-8 py-4 bg-gradient-to-r from-green-400 to-green-700 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
-                                >
+                                    className="bg-green-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-green-700"                                >
                                     Registrar Producto
                                 </button>
                             </div>

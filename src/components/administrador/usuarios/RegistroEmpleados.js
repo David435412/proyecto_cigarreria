@@ -288,8 +288,7 @@ const RegistroEmpleado = () => {
                         </div>
                         <button
                             type="submit"
-                            className=" bg-green-700 w-full px-5 py-2.5 text-sm font-medium text-white bg-primary-600 rounded-lg focus:ring-4 focus:outline-none focus:ring-primary-300 hover:bg-primary-700"
-                        >
+                            className="bg-green-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-green-700 w-full"                        >
                             Registrar
                         </button>
                     </form>
