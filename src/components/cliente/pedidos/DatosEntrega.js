@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import emailjs from 'emailjs-com';
 
 const DatosEntrega = () => {
     const [carrito, setCarrito] = useState([]);
@@ -44,6 +45,32 @@ const DatosEntrega = () => {
         setDireccion(e.target.value);
     };
 
+    const enviarCorreoCajeros = async (pedido) => {
+        try {
+            // Obtener los correos y nombres de los cajeros
+            const { data: cajeros } = await axios.get('http://localhost:5000/usuarios?rol=cajero');
+            
+            // Enviar el correo a cada cajero
+            await Promise.all(cajeros.map(cajero => {
+                return emailjs.send('service_ngt31qb', 'template_1wsxgoh', {
+                    to_name: cajero.nombre, 
+                    to_correo: cajero.correo, 
+                    customer_name: pedido.nombre,
+                    customer_email: pedido.correo,
+                    customer_phone: pedido.telefono,
+                    delivery_address: pedido.direccion,
+                    order_date: new Date().toLocaleDateString(),
+                    products: pedido.productos.map(p => `${p.nombre} - ${p.precio} X ${p.cantidad}`).join(" --- "),
+                    total_amount: calcularTotal(pedido.productos),
+                }, 'JS01zy1f3DQ02Ojb0');
+            }));
+        } catch (error) {
+            console.error('Error al enviar correos:', error);
+        }
+    };
+    
+    
+
     const handleConfirmar = async () => {
         if (!direccion.trim()) {
             setError('Por favor, completa todos los campos.');
@@ -77,6 +104,9 @@ const DatosEntrega = () => {
                     await axios.put(`http://localhost:5000/productos/${producto.id}`, productoActualizado);
                 }));
 
+                // Enviar correos a los cajeros
+                await enviarCorreoCajeros(pedido);
+
                 localStorage.removeItem(`carrito_${usuarioId}`);
                 localStorage.removeItem('datosCarrito');
                 localStorage.removeItem('direccionEntrega');
@@ -89,8 +119,8 @@ const DatosEntrega = () => {
         }
     };
 
-    const calcularTotal = () => {
-        return carrito.reduce((total, producto) => total + producto.precio * producto.cantidad, 0).toFixed(3);
+    const calcularTotal = (productos) => {
+        return productos.reduce((total, producto) => total + producto.precio * producto.cantidad, 0).toFixed(3);
     };
 
     return (
@@ -129,7 +159,7 @@ const DatosEntrega = () => {
                         </tbody>
                     </table>
                     <div className="mb-6">
-                        <h2 className="text-xl font-semibold">Subtotal: ${calcularTotal()}</h2>
+                        <h2 className="text-xl font-semibold">Subtotal: ${calcularTotal(carrito)}</h2>
                     </div>
                     {/* Mostrar datos de usuario como texto en lugar de inputs */}
                     <div className="mb-6">
