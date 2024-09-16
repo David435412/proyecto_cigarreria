@@ -234,17 +234,19 @@ const GestionVentas = () => {
             </div>
 
             <div className="overflow-x-auto">
-                <table {...getTableProps()} className="w-full border-collapse border border-gray-300 mx-auto">
+            <table {...getTableProps()} className="w-full border-collapse border border-gray-300 mx-auto">
                     <thead>
                         {headerGroups.map(headerGroup => (
-                            <tr {...headerGroup.getHeaderGroupProps()} className="bg-green-600">
-                                {headerGroup.headers.map(column => (
-                                    <th {...column.getHeaderProps()} className="border p-2 text-white text-center">
-                                        {column.render('Header')}
-                                        {column.canFilter ? column.render('Filter') : null}
-                                    </th>
-                                ))}
-                            </tr>
+                        <tr {...headerGroup.getHeaderGroupProps()} className="bg-green-600">
+                            {headerGroup.headers.map(column => (
+                            <th {...column.getHeaderProps()} className="border p-2 text-white text-center">
+                                <div className="flex flex-col items-center">
+                                {column.render('Header')}
+                                {column.canFilter ? column.render('Filter') : null}
+                                </div>
+                            </th>
+                            ))}
+                        </tr>
                         ))}
                     </thead>
                     <tbody {...getTableBodyProps()}>
@@ -287,8 +289,11 @@ const GestionVentas = () => {
                             );
                         })}
                     </tbody>
-                </table>
-                <div className="mt-4 flex justify-between items-center">
+            </table>
+
+            </div>
+
+            <div className="mt-4 flex justify-between items-center">
                 <button
                     onClick={() => gotoPage(0)}
                     disabled={!canPreviousPage}
@@ -321,7 +326,6 @@ const GestionVentas = () => {
                     {'>>'}
                 </button>
             </div>
-            </div>
         </div>
     );
 };
@@ -332,9 +336,9 @@ const ColumnFilter = ({ column: { filterValue, preFilteredRows, setFilter } }) =
     return (
         <input
             value={filterValue || ''}
-            onChange={e => setFilter(e.target.value || undefined)}
-            placeholder={`Buscar ${count} registros...`}
-            className="border border-gray-300 p-1 rounded"
+            onChange={(e) => setFilter(e.target.value || undefined)}
+            placeholder={`Buscar (${count})`}
+            className="border border-gray-300 p-1 rounded text-black"
         />
     );
 };
