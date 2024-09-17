@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { FaPlus, FaEdit, FaTrash, FaArchive, FaBox } from 'react-icons/fa';
+import { FaPlus, FaEdit, FaTrash, FaArchive, FaBox, FaBeer, FaCandyCane, FaSoap, FaPills, FaIceCream, FaWineBottle, FaCheese, FaBreadSlice, FaShoppingCart } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 
+
 const categorias = [
-    'Licores',
-    'Confitería',
-    'Enlatados',
-    'Aseo',
-    'Medicamentos',
-    'Helados',
-    'Bebidas',
-    'Lacteos',
-    'Panadería'
+    { nombre: 'Licores', icono: <FaWineBottle /> },
+    { nombre: 'Confitería', icono: <FaCandyCane /> },
+    { nombre: 'Enlatados', icono: <FaBox /> },
+    { nombre: 'Aseo', icono: <FaSoap /> },
+    { nombre: 'Drogas', icono: <FaPills /> },
+    { nombre: 'Helados', icono: <FaIceCream /> },
+    { nombre: 'Bebidas', icono: <FaBeer /> },
+    { nombre: 'Lacteos', icono: <FaCheese /> },
+    { nombre: 'Despensa', icono: <FaBreadSlice /> }
 ];
 
 const GestionProductos = () => {
@@ -149,26 +150,28 @@ const actualizarStock = async (id, nuevaCantidad) => {
                 Categorías
             </h2>
 
-            {/* Filtros */}
-            <div className="mb-6 flex flex-wrap justify-center gap-4">
-                {/* Círculo para mostrar todos los productos */}
-                <div
-                    onClick={handleVerTodosClick}
-                    className={`bg-gray-300 cursor-pointer p-3 border rounded-full shadow-xl text-sm font-medium text-center transition-transform duration-300 ease-in-out w-24 h-24 flex items-center justify-center transform ${categoriaSeleccionada === '' ? 'bg-green-500 text-white border-green-500' : 'bg-gray-100 text-black border-gray-300'} hover:bg-green-500 hover:text-white hover:scale-110 hover:-translate-y-2 hover:shadow-2xl`}
-                >
-                    Todos
-                </div>
-
-                {categorias.map(categoria => (
+            {/* Filtros de categorías */}
+            <div className="mb-8 flex justify-center">
+                <div className="flex flex-wrap gap-4">
                     <div
-                        key={categoria}
-                        onClick={() => handleCategoriaClick(categoria)}
-                        className={`bg-gray-300 cursor-pointer p-3 border rounded-full shadow-xl text-sm font-medium text-center transition-transform duration-300 ease-in-out w-24 h-24 flex items-center justify-center transform ${categoriaSeleccionada === categoria ? 'bg-green-500 text-white border-green-500' : 'bg-gray-100 text-black border-gray-300'} hover:bg-green-500 hover:text-white hover:scale-110 hover:-translate-y-2 hover:shadow-2xl`}
+                        onClick={handleVerTodosClick}
+                        className={`bg-gray-300 cursor-pointer p-3 border rounded-full shadow-xl text-sm font-medium text-center transition-transform duration-300 ease-in-out w-20 h-20 flex flex-col items-center justify-center transform ${categoriaSeleccionada === 'Todos' ? 'bg-green-500 text-white border-green-500' : 'bg-gray-100 text-black border-gray-300'} hover:bg-green-600 hover:text-white hover:scale-110 hover:-translate-y-2 hover:shadow-2xl`}
                     >
-                        {categoria}
+                        <p className="text-center">Todos</p>
                     </div>
-                ))}
+                    {categorias.map(categoria => (
+                        <div
+                            key={categoria.nombre}
+                            onClick={() => handleCategoriaClick(categoria.nombre)}
+                            className={`bg-gray-300 cursor-pointer p-3 border rounded-full shadow-xl text-sm font-medium text-center transition-transform duration-300 ease-in-out w-20 h-20 flex flex-col items-center justify-center transform ${categoriaSeleccionada === categoria.nombre ? 'bg-green-500 text-white border-green-500' : 'bg-gray-100 text-black border-gray-300'} hover:bg-green-600 hover:text-white hover:scale-110 hover:-translate-y-2 hover:shadow-2xl`}
+                        >
+                            {categoria.icono}
+                            <p className="text-center">{categoria.nombre}</p>
+                        </div>
+                    ))}
+                </div>
             </div>
+
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {productos.length === 0 ? (
