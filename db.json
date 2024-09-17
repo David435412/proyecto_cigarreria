@@ -105,17 +105,17 @@
       "estado": "activo"
     },
     {
-      "id": "b6a5",
       "nombre": "darwin santiago lesmes martin",
-      "contrasena": "Gduzlq3<47",
       "nombreUsuario": "lesmes",
       "correo": "darwinlesmes0914@gmail.com",
       "telefono": "3133138027",
       "direccion": "call 137 # 128 B - 01",
       "tipoDocumento": "CC",
       "numeroDocumento": "1031808326",
+      "rol": "cliente",
       "estado": "activo",
-      "rol": "cliente"
+      "contrasena": "Gduzlq3<47",
+      "id": "b6a5"
     }
   ],
   "productos": [
@@ -1255,6 +1255,13 @@
       "fechaVenta": "17/9/2024",
       "metodoPago": "Efectivo",
       "estado": "activo"
+    }
+  ],
+  "direcciones": [
+    {
+      "direccion": "Cll 132 c N 137 -152",
+      "usuarioId": "b6a5",
+      "id": "ed0c"
     }
   ]
 }
