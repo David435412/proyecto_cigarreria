@@ -124,7 +124,7 @@ const Inicio = () => {
                                         className="w-full bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
                                         onClick={() => handleDetallesProductoSinLoggear(producto.id)}
                                     >
-                                        Agregar al carrito
+                                        Ver más
                                     </button>
                                 </div>
                             </div>
