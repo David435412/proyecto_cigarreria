@@ -38,6 +38,32 @@
       "direccion": "call 137# 100A-02",
       "rol": "domiciliario",
       "estado": "activo"
+    },
+    {
+      "id": "fcf0",
+      "nombre": "james  rodriguez",
+      "contrasena": "Folhqwh456",
+      "nombreUsuario": "james",
+      "correo": "davidm435465123@gmail.com",
+      "telefono": "2108108213",
+      "direccion": "call 232# 100A-02",
+      "tipoDocumento": "CC",
+      "numeroDocumento": "10208121312",
+      "estado": "activo",
+      "rol": "cliente"
+    },
+    {
+      "id": "3428",
+      "nombre": "Santiago",
+      "contrasena": "Grplfloldulr4567",
+      "nombreUsuario": "Santiago Lesmes",
+      "tipoDocumento": "Cédula",
+      "numeroDocumento": "1081213121",
+      "correo": "patodonaldcajon3@gmail.com",
+      "telefono": "1209131213",
+      "direccion": "call 75# 112",
+      "rol": "domiciliario",
+      "estado": "activo"
     }
   ],
   "productos": [
@@ -48,7 +74,7 @@
       "descripcion": "Tipo de cerveza: Lager ABV: 4,7% País de origen: Colombia.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/491967-1600-1600?v=638216692937930000&width=1600&height=1600&aspect=true",
       "categoria": "Licores",
-      "cantidad": 16,
+      "cantidad": "20",
       "marca": "Babaria",
       "estado": "activo"
     },
@@ -59,7 +85,7 @@
       "descripcion": "Tipo de cerveza: Lager. País de origen: Colombia. ABV: 4,0%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/439991-1600-1600?v=638043996501300000&width=1600&height=1600&aspect=true",
       "categoria": "Licores",
-      "cantidad": 0,
+      "cantidad": "50",
       "marca": "Babaria",
       "estado": "activo"
     },
@@ -81,7 +107,7 @@
       "descripcion": "Tipo de cerveza: Lager. País de Origen: México ABV: 4,5%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440069-1600-1600?v=638043996740100000&width=1600&height=1600&aspect=true",
       "categoria": "Licores",
-      "cantidad": 181,
+      "cantidad": 177,
       "marca": "Babaria",
       "estado": "activo"
     },
@@ -92,7 +118,7 @@
       "descripcion": "Regálate a ti mismo o a tus seres queridos un momento de felicidad con los productos que Jet trae para ti.",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/653021-1600-1600?v=638582162050400000&width=1600&height=1600&aspect=true",
       "categoria": "Confitería",
-      "cantidad": 19,
+      "cantidad": 17,
       "marca": "Jet",
       "estado": "activo"
     },
@@ -114,7 +140,7 @@
       "descripcion": "Deliciosa barra de chocolate de leche * Rellena de maní, cremoso caramelo y nougat",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/367867-1600-1600?v=637889251308670000&width=1600&height=1600&aspect=true",
       "categoria": "Confitería",
-      "cantidad": 377,
+      "cantidad": 375,
       "marca": "Snickers",
       "estado": "activo"
     },
@@ -591,7 +617,206 @@
       "estado": "activo"
     }
   ],
-  "pedidos": [],
+  "pedidos": [
+    {
+      "id": "b229",
+      "usuarioId": "4115",
+      "direccion": "call 122# 100A-02",
+      "nombre": "jeisson",
+      "correo": "j@gmail.com",
+      "telefono": "31081281312",
+      "productos": [
+        {
+          "id": "105c",
+          "nombre": "Cerveza Poker lata x6und x330ml cu",
+          "precio": "18.000",
+          "descripcion": "Tipo de cerveza: Lager. País de origen: Colombia. ABV: 4,0%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440018-1600-1600?v=638043996576070000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 1,
+          "marca": "Babaria",
+          "estado": "activo"
+        }
+      ],
+      "fecha": "2024-09-17T14:37:05.589Z",
+      "estadoPedido": "entregado",
+      "estado": "activo",
+      "metodoPago": "efectivo",
+      "asignado": "dca3"
+    },
+    {
+      "id": "5dc5",
+      "usuarioId": "4115",
+      "direccion": "call 137# 128B-01",
+      "nombre": "jeisson",
+      "correo": "j@gmail.com",
+      "telefono": "3133138027",
+      "productos": [
+        {
+          "id": "3445",
+          "nombre": "Cerveza Coronita botella x6und x210ml",
+          "precio": "7.500",
+          "descripcion": "Tipo de cerveza: Lager. País de Origen: México ABV: 4,5%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440069-1600-1600?v=638043996740100000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 1,
+          "marca": "Babaria",
+          "estado": "activo"
+        },
+        {
+          "id": "12ef",
+          "nombre": "Chocolatina Jet Leche x12und x132g",
+          "precio": "12.750",
+          "descripcion": "Regálate a ti mismo o a tus seres queridos un momento de felicidad con los productos que Jet trae para ti.",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/653021-1600-1600?v=638582162050400000&width=1600&height=1600&aspect=true",
+          "categoria": "Confitería",
+          "cantidad": 1,
+          "marca": "Jet",
+          "estado": "activo"
+        }
+      ],
+      "fecha": "2024-09-17T14:38:50.105Z",
+      "estadoPedido": "pendiente",
+      "estado": "activo",
+      "metodoPago": "efectivo"
+    },
+    {
+      "id": "2212",
+      "usuarioId": "4115",
+      "direccion": "call 137# 128B-01",
+      "nombre": "jeisson",
+      "correo": "j@gmail.com",
+      "telefono": "3133138027",
+      "productos": [
+        {
+          "id": "3445",
+          "nombre": "Cerveza Coronita botella x6und x210ml",
+          "precio": "7.500",
+          "descripcion": "Tipo de cerveza: Lager. País de Origen: México ABV: 4,5%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440069-1600-1600?v=638043996740100000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 1,
+          "marca": "Babaria",
+          "estado": "activo"
+        },
+        {
+          "id": "12ef",
+          "nombre": "Chocolatina Jet Leche x12und x132g",
+          "precio": "12.750",
+          "descripcion": "Regálate a ti mismo o a tus seres queridos un momento de felicidad con los productos que Jet trae para ti.",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/653021-1600-1600?v=638582162050400000&width=1600&height=1600&aspect=true",
+          "categoria": "Confitería",
+          "cantidad": 1,
+          "marca": "Jet",
+          "estado": "activo"
+        }
+      ],
+      "fecha": "2024-09-17T14:38:53.177Z",
+      "estadoPedido": "pendiente",
+      "estado": "activo",
+      "metodoPago": "efectivo"
+    },
+    {
+      "id": "569e",
+      "usuarioId": "fcf0",
+      "direccion": "calle 183 #281",
+      "nombre": "james  rodriguez",
+      "correo": "davidm435465123@gmail.com",
+      "telefono": "2108108213",
+      "productos": [
+        {
+          "id": "ce57",
+          "nombre": "Snickers barra de chocolate y maní x52.7g",
+          "precio": "6.090",
+          "descripcion": "Deliciosa barra de chocolate de leche * Rellena de maní, cremoso caramelo y nougat",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/367867-1600-1600?v=637889251308670000&width=1600&height=1600&aspect=true",
+          "categoria": "Confitería",
+          "cantidad": 1,
+          "marca": "Snickers",
+          "estado": "activo"
+        }
+      ],
+      "fecha": "2024-09-17T14:45:13.810Z",
+      "estadoPedido": "pendiente",
+      "estado": "activo",
+      "metodoPago": "efectivo"
+    },
+    {
+      "id": "2176",
+      "usuarioId": "fcf0",
+      "direccion": "calle 183 #281",
+      "nombre": "james  rodriguez",
+      "correo": "davidm435465123@gmail.com",
+      "telefono": "2108108213",
+      "productos": [
+        {
+          "id": "ce57",
+          "nombre": "Snickers barra de chocolate y maní x52.7g",
+          "precio": "6.090",
+          "descripcion": "Deliciosa barra de chocolate de leche * Rellena de maní, cremoso caramelo y nougat",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/367867-1600-1600?v=637889251308670000&width=1600&height=1600&aspect=true",
+          "categoria": "Confitería",
+          "cantidad": 1,
+          "marca": "Snickers",
+          "estado": "activo"
+        }
+      ],
+      "fecha": "2024-09-17T14:45:16.180Z",
+      "estadoPedido": "pendiente",
+      "estado": "activo",
+      "metodoPago": "efectivo"
+    },
+    {
+      "id": "636b",
+      "usuarioId": "fcf0",
+      "direccion": "calle 183 #281",
+      "nombre": "james  rodriguez",
+      "correo": "davidm435465123@gmail.com",
+      "telefono": "2108108213",
+      "productos": [
+        {
+          "id": "3445",
+          "nombre": "Cerveza Coronita botella x6und x210ml",
+          "precio": "7.500",
+          "descripcion": "Tipo de cerveza: Lager. País de Origen: México ABV: 4,5%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440069-1600-1600?v=638043996740100000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 1,
+          "marca": "Babaria",
+          "estado": "activo"
+        }
+      ],
+      "fecha": "2024-09-17T14:54:34.909Z",
+      "estadoPedido": "pendiente",
+      "estado": "activo",
+      "metodoPago": "efectivo"
+    },
+    {
+      "id": "2003",
+      "usuarioId": "fcf0",
+      "direccion": "calle 183 #281",
+      "nombre": "james  rodriguez",
+      "correo": "davidm435465123@gmail.com",
+      "telefono": "2108108213",
+      "productos": [
+        {
+          "id": "3445",
+          "nombre": "Cerveza Coronita botella x6und x210ml",
+          "precio": "7.500",
+          "descripcion": "Tipo de cerveza: Lager. País de Origen: México ABV: 4,5%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440069-1600-1600?v=638043996740100000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 1,
+          "marca": "Babaria",
+          "estado": "activo"
+        }
+      ],
+      "fecha": "2024-09-17T14:54:39.028Z",
+      "estadoPedido": "pendiente",
+      "estado": "activo",
+      "metodoPago": "efectivo"
+    }
+  ],
   "ventas": [
     {
       "id": "c1f5",
@@ -911,72 +1136,13 @@
       "fechaVenta": "17/9/2024",
       "metodoPago": "Efectivo",
       "estado": "activo"
-    },
+    }
+  ],
+  "direcciones": [
     {
-      "id": "de22",
-      "productos": [
-        {
-          "id": "a783",
-          "nombre": "Cerveza Club Colombia Dorada lata x6und x330ml",
-          "precio": "18.700",
-          "descripcion": "Tipo de cerveza: Lager ABV: 4,7% País de origen: Colombia.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
-          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/491967-1600-1600?v=638216692937930000&width=1600&height=1600&aspect=true",
-          "categoria": "Licores",
-          "cantidad": 2,
-          "marca": "Babaria",
-          "estado": "activo"
-        },
-        {
-          "id": "105c",
-          "nombre": "Cerveza Poker lata x6und x330ml cu",
-          "precio": "18.000",
-          "descripcion": "Tipo de cerveza: Lager. País de origen: Colombia. ABV: 4,0%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
-          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440018-1600-1600?v=638043996576070000&width=1600&height=1600&aspect=true",
-          "categoria": "Licores",
-          "cantidad": 1,
-          "marca": "Babaria",
-          "estado": "activo"
-        }
-      ],
-      "tipoDocumento": "",
-      "numeroDocumento": "1031763123",
-      "total": 55.4,
-      "fechaVenta": "17/9/2024",
-      "metodoPago": "Efectivo",
-      "estado": "activo"
-    },
-    {
-      "id": "1142",
-      "productos": [
-        {
-          "id": "a783",
-          "nombre": "Cerveza Club Colombia Dorada lata x6und x330ml",
-          "precio": "18.700",
-          "descripcion": "Tipo de cerveza: Lager ABV: 4,7% País de origen: Colombia.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
-          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/491967-1600-1600?v=638216692937930000&width=1600&height=1600&aspect=true",
-          "categoria": "Licores",
-          "cantidad": 2,
-          "marca": "Babaria",
-          "estado": "activo"
-        },
-        {
-          "id": "105c",
-          "nombre": "Cerveza Poker lata x6und x330ml cu",
-          "precio": "18.000",
-          "descripcion": "Tipo de cerveza: Lager. País de origen: Colombia. ABV: 4,0%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
-          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440018-1600-1600?v=638043996576070000&width=1600&height=1600&aspect=true",
-          "categoria": "Licores",
-          "cantidad": 1,
-          "marca": "Babaria",
-          "estado": "activo"
-        }
-      ],
-      "tipoDocumento": "",
-      "numeroDocumento": "1031763123",
-      "total": 55.4,
-      "fechaVenta": "17/9/2024",
-      "metodoPago": "Efectivo",
-      "estado": "activo"
+      "id": "d5dc",
+      "usuarioId": "fcf0",
+      "direccion": "calle 183 #281"
     }
   ]
 }

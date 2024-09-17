@@ -132,7 +132,7 @@ const DatosEntrega = () => {
                     customer_phone: pedido.telefono,
                     delivery_address: pedido.direccion,
                     order_date: new Date().toLocaleDateString(),
-                    products: pedido.productos.map(p => `${p.nombre} - ${parseFloat(p.precio).toFixed(2)} X ${p.cantidad}`).join(" --- "),
+                    products: pedido.productos.map(p => `${p.nombre} - ${parseFloat(p.precio).toFixed(3)} X ${p.cantidad}`).join(" --- "),
                     total_amount: calcularTotal(pedido.productos),
                 }, 'JS01zy1f3DQ02Ojb0');
             }));
@@ -190,7 +190,7 @@ const DatosEntrega = () => {
     };
 
     const calcularTotal = (productos) => {
-        return productos.reduce((total, producto) => total + (parseFloat(producto.precio) || 0) * producto.cantidad, 0).toFixed(2);
+        return productos.reduce((total, producto) => total + (parseFloat(producto.precio) || 0) * producto.cantidad, 0).toFixed(3);
     };
 
     return (
@@ -222,8 +222,8 @@ const DatosEntrega = () => {
                                         </div>
                                     </td>
                                     <td className="py-4 px-4 border-b text-sm">{producto.cantidad}</td>
-                                    <td className="py-4 px-4 border-b text-sm">${parseFloat(producto.precio).toFixed(2)}</td>
-                                    <td className="py-4 px-4 border-b text-sm">${(parseFloat(producto.precio) * producto.cantidad).toFixed(2)}</td>
+                                    <td className="py-4 px-4 border-b text-sm">${parseFloat(producto.precio).toFixed(3)}</td>
+                                    <td className="py-4 px-4 border-b text-sm">${(parseFloat(producto.precio) * producto.cantidad).toFixed(3)}</td>
                                 </tr>
                             ))}
                         </tbody>
