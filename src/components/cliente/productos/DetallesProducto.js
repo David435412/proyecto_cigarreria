@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { FaArrowLeft } from 'react-icons/fa'; // Importamos el ícono de react-icons
 import axios from 'axios';
 
 const DetalleProducto = () => {
@@ -63,7 +64,12 @@ const DetalleProducto = () => {
 
         carrito.push({ ...producto, cantidad: cantidadSeleccionada });
         localStorage.setItem(`carrito_${usuarioId}`, JSON.stringify(carrito));
-        navigate('/carrito'); 
+        navigate('/cliente-dash'); 
+    };
+
+    // Función para manejar la navegación hacia atrás
+    const handleVolver = () => {
+        navigate(-1); // Vuelve a la página anterior
     };
 
     if (loading) {
@@ -81,35 +87,63 @@ const DetalleProducto = () => {
     return (
         <div className="container mx-auto px-4 py-8">
             <div className="flex flex-col md:flex-row justify-center">
-                <div className="md:w-1/3">
-                    <img src={producto.imagen} alt={producto.nombre} className="w-full h-auto object-cover" />
+                <div className="relative md:w-1/3">
+                    {/* Imagen del producto con filtro si está agotado */}
+                    <img
+                        src={producto.imagen}
+                        alt={producto.nombre}
+                        className={`w-full h-auto object-cover ${producto.cantidad === 0 ? 'grayscale' : ''}`}
+                    />
+                    {/* Mostrar "AGOTADO" si la cantidad es 0 */}
+                    {producto.cantidad === 0 && (
+                        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
+                            <span className="text-white text-4xl font-bold">AGOTADO</span>
+                        </div>
+                    )}
                 </div>
                 <div className="md:w-1/2 md:pl-8">
                     <h1 className="text-3xl font-semibold mb-4">{producto.nombre}</h1>
                     <p className="text-2xl text-black font-bold mb-4">${precioTotal}</p>
                     <p className="text-gray-700 mb-4">{producto.descripcion}</p>
                     <p className="text-gray-700 mb-4">Cantidad disponible: {producto.cantidad}</p>
-                    <div className="mb-4">
-                        <label className="block text-gray-700 mb-2">Cantidad</label>
-                        <input
-                            type="number"
-                            value={cantidadSeleccionada}
-                            onChange={handleCantidadChange}
-                            min="1"
-                            max="10"
-                            className="w-full px-3 py-2 border border-gray-300 rounded"
-                        />
-                        {mensajeAdvertencia && (
-                            <p className="text-red-500 mt-2">{mensajeAdvertencia}</p>
-                        )}
-                    </div>
-                    <button
-                        onClick={handleAgregarCarrito}
-                        className="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600"
-                    >
-                        Agregar al Carrito
-                    </button>
+                    
+                    {/* Mostrar input de cantidad y botón solo si hay stock */}
+                    {producto.cantidad > 0 && (
+                        <>
+                            <div className="mb-4">
+                                <label className="block text-gray-700 mb-2">Cantidad</label>
+                                <input
+                                    type="number"
+                                    value={cantidadSeleccionada}
+                                    onChange={handleCantidadChange}
+                                    min="1"
+                                    max="10"
+                                    className="w-full px-3 py-2 border border-gray-300 rounded"
+                                />
+                                {mensajeAdvertencia && (
+                                    <p className="text-red-500 mt-2">{mensajeAdvertencia}</p>
+                                )}
+                            </div>
+                            <button
+                                onClick={handleAgregarCarrito}
+                                className="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600"
+                            >
+                                Agregar al Carrito
+                            </button>
+                        </>
+                    )}
                 </div>
+            </div>
+
+            {/* Botón para volver, ubicado debajo de todo el contenido */}
+            <div className="mt-8">
+                <button
+                    onClick={handleVolver}
+                    className="bg-gray-500 text-white py-2 px-4 rounded flex items-center hover:bg-gray-600"
+                >
+                    <FaArrowLeft className="mr-2" /> {/* Icono de flecha hacia la izquierda */}
+                    Volver
+                </button>
             </div>
         </div>
     );
