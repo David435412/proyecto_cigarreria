@@ -193,10 +193,10 @@ const DatosEntrega = () => {
             )}
             <div className="mt-6 text-center">
                 <Link
-                    to="/carrito"
-                    className="px-8 py-4 bg-gradient-to-r from-violet-500 to-gray-500 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
+                    to="/cliente-dash"
+                    className="px-5 py-3 bg-gray-500 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
                 >
-                    Volver al Carrito
+                    Seguir comprando
                 </Link>
             </div>
         </div>

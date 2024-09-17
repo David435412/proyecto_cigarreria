@@ -195,7 +195,7 @@ const RegistroVentas = () => {
 
                 {/* Filtros por categorías */}
                 <div className="mb-6 flex flex-wrap justify-center gap-4">
-                <div
+                    <div
                         onClick={handleVerTodosClick}
                         className={`bg-gray-300 cursor-pointer p-3 border rounded-full shadow-xl text-sm font-medium text-center transition-transform duration-300 ease-in-out w-16 h-16 flex flex-col items-center justify-center transform ${categoriaSeleccionada === 'Todos' ? 'bg-green-500 text-white border-green-500' : 'bg-gray-100 text-black border-gray-300'} hover:bg-green-600 hover:text-white hover:scale-110 hover:-translate-y-2 hover:shadow-2xl`}
                         >
