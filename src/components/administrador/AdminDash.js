@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import emailjs from 'emailjs-com';
 import fuera_4 from "../../assets/images/fuera_4.jpeg";
 import css from "../../pages/css.css";
 
@@ -30,32 +31,17 @@ const AdminDashboard = () => {
                 // Filtra los productos con cantidad igual a 0
                 const outOfStock = products.filter(product => product.cantidad === 0);
 
-                // Actualiza el estado de los productos agotados a inactivo
-                const updatedOutOfStock = [];
-                for (const product of outOfStock) {
-                    await axios.patch(`http://localhost:5000/productos/${product.id}`, { estado: 'inactivo' });
-                    updatedOutOfStock.push(product);
-                }
+                // Enviar correo a cajeros y administradores sobre productos agotados
 
-                // Actualiza el estado de los productos con stock disponible a activo
-                const updatedLowStock = [];
-                for (const product of lowStock) {
-                    if (product.cantidad > 0) {
-                        await axios.patch(`http://localhost:5000/productos/${product.id}`, { estado: 'activo' });
-                        updatedLowStock.push(product);
-                    }
-                }
-
-                setLowStockProducts(updatedLowStock);
-                setOutOfStockAlerts(updatedOutOfStock);
+                setLowStockProducts(lowStock);
+                setOutOfStockAlerts(outOfStock);
             } catch (error) {
                 console.error('Error al obtener productos:', error);
             }
-        };
+        };  
 
         fetchProducts();
     }, []);
-
     return (
         <>
             <div className="bg-black text-white pb-5">
