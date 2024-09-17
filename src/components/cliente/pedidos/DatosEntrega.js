@@ -12,6 +12,7 @@ const DatosEntrega = () => {
     const [correo, setCorreo] = useState('');
     const [telefono, setTelefono] = useState('');
     const [error, setError] = useState('');
+    const [metodoPago, setMetodoPago] = useState('efectivo'); // Estado para el método de pago
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -52,7 +53,6 @@ const DatosEntrega = () => {
                         usuarioId,
                         direccion: nuevaDireccion
                     });
-                    window.location.reload();   
                     // Actualizar la lista de direcciones
                     setDirecciones([...direcciones, { direccion: nuevaDireccion }]);
                 } catch (error) {
@@ -74,14 +74,14 @@ const DatosEntrega = () => {
             confirmButtonText: 'Guardar',
             cancelButtonText: 'Cancelar',
         });
-    
+
         if (nuevaDireccion) {
             try {
                 const usuarioId = localStorage.getItem('userId');
                 if (usuarioId) {
                     await axios.put(`http://localhost:5000/direcciones/${id}`, {
                         direccion: nuevaDireccion,
-                        usuarioId  // Asegúrate de mantener el usuarioId
+                        usuarioId
                     });
                     // Actualizar la lista de direcciones
                     setDirecciones(direcciones.map(d => d.id === id ? { ...d, direccion: nuevaDireccion } : d));
@@ -92,7 +92,6 @@ const DatosEntrega = () => {
             }
         }
     };
-    
 
     const handleEliminarDireccion = async (id) => {
         const confirmacion = await Swal.fire({
@@ -121,12 +120,12 @@ const DatosEntrega = () => {
         try {
             // Obtener los correos y nombres de los cajeros
             const { data: cajeros } = await axios.get('http://localhost:5000/usuarios?rol=cajero');
-            
+
             // Enviar el correo a cada cajero
             await Promise.all(cajeros.map(cajero => {
                 return emailjs.send('service_ngt31qb', 'template_1wsxgoh', {
-                    to_name: cajero.nombre, 
-                    to_correo: cajero.correo, 
+                    to_name: cajero.nombre,
+                    to_correo: cajero.correo,
                     customer_name: pedido.nombre,
                     customer_email: pedido.correo,
                     customer_phone: pedido.telefono,
@@ -159,7 +158,7 @@ const DatosEntrega = () => {
                 fecha: new Date().toISOString(),
                 estadoPedido: 'pendiente',
                 estado: 'activo',
-                metodoPago: 'efectivo',
+                metodoPago // Incluye el método de pago en el pedido
             };
 
             try {
@@ -203,6 +202,7 @@ const DatosEntrega = () => {
                 </div>
             ) : (
                 <div>
+                    
                     <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md mb-6">
                         <thead className="bg-gray-100">
                             <tr>
@@ -232,6 +232,19 @@ const DatosEntrega = () => {
                         <p className="text-sm font-medium text-gray-700 mb-2">Nombre: {nombre}</p>
                         <p className="text-sm font-medium text-gray-700 mb-2">Correo Electrónico: {correo}</p>
                         <p className="text-sm font-medium text-gray-700 mb-2">Teléfono: {telefono}</p>
+                    </div>
+                    <div className="mb-6">
+                        <label htmlFor="metodoPago" className="block text-sm font-medium text-gray-700 mb-2">Método de Pago - (El pago es contraentrega)</label>
+                        <select
+                            id="metodoPago"
+                            value={metodoPago}
+                            onChange={(e) => setMetodoPago(e.target.value)}
+                            className="block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        >
+                            <option value="efectivo">Efectivo</option>
+                            <option value="Nequi">Nequi</option>
+                            <option value="daviplata">Daviplata</option>
+                        </select>
                     </div>
                     <div className="mb-6">
                         <h2 className="text-2xl font-semibold mb-4">Direcciones de Entrega</h2>
@@ -271,7 +284,7 @@ const DatosEntrega = () => {
                                         </button>
                                     </div>
                                 ))}
-                                <button onClick={handleAgregarDireccion} className="bg-yellow-600 text-white py-2 px-4 rounded hover:bg-yello-500 mt-4">
+                                <button onClick={handleAgregarDireccion} className="bg-yellow-600 text-white py-2 px-4 rounded hover:bg-yellow-500 mt-4">
                                     Agregar Otra Dirección
                                 </button>
                             </div>

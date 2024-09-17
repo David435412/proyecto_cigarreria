@@ -85,7 +85,7 @@
       "descripcion": "Tipo de cerveza: Lager. País de origen: Colombia. ABV: 4,0%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/439991-1600-1600?v=638043996501300000&width=1600&height=1600&aspect=true",
       "categoria": "Licores",
-      "cantidad": "50",
+      "cantidad": 49,
       "marca": "Babaria",
       "estado": "activo"
     },
@@ -393,7 +393,7 @@
       "descripcion": "VapoRub libera vapores medicinales que pasan a través de las vías respiratorias aliviando la tos y la congestión nasal.\n\nA su vez, VapoRub alivia los dolores musculares causados por gripes o resfriados comunes.",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/640015-1600-1600?v=638555260663800000&width=1600&height=1600&aspect=true",
       "categoria": "Drogas",
-      "cantidad": "122",
+      "cantidad": 120,
       "marca": "VICK",
       "estado": "activo"
     },
@@ -815,6 +815,81 @@
       "estadoPedido": "pendiente",
       "estado": "activo",
       "metodoPago": "efectivo"
+    },
+    {
+      "id": "9ec6",
+      "usuarioId": "fcf0",
+      "direccion": "calle 183 #281",
+      "nombre": "james  rodriguez",
+      "correo": "davidm435465123@gmail.com",
+      "telefono": "2108108213",
+      "productos": [
+        {
+          "id": "3598",
+          "nombre": "Ungüento Vick Vaporub Topico x100g",
+          "precio": "35.890",
+          "descripcion": "VapoRub libera vapores medicinales que pasan a través de las vías respiratorias aliviando la tos y la congestión nasal.\n\nA su vez, VapoRub alivia los dolores musculares causados por gripes o resfriados comunes.",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/640015-1600-1600?v=638555260663800000&width=1600&height=1600&aspect=true",
+          "categoria": "Drogas",
+          "cantidad": 1,
+          "marca": "VICK",
+          "estado": "activo"
+        }
+      ],
+      "fecha": "2024-09-17T15:33:22.896Z",
+      "estadoPedido": "pendiente",
+      "estado": "activo",
+      "metodoPago": "tarjeta"
+    },
+    {
+      "id": "b349",
+      "usuarioId": "fcf0",
+      "direccion": "calle 183 #281",
+      "nombre": "james  rodriguez",
+      "correo": "davidm435465123@gmail.com",
+      "telefono": "2108108213",
+      "productos": [
+        {
+          "id": "3598",
+          "nombre": "Ungüento Vick Vaporub Topico x100g",
+          "precio": "35.890",
+          "descripcion": "VapoRub libera vapores medicinales que pasan a través de las vías respiratorias aliviando la tos y la congestión nasal.\n\nA su vez, VapoRub alivia los dolores musculares causados por gripes o resfriados comunes.",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/640015-1600-1600?v=638555260663800000&width=1600&height=1600&aspect=true",
+          "categoria": "Drogas",
+          "cantidad": 1,
+          "marca": "VICK",
+          "estado": "activo"
+        }
+      ],
+      "fecha": "2024-09-17T15:33:25.304Z",
+      "estadoPedido": "pendiente",
+      "estado": "activo",
+      "metodoPago": "tarjeta"
+    },
+    {
+      "id": "831a",
+      "usuarioId": "fcf0",
+      "direccion": "cra7 #58",
+      "nombre": "james  rodriguez",
+      "correo": "davidm435465123@gmail.com",
+      "telefono": "2108108213",
+      "productos": [
+        {
+          "id": "b5c6",
+          "nombre": "Cerveza Aguila Original lata x6und x330ml",
+          "precio": "18.000",
+          "descripcion": "Tipo de cerveza: Lager. País de origen: Colombia. ABV: 4,0%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/439991-1600-1600?v=638043996501300000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 1,
+          "marca": "Babaria",
+          "estado": "activo"
+        }
+      ],
+      "fecha": "2024-09-17T15:34:05.489Z",
+      "estadoPedido": "pendiente",
+      "estado": "activo",
+      "metodoPago": "Nequi"
     }
   ],
   "ventas": [
@@ -1143,6 +1218,11 @@
       "id": "d5dc",
       "usuarioId": "fcf0",
       "direccion": "calle 183 #281"
+    },
+    {
+      "direccion": "cra7 #58",
+      "usuarioId": "fcf0",
+      "id": "92b4"
     }
   ]
 }
