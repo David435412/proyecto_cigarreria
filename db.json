@@ -70,11 +70,7 @@
       "descripcion": "Tipo de cerveza: Lager. País de origen: Colombia. ABV: 4,0%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440018-1600-1600?v=638043996576070000&width=1600&height=1600&aspect=true",
       "categoria": "Licores",
-<<<<<<< HEAD
-      "cantidad": 113,
-=======
       "cantidad": 112,
->>>>>>> 1246043ac5229fd78a9796866eb174aef3f30f32
       "marca": "Babaria",
       "estado": "activo"
     },
