@@ -205,7 +205,7 @@
       "descripcion": "Deliciosa barra de chocolate de leche * Rellena de maní, cremoso caramelo y nougat",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/367867-1600-1600?v=637889251308670000&width=1600&height=1600&aspect=true",
       "categoria": "Confitería",
-      "cantidad": 387,
+      "cantidad": 386,
       "marca": "Snickers",
       "estado": "activo"
     },
@@ -1112,6 +1112,28 @@
       "numeroDocumento": "1031653107",
       "total": 93.5,
       "fechaVenta": "16/9/2024",
+      "metodoPago": "Efectivo",
+      "estado": "activo"
+    },
+    {
+      "id": "40ab",
+      "productos": [
+        {
+          "id": "ce57",
+          "nombre": "Snickers barra de chocolate y maní x52.7g",
+          "precio": "6.090",
+          "descripcion": "Deliciosa barra de chocolate de leche * Rellena de maní, cremoso caramelo y nougat",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/367867-1600-1600?v=637889251308670000&width=1600&height=1600&aspect=true",
+          "categoria": "Confitería",
+          "cantidad": 1,
+          "marca": "Snickers",
+          "estado": "activo"
+        }
+      ],
+      "tipoDocumento": "CC",
+      "numeroDocumento": "1021290812",
+      "total": 6.09,
+      "fechaVenta": "17/9/2024",
       "metodoPago": "Efectivo",
       "estado": "activo"
     }

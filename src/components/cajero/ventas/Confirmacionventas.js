@@ -161,16 +161,6 @@ const ConfirmacionVenta = () => {
                     </select>
                 </div>
 
-                <div className="mb-4">
-                    <label htmlFor="estado" className="block text-sm font-medium mb-1">Estado:</label>
-                    <input
-                        type="text"
-                        id="estado"
-                        value={estado}
-                        readOnly
-                        className="p-2 border border-gray-300 rounded w-full bg-gray-100"
-                    />
-                </div>
 
                 <button
                     type="submit"

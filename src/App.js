@@ -44,8 +44,6 @@ import RegistroProdutosCa from './components/cajero/productos/RegistroProductos'
 import EdicionProductosCa from './components/cajero/productos/EdicionProductos';
 import ProductosAgotadosCa from './components/cajero/productos/AgotadosProductos';
 import ProveedoresCajero from './components/cajero/proveedores/Proveedores';
-import RegistroProveedoresCa from './components/cajero/proveedores/RegistroProveedores';
-import EdicionProveedoresCa from './components/cajero/proveedores/EdicionProveedores';
 import VentasCajero from './components/cajero/ventas/Ventas';
 import RegistroVentasCa from './components/cajero/ventas/RegistroVentas';
 import ConfirmarVentasCa from './components/cajero/ventas/Confirmacionventas';
@@ -119,8 +117,6 @@ const App = () => {
             <Route path="/editar-prod-cajero/:id" element={<EdicionProductosCa />} />
             <Route path="/productos-agotados-cajero" element={<ProductosAgotadosCa />} />
             <Route path="/proveedores-cajero" element={<ProveedoresCajero />} />
-            <Route path="/registro-prov-cajero" element={<RegistroProveedoresCa />} />
-            <Route path="/editar-prov-cajero/:id" element={<EdicionProveedoresCa />} />
             <Route path="/ventas-cajero" element={<VentasCajero />} />
             <Route path="/registro-venta-cajero" element={<RegistroVentasCa />} />
             <Route path="/confirmar-ventas-cajero" element={<ConfirmarVentasCa />} />
