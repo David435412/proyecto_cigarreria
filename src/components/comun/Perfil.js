@@ -271,32 +271,6 @@ const Profile = () => {
             <h2 className="text-2xl font-bold mb-4 text-gray-900 text-center">Editar Perfil</h2>
             <form onSubmit={(e) => e.preventDefault()} className="grid grid-cols-2 gap-4">
                 <div>
-                    <label className="block text-gray-700 font-bold mb-2" htmlFor="nombre">
-                        Nombre
-                    </label>
-                    <input
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        type="text"
-                        id="nombre"
-                        name="nombre"
-                        value={editedData.nombre}
-                        onChange={handleInputChange}
-                    />
-                </div>
-                <div>
-                    <label className="block text-gray-700 font-bold mb-2" htmlFor="nombreUsuario">
-                        Nombre de Usuario
-                    </label>
-                    <input
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        type="text"
-                        id="nombreUsuario"
-                        name="nombreUsuario"
-                        value={editedData.nombreUsuario}
-                        onChange={handleInputChange}
-                    />
-                </div>
-                <div>
                     <label className="block text-gray-700 font-bold mb-2" htmlFor="correo">
                         Correo
                     </label>
@@ -322,7 +296,7 @@ const Profile = () => {
                         onChange={handleInputChange}
                     />
                 </div>
-                <div>
+                <div className="col-span-2">
                     <label className="block text-gray-700 font-bold mb-2" htmlFor="direccion">
                         Dirección
                     </label>
@@ -332,37 +306,6 @@ const Profile = () => {
                         id="direccion"
                         name="direccion"
                         value={editedData.direccion}
-                        onChange={handleInputChange}
-                    />
-                </div>
-                <div>
-                    <label className="block text-gray-700 font-bold mb-2" htmlFor="tipoDocumento">
-                        Tipo de Documento
-                    </label>
-                    <select
-                        id="tipoDocumento"
-                        name="tipoDocumento"
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        value={editedData.tipoDocumento}
-                        onChange={handleSelectChange}
-                    >
-                        <option value="">Seleccione...</option>
-                        <option value="cedula">Cédula de Ciudadanía</option>
-                        <option value="cedulae">Cédula de Extranjería</option>
-                        <option value="nit">NIT</option>
-                    </select>
-                </div>
-                {/* Número de Documento ocupa todo el ancho */}
-                <div className="col-span-2">
-                    <label className="block text-gray-700 font-bold mb-2" htmlFor="numeroDocumento">
-                        Número de Documento
-                    </label>
-                    <input
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        type="text"
-                        id="numeroDocumento"
-                        name="numeroDocumento"
-                        value={editedData.numeroDocumento}
                         onChange={handleInputChange}
                     />
                 </div>
