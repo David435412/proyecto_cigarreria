@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import axios from 'axios';
 import { FaCheckCircle } from 'react-icons/fa';
 import Swal from 'sweetalert2';
@@ -46,32 +46,54 @@ const PedidosAdmin = () => {
       }
     });
   };
+    
+  const [loading, setLoading] = useState(false);
 
-  const confirmarEntrega = async () => {
-    if (!pedidoAConfirmar) return;
-
+  const confirmarEntrega = useCallback(async () => {
+    if (!pedidoAConfirmar || loading) return;
+  
+    setLoading(true);
+  
     try {
-      await axios.patch(`http://localhost:5000/pedidos/${pedidoAConfirmar.id}`, {
-        estadoPedido: 'entregado'
-      });
-      setPedidos(pedidos.map(pedido =>
-        pedido.id === pedidoAConfirmar.id ? { ...pedido, estadoPedido: 'entregado' } : pedido
-      ));
-      setPedidoAConfirmar(null);
-      Swal.fire('Pedido Marcado', `El pedido de "${pedidoAConfirmar.nombre}" ha sido marcado como entregado.`, 'success');
-
-      await emailjs.send('service_vlpu06s', 'template_2lgkzzq', {
-        to_correo: pedidoAConfirmar.correo,
-        customer_name: pedidoAConfirmar.nombre,
-        delivery_date: formatearFecha(new Date()),
-        products: pedidoAConfirmar.productos.map(p => `${p.nombre} - ${p.precio} x ${p.cantidad}`).join(" --- "),
-        total: calcularTotal(pedidoAConfirmar.productos)
-      }, 'JS01zy1f3DQ02Ojb0');
+        await axios.patch(`http://localhost:5000/pedidos/${pedidoAConfirmar.id}`, { estadoPedido: 'entregado' });
+  
+        const pedidosActualizados = pedidos.map(pedido =>
+            pedido.id === pedidoAConfirmar.id ? { ...pedido, estadoPedido: 'entregado' } : pedido
+        );
+  
+        console.log("Pedidos actualizados:", pedidosActualizados); // Verificar aquí
+  
+        setPedidos(pedidosActualizados);
+        setPedidoAConfirmar(null);
+  
+        Swal.fire({
+            title: 'Pedido Marcado',
+            text: `El pedido de "${pedidoAConfirmar.nombre}" ha sido marcado como entregado.`,
+            icon: 'success',
+            timer: 2000,
+            showConfirmButton: false,
+        });
+  
+        await emailjs.send('service_vlpu06s', 'template_2lgkzzq', {
+            to_correo: pedidoAConfirmar.correo,
+            customer_name: pedidoAConfirmar.nombre,
+            delivery_date: formatearFecha(new Date()),
+            products: pedidoAConfirmar.productos.map(p => `${p.nombre} - ${p.precio} x ${p.cantidad}`).join(" --- "),
+            total: calcularTotal(pedidoAConfirmar.productos)
+        }, 'JS01zy1f3DQ02Ojb0');
+  
     } catch (error) {
-      console.error('Error al actualizar el estado del pedido:', error);
-      Swal.fire('Error', 'No se pudo marcar el pedido como entregado.', 'error');
+        console.error('Error al confirmar la entrega:', error);
+        Swal.fire({
+            title: 'Error',
+            text: 'No se pudo marcar el pedido como entregado.',
+            icon: 'error'
+        });
+    } finally {
+        setLoading(false);
     }
-  };
+  }, [pedidoAConfirmar, loading, pedidos]);
+        
 
   const mostrarDetalles = (pedido) => {
     setPedidoSeleccionado(pedidoSeleccionado && pedidoSeleccionado.id === pedido.id ? null : pedido);
@@ -107,17 +129,18 @@ const PedidosAdmin = () => {
           </button>
           {row.original.estadoPedido === 'pendiente' && (
             <button
-              onClick={() => manejarEstadoEntrega(row.original)}
-              className="bg-gray-500 text-white py-1 px-2 rounded hover:bg-gray-600"
+                onClick={() => manejarEstadoEntrega(row.original)}
+                className="bg-gray-500 text-white py-1 px-2 rounded hover:bg-gray-600"
             >
-              <FaCheckCircle className="inline-block mr-1" /> Marcar Entregado
+                <FaCheckCircle className="inline-block mr-1" /> Marcar Entregado
             </button>
-          )}
+        )}
+
         </div>
       )
     }
-  ], [pedidoSeleccionado, filtroEstado, filtroBusqueda]);
-
+  ], [pedidoSeleccionado]);
+  
   const {
     getTableProps,
     getTableBodyProps,
@@ -140,7 +163,7 @@ const PedidosAdmin = () => {
     },
     usePagination
   );
-
+  
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-4 text-center">Gestión de Pedidos</h1>
