@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { FaPlus, FaEdit, FaTrash, FaArchive, FaBox } from 'react-icons/fa';
-import Swal from 'sweetalert2'; // Importa SweetAlert2
-import 'sweetalert2/dist/sweetalert2.min.css'; // Importa los estilos de SweetAlert2
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 const categorias = [
     'Licores',
@@ -21,6 +21,8 @@ const GestionProductos = () => {
     const [productos, setProductos] = useState([]);
     const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('');
     const [error, setError] = useState('');
+    const [cantidad, setCantidad] = useState(''); // Estado para manejar la cantidad en el modal
+    const [productoSeleccionado, setProductoSeleccionado] = useState(null); // Producto actual en edición
 
     const navigate = useNavigate();
 
@@ -64,7 +66,7 @@ const GestionProductos = () => {
                         title: 'Éxito',
                         text: 'Producto inactivado exitosamente.',
                         icon: 'success',
-                        timer: 1500, // La alerta se mostrará durante 1.5 segundos
+                        timer: 1500,
                         showConfirmButton: false,
                     });
                 } catch (error) {
@@ -74,6 +76,41 @@ const GestionProductos = () => {
             }
         });
     };
+
+    // Maneja la apertura del modal para cambiar stock
+    const handleCambiarStock = (producto) => {
+        setProductoSeleccionado(producto);
+        setCantidad(producto.cantidad); // Carga la cantidad actual en el modal
+        Swal.fire({
+            title: `Cambiar stock de ${producto.nombre}`,
+            html: `<input type="number" id="cantidad" class="swal2-input" placeholder="Cantidad" value="${producto.cantidad}" min="0">`,
+            focusConfirm: false,
+            preConfirm: () => {
+                const nuevaCantidad = Swal.getPopup().querySelector('#cantidad').value;
+                return nuevaCantidad;
+            }
+        }).then(async (result) => {
+            if (result.value !== undefined) {
+                const nuevaCantidad = result.value;
+                await actualizarStock(producto.id, nuevaCantidad);
+            }
+        });
+    };
+
+    // Actualiza el stock en la base de datos
+    // Actualiza el stock en la base de datos
+const actualizarStock = async (id, nuevaCantidad) => {
+    try {
+        // Solo enviamos la cantidad para actualizar
+        await axios.patch(`http://localhost:5000/productos/${id}`, { cantidad: nuevaCantidad });
+        fetchProductos();
+        Swal.fire('Actualizado', 'El stock ha sido actualizado exitosamente', 'success');
+    } catch (error) {
+        console.error('Error al actualizar el stock', error);
+        setError('No se pudo actualizar el stock.');
+    }
+};
+
 
     const handleCategoriaClick = (categoria) => {
         setCategoriaSeleccionada(categoria);
@@ -105,12 +142,6 @@ const GestionProductos = () => {
                     className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
                 >
                     <FaArchive className="inline-block mr-2" /> Productos Inactivos
-                </button>
-                <button
-                    onClick={() => navigate('/productos-agotados')}
-                    className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-                >
-                    <FaBox className="inline-block mr-2" /> Productos Agotados
                 </button>
             </div>
 
@@ -144,37 +175,54 @@ const GestionProductos = () => {
                     <p className="text-gray-500">No hay productos disponibles en la base de datos.</p>
                 ) : productosFiltrados.length > 0 ? (
                     productosFiltrados.map((producto) => (
-                        <div key={producto.id} className="bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden transition-transform transform hover:scale-105">
+                        <div
+                            key={producto.id}
+                            className={`border border-gray-200 rounded-lg shadow-md overflow-hidden transition-transform transform hover:scale-105 ${producto.cantidad === 0 ? 'bg-red-100' : 'bg-white'}`}
+                        >
                             <div className="w-full h-64 relative">
                                 <img
                                     src={producto.imagen}
                                     alt={producto.nombre}
-                                    className="object-cover w-full h-full absolute inset-0"
+                                    className={`object-cover w-full h-full absolute inset-0 ${producto.cantidad === 0 ? 'filter grayscale' : ''}`}
                                 />
+                                {producto.cantidad === 0 && (
+                                    <div className="absolute inset-0 flex items-center justify-center">
+                                        <span className="text-white text-2xl font-bold">Agotado</span>
+                                    </div>
+                                )}
                             </div>
                             <div className="p-4">
                                 <h2 className="text-xl font-semibold mb-2">{producto.nombre}</h2>
                                 <p className="text-gray-900 font-bold mb-4">${producto.precio}</p>
                                 <p className="text-gray-700 mb-4">Marca: {producto.marca}</p>
                                 <div className="flex gap-2">
-                                    <button
-                                        onClick={() => navigate(`/editar-producto/${producto.id}`)}
-                                        className="bg-orange-600 text-white px-3 py-1 rounded hover:bg-orange-700 flex items-center"
-                                    >
-                                        <FaEdit className="mr-1" /> Editar
-                                    </button>
+                                    {producto.cantidad > 0 ? (
+                                        <button
+                                            onClick={() => navigate(`/editar-producto/${producto.id}`)}
+                                            className="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600"
+                                        >
+                                            <FaEdit className="inline-block mr-2" /> Editar
+                                        </button>
+                                    ) : (
+                                        <button
+                                            onClick={() => handleCambiarStock(producto)}
+                                            className="bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-600"
+                                        >
+                                            <FaBox className="inline-block mr-2" /> Cambiar Stock
+                                        </button>
+                                    )}
                                     <button
                                         onClick={() => handleEliminar(producto)}
-                                        className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700 flex items-center"
+                                        className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600"
                                     >
-                                        <FaTrash className="mr-1" /> Inactivar
+                                        <FaTrash className="inline-block mr-2" /> Inactivar
                                     </button>
                                 </div>
                             </div>
                         </div>
                     ))
                 ) : (
-                    <p className="text-gray-500">No hay productos en esta categoría.</p>
+                    <p className="text-gray-500">No hay productos disponibles en esta categoría.</p>
                 )}
             </div>
         </div>

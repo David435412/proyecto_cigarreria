@@ -20,18 +20,48 @@ const CajeroDashboard = () => {
         // Función para obtener productos con stock bajo y productos agotados
         const fetchProducts = async () => {
             try {
-                // Consulta a la API de json-server
                 const response = await axios.get('http://localhost:5000/productos');
                 const products = response.data;
 
-                // Filtra los productos con cantidad menor a 20
-                const lowStock = products.filter(product => product.cantidad < 20);
+                // Leer productos agotados previamente notificados
+                const notifiedOutOfStock = JSON.parse(localStorage.getItem('notifiedOutOfStock')) || [];
 
-                // Filtra los productos con cantidad igual a 0
+                // Filtrar los productos con cantidad igual a 0
                 const outOfStock = products.filter(product => product.cantidad === 0);
 
-                // Enviar correo a cajeros y administradores sobre productos agotados
-                await enviarCorreoRoles(outOfStock);
+                // Filtrar los productos con cantidad menor a 20
+                const lowStock = products.filter(product => product.cantidad < 20);
+
+                // Identificar nuevos productos agotados que deben ser notificados
+                const newOutOfStockAlerts = outOfStock.filter(product => 
+                    !notifiedOutOfStock.includes(product.id)
+                );
+
+                // Enviar correo a cajeros y administradores sobre nuevos productos agotados
+                if (newOutOfStockAlerts.length > 0) {
+                    await enviarCorreoRoles(newOutOfStockAlerts);
+
+                    // Actualizar productos notificados en el almacenamiento local
+                    const updatedNotifiedOutOfStock = [
+                        ...notifiedOutOfStock,
+                        ...newOutOfStockAlerts.map(product => product.id)
+                    ];
+                    localStorage.setItem('notifiedOutOfStock', JSON.stringify(updatedNotifiedOutOfStock));
+                }
+
+                // Filtrar los productos que ya tienen stock y deberían ser removidos de la lista de notificaciones
+                const productsInStock = products.filter(product => product.cantidad > 0);
+                const clearedOutOfStockAlerts = notifiedOutOfStock.filter(id => 
+                    !productsInStock.some(product => product.id === id)
+                );
+
+                // Limpiar productos agotados notificados del almacenamiento local
+                if (clearedOutOfStockAlerts.length > 0) {
+                    const remainingNotified = notifiedOutOfStock.filter(id => 
+                        !clearedOutOfStockAlerts.includes(id)
+                    );
+                    localStorage.setItem('notifiedOutOfStock', JSON.stringify(remainingNotified));
+                }
 
                 setLowStockProducts(lowStock);
                 setOutOfStockAlerts(outOfStock);
@@ -45,10 +75,8 @@ const CajeroDashboard = () => {
 
     const enviarCorreoRoles = async (productosAgotados) => {
         try {
-            // Obtener los correos y nombres de los cajeros y administradores
             const { data: usuarios } = await axios.get('http://localhost:5000/usuarios?rol=administrador');
             
-            // Enviar el correo a cada usuario
             await Promise.all(usuarios.map(usuario => {
                 return emailjs.send('service_ug49rns', 'template_ujvyb2n', {
                     to_name: usuario.nombre,
@@ -127,12 +155,12 @@ const CajeroDashboard = () => {
                         <div className="bg-white p-6 rounded-lg flex flex-col justify-between transition-transform transform hover:scale-105 hover:shadow-lg">
                             <div className="flex items-center justify-center mb-4">
                                 <svg class="w-12 h-12 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                                  <path fill-rule="evenodd" d="M7 2a2 2 0 0 0-2 2v1a1 1 0 0 0 0 2v1a1 1 0 0 0 0 2v1a1 1 0 1 0 0 2v1a1 1 0 1 0 0 2v1a1 1 0 1 0 0 2v1a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H7Zm3 8a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm-1 7a3 3 0 0 1 3-3h2a3 3 0 0 1 3 3 1 1 0 0 1-1 1h-6a1 1 0 0 1-1-1Z" clip-rule="evenodd"/>
+                                  <path fill-rule="evenodd" d="M7 2a2 2 0 0 0-2 2v1a1 1 0 0 0 0 2v1a1 1 0 0 0 0 2v1a1 1 0 1 0 0 2v1a1 1 0 1 0 0 2v1a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-1a1 1 0 1 0 0-2v-1a1 1 0 0 0 0-2v-1a1 1 0 0 0 0-2V8a1 1 0 0 0 0-2V5a2 2 0 0 0-2-2H7Zm1 2h6v1H8V4Zm6 4V6h-4v2h4Zm0 2h-4v1h4v-1Zm-6 4h6v-1H8v1Zm6 4H8v-1h6v1Zm2-12h2v2h-2V8Zm0 4h2v2h-2v-2Zm0 4h2v1h-2v-1Zm-6-4h2v2H8v-2Z"/>
                                 </svg>
                             </div>
                             <h2 className="text-xl font-bold mb-2">Gestión de Proveedores</h2>
                             <p className="text-gray-700 flex-grow">
-                                Consulta los diferentes proveedores que tenemos.
+                                Consulta proveedores para los productos.
                             </p>
                         </div>
                     </div>
@@ -141,26 +169,12 @@ const CajeroDashboard = () => {
                         <div className="bg-white p-6 rounded-lg flex flex-col justify-between transition-transform transform hover:scale-105 hover:shadow-lg">
                             <div className="flex items-center justify-center mb-4">
                                 <svg class="w-12 h-12 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                                  <path fill-rule="evenodd" d="M14 7h-4v3a1 1 0 0 1-2 0V7H6a1 1 0 0 0-.997.923l-.917 11.924A2 2 0 0 0 6.08 22h11.84a2 2 0 0 0 1.994-2.153l-.917-11.924A1 1 0 0 0 18 7h-2v3a1 1 0 1 1-2 0V7Zm-2-3a2 2 0 0 0-2 2v1H8V6a4 4 0 0 1 8 0v1h-2V6a2 2 0 0 0-2-2Z" clip-rule="evenodd"/>
+                                  <path fill-rule="evenodd" d="M21 13V9a1 1 0 0 0-1-1h-2V6a1 1 0 0 0-1-1h-4V3a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v1H3a1 1 0 0 0-1 1v4H0v2h2v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h4v1a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-8h2Zm-3-4h2v4h-2v-4Zm-4 0h2v4h-2v-4Zm-4 0h2v4h-2v-4Zm-4 0h2v4H5v-4Zm6 6h-2v-2h2v2Zm4 0h-2v-2h2v2Zm4 0h-2v-2h2v2Z"/>
                                 </svg>
                             </div>
                             <h2 className="text-xl font-bold mb-2">Gestión de Ventas</h2>
                             <p className="text-gray-700 flex-grow">
-                                Consulta las ventas realizadas en el sistema.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div onClick={() => navigate('/pedidos-cajero')} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4 cursor-pointer">
-                        <div className="bg-white p-6 rounded-lg flex flex-col justify-between transition-transform transform hover:scale-105 hover:shadow-lg">
-                            <div className="flex items-center justify-center mb-4">
-                            <svg class="w-12 h-12 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                                <path fill-rule="evenodd" d="M8 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1h2a2 2 0 0 1 2 2v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h2Zm6 1h-4v2H9a1 1 0 0 0 0 2h6a1 1 0 1 0 0-2h-1V4Zm-3 8a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm-2-1a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2H9Zm2 5a1 1 0 0 1 1-1h3a1 1 0 1 1 0 2h-3a1 1 0 0 1-1-1Zm-2-1a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2H9Z" clip-rule="evenodd"/>
-                                </svg>
-                            </div>
-                            <h2 className="text-xl font-bold mb-2">Gestión de Pedidos</h2>
-                            <p className="text-gray-700 flex-grow">
-                                Consulta los pedidos realizados por los clientes.
+                                Consulta las ventas realizadas.
                             </p>
                         </div>
                     </div>

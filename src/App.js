@@ -19,7 +19,6 @@ import GestionProductos from './components/administrador/productos/GestionProduc
 import RegistroProductos from './components/administrador/productos/RegistroProductos';
 import EditarProducto from './components/administrador/productos/EdicionProducto';
 import InactivosProductos from './components/administrador/productos/InactivosProductos';
-import ProductosAgotados from './components/administrador/productos/AgotadosProductos';
 import GestionUsuarios from './components/administrador/usuarios/GestionUsuarios';
 import RegistroEmpleado from './components/administrador/usuarios/RegistroEmpleados';
 import EditarUsuario from './components/administrador/usuarios/EdicionUsuarios';
@@ -49,6 +48,7 @@ import VentasCajero from './components/cajero/ventas/Ventas';
 import RegistroVentasCa from './components/cajero/ventas/RegistroVentas';
 import ConfirmarVentasCa from './components/cajero/ventas/Confirmacionventas';
 import PedidosCajero from './components/cajero/pedidos/Pedidos';
+import RegistroPedidosCa from './components/cajero/pedidos/RegistroPedido'
 import DomiciliarioDashboard from './components/domiciliario/DomiciliarioDash';
 import PedidosDomiciliario from './components/domiciliario/pedidos/PedidosDomiciliario';
 import Footer from './components/comun/Footer';
@@ -93,7 +93,6 @@ const App = () => {
             <Route path="/registro-productos" element={<RegistroProductos />} />
             <Route path="/editar-producto/:id" element={<EditarProducto />} />
             <Route path="/productos-inactivos" element={<InactivosProductos />} />
-            <Route path="/productos-agotados" element={<ProductosAgotados />} />
             <Route path="/gestion-usuarios" element={<GestionUsuarios />} />
             <Route path="/registro-empleado" element={<RegistroEmpleado />} />
             <Route path="/editar-usuario/:id" element={<EditarUsuario />} />
@@ -124,6 +123,7 @@ const App = () => {
             <Route path="/registro-venta-cajero" element={<RegistroVentasCa />} />
             <Route path="/confirmar-ventas-cajero" element={<ConfirmarVentasCa />} />
             <Route path="/pedidos-cajero" element={<PedidosCajero />} />
+            <Route path="/registro-pedido-cajero" element={<RegistroPedidosCa />} />
             <Route path="/domiciliario-dash" element={<DomiciliarioDashboard />} />
             <Route path="/pedidos-domiciliario" element={<PedidosDomiciliario />} />
           </Routes>

@@ -63,14 +63,44 @@ const RegistroVentas = () => {
             );
         }
 
+        // Ordenar productos agotados primero
+        productosFiltrados.sort((a, b) => (a.cantidad === 0 && b.cantidad > 0 ? -1 : 1));
+
         setFilteredProducts(productosFiltrados);
     }, [searchQuery, categoriaSeleccionada, productos]);
 
     const handleAddProduct = (producto) => {
-        if (!productosSeleccionados.find(p => p.id === producto.id)) {
-            const updatedSelection = [...productosSeleccionados, { ...producto, cantidad: 1 }];
+        if (producto.cantidad === 0) {
+            Swal.fire({
+                title: 'Error',
+                text: 'El producto está agotado y no se puede agregar al carrito.',
+                icon: 'error',
+                confirmButtonColor: '#197419',
+            });
+            return;
+        }
+
+        const productoSeleccionado = productosSeleccionados.find(p => p.id === producto.id);
+
+        if (productoSeleccionado) {
+            if (productoSeleccionado.cantidad >= producto.cantidad) {
+                Swal.fire({
+                    title: 'Error',
+                    text: `No puedes agregar más de ${producto.cantidad} unidades del producto.`,
+                    icon: 'error',
+                    confirmButtonColor: '#197419',
+                });
+                return;
+            }
+
+            const updatedSelection = productosSeleccionados.map(p =>
+                p.id === producto.id ? { ...p, cantidad: p.cantidad + 1 } : p
+            );
             setProductosSeleccionados(updatedSelection);
             localStorage.setItem('productosSeleccionados', JSON.stringify(updatedSelection));
+        } else {
+            setProductosSeleccionados([...productosSeleccionados, { ...producto, cantidad: 1 }]);
+            localStorage.setItem('productosSeleccionados', JSON.stringify([...productosSeleccionados, { ...producto, cantidad: 1 }]));
         }
     };
 
@@ -81,11 +111,25 @@ const RegistroVentas = () => {
     };
 
     const handleQuantityChange = (productoId, cantidad) => {
-        const updatedSelection = productosSeleccionados.map(producto =>
-            producto.id === productoId ? { ...producto, cantidad: Number(cantidad) } : producto
-        );
-        setProductosSeleccionados(updatedSelection);
-        localStorage.setItem('productosSeleccionados', JSON.stringify(updatedSelection));
+        if (cantidad > 0) {
+            const producto = productos.find(p => p.id === productoId);
+
+            if (producto && cantidad > producto.cantidad) {
+                Swal.fire({
+                    title: 'Error',
+                    text: `La cantidad máxima disponible es ${producto.cantidad}.`,
+                    icon: 'error',
+                    confirmButtonColor: '#197419',
+                });
+                return;
+            }
+
+            const updatedSelection = productosSeleccionados.map(producto =>
+                producto.id === productoId ? { ...producto, cantidad: Number(cantidad) } : producto
+            );
+            setProductosSeleccionados(updatedSelection);
+            localStorage.setItem('productosSeleccionados', JSON.stringify(updatedSelection));
+        }
     };
 
     const handleSubmit = () => {
@@ -167,14 +211,13 @@ const RegistroVentas = () => {
                                             Eliminar
                                         </button>
                                     </div>
-
                                 ))
                             ) : (
                                 <p>No hay productos en el carrito.</p>
                             )}
                             <button
                                 onClick={handleSubmit}
-                                className="bg-green-600 text-white my-4 px-4 py-2 rounded mt-4 hover:bg-green-700 w-full"
+                                className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 w-full mt-4"
                             >
                                 Continuar
                             </button>
@@ -183,30 +226,38 @@ const RegistroVentas = () => {
                 </div>
             )}
 
-            {/* Barra de búsqueda y productos */}
-            <div className="mb-6 flex flex-col space-y-4">
+            {/* Barra de búsqueda */}
+            <div className="mb-4 flex items-center border border-gray-300 rounded-lg">
                 <input
                     type="text"
+                    placeholder="Buscar productos..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Buscar productos por nombre"
-                    className="p-2 border border-gray-300 rounded w-full"
+                    className="flex-1 px-4 py-2 border-none rounded-l-lg focus:outline-none"
                 />
+                <button
+                    onClick={() => setSearchQuery('')}
+                    className="bg-gray-200 px-4 py-2 border-none rounded-r-lg text-gray-600 hover:bg-gray-300"
+                >
+                    Limpiar
+                </button>
+            </div>
 
-                {/* Filtros por categorías */}
-                <div className="mb-6 flex flex-wrap justify-center gap-4">
+            {/* Filtros de categorías */}
+            <div className="mb-8 flex justify-center">
+                <div className="flex flex-wrap gap-4">
                     <div
                         onClick={handleVerTodosClick}
                         className={`bg-gray-300 cursor-pointer p-3 border rounded-full shadow-xl text-sm font-medium text-center transition-transform duration-300 ease-in-out w-16 h-16 flex flex-col items-center justify-center transform ${categoriaSeleccionada === 'Todos' ? 'bg-green-500 text-white border-green-500' : 'bg-gray-100 text-black border-gray-300'} hover:bg-green-600 hover:text-white hover:scale-110 hover:-translate-y-2 hover:shadow-2xl`}
-                        >
+                    >
                         <p className="text-center">Todos</p>
                     </div>
-                    {categorias.map((categoria, index) => (
+                    {categorias.map(categoria => (
                         <div
-                            key={index}
+                            key={categoria.nombre}
                             onClick={() => handleCategoriaClick(categoria.nombre)}
-                            className={`bg-gray-300 cursor-pointer p-3 border rounded-full shadow-xl text-sm font-medium text-center transition-transform duration-300 ease-in-out w-16 h-16 flex flex-col items-center justify-center transform ${categoriaSeleccionada === categoria.nombre ? 'bg-green-500 text-white border-green-500' : 'bg-gray-100 text-black border-gray-300'} hover:bg-green-500 hover:text-white hover:scale-110 hover:-translate-y-2 hover:shadow-2xl`}
-                            >
+                            className={`bg-gray-300 cursor-pointer p-3 border rounded-full shadow-xl text-sm font-medium text-center transition-transform duration-300 ease-in-out w-16 h-16 flex flex-col items-center justify-center transform ${categoriaSeleccionada === categoria.nombre ? 'bg-green-500 text-white border-green-500' : 'bg-gray-100 text-black border-gray-300'} hover:bg-green-600 hover:text-white hover:scale-110 hover:-translate-y-2 hover:shadow-2xl`}
+                        >
                             {categoria.icono}
                             <p className="text-center">{categoria.nombre}</p>
                         </div>
@@ -214,35 +265,47 @@ const RegistroVentas = () => {
                 </div>
             </div>
 
-            {/* Tarjetas de productos */}
+            {/* Sección de productos */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {filteredProducts.map(producto => (
-                    <div key={producto.id} className="bg-white p-4 border border-gray-200 rounded-lg shadow-md flex flex-col">
-                        <div className="w-full h-64 relative mb-4">
-                            <img
-                                src={producto.imagen}
-                                alt={producto.nombre}
-                                className="object-cover w-full h-full rounded-t-md"
-                            />
-                        </div>
-                        <div className="flex-1 mt-2 flex flex-col">
-                            <h3 className="text-lg font-semibold">{producto.nombre}</h3>
-                            <p className="text-gray-600 text-sm">Precio: ${Number(producto.precio).toFixed(3)}</p>
-                            <p className="text-gray-600 text-sm">Marca: {producto.marca}</p>
-                            <p className="text-gray-600 text-sm">Cantidad: {producto.cantidad}</p>
-                            <div className="mt-auto">
-                                <button
-                                    onClick={() => handleAddProduct(producto)}
-                                    className="bg-green-600 text-white px-4 py-2 rounded mt-2 hover:bg-green-700 w-full"
-                                >
-                                    Agregar al Carrito
-                                </button>
+                {filteredProducts.length > 0 ? (
+                    filteredProducts.map(producto => (
+                        <div
+                            key={producto.id}
+                            className={`bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden transform transition-transform duration-300 hover:scale-105 ${producto.cantidad === 0 ? 'bg-red-100 border-red-400' : 'bg-white border-gray-200'}`}
+                        >
+                            <div className="w-full h-64 relative">
+                                <img
+                                    src={producto.imagen}
+                                    alt={producto.nombre}
+                                    className={`object-cover w-full h-full absolute inset-0 ${producto.cantidad === 0 ? 'filter grayscale' : ''}`}
+                                />
+                                {producto.cantidad === 0 && (
+                                    <div className="absolute inset-0 flex items-center justify-center bg-red-500 bg-opacity-50">
+                                        <p className="text-white text-lg font-bold">Agotado</p>
+                                    </div>
+                                )}
+                            </div>
+                            <div className="p-4">
+                                <h2 className={`text-xl font-semibold mb-2 ${producto.cantidad === 0 ? 'text-red-500' : 'text-gray-900'}`}>{producto.nombre}</h2>
+                                <p className={`text-gray-900 font-bold mb-4 ${producto.cantidad === 0 ? 'text-red-500' : ''}`}>${Number(producto.precio).toFixed(3)}</p>
+                                <p className={`text-gray-700 mb-2 ${producto.cantidad === 0 ? 'text-red-500' : ''}`}>Marca: {producto.marca}</p>
+                                <p className={`text-gray-700 mb-4 ${producto.cantidad === 0 ? 'text-red-500' : ''}`}>Cantidad disponible: {producto.cantidad}</p>
+                                <div className="flex justify-center">
+                                    <button
+                                        onClick={() => handleAddProduct(producto)}
+                                        disabled={producto.cantidad === 0}
+                                        className={`bg-green-600 text-white px-4 py-2 rounded mt-2 hover:bg-green-700 ${producto.cantidad === 0 ? 'cursor-not-allowed opacity-50' : ''}`}
+                                    >
+                                        {producto.cantidad === 0 ? 'Agotado' : 'Agregar al Carrito'}
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                ))}
+                    ))
+                ) : (
+                    <p className="text-center col-span-full">No se encontraron productos.</p>
+                )}
             </div>
-
         </div>
     );
 };

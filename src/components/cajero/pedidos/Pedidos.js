@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 import emailjs from 'emailjs-com'; // Asegúrate de tener EmailJS configurado
+import { FaPlus, FaArchive } from 'react-icons/fa';
+
 
 const PedidosAdmin = () => {
   const [pedidos, setPedidos] = useState([]);
   const [domiciliarios, setDomiciliarios] = useState([]);
   const [pedidoSeleccionado, setPedidoSeleccionado] = useState(null);
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     // Función para obtener pedidos desde la API
@@ -99,7 +104,18 @@ const PedidosAdmin = () => {
 
   return (
     <div className="container mx-auto p-4 my-16">
-      <h1 className="text-2xl font-bold mt-2 mb-4">Pedidos Pendientes</h1>
+            <h1 className="text-3xl font-bold mb-4 text-center text-black">Gestión de Pedidos</h1>
+            <p className="mb-8 text-center text-gray-600">
+                En esta sección podrás encontrar toda la información de los pedidos que tiene actualmente la empresa.
+            </p>
+            <div className="mb-4 flex space-x-4 place-content-center">
+                <button
+                    onClick={() => navigate('/registro-pedido-cajero')}
+                    className="bg-green-800 text-white px-4 py-2 rounded hover:bg-green-900"
+                >
+                    <FaPlus className="inline-block mr-2" /> Registrar Nuevo Pedido
+                </button>
+            </div>
       <table className="min-w-full bg-gray-300 border border-gray-200 rounded-lg">
         <thead className="bg-green-600 border-b border-gray-200">
           <tr className="text-white">

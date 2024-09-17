@@ -71,8 +71,8 @@ const AdminDashboard = () => {
                                 ))}
                             </ul>
                             <button
-                                onClick={() => navigate('/productos-agotados')}
-                                className="text-blue-500 hover:underline"
+                                onClick={() => navigate('/gestion-productos')}
+                                className="text-blue-500  hover:underline"
                             >
                                 Ver Productos Agotados
                             </button>
