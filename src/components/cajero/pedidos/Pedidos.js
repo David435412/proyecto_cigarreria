@@ -6,7 +6,7 @@ import emailjs from 'emailjs-com'; // Asegúrate de tener EmailJS configurado
 import { FaPlus, FaArchive } from 'react-icons/fa';
 
 
-const PedidosAdmin = () => {
+const PedidosCajero = () => {
   const [pedidos, setPedidos] = useState([]);
   const [domiciliarios, setDomiciliarios] = useState([]);
   const [pedidoSeleccionado, setPedidoSeleccionado] = useState(null);
@@ -187,4 +187,4 @@ const PedidosAdmin = () => {
   );
 };
 
-export default PedidosAdmin;
+export default PedidosCajero;

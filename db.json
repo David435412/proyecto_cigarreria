@@ -116,6 +116,19 @@
       "estado": "activo",
       "contrasena": "Gduzlq3<47",
       "id": "b6a5"
+    },
+    {
+      "id": "fadc",
+      "nombre": "wilmer",
+      "contrasena": "Zlophu3<47",
+      "nombreUsuario": "wilmer martin",
+      "tipoDocumento": "Cédula",
+      "numeroDocumento": "12080129313",
+      "correo": "w@gmail.com",
+      "telefono": "3081298131",
+      "direccion": "call 137 # 100 B - 01",
+      "rol": "cajero",
+      "estado": "activo"
     }
   ],
   "productos": [
@@ -159,7 +172,7 @@
       "descripcion": "Tipo de cerveza: Lager. País de Origen: México ABV: 4,5%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440069-1600-1600?v=638043996740100000&width=1600&height=1600&aspect=true",
       "categoria": "Licores",
-      "cantidad": 186,
+      "cantidad": 184,
       "marca": "Babaria",
       "estado": "activo"
     },
@@ -192,7 +205,7 @@
       "descripcion": "Deliciosa barra de chocolate de leche * Rellena de maní, cremoso caramelo y nougat",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/367867-1600-1600?v=637889251308670000&width=1600&height=1600&aspect=true",
       "categoria": "Confitería",
-      "cantidad": 384,
+      "cantidad": 382,
       "marca": "Snickers",
       "estado": "activo"
     },
@@ -810,6 +823,106 @@
         }
       ],
       "fecha": "2024-09-16T01:52:19.950Z",
+      "estadoPedido": "pendiente",
+      "estado": "activo",
+      "metodoPago": "efectivo"
+    },
+    {
+      "id": "4173",
+      "usuarioId": "fadc",
+      "direccion": "call 137 # 128 B - 01",
+      "nombre": "darwin",
+      "correo": "darwinlesmes0914@gmail.com",
+      "telefono": "3190921312",
+      "productos": [
+        {
+          "id": "ce57",
+          "nombre": "Snickers barra de chocolate y maní x52.7g",
+          "precio": "6.090",
+          "descripcion": "Deliciosa barra de chocolate de leche * Rellena de maní, cremoso caramelo y nougat",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/367867-1600-1600?v=637889251308670000&width=1600&height=1600&aspect=true",
+          "categoria": "Confitería",
+          "cantidad": 1,
+          "marca": "Snickers",
+          "estado": "activo"
+        }
+      ],
+      "fecha": "2024-09-17T09:34:02.375Z",
+      "estadoPedido": "pendiente",
+      "estado": "activo",
+      "metodoPago": "efectivo"
+    },
+    {
+      "id": "64c5",
+      "usuarioId": "fadc",
+      "direccion": "call 137 # 128 B - 01",
+      "nombre": "darwin",
+      "correo": "darwinlesmes0914@gmail.com",
+      "telefono": "12308913",
+      "productos": [
+        {
+          "id": "ce57",
+          "nombre": "Snickers barra de chocolate y maní x52.7g",
+          "precio": "6.090",
+          "descripcion": "Deliciosa barra de chocolate de leche * Rellena de maní, cremoso caramelo y nougat",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/367867-1600-1600?v=637889251308670000&width=1600&height=1600&aspect=true",
+          "categoria": "Confitería",
+          "cantidad": 1,
+          "marca": "Snickers",
+          "estado": "activo"
+        }
+      ],
+      "fecha": "2024-09-17T09:36:58.431Z",
+      "estadoPedido": "pendiente",
+      "estado": "activo",
+      "metodoPago": "efectivo"
+    },
+    {
+      "id": "20b5",
+      "usuarioId": "fadc",
+      "direccion": "call 137 # 128 B - 01",
+      "nombre": "darwin",
+      "correo": "darwinlesmes0914@gmail.com",
+      "telefono": "128718313",
+      "productos": [
+        {
+          "id": "3445",
+          "nombre": "Cerveza Coronita botella x6und x210ml",
+          "precio": "7.500",
+          "descripcion": "Tipo de cerveza: Lager. País de Origen: México ABV: 4,5%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440069-1600-1600?v=638043996740100000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 1,
+          "marca": "Babaria",
+          "estado": "activo"
+        }
+      ],
+      "fecha": "2024-09-17T09:39:36.818Z",
+      "estadoPedido": "pendiente",
+      "estado": "activo",
+      "metodoPago": "efectivo"
+    },
+    {
+      "id": "4feb",
+      "usuarioId": "fadc",
+      "direccion": "call 137 # 128 B - 01",
+      "nombre": "darwin",
+      "correo": "darwinlesmes0914@gmail.com",
+      "telefono": "128718313",
+      "productos": [
+        {
+          "id": "3445",
+          "nombre": "Cerveza Coronita botella x6und x210ml",
+          "precio": "7.500",
+          "descripcion": "Tipo de cerveza: Lager. País de Origen: México ABV: 4,5%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440069-1600-1600?v=638043996740100000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 1,
+          "marca": "Babaria",
+          "estado": "activo"
+        }
+      ],
+      "fecha": "2024-09-17T09:39:37.828Z",
       "estadoPedido": "pendiente",
       "estado": "activo",
       "metodoPago": "efectivo"

@@ -49,6 +49,11 @@ import RegistroVentasCa from './components/cajero/ventas/RegistroVentas';
 import ConfirmarVentasCa from './components/cajero/ventas/Confirmacionventas';
 import PedidosCajero from './components/cajero/pedidos/Pedidos';
 import RegistroPedidosCa from './components/cajero/pedidos/RegistroPedido'
+import Carrito_pedidos_cajero from './components/cajero/pedidos/Carrito';
+import RegistroPedidosCajero from './components/cajero/pedidos/RegistroPedido';
+import DetalleProductoCajero from './components/cajero/pedidos/DetallesProductoCajero';
+import DatosEntregaCajero from './components/cajero/pedidos/DatosEntregaCajero';
+import ConfirmacionCajero from './components/cajero/pedidos/Confirmacion';
 import DomiciliarioDashboard from './components/domiciliario/DomiciliarioDash';
 import PedidosDomiciliario from './components/domiciliario/pedidos/PedidosDomiciliario';
 import Footer from './components/comun/Footer';
@@ -124,6 +129,11 @@ const App = () => {
             <Route path="/confirmar-ventas-cajero" element={<ConfirmarVentasCa />} />
             <Route path="/pedidos-cajero" element={<PedidosCajero />} />
             <Route path="/registro-pedido-cajero" element={<RegistroPedidosCa />} />
+            <Route path="/Carrito_pedidos_cajero" element={<Carrito_pedidos_cajero />} />
+            <Route path="/RegistroPedidosCajero" element={<RegistroPedidosCajero />} />
+            <Route path="/producto-cajero/:id" element={<DetalleProductoCajero />} />
+            <Route path="/DatosEntregaCajero" element={<DatosEntregaCajero />} />
+            <Route path="/ConfirmacionCajero" element={<ConfirmacionCajero />} />
             <Route path="/domiciliario-dash" element={<DomiciliarioDashboard />} />
             <Route path="/pedidos-domiciliario" element={<PedidosDomiciliario />} />
           </Routes>
