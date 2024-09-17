@@ -18,7 +18,7 @@
       "nombre": "Darwin Santiago Lesmes",
       "contrasena": "Grplfl456",
       "nombreUsuario": "darwin123",
-      "correo": "dom@gmail.com",
+      "correo": "davidm435465123@gmail.com",
       "telefono": "3104222039",
       "direccion": "Cll 13 c N 17",
       "estado": "activo",
@@ -727,7 +727,7 @@
       "estadoPedido": "pendiente",
       "estado": "activo",
       "metodoPago": "efectivo",
-      "asignado": "ed93"
+      "asignado": "002"
     },
     {
       "id": "0a23",
@@ -763,8 +763,7 @@
       "fecha": "2024-09-15T22:50:23.037Z",
       "estadoPedido": "pendiente",
       "estado": "activo",
-      "metodoPago": "efectivo",
-      "asignado": "002"
+      "metodoPago": "efectivo"
     },
     {
       "id": "8104",

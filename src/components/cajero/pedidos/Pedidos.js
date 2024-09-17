@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import emailjs from 'emailjs-com'; // Asegúrate de tener EmailJS configurado
 
 const PedidosAdmin = () => {
   const [pedidos, setPedidos] = useState([]);
@@ -11,7 +12,7 @@ const PedidosAdmin = () => {
     // Función para obtener pedidos desde la API
     const fetchPedidos = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/pedidos'); // Ajusta la URL según tu configuración
+        const response = await axios.get('http://localhost:5000/pedidos');
         const pedidosPendientes = response.data.filter(pedido => pedido.estadoPedido === 'pendiente');
         setPedidos(pedidosPendientes);
       } catch (error) {
@@ -21,7 +22,7 @@ const PedidosAdmin = () => {
 
     const fetchDomiciliarios = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/usuarios?rol=domiciliario'); // Ajusta la URL según tu configuración
+        const response = await axios.get('http://localhost:5000/usuarios?rol=domiciliario');
         setDomiciliarios(response.data);
       } catch (error) {
         console.error('Error al obtener los domiciliarios:', error);
@@ -54,12 +55,17 @@ const PedidosAdmin = () => {
 
     if (domiciliarioId) {
       try {
+        const domiciliario = domiciliarios.find(dom => dom.id === domiciliarioId);
+
         await axios.put(`http://localhost:5000/pedidos/${pedido.id}`, {
           ...pedido,
           asignado: domiciliarioId,
         });
+
+        // Enviar correo al domiciliario asignado
+        await enviarCorreoDomiciliario(pedido, domiciliario);
+
         Swal.fire('Asignado', 'El pedido ha sido asignado correctamente', 'success');
-        // Recargar la página después de asignar
         window.location.reload();
       } catch (error) {
         console.error('Error al asignar domiciliario:', error);
@@ -68,11 +74,27 @@ const PedidosAdmin = () => {
     }
   };
 
+  const enviarCorreoDomiciliario = async (pedido, domiciliario) => {
+    try {
+      await emailjs.send('service_1bjg37j', 'template_29xgv6e', {
+        to_name: domiciliario.nombre,
+        to_correo: domiciliario.correo,
+        customer_name: pedido.nombre,
+        customer_email: pedido.correo,
+        customer_phone: pedido.telefono,
+        delivery_address: pedido.direccion,
+        order_date: new Date(pedido.fecha).toLocaleDateString(),
+        products: pedido.productos.map(p => `${p.nombre} - ${p.precio} X ${p.cantidad}`).join(" --- "),
+        total_amount: calcularTotal(pedido.productos),
+      }, 'fopmWs9WYBqTAX5YD');
+    } catch (error) {
+      console.error('Error al enviar correo al domiciliario:', error);
+    }
+  };
+
   const formatearFecha = (fecha, mostrarHora = false) => {
     const fechaObj = new Date(fecha);
-    return mostrarHora 
-      ? fechaObj.toLocaleString() 
-      : fechaObj.toLocaleDateString();
+    return mostrarHora ? fechaObj.toLocaleString() : fechaObj.toLocaleDateString();
   };
 
   return (
