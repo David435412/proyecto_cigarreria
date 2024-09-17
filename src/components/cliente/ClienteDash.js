@@ -127,7 +127,7 @@ const ClienteDashboard = () => {
                                             console.log('Producto agregado al carrito:', producto);
                                         }}
                                     >
-                                        Agregar al carrito
+                                        Ver más
                                     </button>
                                 </div>
                             </Link>
