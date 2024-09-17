@@ -116,6 +116,19 @@
       "numeroDocumento": "1031808326",
       "estado": "activo",
       "rol": "cliente"
+    },
+    {
+      "id": "1c18",
+      "nombre": "wilmer",
+      "contrasena": "Zlophu3<47",
+      "nombreUsuario": "wilmer martin",
+      "tipoDocumento": "Cédula",
+      "numeroDocumento": "1208291208",
+      "correo": "w@gmail.com",
+      "telefono": "3138382398",
+      "direccion": "call 137 # 100 B - 01",
+      "rol": "cajero",
+      "estado": "activo"
     }
   ],
   "productos": [
@@ -813,7 +826,7 @@
       "estadoPedido": "pendiente",
       "estado": "activo",
       "metodoPago": "efectivo"
-    }    
+    }
   ],
   "ventas": [
     {
