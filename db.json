@@ -1369,5 +1369,12 @@
       "metodoPago": "Efectivo",
       "estado": "activo"
     }
+  ],
+  "direcciones": [
+    {
+      "direccion": "Cll 132 c N 137 -152",
+      "usuarioId": "b6a5",
+      "id": "ed0c"
+    }
   ]
 }
