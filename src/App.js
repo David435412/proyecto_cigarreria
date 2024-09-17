@@ -11,6 +11,7 @@ import NavBarDomiciliario from './components/domiciliario/NavBarDomiciliario';
 import Perfil from './components/comun/Perfil';
 
 // Componentes de Página
+import DetalleProductoSinLoggear from './pages/DetallesProductoSinLoggear';
 import RegistroCliente from './components/auth/RegistroCliente';
 import Login from './components/auth/Login';
 import AdminDash from './components/administrador/AdminDash';
@@ -81,6 +82,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Inicio />} />
             <Route path="/Inicio" element={<Inicio />} />
+            <Route path="/DetalleProductoSinLoggear" element={<DetalleProductoSinLoggear />} />
             <Route path="/pedidos-a" element={<PedidosAntes />} />
             <Route path="/carrito-a" element={<CartAntes />} />
             <Route path="/registro-cliente" element={<RegistroCliente />} />
@@ -107,6 +109,7 @@ const App = () => {
             <Route path="/ventas-inactivas" element={<InactivasVentas />} />
             <Route path="/cliente-dash" element={<ClienteDashboard />} />
             <Route path="/producto/:id" element={<DetalleProducto />} />
+            <Route path="/ProductoSinLoggear/:id" element={<DetalleProductoSinLoggear />} />
             <Route path="/carrito" element={<Carrito />} />
             <Route path="/datos-entrega" element={<DatosEntrega />} />
             <Route path="/confirmar" element={<Confirmacion />} />
