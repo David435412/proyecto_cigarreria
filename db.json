@@ -92,15 +92,15 @@
       "estado": "activo"
     },
     {
-      "id": "aer1",
-      "nombre": "Luis Rodriguez",
-      "contrasena": "Mdphv7687",
-      "nombreUsuario": "Luis7",
+      "id": "edce",
+      "nombre": "Jhon Smith",
+      "contrasena": "Fdmhur456",
+      "nombreUsuario": "jhonS",
       "tipoDocumento": "Cédula",
-      "numeroDocumento": "1303212313",
-      "correo": "patodonaldcajon2@gmail.com",
-      "telefono": "31098833123",
-      "direccion": "Cll 13 c N 17",
+      "numeroDocumento": "1031653107",
+      "correo": "patodonalcajon3@gmail.com",
+      "telefono": "3192123312",
+      "direccion": "Cll 133 c N 37",
       "rol": "cajero",
       "estado": "activo"
     }
@@ -113,9 +113,9 @@
       "descripcion": "Tipo de cerveza: Lager ABV: 4,7% País de origen: Colombia.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/491967-1600-1600?v=638216692937930000&width=1600&height=1600&aspect=true",
       "categoria": "Licores",
-      "cantidad": 103,
+      "cantidad": 0,
       "marca": "Babaria",
-      "estado": "activo"
+      "estado": "inactivo"
     },
     {
       "id": "b5c6",
@@ -146,7 +146,7 @@
       "descripcion": "Tipo de cerveza: Lager. País de Origen: México ABV: 4,5%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440069-1600-1600?v=638043996740100000&width=1600&height=1600&aspect=true",
       "categoria": "Licores",
-      "cantidad": 194,
+      "cantidad": 192,
       "marca": "Babaria",
       "estado": "activo"
     },
@@ -168,7 +168,7 @@
       "descripcion": "Combinación del más delicioso chocolate, galleta, arroz crujiente, caramelo, maní y almendras para llenar de sensaciones tu boca.",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/194548-1600-1600?v=637814055458900000&width=1600&height=1600&aspect=true",
       "categoria": "Confitería",
-      "cantidad": 117,
+      "cantidad": 114,
       "marca": "GOL",
       "estado": "activo"
     },
@@ -420,7 +420,7 @@
       "precio": "17.000",
       "descripcion": "Uso oral. No exceder la dosis diaria recomendada o la frecuencia de administración. No tomar con otros productos que contienen acetaminofén, descongestionantes o antihistamínicos, incluyendo medicinas para el alivio de la tos o el resfriado. Mayores de 12 años y adultos (Incluyendo adultos mayores): 1-2 tabletas cada 4-6 horas, según sea requerido.",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/568713-1600-1600?v=638427548366930000&width=1600&height=1600&aspect=true",
-      "categoria": "Medicamentos",
+      "categoria": "Drogas",
       "cantidad": "100",
       "marca": "DOLEX",
       "estado": "activo"
@@ -431,7 +431,7 @@
       "precio": "35.890",
       "descripcion": "VapoRub libera vapores medicinales que pasan a través de las vías respiratorias aliviando la tos y la congestión nasal.\n\nA su vez, VapoRub alivia los dolores musculares causados por gripes o resfriados comunes.",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/640015-1600-1600?v=638555260663800000&width=1600&height=1600&aspect=true",
-      "categoria": "Medicamentos",
+      "categoria": "Drogas",
       "cantidad": "122",
       "marca": "VICK",
       "estado": "activo"
@@ -442,7 +442,7 @@
       "precio": "21.400",
       "descripcion": "Refresca y desinfecta tu garganta con Noraver Pastillas Naranja Miel. Su potente fórmula elimina los virus y las bacterias que causan infecciones. Alivia el dolor. Suaviza tu garganta.",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/459473-1600-1600?v=638108813448470000&width=1600&height=1600&aspect=true",
-      "categoria": "Medicamentos",
+      "categoria": "Drogas",
       "cantidad": "121",
       "marca": "NORAVER",
       "estado": "activo"
@@ -453,7 +453,7 @@
       "precio": "19.350",
       "descripcion": "Refresca y desinfecta tu garganta con Noraver Pastillas Menta Forte. Su potente fórmula elimina los virus y las bacterias que causan infecciones. Alivia el dolor. Suaviza tu garganta.",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/459475-1600-1600?v=638108813456100000&width=1600&height=1600&aspect=true",
-      "categoria": "Medicamentos",
+      "categoria": "Drogas",
       "cantidad": "80",
       "marca": "NORAVER",
       "estado": "activo"
@@ -464,7 +464,7 @@
       "precio": "32.500",
       "descripcion": "Es un medicamento. No exceder su consumo. Si los síntomas persisten consulte a su médico. Leer indicaciones y contraindicaciones en la etiqueta. Reg. San. INVIMA 2009 M-013296-R1. Vick VapoRub es un ungüento tópico que combina mentol, alcanfor y eucalipto en un suave bálsamo y ayuda a calmar algunos síntomas del resfriado común. Vick VapoRub es un tratamiento coadyuvante de los síntomas del resfriado común.",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/639855-1600-1600?v=638555260337000000&width=1600&height=1600&aspect=true",
-      "categoria": "Medicamentos",
+      "categoria": "Drogas",
       "cantidad": "110",
       "marca": "VICK",
       "estado": "activo"
@@ -761,7 +761,7 @@
         }
       ],
       "fecha": "2024-09-15T22:50:23.037Z",
-      "estadoPedido": "pendiente",
+      "estadoPedido": "entregado",
       "estado": "activo",
       "metodoPago": "efectivo"
     },
@@ -797,6 +797,42 @@
         }
       ],
       "fecha": "2024-09-16T01:52:19.950Z",
+      "estadoPedido": "pendiente",
+      "estado": "activo",
+      "metodoPago": "efectivo"
+    },
+    {
+      "id": "50ee",
+      "usuarioId": "ce64",
+      "direccion": "Cll 132 c N 137",
+      "nombre": "Daniel Augusto",
+      "correo": "daniel4354@gmail.com",
+      "telefono": "3213213312",
+      "productos": [
+        {
+          "id": "0dc7",
+          "nombre": "Galleta Gol chocolate x3und x93g cu",
+          "precio": "4.690",
+          "descripcion": "Combinación del más delicioso chocolate, galleta, arroz crujiente, caramelo, maní y almendras para llenar de sensaciones tu boca.",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/194548-1600-1600?v=637814055458900000&width=1600&height=1600&aspect=true",
+          "categoria": "Confitería",
+          "cantidad": 3,
+          "marca": "GOL",
+          "estado": "activo"
+        },
+        {
+          "id": "3445",
+          "nombre": "Cerveza Coronita botella x6und x210ml",
+          "precio": "7.500",
+          "descripcion": "Tipo de cerveza: Lager. País de Origen: México ABV: 4,5%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440069-1600-1600?v=638043996740100000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 2,
+          "marca": "Babaria",
+          "estado": "activo"
+        }
+      ],
+      "fecha": "2024-09-17T02:47:30.032Z",
       "estadoPedido": "pendiente",
       "estado": "activo",
       "metodoPago": "efectivo"
@@ -1064,6 +1100,28 @@
       "numeroDocumento": "1021290812",
       "total": 18,
       "fechaVenta": "15/9/2024",
+      "metodoPago": "Efectivo",
+      "estado": "activo"
+    },
+    {
+      "id": "cab0",
+      "productos": [
+        {
+          "id": "a783",
+          "nombre": "Cerveza Club Colombia Dorada lata x6und x330ml",
+          "precio": "18.700",
+          "descripcion": "Tipo de cerveza: Lager ABV: 4,7% País de origen: Colombia.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/491967-1600-1600?v=638216692937930000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 5,
+          "marca": "Babaria",
+          "estado": "activo"
+        }
+      ],
+      "tipoDocumento": "CC",
+      "numeroDocumento": "1031653107",
+      "total": 93.5,
+      "fechaVenta": "16/9/2024",
       "metodoPago": "Efectivo",
       "estado": "activo"
     }
