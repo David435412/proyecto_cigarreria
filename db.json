@@ -103,6 +103,19 @@
       "direccion": "Cll 13 c N 17",
       "rol": "cajero",
       "estado": "activo"
+    },
+    {
+      "id": "b6a5",
+      "nombre": "darwin santiago lesmes martin",
+      "contrasena": "Gduzlq3<47",
+      "nombreUsuario": "lesmes",
+      "correo": "darwinlesmes0914@gmail.com",
+      "telefono": "3133138027",
+      "direccion": "call 137 # 128 B - 01",
+      "tipoDocumento": "CC",
+      "numeroDocumento": "1031808326",
+      "estado": "activo",
+      "rol": "cliente"
     }
   ],
   "productos": [
@@ -157,7 +170,7 @@
       "descripcion": "Regálate a ti mismo o a tus seres queridos un momento de felicidad con los productos que Jet trae para ti.",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/653021-1600-1600?v=638582162050400000&width=1600&height=1600&aspect=true",
       "categoria": "Confitería",
-      "cantidad": "85",
+      "cantidad": 84,
       "marca": "Jet",
       "estado": "activo"
     },
@@ -179,7 +192,7 @@
       "descripcion": "Deliciosa barra de chocolate de leche * Rellena de maní, cremoso caramelo y nougat",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/367867-1600-1600?v=637889251308670000&width=1600&height=1600&aspect=true",
       "categoria": "Confitería",
-      "cantidad": 388,
+      "cantidad": 387,
       "marca": "Snickers",
       "estado": "activo"
     },
@@ -700,7 +713,7 @@
         }
       ],
       "fecha": "2024-08-27T03:42:30.464Z",
-      "estadoPedido": "entregado",
+      "estadoPedido": "pendiente",
       "estado": "activo"
     },
     {
@@ -797,6 +810,42 @@
         }
       ],
       "fecha": "2024-09-16T01:52:19.950Z",
+      "estadoPedido": "pendiente",
+      "estado": "activo",
+      "metodoPago": "efectivo"
+    },
+    {
+      "id": "31eb",
+      "usuarioId": "b6a5",
+      "direccion": "call 137 # 128 B - 01",
+      "nombre": "darwin santiago lesmes martin",
+      "correo": "darwinlesmes0914@gmail.com",
+      "telefono": "3133138027",
+      "productos": [
+        {
+          "id": "ce57",
+          "nombre": "Snickers barra de chocolate y maní x52.7g",
+          "precio": "6.090",
+          "descripcion": "Deliciosa barra de chocolate de leche * Rellena de maní, cremoso caramelo y nougat",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/367867-1600-1600?v=637889251308670000&width=1600&height=1600&aspect=true",
+          "categoria": "Confitería",
+          "cantidad": 1,
+          "marca": "Snickers",
+          "estado": "activo"
+        },
+        {
+          "id": "12ef",
+          "nombre": "Chocolatina Jet Leche x12und x132g",
+          "precio": "12.750",
+          "descripcion": "Regálate a ti mismo o a tus seres queridos un momento de felicidad con los productos que Jet trae para ti.",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/653021-1600-1600?v=638582162050400000&width=1600&height=1600&aspect=true",
+          "categoria": "Confitería",
+          "cantidad": 1,
+          "marca": "Jet",
+          "estado": "activo"
+        }
+      ],
+      "fecha": "2024-09-17T03:38:00.305Z",
       "estadoPedido": "pendiente",
       "estado": "activo",
       "metodoPago": "efectivo"
