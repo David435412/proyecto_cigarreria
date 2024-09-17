@@ -3,7 +3,7 @@
     {
       "nombre": "David Santiago Murcia",
       "nombreUsuario": "david12",
-      "correo": "admin@gmail.com",
+      "correo": "patodonaldcajon4@gmail.com",
       "telefono": "3103220039",
       "direccion": "Cll 132 c N 137",
       "tipoDocumento": "cedula",
@@ -116,19 +116,6 @@
       "numeroDocumento": "1031808326",
       "estado": "activo",
       "rol": "cliente"
-    },
-    {
-      "id": "1c18",
-      "nombre": "wilmer",
-      "contrasena": "Zlophu3<47",
-      "nombreUsuario": "wilmer martin",
-      "tipoDocumento": "Cédula",
-      "numeroDocumento": "1208291208",
-      "correo": "w@gmail.com",
-      "telefono": "3138382398",
-      "direccion": "call 137 # 100 B - 01",
-      "rol": "cajero",
-      "estado": "activo"
     }
   ],
   "productos": [
@@ -139,9 +126,9 @@
       "descripcion": "Tipo de cerveza: Lager ABV: 4,7% País de origen: Colombia.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/491967-1600-1600?v=638216692937930000&width=1600&height=1600&aspect=true",
       "categoria": "Licores",
-      "cantidad": 0,
+      "cantidad": "20",
       "marca": "Babaria",
-      "estado": "inactivo"
+      "estado": "activo"
     },
     {
       "id": "b5c6",
@@ -150,13 +137,13 @@
       "descripcion": "Tipo de cerveza: Lager. País de origen: Colombia. ABV: 4,0%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/439991-1600-1600?v=638043996501300000&width=1600&height=1600&aspect=true",
       "categoria": "Licores",
-      "cantidad": 179,
+      "cantidad": 0,
       "marca": "Babaria",
       "estado": "activo"
     },
     {
       "id": "105c",
-      "nombre": "Cerveza Poker lata x6und x330ml",
+      "nombre": "Cerveza Poker lata x6und x330ml cu",
       "precio": "18.000",
       "descripcion": "Tipo de cerveza: Lager. País de origen: Colombia. ABV: 4,0%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440018-1600-1600?v=638043996576070000&width=1600&height=1600&aspect=true",
@@ -172,7 +159,7 @@
       "descripcion": "Tipo de cerveza: Lager. País de Origen: México ABV: 4,5%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440069-1600-1600?v=638043996740100000&width=1600&height=1600&aspect=true",
       "categoria": "Licores",
-      "cantidad": 192,
+      "cantidad": 186,
       "marca": "Babaria",
       "estado": "activo"
     },
@@ -205,7 +192,7 @@
       "descripcion": "Deliciosa barra de chocolate de leche * Rellena de maní, cremoso caramelo y nougat",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/367867-1600-1600?v=637889251308670000&width=1600&height=1600&aspect=true",
       "categoria": "Confitería",
-      "cantidad": 386,
+      "cantidad": 384,
       "marca": "Snickers",
       "estado": "activo"
     },
@@ -1116,23 +1103,155 @@
       "estado": "activo"
     },
     {
-      "id": "40ab",
+      "id": "f17a",
       "productos": [
         {
-          "id": "ce57",
-          "nombre": "Snickers barra de chocolate y maní x52.7g",
-          "precio": "6.090",
-          "descripcion": "Deliciosa barra de chocolate de leche * Rellena de maní, cremoso caramelo y nougat",
-          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/367867-1600-1600?v=637889251308670000&width=1600&height=1600&aspect=true",
-          "categoria": "Confitería",
+          "id": "b5c6",
+          "nombre": "Cerveza Aguila Original lata x6und x330ml",
+          "precio": "18.000",
+          "descripcion": "Tipo de cerveza: Lager. País de origen: Colombia. ABV: 4,0%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/439991-1600-1600?v=638043996501300000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 10,
+          "marca": "Babaria",
+          "estado": "activo"
+        }
+      ],
+      "tipoDocumento": "",
+      "numeroDocumento": "1031653107",
+      "total": 180,
+      "fechaVenta": "17/9/2024",
+      "metodoPago": "Tarjeta de Crédito",
+      "estado": "activo"
+    },
+    {
+      "id": "4968",
+      "productos": [
+        {
+          "id": "b5c6",
+          "nombre": "Cerveza Aguila Original lata x6und x330ml",
+          "precio": "18.000",
+          "descripcion": "Tipo de cerveza: Lager. País de origen: Colombia. ABV: 4,0%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/439991-1600-1600?v=638043996501300000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
           "cantidad": 1,
-          "marca": "Snickers",
+          "marca": "Babaria",
+          "estado": "activo"
+        }
+      ],
+      "tipoDocumento": "",
+      "numeroDocumento": "1031653107",
+      "total": 18,
+      "fechaVenta": "17/9/2024",
+      "metodoPago": "Efectivo",
+      "estado": "activo"
+    },
+    {
+      "id": "d92d",
+      "productos": [
+        {
+          "id": "b5c6",
+          "nombre": "Cerveza Aguila Original lata x6und x330ml",
+          "precio": "18.000",
+          "descripcion": "Tipo de cerveza: Lager. País de origen: Colombia. ABV: 4,0%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/439991-1600-1600?v=638043996501300000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 3,
+          "marca": "Babaria",
+          "estado": "activo"
+        }
+      ],
+      "tipoDocumento": "",
+      "numeroDocumento": "1031653107",
+      "total": 54,
+      "fechaVenta": "17/9/2024",
+      "metodoPago": "Efectivo",
+      "estado": "inactivo"
+    },
+    {
+      "id": "90bb",
+      "productos": [
+        {
+          "id": "3445",
+          "nombre": "Cerveza Coronita botella x6und x210ml",
+          "precio": "7.500",
+          "descripcion": "Tipo de cerveza: Lager. País de Origen: México ABV: 4,5%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440069-1600-1600?v=638043996740100000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 3,
+          "marca": "Babaria",
+          "estado": "activo"
+        }
+      ],
+      "tipoDocumento": "",
+      "numeroDocumento": "1031653107",
+      "total": 22.5,
+      "fechaVenta": "17/9/2024",
+      "metodoPago": "Efectivo",
+      "estado": "activo"
+    },
+    {
+      "id": "e8f2",
+      "productos": [
+        {
+          "id": "3445",
+          "nombre": "Cerveza Coronita botella x6und x210ml",
+          "precio": "7.500",
+          "descripcion": "Tipo de cerveza: Lager. País de Origen: México ABV: 4,5%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440069-1600-1600?v=638043996740100000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 3,
+          "marca": "Babaria",
+          "estado": "activo"
+        }
+      ],
+      "tipoDocumento": "",
+      "numeroDocumento": "1031653107",
+      "total": 22.5,
+      "fechaVenta": "17/9/2024",
+      "metodoPago": "Efectivo",
+      "estado": "activo"
+    },
+    {
+      "id": "83df",
+      "productos": [
+        {
+          "id": "a783",
+          "nombre": "Cerveza Club Colombia Dorada lata x6und x330ml",
+          "precio": "18.700",
+          "descripcion": "Tipo de cerveza: Lager ABV: 4,7% País de origen: Colombia.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/491967-1600-1600?v=638216692937930000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 10,
+          "marca": "Babaria",
+          "estado": "activo"
+        }
+      ],
+      "tipoDocumento": "",
+      "numeroDocumento": "1031653107",
+      "total": 187,
+      "fechaVenta": "17/9/2024",
+      "metodoPago": "Efectivo",
+      "estado": "activo"
+    },
+    {
+      "id": "e4cb",
+      "productos": [
+        {
+          "id": "a783",
+          "nombre": "Cerveza Club Colombia Dorada lata x6und x330ml",
+          "precio": "18.700",
+          "descripcion": "Tipo de cerveza: Lager ABV: 4,7% País de origen: Colombia.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/491967-1600-1600?v=638216692937930000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 4,
+          "marca": "Babaria",
           "estado": "activo"
         }
       ],
       "tipoDocumento": "CC",
-      "numeroDocumento": "1021290812",
-      "total": 6.09,
+      "numeroDocumento": "1031653107",
+      "total": 74.8,
       "fechaVenta": "17/9/2024",
       "metodoPago": "Efectivo",
       "estado": "activo"

@@ -141,7 +141,7 @@ const GestionProveedores = () => {
 
     return (
         <div className="container mx-auto px-6 py-8">
-            <h1 className="text-3xl font-bold mb-4 text-center text-green-800">Gestión de Proveedores</h1>
+            <h1 className="text-3xl font-bold mb-4 text-center text-black">Gestión de Proveedores</h1>
             <p className="mb-8 text-center text-gray-600">
                 En esta sección podrás encontrar toda la información de los proveedores que tiene actualmente la empresa.
             </p>
