@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 import emailjs from 'emailjs-com';
 
 const DatosEntrega = () => {
     const [carrito, setCarrito] = useState([]);
-    const [direccion, setDireccion] = useState('');
+    const [direcciones, setDirecciones] = useState([]);
+    const [direccionSeleccionada, setDireccionSeleccionada] = useState('');
     const [nombre, setNombre] = useState('');
     const [correo, setCorreo] = useState('');
     const [telefono, setTelefono] = useState('');
@@ -13,36 +15,106 @@ const DatosEntrega = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        console.log('localStorage contents:');
-        for (let i = 0; i < localStorage.length; i++) {
-            const key = localStorage.key(i);
-            console.log(`${key}: ${localStorage.getItem(key)}`);
-        }
-        // Obtener datos del carrito del localStorage
         const usuarioId = localStorage.getItem('userId');
         if (usuarioId) {
+            // Obtener el carrito del localStorage
             const carritoData = JSON.parse(localStorage.getItem(`carrito_${usuarioId}`)) || [];
             setCarrito(carritoData);
-        }
 
-        // Obtener datos del usuario desde localStorage
-        const userName = localStorage.getItem('name');
-        if (userName) {
-            setNombre(userName);
-        }
-        const userEmail = localStorage.getItem('email');
-        if (userEmail) {
-            setCorreo(userEmail);
-        }
-        const userPhone = localStorage.getItem('phone');
-        if (userPhone) {
-            setTelefono(userPhone);
-        }
+            // Obtener direcciones del usuario desde la base de datos
+            axios.get(`http://localhost:5000/direcciones?usuarioId=${usuarioId}`)
+                .then(response => setDirecciones(response.data))
+                .catch(error => console.error('Error al obtener direcciones:', error));
 
+            // Obtener datos del usuario desde localStorage
+            setNombre(localStorage.getItem('name') || '');
+            setCorreo(localStorage.getItem('email') || '');
+            setTelefono(localStorage.getItem('phone') || '');
+        }
     }, []);
 
-    const handleDireccionChange = (e) => {
-        setDireccion(e.target.value);
+    const handleAgregarDireccion = async () => {
+        const { value: nuevaDireccion } = await Swal.fire({
+            title: 'Agregar Dirección',
+            input: 'text',
+            inputLabel: 'Dirección de Entrega',
+            inputPlaceholder: 'Ingresa tu nueva dirección',
+            showCancelButton: true,
+            confirmButtonText: 'Guardar',
+            cancelButtonText: 'Cancelar',
+        });
+
+        if (nuevaDireccion) {
+            const usuarioId = localStorage.getItem('userId');
+            if (usuarioId) {
+                try {
+                    await axios.post('http://localhost:5000/direcciones', {
+                        usuarioId,
+                        direccion: nuevaDireccion
+                    });
+                    window.location.reload();   
+                    // Actualizar la lista de direcciones
+                    setDirecciones([...direcciones, { direccion: nuevaDireccion }]);
+                } catch (error) {
+                    console.error('Error al guardar la dirección:', error);
+                    Swal.fire('Error', 'Hubo un problema al guardar la dirección.', 'error');
+                }
+            }
+        }
+    };
+
+    const handleEditarDireccion = async (id, direccionActual) => {
+        const { value: nuevaDireccion } = await Swal.fire({
+            title: 'Editar Dirección',
+            input: 'text',
+            inputLabel: 'Dirección de Entrega',
+            inputValue: direccionActual,
+            inputPlaceholder: 'Ingresa la nueva dirección',
+            showCancelButton: true,
+            confirmButtonText: 'Guardar',
+            cancelButtonText: 'Cancelar',
+        });
+    
+        if (nuevaDireccion) {
+            try {
+                const usuarioId = localStorage.getItem('userId');
+                if (usuarioId) {
+                    await axios.put(`http://localhost:5000/direcciones/${id}`, {
+                        direccion: nuevaDireccion,
+                        usuarioId  // Asegúrate de mantener el usuarioId
+                    });
+                    // Actualizar la lista de direcciones
+                    setDirecciones(direcciones.map(d => d.id === id ? { ...d, direccion: nuevaDireccion } : d));
+                }
+            } catch (error) {
+                console.error('Error al actualizar la dirección:', error);
+                Swal.fire('Error', 'Hubo un problema al actualizar la dirección.', 'error');
+            }
+        }
+    };
+    
+
+    const handleEliminarDireccion = async (id) => {
+        const confirmacion = await Swal.fire({
+            title: '¿Estás seguro?',
+            text: "¡Esta acción eliminará la dirección permanentemente!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+        });
+
+        if (confirmacion.isConfirmed) {
+            try {
+                await axios.delete(`http://localhost:5000/direcciones/${id}`);
+                // Actualizar la lista de direcciones
+                setDirecciones(direcciones.filter(d => d.id !== id));
+                if (direccionSeleccionada === id) setDireccionSeleccionada('');
+            } catch (error) {
+                console.error('Error al eliminar la dirección:', error);
+                Swal.fire('Error', 'Hubo un problema al eliminar la dirección.', 'error');
+            }
+        }
     };
 
     const enviarCorreoCajeros = async (pedido) => {
@@ -60,7 +132,7 @@ const DatosEntrega = () => {
                     customer_phone: pedido.telefono,
                     delivery_address: pedido.direccion,
                     order_date: new Date().toLocaleDateString(),
-                    products: pedido.productos.map(p => `${p.nombre} - ${p.precio} X ${p.cantidad}`).join(" --- "),
+                    products: pedido.productos.map(p => `${p.nombre} - ${parseFloat(p.precio).toFixed(2)} X ${p.cantidad}`).join(" --- "),
                     total_amount: calcularTotal(pedido.productos),
                 }, 'JS01zy1f3DQ02Ojb0');
             }));
@@ -68,12 +140,10 @@ const DatosEntrega = () => {
             console.error('Error al enviar correos:', error);
         }
     };
-    
-    
 
     const handleConfirmar = async () => {
-        if (!direccion.trim()) {
-            setError('Por favor, completa todos los campos.');
+        if (!direccionSeleccionada.trim()) {
+            setError('Por favor, selecciona una dirección.');
             return;
         }
 
@@ -81,7 +151,7 @@ const DatosEntrega = () => {
         if (usuarioId) {
             const pedido = {
                 usuarioId,
-                direccion,
+                direccion: direccionSeleccionada,
                 nombre,
                 correo,
                 telefono,
@@ -120,7 +190,7 @@ const DatosEntrega = () => {
     };
 
     const calcularTotal = (productos) => {
-        return productos.reduce((total, producto) => total + producto.precio * producto.cantidad, 0).toFixed(3);
+        return productos.reduce((total, producto) => total + (parseFloat(producto.precio) || 0) * producto.cantidad, 0).toFixed(2);
     };
 
     return (
@@ -139,66 +209,83 @@ const DatosEntrega = () => {
                                 <th className="py-3 px-4 border-b text-left text-sm font-medium text-gray-600">Producto</th>
                                 <th className="py-3 px-4 border-b text-left text-sm font-medium text-gray-600">Cantidad</th>
                                 <th className="py-3 px-4 border-b text-left text-sm font-medium text-gray-600">Precio</th>
-                                <th className="py-3 px-4 border-b text-left text-sm font-medium text-gray-600">Total</th>
+                                <th className="py-3 px-4 border-b text-left text-sm font-medium text-gray-600">Subtotal</th>
                             </tr>
                         </thead>
                         <tbody>
                             {carrito.map((producto) => (
                                 <tr key={producto.id}>
-                                    <td className="py-4 px-4 border-b">
+                                    <td className="py-4 px-4 border-b text-sm">
                                         <div className="flex items-center">
-                                            <img src={producto.imagen} alt={producto.nombre} className="w-20 h-20 object-cover mr-4" />
+                                            <img src={producto.imagen} alt={producto.nombre} className="w-16 h-16 object-cover mr-4" />
                                             <span className="text-sm font-medium">{producto.nombre}</span>
                                         </div>
                                     </td>
-                                    <td className="py-4 px-4 border-b">{producto.cantidad}</td>
-                                    <td className="py-4 px-4 border-b">${producto.precio}</td>
-                                    <td className="py-4 px-4 border-b">${(producto.precio * producto.cantidad).toFixed(3)}</td>
+                                    <td className="py-4 px-4 border-b text-sm">{producto.cantidad}</td>
+                                    <td className="py-4 px-4 border-b text-sm">${parseFloat(producto.precio).toFixed(2)}</td>
+                                    <td className="py-4 px-4 border-b text-sm">${(parseFloat(producto.precio) * producto.cantidad).toFixed(2)}</td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
                     <div className="mb-6">
-                        <h2 className="text-xl font-semibold">Subtotal: ${calcularTotal(carrito)}</h2>
-                    </div>
-                    {/* Mostrar datos de usuario como texto en lugar de inputs */}
-                    <div className="mb-6">
                         <p className="text-sm font-medium text-gray-700 mb-2">Nombre: {nombre}</p>
-                    </div>
-                    <div className="mb-6">
                         <p className="text-sm font-medium text-gray-700 mb-2">Correo Electrónico: {correo}</p>
-                    </div>
-                    <div className="mb-6">
                         <p className="text-sm font-medium text-gray-700 mb-2">Teléfono: {telefono}</p>
                     </div>
                     <div className="mb-6">
-                        <label htmlFor="direccion" className="block text-sm font-medium text-gray-700 mb-2">Dirección de Entrega</label>
-                        <input
-                            type="text"
-                            id="direccion"
-                            value={direccion}
-                            onChange={handleDireccionChange}
-                            className="w-full p-2 border border-gray-300 rounded"
-                            placeholder="Ingresa tu dirección de entrega"
-                        />
-                        {error && <p className="text-red-500 mt-2">{error}</p>}
+                        <h2 className="text-2xl font-semibold mb-4">Direcciones de Entrega</h2>
+                        {direcciones.length === 0 ? (
+                            <div>
+                                <p className="text-lg">No tienes direcciones registradas.</p>
+                                <span className="block sm:inline"> Agrega una nueva dirección para continuar.</span>
+                                <button onClick={handleAgregarDireccion} className="bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-500 mt-4">
+                                    Agregar Dirección
+                                </button>
+                            </div>
+                        ) : (
+                            <div>
+                                {direcciones.map((direccion) => (
+                                    <div key={direccion.id} className="flex items-center border-b border-gray-200 py-2">
+                                        <input
+                                            type="radio"
+                                            id={`direccion-${direccion.id}`}
+                                            name="direccion"
+                                            value={direccion.direccion}
+                                            checked={direccionSeleccionada === direccion.direccion}
+                                            onChange={(e) => setDireccionSeleccionada(e.target.value)}
+                                            className="mr-2"
+                                        />
+                                        <label htmlFor={`direccion-${direccion.id}`} className="text-sm font-medium">{direccion.direccion}</label>
+                                        <button
+                                            onClick={() => handleEditarDireccion(direccion.id, direccion.direccion)}
+                                            className="ml-4 bg-yellow-500 text-white py-1 px-2 rounded hover:bg-yellow-400"
+                                        >
+                                            Editar
+                                        </button>
+                                        <button
+                                            onClick={() => handleEliminarDireccion(direccion.id)}
+                                            className="ml-2 bg-red-500 text-white py-1 px-2 rounded hover:bg-red-400"
+                                        >
+                                            Eliminar
+                                        </button>
+                                    </div>
+                                ))}
+                                <button onClick={handleAgregarDireccion} className="bg-yellow-600 text-white py-2 px-4 rounded hover:bg-yello-500 mt-4">
+                                    Agregar Otra Dirección
+                                </button>
+                            </div>
+                        )}
                     </div>
                     <button
                         onClick={handleConfirmar}
-                        className="px-8 py-4 bg-gradient-to-r from-green-700 to-green-500 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
+                        className="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-500"
                     >
-                        Confirmar y Proceder al Pago
+                        Confirmar Pedido
                     </button>
+                    {error && <p className="text-red-500 mt-4">{error}</p>}
                 </div>
             )}
-            <div className="mt-6 text-center">
-                <Link
-                    to="/cliente-dash"
-                    className="px-5 py-3 bg-gray-500 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
-                >
-                    Seguir comprando
-                </Link>
-            </div>
         </div>
     );
 };
