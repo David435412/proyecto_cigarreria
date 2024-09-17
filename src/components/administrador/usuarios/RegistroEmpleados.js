@@ -153,9 +153,8 @@ const RegistroEmpleado = () => {
                                 required
                             >
                                 <option value="" disabled>Seleccione el tipo de documento</option>
-                                <option value="DNI">DNI</option>
-                                <option value="Pasaporte">Pasaporte</option>
                                 <option value="Cédula">Cédula</option>
+                                <option value="Cédula Extranjera">Cédula Extranjera</option>
                             </select>
                         </div>
                         <div>

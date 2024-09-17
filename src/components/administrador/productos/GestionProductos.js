@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { FaPlus, FaEdit, FaTrash, FaArchive, FaBox, FaBeer, FaCandyCane, FaSoap, FaPills, FaIceCream, FaWineBottle, FaCheese, FaBreadSlice, FaShoppingCart } from 'react-icons/fa';
+import { FaPlus, FaEdit, FaTrash, FaArchive, FaBox, FaBeer, FaCandyCane, FaSoap, FaPills, FaIceCream, FaWineBottle, FaCheese, FaBreadSlice } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
-
 
 const categorias = [
     { nombre: 'Licores', icono: <FaWineBottle /> },
@@ -22,8 +21,8 @@ const GestionProductos = () => {
     const [productos, setProductos] = useState([]);
     const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('');
     const [error, setError] = useState('');
-    const [cantidad, setCantidad] = useState(''); // Estado para manejar la cantidad en el modal
-    const [productoSeleccionado, setProductoSeleccionado] = useState(null); // Producto actual en edición
+    const [cantidad, setCantidad] = useState('');
+    const [productoSeleccionado, setProductoSeleccionado] = useState(null);
 
     const navigate = useNavigate();
 
@@ -46,6 +45,9 @@ const GestionProductos = () => {
     const productosFiltrados = productos.filter(producto =>
         (categoriaSeleccionada === '' || producto.categoria === categoriaSeleccionada) && producto.estado === 'activo'
     );
+
+    // Ordenar productos por cantidad, mostrando los agotados primero
+    const productosOrdenados = [...productosFiltrados].sort((a, b) => a.cantidad - b.cantidad);
 
     // Maneja la confirmación de eliminación utilizando SweetAlert2
     const handleEliminar = (producto) => {
@@ -81,7 +83,7 @@ const GestionProductos = () => {
     // Maneja la apertura del modal para cambiar stock
     const handleCambiarStock = (producto) => {
         setProductoSeleccionado(producto);
-        setCantidad(producto.cantidad); // Carga la cantidad actual en el modal
+        setCantidad(producto.cantidad);
         Swal.fire({
             title: `Cambiar stock de ${producto.nombre}`,
             html: `<input type="number" id="cantidad" class="swal2-input" placeholder="Cantidad" value="${producto.cantidad}" min="0">`,
@@ -99,19 +101,16 @@ const GestionProductos = () => {
     };
 
     // Actualiza el stock en la base de datos
-    // Actualiza el stock en la base de datos
-const actualizarStock = async (id, nuevaCantidad) => {
-    try {
-        // Solo enviamos la cantidad para actualizar
-        await axios.patch(`http://localhost:5000/productos/${id}`, { cantidad: nuevaCantidad });
-        fetchProductos();
-        Swal.fire('Actualizado', 'El stock ha sido actualizado exitosamente', 'success');
-    } catch (error) {
-        console.error('Error al actualizar el stock', error);
-        setError('No se pudo actualizar el stock.');
-    }
-};
-
+    const actualizarStock = async (id, nuevaCantidad) => {
+        try {
+            await axios.patch(`http://localhost:5000/productos/${id}`, { cantidad: nuevaCantidad });
+            fetchProductos();
+            Swal.fire('Actualizado', 'El stock ha sido actualizado exitosamente', 'success');
+        } catch (error) {
+            console.error('Error al actualizar el stock', error);
+            setError('No se pudo actualizar el stock.');
+        }
+    };
 
     const handleCategoriaClick = (categoria) => {
         setCategoriaSeleccionada(categoria);
@@ -155,7 +154,7 @@ const actualizarStock = async (id, nuevaCantidad) => {
                 <div className="flex flex-wrap gap-4">
                     <div
                         onClick={handleVerTodosClick}
-                        className={`bg-gray-300 cursor-pointer p-3 border rounded-full shadow-xl text-sm font-medium text-center transition-transform duration-300 ease-in-out w-20 h-20 flex flex-col items-center justify-center transform ${categoriaSeleccionada === 'Todos' ? 'bg-green-500 text-white border-green-500' : 'bg-gray-100 text-black border-gray-300'} hover:bg-green-600 hover:text-white hover:scale-110 hover:-translate-y-2 hover:shadow-2xl`}
+                        className={`bg-gray-300 cursor-pointer p-3 border rounded-full shadow-xl text-sm font-medium text-center transition-transform duration-300 ease-in-out w-20 h-20 flex flex-col items-center justify-center transform ${categoriaSeleccionada === '' ? 'bg-green-500 text-white border-green-500' : 'bg-gray-100 text-black border-gray-300'} hover:bg-green-600 hover:text-white hover:scale-110 hover:-translate-y-2 hover:shadow-2xl`}
                     >
                         <p className="text-center">Todos</p>
                     </div>
@@ -172,12 +171,11 @@ const actualizarStock = async (id, nuevaCantidad) => {
                 </div>
             </div>
 
-
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {productos.length === 0 ? (
                     <p className="text-gray-500">No hay productos disponibles en la base de datos.</p>
-                ) : productosFiltrados.length > 0 ? (
-                    productosFiltrados.map((producto) => (
+                ) : productosOrdenados.length > 0 ? (
+                    productosOrdenados.map((producto) => (
                         <div
                             key={producto.id}
                             className={`border border-gray-200 rounded-lg shadow-md overflow-hidden transition-transform transform hover:scale-105 ${producto.cantidad === 0 ? 'bg-red-100' : 'bg-white'}`}

@@ -244,9 +244,8 @@ const RegistroCliente = () => {
                                         required
                                     >
                                         <option value="">Selecciona un tipo de documento</option>
-                                        <option value="CC">Cédula de Ciudadanía</option>
-                                        <option value="PT">Pasaporte</option>
-                                        <option value="CE">Cédula de Extranjería</option>
+                                        <option value="Cédula">Cédula de Ciudadanía</option>
+                                        <option value="Cédula Extranjera">Cédula de Extranjería</option>
                                     </select>
                                 </div>
                                 <div className="w-full">

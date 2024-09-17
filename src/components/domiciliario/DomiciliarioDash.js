@@ -24,8 +24,9 @@ const DomiciliarioDashboard = () => {
         const fetchPedidos = async () => {
             try {
                 const response = await axios.get('http://localhost:5000/pedidos');
-                const pedidosPendientes = response.data.filter(pedido => pedido.estadoPedido === 'pendiente' && pedido.asignado === userId); // Filtrar por userId
-                setPedidos(pedidosPendientes);
+                // Obtener todos los pedidos asignados al usuario
+                const pedidosAsignados = response.data.filter(pedido => pedido.asignado === userId);
+                setPedidos(pedidosAsignados);
             } catch (error) {
                 console.error('Error al obtener los pedidos:', error);
             }
@@ -117,7 +118,7 @@ const DomiciliarioDashboard = () => {
             <div className="container mx-auto px-4 py-8">
                 <div className="grid grid-cols-1 gap-6 mb-8">
                     <div className="bg-white p-6 shadow-md rounded-lg">
-                        <h2 className="text-xl font-bold mb-2">Pedidos Pendientes</h2>
+                        <h2 className="text-xl font-bold mb-2">Pedidos Pendientes y Entregados</h2>
                         <p className="text-gray-700">
                             Consulta y modifica el estado de los pedidos realizados por los clientes. Gestiona el campo de estado de entrega para asegurar un seguimiento adecuado.
                         </p>
@@ -141,12 +142,14 @@ const DomiciliarioDashboard = () => {
                                                 <td className="py-2 px-4 border-b">${calcularTotal(pedido.productos)}</td>
                                                 <td className="py-2 px-4 border-b">{pedido.estadoPedido}</td>
                                                 <td className="py-2 px-4 border-b text-center">
-                                                    <button
-                                                        onClick={() => manejarEstadoEntrega(pedido)}
-                                                        className="bg-gray-500 text-white py-1 px-2 rounded hover:bg-gray-600"
-                                                    >
-                                                        <FaCheckCircle className="inline-block mr-1" /> Marcar Entregado
-                                                    </button>
+                                                    {pedido.estadoPedido === 'pendiente' && (
+                                                        <button
+                                                            onClick={() => manejarEstadoEntrega(pedido)}
+                                                            className="bg-gray-500 text-white py-1 px-2 rounded hover:bg-gray-600"
+                                                        >
+                                                            <FaCheckCircle className="inline-block mr-1" /> Marcar Entregado
+                                                        </button>
+                                                    )}
                                                     <button
                                                         onClick={() => mostrarDetalles(pedido)}
                                                         className={`ml-2 bg-blue-500 text-white py-1 px-4 rounded hover:bg-blue-600 ${pedidoSeleccionado && pedidoSeleccionado.id === pedido.id ? 'bg-blue-600' : ''}`}
@@ -183,7 +186,7 @@ const DomiciliarioDashboard = () => {
                                     ))
                                 ) : (
                                     <tr>
-                                        <td colSpan="5" className="py-4 text-center text-gray-600">No hay pedidos pendientes.</td>
+                                        <td colSpan="5" className="py-4 text-center text-gray-600">No hay pedidos asignados.</td>
                                     </tr>
                                 )}
                             </tbody>

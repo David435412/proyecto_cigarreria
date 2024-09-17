@@ -27,7 +27,6 @@ const ConfirmacionVenta = () => {
 
         const venta = {
             productos: productosSeleccionados,
-            tipoDocumento,
             numeroDocumento,
             total,
             fechaVenta: new Date().toLocaleDateString(),
