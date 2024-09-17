@@ -98,7 +98,7 @@ const RegistroCliente = () => {
 
             await axios.post('http://localhost:5000/usuarios', datosAEnviar);
             Swal.fire({
-                position: 'top-end',
+                position: 'center',
                 icon: 'success',
                 title: 'Cliente registrado con éxito',
                 showConfirmButton: false,
