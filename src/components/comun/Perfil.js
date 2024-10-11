@@ -140,6 +140,7 @@ const Profile = () => {
             inputPlaceholder: 'Ingrese su contraseña actual',
             showCancelButton: true,
             confirmButtonText: 'Continuar',
+            confirmButtonColor: '#2563eb',
             cancelButtonText: 'Cancelar',
             inputValidator: (value) => {
                 if (!value) {
@@ -168,6 +169,7 @@ const Profile = () => {
                         },
                         showCancelButton: true,
                         confirmButtonText: 'Cambiar',
+                        confirmButtonColor: '#2563eb',
                         cancelButtonText: 'Cancelar',
                         preConfirm: (newPassword) => {
                             // Validar la nueva contraseña
@@ -194,7 +196,8 @@ const Profile = () => {
                             title: 'Éxito',
                             text: 'Contraseña cambiada con éxito',
                             icon: 'success',
-                            confirmButtonText: 'Aceptar'
+                            confirmButtonText: 'Aceptar',
+                            confirmButtonColor: '#2563eb'
                         });
                     }
                 } else {
@@ -202,7 +205,8 @@ const Profile = () => {
                         title: 'Error',
                         text: 'La contraseña actual no coincide',
                         icon: 'error',
-                        confirmButtonText: 'Aceptar'
+                        confirmButtonText: 'Aceptar',
+                        confirmButtonColor: '#2563eb'
                     });
                 }
             } catch (error) {
@@ -252,13 +256,13 @@ const Profile = () => {
             </div>
             <div className="flex flex-col md:flex-row justify-between mt-6 gap-4">
                 <button 
-                    className="px-6 py-2 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
+                    className="px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700"
                     onClick={openModal}
                 >
                     Editar Perfil
                 </button>
                 <button
-                    className="px-6 py-2 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"
+                    className="px-6 py-2 bg-gray-600 text-white font-semibold rounded-lg shadow-md hover:bg-gray-700"
                     onClick={handleChangePassword}
                 >
                     Cambiar Contraseña
@@ -270,7 +274,7 @@ const Profile = () => {
         <div className="bg-white p-8 rounded-lg shadow-lg max-w-md mx-auto">
             <h2 className="text-2xl font-bold mb-4 text-gray-900 text-center">Editar Perfil</h2>
             <form onSubmit={(e) => e.preventDefault()} className="grid grid-cols-2 gap-4">
-                <div>
+                <div className="col-span-2">
                     <label className="block text-gray-700 font-bold mb-2" htmlFor="correo">
                         Correo
                     </label>
@@ -283,7 +287,7 @@ const Profile = () => {
                         onChange={handleInputChange}
                     />
                 </div>
-                <div>
+                <div className="col-span-2">
                     <label className="block text-gray-700 font-bold mb-2" htmlFor="telefono">
                         Teléfono
                     </label>
