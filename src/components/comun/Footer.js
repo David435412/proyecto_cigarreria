@@ -9,8 +9,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between">
         {/* Logo y Título */}
         <Link to="/" className="flex items-center mb-4 lg:mb-0 space-x-3">
-          <img src={Logo} alt="Logo" className="w-16 h-16" />
-          <span className="text-2xl text-gray-900 font-bold italic">Colonial</span>
+          <img src={Logo} alt="Logo" className="w-60 h-auto" />
         </Link>
 
         {/* Información de Contacto */}

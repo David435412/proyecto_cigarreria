@@ -40,17 +40,17 @@
       "estado": "activo"
     },
     {
-      "id": "fcf0",
       "nombre": "james  rodriguez",
-      "contrasena": "Folhqwh456",
       "nombreUsuario": "james",
       "correo": "davidm435465123@gmail.com",
       "telefono": "2108108213",
-      "direccion": "call 232# 100A-02",
+      "direccion": "call 232# 100A-04",
       "tipoDocumento": "Cédula",
       "numeroDocumento": "10208121312",
+      "rol": "cliente",
       "estado": "activo",
-      "rol": "cliente"
+      "contrasena": "Folhqwh456",
+      "id": "fcf0"
     },
     {
       "id": "3428",
@@ -118,7 +118,7 @@
       "descripcion": "Regálate a ti mismo o a tus seres queridos un momento de felicidad con los productos que Jet trae para ti.",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/653021-1600-1600?v=638582162050400000&width=1600&height=1600&aspect=true",
       "categoria": "Confitería",
-      "cantidad": "10",
+      "cantidad": 9,
       "marca": "Jet",
       "estado": "activo"
     },
@@ -140,7 +140,7 @@
       "descripcion": "Deliciosa barra de chocolate de leche * Rellena de maní, cremoso caramelo y nougat",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/367867-1600-1600?v=637889251308670000&width=1600&height=1600&aspect=true",
       "categoria": "Confitería",
-      "cantidad": 373,
+      "cantidad": 374,
       "marca": "Snickers",
       "estado": "activo"
     },
@@ -393,7 +393,7 @@
       "descripcion": "VapoRub libera vapores medicinales que pasan a través de las vías respiratorias aliviando la tos y la congestión nasal.\n\nA su vez, VapoRub alivia los dolores musculares causados por gripes o resfriados comunes.",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/640015-1600-1600?v=638555260663800000&width=1600&height=1600&aspect=true",
       "categoria": "Drogas",
-      "cantidad": 120,
+      "cantidad": 119,
       "marca": "VICK",
       "estado": "activo"
     },
@@ -737,8 +737,8 @@
         }
       ],
       "fecha": "2024-09-17T14:45:13.810Z",
-      "estadoPedido": "pendiente",
-      "estado": "activo",
+      "estadoPedido": "cancelado",
+      "estado": "inactivo",
       "metodoPago": "efectivo"
     },
     {
@@ -890,6 +890,42 @@
       "estadoPedido": "pendiente",
       "estado": "activo",
       "metodoPago": "Nequi"
+    },
+    {
+      "id": "9c77",
+      "usuarioId": "fcf0",
+      "direccion": "Calle 132 c N 137",
+      "nombre": "james  rodriguez",
+      "correo": "davidm435465123@gmail.com",
+      "telefono": "2108108213",
+      "productos": [
+        {
+          "id": "12ef",
+          "nombre": "Chocolatina Jet Leche x12und x132g",
+          "precio": "12.750",
+          "descripcion": "Regálate a ti mismo o a tus seres queridos un momento de felicidad con los productos que Jet trae para ti.",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/653021-1600-1600?v=638582162050400000&width=1600&height=1600&aspect=true",
+          "categoria": "Confitería",
+          "cantidad": 1,
+          "marca": "Jet",
+          "estado": "activo"
+        },
+        {
+          "id": "3598",
+          "nombre": "Ungüento Vick Vaporub Topico x100g",
+          "precio": "35.890",
+          "descripcion": "VapoRub libera vapores medicinales que pasan a través de las vías respiratorias aliviando la tos y la congestión nasal.\n\nA su vez, VapoRub alivia los dolores musculares causados por gripes o resfriados comunes.",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/640015-1600-1600?v=638555260663800000&width=1600&height=1600&aspect=true",
+          "categoria": "Drogas",
+          "cantidad": 1,
+          "marca": "VICK",
+          "estado": "activo"
+        }
+      ],
+      "fecha": "2024-10-11T20:31:21.326Z",
+      "estadoPedido": "pendiente",
+      "estado": "activo",
+      "metodoPago": "efectivo"
     }
   ],
   "ventas": [
@@ -1215,9 +1251,15 @@
   ],
   "direcciones": [
     {
+<<<<<<< HEAD
       "id": "d5dc",
       "usuarioId": "fcf0",
       "direccion": "calle 183 #281"
+=======
+      "id": "ec6d",
+      "usuarioId": "fcf0",
+      "direccion": "Calle 132 c N 137"
+>>>>>>> d7dfcbc8fe9483800a381ca37687b94f6bbf7309
     }
   ]
 }

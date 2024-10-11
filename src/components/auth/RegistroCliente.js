@@ -26,7 +26,7 @@ const RegistroCliente = () => {
     });
 
     const [mensajeValidacion, setMensajeValidacion] = useState('');
-    
+
     const navigate = useNavigate();
 
     // Función simple para "encriptar" la contraseña
@@ -136,163 +136,166 @@ const RegistroCliente = () => {
                         <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
                             Crea tu cuenta
                         </h1>
-                        <form className="space-y-4 md:space-y-4 grid grid-cols-2 gap-2" onSubmit={manejarEnvio}>
-                            <div className="col-span-2">
-                                <label
-                                    htmlFor="correo"
-                                    className="block text-sm font-medium text-gray-900"
-                                >
-                                    Correo Electrónico
-                                </label>
-                                <input
-                                    type="email"
-                                    name="correo"
-                                    id="correo"
-                                    value={datosFormulario.correo}
-                                    onChange={manejarCambio}
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
-                                    placeholder="nombre@gmail.com"
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <label
-                                    htmlFor="nombreUsuario"
-                                    className="block text-sm font-medium text-gray-900"
-                                >
-                                    Nombre de Usuario
-                                </label>
-                                <input
-                                    type="text"
-                                    name="nombreUsuario"
-                                    id="nombreUsuario"
-                                    value={datosFormulario.nombreUsuario}
-                                    onChange={manejarCambio}
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
-                                    placeholder="Tu nombre de usuario"
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <label
-                                    htmlFor="nombre"
-                                    className="block text-sm font-medium text-gray-900"
-                                >
-                                    Nombre
-                                </label>
-                                <input
-                                    type="text"
-                                    name="nombre"
-                                    id="nombre"
-                                    value={datosFormulario.nombre}
-                                    onChange={manejarCambio}
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
-                                    placeholder="Tu nombre completo"
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <label
-                                    htmlFor="telefono"
-                                    className="block text-sm font-medium text-gray-900"
-                                >
-                                    Teléfono
-                                </label>
-                                <input
-                                    type="tel"
-                                    name="telefono"
-                                    id="telefono"
-                                    value={datosFormulario.telefono}
-                                    onChange={manejarCambio}
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
-                                    placeholder="3123456789"
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <label
-                                    htmlFor="direccion"
-                                    className="block text-sm font-medium text-gray-900"
-                                >
-                                    Dirección
-                                </label>
-                                <input
-                                    type="text"
-                                    name="direccion"
-                                    id="direccion"
-                                    value={datosFormulario.direccion}
-                                    onChange={manejarCambio}
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
-                                    placeholder="Tu dirección"
-                                    required
-                                />
-                            </div>
-                            <div className="flex gap-4 col-span-2">
-                                <div className="w-full">
+                        <form onSubmit={manejarEnvio}>
+                            <div className="space-y-4 md:space-y-4 grid grid-cols-2 gap-2">
+                                <div className="col-span-2">
                                     <label
-                                        htmlFor="tipoDocumento"
-                                        className="block text-sm font-medium text-gray-900"
+                                        htmlFor="correo"
+                                        className="block text-sm font-medium text-gray-900 flex"
                                     >
-                                        Tipo de Documento
-                                    </label>
-                                    <select
-                                        name="tipoDocumento"
-                                        id="tipoDocumento"
-                                        value={datosFormulario.tipoDocumento}
-                                        onChange={manejarCambio}
-                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
-                                        required
-                                    >
-                                        <option value="">Selecciona un tipo de documento</option>
-                                        <option value="Cédula">Cédula de Ciudadanía</option>
-                                        <option value="Cédula Extranjera">Cédula de Extranjería</option>
-                                    </select>
-                                </div>
-                                <div className="w-full">
-                                    <label
-                                        htmlFor="numeroDocumento"
-                                        className="block text-sm font-medium text-gray-900"
-                                    >
-                                        Número de Documento
+                                        Correo Electrónico <p className='text-red-500'>*</p>
+
                                     </label>
                                     <input
-                                        type="text"
-                                        name="numeroDocumento"
-                                        id="numeroDocumento"
-                                        value={datosFormulario.numeroDocumento}
+                                        type="email"
+                                        name="correo"
+                                        id="correo"
+                                        value={datosFormulario.correo}
                                         onChange={manejarCambio}
                                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
-                                        placeholder="Número de documento"
+                                        placeholder="nombre@gmail.com"
                                         required
                                     />
                                 </div>
-                            </div>
-                            <div className="col-span-2">
-                                <label
-                                    htmlFor="contrasena"
-                                    className="block text-sm font-medium text-gray-900"
-                                >
-                                    Contraseña
-                                </label>
-                                <input
-                                    type="password"
-                                    name="contrasena"
-                                    id="contrasena"
-                                    value={datosFormulario.contrasena}
-                                    onChange={manejarCambio}
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
-                                    placeholder="Introduce tu contraseña"
-                                    required
-                                />
-                                {mensajeValidacion && (
-                                    <p className={`text-sm ${mensajeValidacion.includes('segura') ? 'text-green-600' : 'text-red-600'}`}>
-                                        {mensajeValidacion}
-                                    </p>
-                                )}
+                                <div>
+                                    <label
+                                        htmlFor="nombreUsuario"
+                                        className="block text-sm font-medium text-gray-900 flex"
+                                    >
+                                        Nombre de Usuario  <p className='text-red-500'>*</p>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="nombreUsuario"
+                                        id="nombreUsuario"
+                                        value={datosFormulario.nombreUsuario}
+                                        onChange={manejarCambio}
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
+                                        placeholder="Tu nombre de usuario"
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <label
+                                        htmlFor="nombre"
+                                        className="block text-sm font-medium text-gray-900 flex"
+                                    >
+                                        Nombre  <p className='text-red-500'>*</p>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="nombre"
+                                        id="nombre"
+                                        value={datosFormulario.nombre}
+                                        onChange={manejarCambio}
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
+                                        placeholder="Tu nombre completo"
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <label
+                                        htmlFor="telefono"
+                                        className="block text-sm font-medium text-gray-900 flex"
+                                    >
+                                        Teléfono  <p className='text-red-500'>*</p>
+                                    </label>
+                                    <input
+                                        type="tel"
+                                        name="telefono"
+                                        id="telefono"
+                                        value={datosFormulario.telefono}
+                                        onChange={manejarCambio}
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
+                                        placeholder="3123456789"
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <label
+                                        htmlFor="direccion"
+                                        className="block text-sm font-medium text-gray-900 flex"
+                                    >
+                                        Dirección  <p className='text-red-500'>*</p>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="direccion"
+                                        id="direccion"
+                                        value={datosFormulario.direccion}
+                                        onChange={manejarCambio}
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
+                                        placeholder="Tu dirección"
+                                        required
+                                    />
+                                </div>
+                                <div className="flex gap-4 col-span-2">
+                                    <div className="w-full">
+                                        <label
+                                            htmlFor="tipoDocumento"
+                                            className="block text-sm font-medium text-gray-900 flex"
+                                        >
+                                            Tipo de Documento  <p className='text-red-500'>*</p>
+                                        </label>
+                                        <select
+                                            name="tipoDocumento"
+                                            id="tipoDocumento"
+                                            value={datosFormulario.tipoDocumento}
+                                            onChange={manejarCambio}
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
+                                            required
+                                        >
+                                            <option value="">Selecciona un tipo de documento</option>
+                                            <option value="Cédula">Cédula de Ciudadanía</option>
+                                            <option value="Cédula Extranjera">Cédula de Extranjería</option>
+                                        </select>
+                                    </div>
+                                    <div className="w-full">
+                                        <label
+                                            htmlFor="numeroDocumento"
+                                            className="block text-sm font-medium text-gray-900 flex"
+                                        >
+                                            Número de Documento  <p className='text-red-500'>*</p>
+                                        </label>
+                                        <input
+                                            type="text"
+                                            name="numeroDocumento"
+                                            id="numeroDocumento"
+                                            value={datosFormulario.numeroDocumento}
+                                            onChange={manejarCambio}
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
+                                            placeholder="Número de documento"
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                                <div className="col-span-2">
+                                    <label
+                                        htmlFor="contrasena"
+                                        className="block text-sm font-medium text-gray-900 flex"
+                                    >
+                                        Contraseña  <p className='text-red-500'>*</p>
+                                    </label>
+                                    <input
+                                        type="password"
+                                        name="contrasena"
+                                        id="contrasena"
+                                        value={datosFormulario.contrasena}
+                                        onChange={manejarCambio}
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
+                                        placeholder="Introduce tu contraseña"
+                                        required
+                                    />
+                                    {mensajeValidacion && (
+                                        <p className={`text-sm ${mensajeValidacion.includes('segura') ? 'text-green-600' : 'text-red-600'}`}>
+                                            {mensajeValidacion}
+                                        </p>
+                                    )}
+                                </div>
                             </div>
                             <button
                                 type="submit"
-                                className="w-full px-6 py-3 bg-gradient-to-r from-green-600 via-green-600 to-green-700 text-white font-bold rounded-2xl shadow-lg transition-transform transform-gpu hover:scale-105 hover:shadow-xl"
+                                className="w-full px-6 py-3 my-2 bg-gradient-to-r from-green-600 via-green-600 to-green-700 text-white font-bold rounded-2xl shadow-lg transition-transform transform-gpu hover:scale-105 hover:shadow-xl"
                             >
                                 Registrar
                             </button>

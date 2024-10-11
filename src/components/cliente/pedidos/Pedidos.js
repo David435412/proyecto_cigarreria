@@ -119,17 +119,16 @@ const Pedidos = () => {
                                                     </li>
                                                 ))}
                                             </ul>
-                                            <h2 className="text-xl font-semibold mt-2">Subtotal: ${calcularTotal(pedidoSeleccionado.productos)}
-
+                                            <h2 className="text-xl font-semibold mt-2">Subtotal: ${calcularTotal(pedidoSeleccionado.productos)}</h2>
+                                            
                                             {pedido.estadoPedido === 'pendiente' && (
                                                 <button
                                                     onClick={() => manejarCancelarPedido(pedido)}
-                                                    className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 ml-2"
+                                                    className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 my-2"
                                                 >
                                                     Cancelar Pedido
                                                 </button>
                                             )}
-                                            </h2>
                                         </td>
                                     </tr>
                                 )}

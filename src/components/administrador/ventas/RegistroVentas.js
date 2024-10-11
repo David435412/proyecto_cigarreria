@@ -138,7 +138,8 @@ const RegistroVentas = () => {
                 title: 'Error',
                 text: 'Debe seleccionar al menos un producto antes de continuar.',
                 icon: 'warning',
-                confirmButtonColor: '#197419',
+                iconColor: 'blue',
+                confirmButtonColor: 'red',
             });
         } else {
             navigate('/confirmar-venta', { state: { productosSeleccionados } });
