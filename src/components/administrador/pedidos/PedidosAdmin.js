@@ -253,7 +253,7 @@ const PedidosAdmin = () => {
                       <td colSpan="5" className="p-4 bg-gray-100">
                         <h2 className="text-xl font-semibold mb-2">Detalles del Pedido</h2>
                         <p><strong>Nombre del Cliente:</strong> {pedidoSeleccionado.nombre}</p>
-                        <p><strong>Correo Electrónico:</strong> {pedidoSeleccionado.correo}</p> {/* Agregado aquí */}
+                        <p><strong>Correo Electrónico:</strong> {pedidoSeleccionado.correo}</p> 
                         <p><strong>Fecha:</strong> {formatearFecha(pedidoSeleccionado.fecha)}</p>
                         <p><strong>Dirección de Entrega:</strong> {pedidoSeleccionado.direccion}</p>
                         <p><strong>Estado:</strong> {pedidoSeleccionado.estadoPedido}</p>

@@ -128,20 +128,13 @@ const Carrito = ({ onClose }) => { // Añadido onClose como prop
                         <Link 
                             to="/datos-entrega"
                             onClick={handleProcederAlPago}
-                            className="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-500"
-                            >
+                            className="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"                        >
                             Proceder al Pago
                         </Link>
                     </div>
                 </div>
             )}
             <div className="mt-6 text-center">
-                <button 
-                    onClick={() => navigate('/cliente-dash')} // Llamada a la función para cerrar el modal
-                    className="bg-gray-600 text-white py-2 px-4 rounded hover:bg-gray-500"
-                    >
-                    Seguir Comprando
-                </button>
             </div>
         </div>
     );
