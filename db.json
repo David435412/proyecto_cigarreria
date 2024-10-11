@@ -40,17 +40,17 @@
       "estado": "activo"
     },
     {
-      "id": "fcf0",
       "nombre": "james  rodriguez",
-      "contrasena": "Folhqwh456",
       "nombreUsuario": "james",
       "correo": "davidm435465123@gmail.com",
       "telefono": "2108108213",
-      "direccion": "call 232# 100A-02",
+      "direccion": "call 232# 100A-04",
       "tipoDocumento": "Cédula",
       "numeroDocumento": "10208121312",
+      "rol": "cliente",
       "estado": "activo",
-      "rol": "cliente"
+      "contrasena": "Folhqwh456",
+      "id": "fcf0"
     },
     {
       "id": "3428",

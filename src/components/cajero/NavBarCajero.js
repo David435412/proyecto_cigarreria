@@ -29,8 +29,7 @@ const HeaderCajero = () => {
             <nav className="bg-gray-300 border-b border-gray-300 px-4 py-3 rounded-b-lg shadow-md relative">
                 <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
                     <Link to="/cajero-dash" className="flex items-center space-x-3">
-                        <img src={Logo} alt="Logo" className="w-16 h-auto" />
-                        <h1 className="text-2xl text-gray-900 font-bold italic">Colonial</h1>
+                        <img src={Logo} alt="Logo" className="w-56 h-auto" />
                     </Link>
                     <div className="flex items-center lg:order-2 space-x-2 relative">
                         {/* Menú desplegable de usuario */}
