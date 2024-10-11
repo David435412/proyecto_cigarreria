@@ -135,12 +135,6 @@ const Carrito = ({ onClose }) => { // Añadido onClose como prop
                 </div>
             )}
             <div className="mt-6 text-center">
-                <button 
-                    onClick={() => navigate('/cliente-dash')} // Llamada a la función para cerrar el modal
-                    className="bg-gray-600 text-white py-2 px-4 rounded hover:bg-gray-500"
-                    >
-                    Seguir Comprando
-                </button>
             </div>
         </div>
     );
