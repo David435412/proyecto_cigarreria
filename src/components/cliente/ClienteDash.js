@@ -3,7 +3,7 @@ import Modal from 'react-modal';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import fuera_1 from '../../assets/images/fuera_4.jpeg';
-import { FaBeer, FaCandyCane, FaBox, FaSoap, FaPills, FaIceCream, FaWineBottle, FaCheese, FaBreadSlice } from 'react-icons/fa';
+import { FaBeer, FaCandyCane, FaBox, FaSoap, FaPills, FaIceCream, FaWineBottle, FaCheese, FaBreadSlice, FaShoppingCart } from 'react-icons/fa';
 import Carrito from './productos/Cart'; // Ajusta la ruta según la ubicación de tu componente Carrito
 
 Modal.setAppElement('#root'); // Asegúrate de que el id sea el de tu elemento raíz
@@ -199,7 +199,7 @@ const ClienteDashboard = () => {
                 onClick={() => setModalIsOpen(true)}
                 className="fixed bottom-8 right-8 bg-green-600 text-white py-3 px-5 rounded-full shadow-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition-transform transform-gpu hover:scale-110"
             >
-                Ver Carrito
+                <FaShoppingCart size={24} />
             </button>
 
             {/* Modal del carrito */}

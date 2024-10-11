@@ -96,7 +96,7 @@ const Pedidos = () => {
                                     <td className="py-4 px-4 border-b text-center">
                                         <button
                                             onClick={() => mostrarDetalles(pedido)}
-                                            className={`bg-indigo-600 text-white px-3 py-1 rounded hover:bg-indigo-700 ${pedidoSeleccionado && pedidoSeleccionado.id === pedido.id ? 'bg-indigo-700' : ''}`}
+                                            className={`bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700 ${pedidoSeleccionado && pedidoSeleccionado.id === pedido.id ? 'bg-indigo-700' : ''}`}
                                         >
                                             {pedidoSeleccionado && pedidoSeleccionado.id === pedido.id ? 'Ocultar Detalles' : 'Ver Detalles'}
                                         </button>
