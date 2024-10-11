@@ -70,7 +70,7 @@ const GestionProveedores = () => {
                         {!mostrarInactivos && (
                             <button
                                 onClick={() => navigate(`/editar-proveedor/${row.original.id}`)}
-                                className="bg-green-600 text-white py-1 px-2 rounded hover:bg-green-700"
+                                className="bg-blue-600 text-white py-1 px-2 rounded hover:bg-blue-700"
                             >
                                 <FaEdit className="inline-block mr-1" /> Editar
                             </button>
@@ -126,6 +126,7 @@ const GestionProveedores = () => {
             title: 'Confirmar Inactivación',
             text: `¿Estás seguro de que quieres inactivar el proveedor "${proveedor.nombre}"?`,
             icon: 'warning',
+            iconColor: 'red',
             showCancelButton: true,
             confirmButtonColor: '#d33',
             cancelButtonColor: '#3085d6',
@@ -175,7 +176,7 @@ const GestionProveedores = () => {
 
     return (
         <div className="container mx-auto px-6 py-8">
-            <h1 className="text-3xl font-bold mb-4 text-center text-green-800">Gestión de Proveedores</h1>
+            <h1 className="text-3xl font-bold mb-4 text-center">Gestión de Proveedores</h1>
             <p className="mb-8 text-center text-gray-600">
                 En esta sección podrás gestionar los proveedores del sistema. Puedes registrar nuevos proveedores,
                 visualizar los proveedores que ya has registrado y eliminarlos según sea necesario.

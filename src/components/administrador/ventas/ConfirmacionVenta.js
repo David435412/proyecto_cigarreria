@@ -132,6 +132,7 @@ const ConfirmacionVenta = () => {
                             id="numeroDocumento"
                             value={numeroDocumento}
                             onChange={(e) => setNumeroDocumento(e.target.value)}
+                            placeholder='Digite su numero de documento'
                             className="p-2 border border-gray-300 rounded w-full"
                             required
                         />

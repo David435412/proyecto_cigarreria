@@ -91,7 +91,7 @@ const EditarProducto = () => {
     };
 
     return (
-        <section className="bg-gray-50">
+        <section>
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto my-10 lg:py-0">
                 <h1 className="text-3xl font-bold mb-4">Editar Producto</h1>
 
@@ -195,14 +195,14 @@ const EditarProducto = () => {
                                 <button
                                     type="button"
                                     onClick={() => navigate('/gestion-productos')}
-                                    className="px-8 py-4 bg-gradient-to-r from-red-400 to-red-700 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
+                                    className="px-6 py-2 bg-red-600 text-white font-semibold rounded-lg shadow-md hover:bg-red-700"
                                 >
                                     Cancelar
                                 </button>
                                 <button
                                     type="submit"
-                                    className="px-8 py-4 bg-gradient-to-r from-green-400 to-green-700 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
-                                >
+                                    className="px-6 py-2 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700"
+                                    >
                                     Actualizar Producto
                                 </button>
                             </div>

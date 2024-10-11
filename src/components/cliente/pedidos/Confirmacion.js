@@ -104,8 +104,8 @@ const Confirmacion = () => {
                 </div>
                 <button
                     onClick={pedidos}
-                    className="px-8 py-4 bg-gradient-to-r from-green-700 to-green-500 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
-                >
+                    className="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-500"
+                        >
                     Ir a Pedido
                 </button>
             </div>

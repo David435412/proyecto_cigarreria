@@ -55,6 +55,7 @@ const GestionProductos = () => {
             title: 'Confirmar Inactivación',
             text: `¿Estás seguro de que quieres inactivar el producto "${producto.nombre}"?`,
             icon: 'warning',
+            iconColor: 'red',
             showCancelButton: true,
             confirmButtonColor: '#d33',
             cancelButtonColor: '#3085d6',
