@@ -198,8 +198,8 @@ const DatosEntregaCajero = () => {
                     </div>
                     <button
                         onClick={handleConfirmar}
-                        className="px-8 py-4 bg-gradient-to-r from-green-700 to-green-500 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
-                    >
+                        className="px-6 py-2 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700"
+                        >
                         Confirmar y Proceder al Pago
                     </button>
                 </div>

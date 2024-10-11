@@ -678,7 +678,8 @@
       "fecha": "2024-09-17T14:38:50.105Z",
       "estadoPedido": "pendiente",
       "estado": "activo",
-      "metodoPago": "efectivo"
+      "metodoPago": "efectivo",
+      "asignado": "3428"
     },
     {
       "id": "2212",
@@ -714,7 +715,8 @@
       "fecha": "2024-09-17T14:38:53.177Z",
       "estadoPedido": "pendiente",
       "estado": "activo",
-      "metodoPago": "efectivo"
+      "metodoPago": "efectivo",
+      "asignado": "dca3"
     },
     {
       "id": "569e",

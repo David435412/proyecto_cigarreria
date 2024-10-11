@@ -55,7 +55,11 @@ const PedidosCajero = () => {
         return acc;
       }, {}),
       inputPlaceholder: 'Selecciona un domiciliario',
-      showCancelButton: true,
+      showCancelButton: true,      
+      confirmButtonText: 'Asignar',
+      confirmButtonColor: 'blue',
+      cancelButtonColor: 'red',
+
     });
 
     if (domiciliarioId) {
@@ -71,12 +75,13 @@ const PedidosCajero = () => {
         await enviarCorreoDomiciliario(pedido, domiciliario);
 
         Swal.fire('Asignado', 'El pedido ha sido asignado correctamente', 'success');
-        window.location.reload();
+        
       } catch (error) {
         console.error('Error al asignar domiciliario:', error);
         Swal.fire('Error', 'Hubo un error al asignar el domiciliario', 'error');
       }
     }
+    window.location.reload();
   };
 
   const enviarCorreoDomiciliario = async (pedido, domiciliario) => {
