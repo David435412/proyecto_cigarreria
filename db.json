@@ -140,7 +140,7 @@
       "descripcion": "Deliciosa barra de chocolate de leche * Rellena de maní, cremoso caramelo y nougat",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/367867-1600-1600?v=637889251308670000&width=1600&height=1600&aspect=true",
       "categoria": "Confitería",
-      "cantidad": 373,
+      "cantidad": 374,
       "marca": "Snickers",
       "estado": "activo"
     },
@@ -737,8 +737,8 @@
         }
       ],
       "fecha": "2024-09-17T14:45:13.810Z",
-      "estadoPedido": "pendiente",
-      "estado": "activo",
+      "estadoPedido": "cancelado",
+      "estado": "inactivo",
       "metodoPago": "efectivo"
     },
     {
@@ -1213,11 +1213,5 @@
       "estado": "activo"
     }
   ],
-  "direcciones": [
-    {
-      "direccion": "Calle 132 c N 137",
-      "usuarioId": "fcf0",
-      "id": "41d5"
-    }
-  ]
+  "direcciones": []
 }
