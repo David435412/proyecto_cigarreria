@@ -128,8 +128,7 @@ const Carrito = ({ onClose }) => { // Añadido onClose como prop
                         <Link 
                             to="/datos-entrega"
                             onClick={handleProcederAlPago}
-                            className="px-5 py-3 bg-gradient-to-r from-green-700 to-green-500 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
-                        >
+                            className="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500"                        >
                             Proceder al Pago
                         </Link>
                     </div>
