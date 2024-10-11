@@ -1215,14 +1215,9 @@
   ],
   "direcciones": [
     {
-      "id": "d5dc",
+      "direccion": "Calle 132 c N 137",
       "usuarioId": "fcf0",
-      "direccion": "calle 183 #281"
-    },
-    {
-      "direccion": "cra7 #58",
-      "usuarioId": "fcf0",
-      "id": "92b4"
+      "id": "41d5"
     }
   ]
 }

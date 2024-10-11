@@ -39,11 +39,14 @@ const DatosEntrega = () => {
             title: 'Agregar Dirección',
             input: 'text',
             inputLabel: 'Dirección de Entrega',
-            inputPlaceholder: 'Ingresa tu nueva dirección',
+            inputPlaceholder: 'Ingresa tu dirección',
+            inputType: 'text',
             showCancelButton: true,
             confirmButtonText: 'Guardar',
-            cancelButtonText: 'Cancelar',
-        });
+            confirmButtonColor: '#2563eb',
+            cancelButtonText: 'Cancelar',            
+        })
+        ;
 
         if (nuevaDireccion) {
             const usuarioId = localStorage.getItem('userId');
@@ -52,15 +55,19 @@ const DatosEntrega = () => {
                     await axios.post('http://localhost:5000/direcciones', {
                         usuarioId,
                         direccion: nuevaDireccion
-                    });
-                    // Actualizar la lista de direcciones
+                        
+                    });                 
                     setDirecciones([...direcciones, { direccion: nuevaDireccion }]);
+                    window.location.reload();
+                                                                
                 } catch (error) {
                     console.error('Error al guardar la dirección:', error);
                     Swal.fire('Error', 'Hubo un problema al guardar la dirección.', 'error');
                 }
-            }
+            }   
+                 
         }
+        
     };
 
     const handleEditarDireccion = async (id, direccionActual) => {
@@ -70,8 +77,10 @@ const DatosEntrega = () => {
             inputLabel: 'Dirección de Entrega',
             inputValue: direccionActual,
             inputPlaceholder: 'Ingresa la nueva dirección',
+            inputType: 'text',
             showCancelButton: true,
             confirmButtonText: 'Guardar',
+            confirmButtonColor: '#3b82f6',
             cancelButtonText: 'Cancelar',
         });
 
@@ -96,10 +105,12 @@ const DatosEntrega = () => {
     const handleEliminarDireccion = async (id) => {
         const confirmacion = await Swal.fire({
             title: '¿Estás seguro?',
-            text: "¡Esta acción eliminará la dirección permanentemente!",
+            text: "¡Esta acción eliminará la dirección!",
             icon: 'warning',
+            iconColor: '#ef4444',
             showCancelButton: true,
             confirmButtonText: 'Sí, eliminar',
+            confirmButtonColor: '#ef4444',
             cancelButtonText: 'Cancelar'
         });
 
@@ -229,30 +240,13 @@ const DatosEntrega = () => {
                         </tbody>
                     </table>
                     <div className="mb-6">
-                        <p className="text-sm font-medium text-gray-700 mb-2">Nombre: {nombre}</p>
-                        <p className="text-sm font-medium text-gray-700 mb-2">Correo Electrónico: {correo}</p>
-                        <p className="text-sm font-medium text-gray-700 mb-2">Teléfono: {telefono}</p>
-                    </div>
-                    <div className="mb-6">
-                        <label htmlFor="metodoPago" className="block text-sm font-medium text-gray-700 mb-2">Método de Pago - (El pago es contraentrega)</label>
-                        <select
-                            id="metodoPago"
-                            value={metodoPago}
-                            onChange={(e) => setMetodoPago(e.target.value)}
-                            className="block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                        >
-                            <option value="efectivo">Efectivo</option>
-                            <option value="Nequi">Nequi</option>
-                            <option value="daviplata">Daviplata</option>
-                        </select>
-                    </div>
-                    <div className="mb-6">
                         <h2 className="text-2xl font-semibold mb-4">Direcciones de Entrega</h2>
                         {direcciones.length === 0 ? (
                             <div>
                                 <p className="text-lg">No tienes direcciones registradas.</p>
                                 <span className="block sm:inline"> Agrega una nueva dirección para continuar.</span>
-                                <button onClick={handleAgregarDireccion} className="bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-500 mt-4">
+                                <br/>
+                                <button onClick={handleAgregarDireccion} className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-500 mt-4">
                                     Agregar Dirección
                                 </button>
                             </div>
@@ -269,10 +263,10 @@ const DatosEntrega = () => {
                                             onChange={(e) => setDireccionSeleccionada(e.target.value)}
                                             className="mr-2"
                                         />
-                                        <label htmlFor={`direccion-${direccion.id}`} className="text-sm font-medium">{direccion.direccion}</label>
+                                        <label htmlFor={`direccion-${direccion.id}`} className="text-lg font-medium">{direccion.direccion}</label>
                                         <button
                                             onClick={() => handleEditarDireccion(direccion.id, direccion.direccion)}
-                                            className="ml-4 bg-yellow-500 text-white py-1 px-2 rounded hover:bg-yellow-400"
+                                            className="ml-4 bg-blue-500 text-white py-1 px-2 rounded hover:bg-blue-400"
                                         >
                                             Editar
                                         </button>
@@ -284,12 +278,31 @@ const DatosEntrega = () => {
                                         </button>
                                     </div>
                                 ))}
-                                <button onClick={handleAgregarDireccion} className="bg-yellow-600 text-white py-2 px-4 rounded hover:bg-yellow-500 mt-4">
+                                <button onClick={handleAgregarDireccion} className="bg-gray-500 text-white text-sm p-2 rounded hover:bg-gray-600 mt-4">
                                     Agregar Otra Dirección
                                 </button>
                             </div>
                         )}
                     </div>
+                    <div className="mb-6">
+                        <p className="text-sm font-medium text-gray-700 mb-2">Nombre: {nombre.toUpperCase()}</p>
+                        <p className="text-sm font-medium text-gray-700 mb-2">Correo Electrónico: {correo}</p>
+                        <p className="text-sm font-medium text-gray-700 mb-2">Teléfono: {telefono}</p>
+                    </div>
+                    <div className="mb-6">
+                        <label htmlFor="metodoPago" className="block text-sm font-medium text-gray-700 mb-2">Método de Pago -<strong> (EL PAGO ES CONTRAENTREGA)</strong></label>
+                        <select
+                            id="metodoPago"
+                            value={metodoPago}
+                            onChange={(e) => setMetodoPago(e.target.value)}
+                            className="block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-2"
+                        >
+                            <option value="efectivo">Efectivo</option>
+                            <option value="Nequi">Nequi</option>
+                            <option value="daviplata">Daviplata</option>
+                        </select>
+                    </div>
+                    
                     <button
                         onClick={handleConfirmar}
                         className="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-500"

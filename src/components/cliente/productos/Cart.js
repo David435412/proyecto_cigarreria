@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 
 const Carrito = ({ onClose }) => { // Añadido onClose como prop
     const [carrito, setCarrito] = useState([]);
-    const [productosDisponibles, setProductosDisponibles] = useState({});
+    const [productosDisponibles, setProductosDisponibles] = useState({});    
+    const navigate = useNavigate();
 
     useEffect(() => {
         const usuarioId = localStorage.getItem('userId');
@@ -134,7 +137,7 @@ const Carrito = ({ onClose }) => { // Añadido onClose como prop
             )}
             <div className="mt-6 text-center">
                 <button 
-                    onClick={() => { onClose(); }} // Llamada a la función para cerrar el modal
+                    onClick={() => navigate('/cliente-dash')} // Llamada a la función para cerrar el modal
                     className="px-5 py-3 bg-gray-500 text-white font-bold rounded-full transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"
                 >
                     Seguir Comprando
