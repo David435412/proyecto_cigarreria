@@ -213,7 +213,7 @@ const ClienteDashboard = () => {
                 <div className="bg-white rounded-lg shadow-lg w-full max-w-4xl h-4/5 max-h-screen overflow-auto relative">
                     <button
                         onClick={() => setModalIsOpen(false)}
-                        className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-4xl"
+                        className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 text-xl"
                     >
                         &times;
                     </button>
