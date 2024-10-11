@@ -85,7 +85,7 @@
       "descripcion": "Tipo de cerveza: Lager. País de origen: Colombia. ABV: 4,0%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/439991-1600-1600?v=638043996501300000&width=1600&height=1600&aspect=true",
       "categoria": "Licores",
-      "cantidad": 49,
+      "cantidad": 48,
       "marca": "Babaria",
       "estado": "activo"
     },
@@ -96,7 +96,7 @@
       "descripcion": "Tipo de cerveza: Lager. País de origen: Colombia. ABV: 4,0%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440018-1600-1600?v=638043996576070000&width=1600&height=1600&aspect=true",
       "categoria": "Licores",
-      "cantidad": 112,
+      "cantidad": 111,
       "marca": "Babaria",
       "estado": "activo"
     },
@@ -107,7 +107,7 @@
       "descripcion": "Tipo de cerveza: Lager. País de Origen: México ABV: 4,5%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440069-1600-1600?v=638043996740100000&width=1600&height=1600&aspect=true",
       "categoria": "Licores",
-      "cantidad": 177,
+      "cantidad": 175,
       "marca": "Babaria",
       "estado": "activo"
     },
@@ -140,7 +140,7 @@
       "descripcion": "Deliciosa barra de chocolate de leche * Rellena de maní, cremoso caramelo y nougat",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/367867-1600-1600?v=637889251308670000&width=1600&height=1600&aspect=true",
       "categoria": "Confitería",
-      "cantidad": 373,
+      "cantidad": 372,
       "marca": "Snickers",
       "estado": "activo"
     },
@@ -1211,6 +1211,61 @@
       "numeroDocumento": "1031808326",
       "total": 18,
       "fechaVenta": "17/9/2024",
+      "metodoPago": "Efectivo",
+      "estado": "activo"
+    },
+    {
+      "id": "778e",
+      "productos": [
+        {
+          "id": "3445",
+          "nombre": "Cerveza Coronita botella x6und x210ml",
+          "precio": "7.500",
+          "descripcion": "Tipo de cerveza: Lager. País de Origen: México ABV: 4,5%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440069-1600-1600?v=638043996740100000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 2,
+          "marca": "Babaria",
+          "estado": "activo"
+        },
+        {
+          "id": "105c",
+          "nombre": "Cerveza Poker lata x6und x330ml cu",
+          "precio": "18.000",
+          "descripcion": "Tipo de cerveza: Lager. País de origen: Colombia. ABV: 4,0%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440018-1600-1600?v=638043996576070000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 1,
+          "marca": "Babaria",
+          "estado": "activo"
+        },
+        {
+          "id": "b5c6",
+          "nombre": "Cerveza Aguila Original lata x6und x330ml",
+          "precio": "18.000",
+          "descripcion": "Tipo de cerveza: Lager. País de origen: Colombia. ABV: 4,0%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/439991-1600-1600?v=638043996501300000&width=1600&height=1600&aspect=true",
+          "categoria": "Licores",
+          "cantidad": 1,
+          "marca": "Babaria",
+          "estado": "activo"
+        },
+        {
+          "id": "ce57",
+          "nombre": "Snickers barra de chocolate y maní x52.7g",
+          "precio": "6.090",
+          "descripcion": "Deliciosa barra de chocolate de leche * Rellena de maní, cremoso caramelo y nougat",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/367867-1600-1600?v=637889251308670000&width=1600&height=1600&aspect=true",
+          "categoria": "Confitería",
+          "cantidad": 1,
+          "marca": "Snickers",
+          "estado": "activo"
+        }
+      ],
+      "tipoDocumento": "",
+      "numeroDocumento": "121212131",
+      "total": 57.09,
+      "fechaVenta": "11/10/2024",
       "metodoPago": "Efectivo",
       "estado": "activo"
     }
