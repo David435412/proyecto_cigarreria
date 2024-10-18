@@ -82,12 +82,13 @@ const GestionProductos = () => {
     };
 
     // Maneja la apertura del modal para cambiar stock
+    
     const handleCambiarStock = (producto) => {
         setProductoSeleccionado(producto);
         setCantidad(producto.cantidad);
         Swal.fire({
             title: `Cambiar stock de ${producto.nombre}`,
-            html: `<input type="number" id="cantidad" class="swal2-input" placeholder="Cantidad" value="${producto.cantidad}" min="0">`,
+            html: `<input type="number" id="cantidad" class="swal2-input" placeholder="Cantidad"  value="${producto.cantidad}" min="1" >`,
             focusConfirm: false,
             preConfirm: () => {
                 const nuevaCantidad = Swal.getPopup().querySelector('#cantidad').value;

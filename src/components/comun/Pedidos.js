@@ -11,7 +11,7 @@ const Pedidos = () => {
                     <p className="text-lg mb-4">¿No tienes una cuenta? Inicia sesión para comenzar a comprar.</p>
                     <Link 
                         to="/login" 
-                        className="bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-500"
+                        className="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-500"
                     >
                         Iniciar Sesión
                     </Link>

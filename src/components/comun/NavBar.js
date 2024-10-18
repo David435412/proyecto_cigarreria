@@ -15,8 +15,7 @@ const Header = () => {
             <nav className="bg-gray-300 border-b border-gray-300 px-4 py-3 rounded-b-lg shadow-md relative">
                 <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
                     <Link to="/inicio" className="flex items-center space-x-3">
-                        <img src={Logo} alt="CigarreriaC - Logo" className="w-16 h-auto" />
-                        <h1 className="text-2xl text-gray-900 font-bold italic">Colonial</h1>
+                        <img src={Logo} alt="CigarreriaC - Logo" className="w-56 h-auto" />
                     </Link>
                     <div className="flex items-center lg:order-2 space-x-2">
                         <Link to="/login" className="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-4 py-2 transition duration-300">Inicia Sesión</Link>

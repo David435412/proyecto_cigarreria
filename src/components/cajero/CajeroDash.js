@@ -121,7 +121,7 @@ const CajeroDashboard = () => {
                         </div>
                     )}
 
-                    {lowStockProducts.length > 0 && (
+                    {lowStockProducts.length >= 1 && (
                         <div className="bg-yellow-100 text-yellow-800 p-4 rounded-lg flex flex-col justify-between shadow-md">
                             <h3 className="text-lg font-bold">Alerta de Stock Bajo</h3>
                             <ul className="mb-4">

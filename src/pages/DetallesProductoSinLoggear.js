@@ -53,6 +53,7 @@ const DetalleProductoSinLoggear = () => {
             title: 'Iniciar sesión',
             text: 'Debes iniciar sesión para poder realizar pedidos. ¿Quieres ir a la página de inicio de sesión?',
             icon: 'info',
+            iconColor: 'black',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
