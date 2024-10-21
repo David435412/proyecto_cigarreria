@@ -30,7 +30,7 @@ const RecuperacionContrasena = () => {
                 await emailjs.send('service_podqncg', 'template_xnpls19', {
                     to_name: usuario.nombre,
                     to_correo: usuario.correo,
-                    message: `Tu código de recuperación es: ${codigo}. Utiliza este código para restablecer tu contraseña.`,
+                    message: `Tu código de restablecimiento es: ${codigo}. Utiliza este código para restablecer tu contraseña.`,
                     from_name: 'Colonial Support'
                 }, 'it57DOPi1-ZuX3rXe');
 
@@ -71,7 +71,7 @@ const RecuperacionContrasena = () => {
             Swal.fire({
                 icon: 'success',
                 title: 'Correo enviado',
-                text: 'Te hemos enviado un código de recuperación. Revisa tu correo.',
+                text: 'Te hemos enviado un código de restablecimiento. Revisa tu correo.',
             });
             // Redirigir a la vista para ingresar el código
             navigate('/ingresar_codigo');

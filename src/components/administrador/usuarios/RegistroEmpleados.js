@@ -2,31 +2,22 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'; // Importa SweetAlert2
+import emailjs from 'emailjs-com'; // Importa EmailJS
 
-// Función simple para "encriptar" la contraseña
-const encriptarContrasena = (contrasena) => {
-    let contrasenaEncriptada = '';
-    for (let i = 0; i < contrasena.length; i++) {
-        // Cambia el carácter al siguiente en el código ASCII
-        contrasenaEncriptada += String.fromCharCode(contrasena.charCodeAt(i) + 3);
-    }
-    return contrasenaEncriptada;
+// Función para generar una contraseña genérica aleatoria
+const generarContrasena = () => {
+    const letras = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    const numeros = '0123456789';
+    const contrasena = `${letras.charAt(Math.floor(Math.random() * letras.length))}${letras.charAt(Math.floor(Math.random() * letras.length))}${letras.charAt(Math.floor(Math.random() * letras.length))}${letras.charAt(Math.floor(Math.random() * letras.length))}${numeros.charAt(Math.floor(Math.random() * numeros.length))}${numeros.charAt(Math.floor(Math.random() * numeros.length))}${numeros.charAt(Math.floor(Math.random() * numeros.length))}`;
+    return contrasena;
 };
 
-// Validación de la contraseña
-const validarContrasena = (contrasena) => {
-    const minLength = 8;
-    const longitudValida = contrasena.length >= minLength;
-    const tieneMayusculas = /[A-Z]/.test(contrasena);
-    const tieneMinusculas = /[a-z]/.test(contrasena);
-    const tieneNumeros = /[0-9]/.test(contrasena);
-
-    return {
-        longitud: longitudValida,
-        mayusculas: tieneMayusculas,
-        minusculas: tieneMinusculas,
-        numeros: tieneNumeros
-    };
+// Función para encriptar la contraseña
+const encriptarContrasena = (contrasena) => {
+    return contrasena
+        .split('')
+        .map((char) => String.fromCharCode(char.charCodeAt(0) + 3)) // Desplaza 3 posiciones en ASCII
+        .join('');
 };
 
 // Validación del correo
@@ -35,40 +26,26 @@ const validarCorreo = (correo) => {
     return regexCorreo.test(correo);
 };
 
-
 const RegistroEmpleado = () => {
     const [formData, setFormData] = useState({
         nombre: '',
-        contrasena: '',
         nombreUsuario: '',
         tipoDocumento: '',
         numeroDocumento: '',
         correo: '',
         telefono: '',
         direccion: '',
-        rol: 'cajero',
-        estado: 'activo'
-    });
-
-    const [validacionesContrasena, setValidacionesContrasena] = useState({
-        longitud: false,
-        mayusculas: false,
-        minusculas: false,
-        numeros: false
+        rol: '', // Inicializa como cadena vacía
+        estado: 'activo',
+        contrasena: '' // Atributo para la contraseña
     });
 
     const [validacionCorreo, setValidacionCorreo] = useState(false);
-
     const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
-
-        if (name === 'contrasena') {
-            const validaciones = validarContrasena(value);
-            setValidacionesContrasena(validaciones);
-        }
 
         if (name === 'correo') {
             setValidacionCorreo(validarCorreo(value));
@@ -78,29 +55,37 @@ const RegistroEmpleado = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Validar la contraseña antes de enviar el formulario
-        const validaciones = validarContrasena(formData.contrasena);
-        if (validaciones.longitud && validaciones.mayusculas && validaciones.minusculas && validaciones.numeros && validacionCorreo) {
+        // Validar el correo antes de enviar el formulario
+        if (validacionCorreo) {
             try {
-                // Encripta la contraseña antes de enviarla
-                const contrasenaEncriptada = encriptarContrasena(formData.contrasena);
+                // Genera la contraseña
+                const contrasenaGenerada = generarContrasena();
+                const contrasenaEncriptada = encriptarContrasena(contrasenaGenerada); // Encripta la contraseña
 
-                // Crea los datos a enviar, reemplazando la contraseña con la encriptada
                 const datosAEnviar = {
                     ...formData,
                     contrasena: contrasenaEncriptada // Guarda la contraseña encriptada
                 };
 
+                // Enviar los datos al servidor
                 await axios.post('http://localhost:5000/usuarios', datosAEnviar);
-                
+
+                // Enviar correo con EmailJS
+                await emailjs.send('service_podqncg', 'template_sj29uf7', {
+                    to_name: formData.nombre,
+                    to_correo: formData.correo,
+                    contrasenaGenerada: contrasenaGenerada, // Envía la contraseña original generada
+                    from_name: 'Colonial Support'
+                }, 'it57DOPi1-ZuX3rXe');
+
                 Swal.fire({
                     icon: 'success',
                     title: 'Éxito',
-                    text: 'Empleado registrado con éxito.',
+                    text: 'Empleado registrado con éxito. Se ha enviado un correo con la contraseña generada.',
                     confirmButtonColor: '#28a745', // Verde
                     confirmButtonText: 'Aceptar'
                 }).then(() => {
-                    navigate("/gestion-usuarios");  
+                    navigate("/gestion-usuarios");
                 });
             } catch (error) {
                 console.error('Error al registrar el empleado', error);
@@ -112,13 +97,12 @@ const RegistroEmpleado = () => {
                     confirmButtonText: 'Aceptar'
                 });
             }
-        }
-        else {
-            // Mostrar alerta de error si las validaciones no son correctas
+        } else {
+            // Mostrar alerta de error si la validación del correo no es correcta
             Swal.fire({
                 icon: 'error',
                 title: 'Error de validación',
-                text: 'Por favor, asegúrate de que la contraseña cumpla con los requisitos y que el correo sea válido.',
+                text: 'Por favor, asegúrate de que el correo sea válido (debe ser @gmail.com).',
                 confirmButtonColor: '#d33', // Rojo
                 confirmButtonText: 'Aceptar'
             });
@@ -223,13 +207,14 @@ const RegistroEmpleado = () => {
                                 Teléfono
                             </label>
                             <input
-                                type="tel"
+                                type="text"
                                 name="telefono"
                                 id="telefono"
                                 value={formData.telefono}
                                 onChange={handleChange}
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                                placeholder="Número de teléfono"
+                                placeholder="Teléfono"
+                                required
                             />
                         </div>
                         <div>
@@ -244,6 +229,7 @@ const RegistroEmpleado = () => {
                                 onChange={handleChange}
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                 placeholder="Dirección"
+                                required
                             />
                         </div>
                         <div>
@@ -256,70 +242,18 @@ const RegistroEmpleado = () => {
                                 value={formData.rol}
                                 onChange={handleChange}
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                required
                             >
+                                <option value="" disabled>Seleccione el rol</option>
                                 <option value="cajero">Cajero</option>
                                 <option value="domiciliario">Domiciliario</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label htmlFor="contrasena" className="block mb-2 text-sm font-medium text-gray-900">
-                                Contraseña
-                            </label>
-                            <input
-                                type="password"
-                                name="contrasena"
-                                id="contrasena"
-                                value={formData.contrasena}
-                                onChange={handleChange}
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                                placeholder="Contraseña"
-                                required
-                            />
-                            {validacionesContrasena.longitud === false && (
-                                <div className="mt-2 text-red-600 text-sm flex items-center">
-                                    <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                    Al menos 8 caracteres
-                                </div>
-                            )}
-                            {validacionesContrasena.mayusculas === false && validacionesContrasena.longitud && (
-                                <div className="mt-2 text-red-600 text-sm flex items-center">
-                                    <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                    Contiene al menos una letra mayúscula
-                                </div>
-                            )}
-                            {validacionesContrasena.minusculas === false && validacionesContrasena.mayusculas && validacionesContrasena.longitud && (
-                                <div className="mt-2 text-red-600 text-sm flex items-center">
-                                    <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                    Contiene al menos una letra minúscula
-                                </div>
-                            )}
-                            {validacionesContrasena.numeros === false && validacionesContrasena.minusculas && validacionesContrasena.mayusculas && validacionesContrasena.longitud && (
-                                <div className="mt-2 text-red-600 text-sm flex items-center">
-                                    <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                    Contiene al menos un número
-                                </div>
-                            )}
-                            {validacionesContrasena.longitud && validacionesContrasena.mayusculas && validacionesContrasena.minusculas && validacionesContrasena.numeros && (
-                                <div className="mt-2 text-green-600 text-sm flex items-center">
-                                    <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                    Contraseña segura
-                                </div>
-                            )}
+                          </select>
                         </div>
                         <button
                             type="submit"
-                            className="bg-green-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-green-700 w-full">
-                            Registrar
+                            className="w-full text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                        >
+                            Registrar Empleado
                         </button>
                     </form>
                 </div>
