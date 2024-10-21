@@ -1,13 +1,13 @@
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom"; // Importa useLocation
 import { FaBars, FaTimes, FaUserCircle } from "react-icons/fa";
 import UserContext from '../../context/UserContext';
-import { useNavigate } from 'react-router-dom';
 import Logo from '../../assets/images/Logo.png';
 
 const HeaderCajero = () => {
     const { logout } = useContext(UserContext);
     const navigate = useNavigate();
+    const location = useLocation(); // Usa useLocation para obtener la ruta actual
     const [isOpen, setIsOpen] = useState(false);
     const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
@@ -22,6 +22,11 @@ const HeaderCajero = () => {
 
     const toggleUserMenu = () => {
         setIsUserMenuOpen(!isUserMenuOpen);
+    };
+
+    // Función para verificar si la ruta es la actual
+    const isActive = (path) => {
+        return location.pathname === path ? 'bg-gray-400' : ''; // Aplica clase si es la ruta actual
     };
 
     return (
@@ -73,19 +78,19 @@ const HeaderCajero = () => {
                     <div className={`lg:hidden fixed top-0 left-0 w-full bg-gray-200 border-b border-gray-300 py-4 px-6 transition-transform transform ${isOpen ? "translate-y-0" : "-translate-y-full"} z-50`}>
                         <ul className="space-y-4">
                             <li>
-                                <Link to="/cajero-dash" className="block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300" onClick={toggleMenu}>Inicio</Link>
+                                <Link to="/cajero-dash" className={`block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300 ${isActive('/cajero-dash')}`} onClick={toggleMenu}>Inicio</Link>
                             </li>
                             <li>
-                                <Link to="/productos-cajero" className="block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300" onClick={toggleMenu}>Productos</Link>
+                                <Link to="/productos-cajero" className={`block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300 ${isActive('/productos-cajero')}`} onClick={toggleMenu}>Productos</Link>
                             </li>
                             <li>
-                                <Link to="/proveedores-cajero" className="block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300" onClick={toggleMenu}>Proveedores</Link>
+                                <Link to="/proveedores-cajero" className={`block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300 ${isActive('/proveedores-cajero')}`} onClick={toggleMenu}>Proveedores</Link>
                             </li>
                             <li>
-                                <Link to="/ventas-cajero" className="block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300" onClick={toggleMenu}>Ventas</Link>
+                                <Link to="/ventas-cajero" className={`block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300 ${isActive('/ventas-cajero')}`} onClick={toggleMenu}>Ventas</Link>
                             </li>
                             <li>
-                                <Link to="/pedidos-cajero" className="block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300" onClick={toggleMenu}>Pedidos</Link>
+                                <Link to="/pedidos-cajero" className={`block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300 ${isActive('/pedidos-cajero')}`} onClick={toggleMenu}>Pedidos</Link>
                             </li>
                         </ul>
                     </div>
@@ -93,19 +98,19 @@ const HeaderCajero = () => {
                     <div className="hidden lg:flex lg:w-auto">
                         <ul className="flex flex-col mt-2 space-y-1 font-medium lg:flex-row lg:space-x-8 lg:space-y-0 lg:mt-0">
                             <li>
-                                <Link to="/cajero-dash" className="block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300" aria-current="page">Inicio</Link>
+                                <Link to="/cajero-dash" className={`block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300 ${isActive('/cajero-dash')}`} aria-current="page">Inicio</Link>
                             </li>
                             <li>
-                                <Link to="/productos-cajero" className="block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300">Productos</Link>
+                                <Link to="/productos-cajero" className={`block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300 ${isActive('/productos-cajero')}`}>Productos</Link>
                             </li>
                             <li>
-                                <Link to="/proveedores-cajero" className="block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300">Proveedores</Link>
+                                <Link to="/proveedores-cajero" className={`block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300 ${isActive('/proveedores-cajero')}`}>Proveedores</Link>
                             </li>
                             <li>
-                                <Link to="/ventas-cajero" className="block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300">Ventas</Link>
+                                <Link to="/ventas-cajero" className={`block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300 ${isActive('/ventas-cajero')}`}>Ventas</Link>
                             </li>
                             <li>
-                                <Link to="/pedidos-cajero" className="block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300">Pedidos</Link>
+                                <Link to="/pedidos-cajero" className={`block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300 ${isActive('/pedidos-cajero')}`}>Pedidos</Link>
                             </li>
                         </ul>
                     </div>

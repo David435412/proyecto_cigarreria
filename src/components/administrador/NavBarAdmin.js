@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom"; // Importa useLocation
 import { FaBars, FaTimes, FaUserCircle } from "react-icons/fa";
 import UserContext from '../../context/UserContext';
 import Logo from '../../assets/images/Logo.png';
@@ -7,6 +7,7 @@ import Logo from '../../assets/images/Logo.png';
 const HeaderAdmin = () => {
     const { logout } = useContext(UserContext);
     const navigate = useNavigate();
+    const location = useLocation(); // Usa useLocation para obtener la ruta actual
     const [isOpen, setIsOpen] = useState(false);
     const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
@@ -21,6 +22,11 @@ const HeaderAdmin = () => {
 
     const toggleUserMenu = () => {
         setIsUserMenuOpen(!isUserMenuOpen);
+    };
+
+    // Función para verificar si la ruta es la actual
+    const isActive = (path) => {
+        return location.pathname === path ? 'bg-gray-400' : ''; // Aplica clase si es la ruta actual
     };
 
     return (
@@ -72,22 +78,22 @@ const HeaderAdmin = () => {
                     <div className={`lg:hidden fixed top-0 left-0 w-full bg-gray-200 border-b border-gray-300 py-4 px-6 transition-transform transform ${isOpen ? "translate-y-0" : "-translate-y-full"} z-50`}>
                         <ul className="space-y-4">
                             <li>
-                                <Link to="/admin-dash" className="block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300" onClick={toggleMenu}>Inicio</Link>
+                                <Link to="/admin-dash" className={`block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300 ${isActive('/admin-dash')}`} onClick={toggleMenu}>Inicio</Link>
                             </li>
                             <li>
-                                <Link to="/gestion-usuarios" className="block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300" onClick={toggleMenu}>Usuarios</Link>
+                                <Link to="/gestion-usuarios" className={`block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300 ${isActive('/gestion-usuarios')}`} onClick={toggleMenu}>Usuarios</Link>
                             </li>
                             <li>
-                                <Link to="/gestion-productos" className="block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300" onClick={toggleMenu}>Productos</Link>
+                                <Link to="/gestion-productos" className={`block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300 ${isActive('/gestion-productos')}`} onClick={toggleMenu}>Productos</Link>
                             </li>
                             <li>
-                                <Link to="/gestion-proveedores" className="block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300" onClick={toggleMenu}>Proveedores</Link>
+                                <Link to="/gestion-proveedores" className={`block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300 ${isActive('/gestion-proveedores')}`} onClick={toggleMenu}>Proveedores</Link>
                             </li>
                             <li>
-                                <Link to="/gestion-ventas" className="block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300" onClick={toggleMenu}>Ventas</Link>
+                                <Link to="/gestion-ventas" className={`block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300 ${isActive('/gestion-ventas')}`} onClick={toggleMenu}>Ventas</Link>
                             </li>
                             <li>
-                                <Link to="/gestion-pedidos" className="block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300" onClick={toggleMenu}>Pedidos</Link>
+                                <Link to="/gestion-pedidos" className={`block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300 ${isActive('/gestion-pedidos')}`} onClick={toggleMenu}>Pedidos</Link>
                             </li>
                         </ul>
                     </div>
@@ -95,22 +101,22 @@ const HeaderAdmin = () => {
                     <div className="hidden lg:flex lg:w-auto">
                         <ul className="flex flex-col mt-2 space-y-1 font-medium lg:flex-row lg:space-x-8 lg:space-y-0 lg:mt-0">
                             <li>
-                                <Link to="/admin-dash" className="block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300" aria-current="page">Inicio</Link>
+                                <Link to="/admin-dash" className={`block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300 ${isActive('/admin-dash')}`}>Inicio</Link>
                             </li>
                             <li>
-                                <Link to="/gestion-usuarios" className="block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300">Usuarios</Link>
+                                <Link to="/gestion-usuarios" className={`block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300 ${isActive('/gestion-usuarios')}`}>Usuarios</Link>
                             </li>
                             <li>
-                                <Link to="/gestion-productos" className="block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300">Productos</Link>
+                                <Link to="/gestion-productos" className={`block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300 ${isActive('/gestion-productos')}`}>Productos</Link>
                             </li>
                             <li>
-                                <Link to="/gestion-proveedores" className="block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300">Proveedores</Link>
+                                <Link to="/gestion-proveedores" className={`block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300 ${isActive('/gestion-proveedores')}`}>Proveedores</Link>
                             </li>
                             <li>
-                                <Link to="/gestion-ventas" className="block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300">Ventas</Link>
+                                <Link to="/gestion-ventas" className={`block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300 ${isActive('/gestion-ventas')}`}>Ventas</Link>
                             </li>
                             <li>
-                                <Link to="/gestion-pedidos" className="block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300">Pedidos</Link>
+                                <Link to="/gestion-pedidos" className={`block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300 ${isActive('/gestion-pedidos')}`}>Pedidos</Link>
                             </li>
                         </ul>
                     </div>

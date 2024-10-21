@@ -26,6 +26,7 @@ const RegistroCliente = () => {
     });
 
     const [mensajeValidacion, setMensajeValidacion] = useState('');
+    const [mensajeCorreo, setMensajeCorreo] = useState('');
 
     const navigate = useNavigate();
 
@@ -67,53 +68,73 @@ const RegistroCliente = () => {
         }
     };
 
+    const validarCorreo = (correo) => {
+        // Verifica si el correo termina en @gmail.com
+        if (!correo.endsWith('@gmail.com')) {
+            setMensajeCorreo('El correo debe ser una dirección de Gmail (@gmail.com).');
+        } else {
+            setMensajeCorreo('');
+        }
+    };
+
     const manejarCambio = (e) => {
         const { name, value } = e.target;
         if (name === 'contrasena') {
-            // Valida la contraseña cuando cambia
             validarContrasena(value);
+        } else if (name === 'correo') {
+            validarCorreo(value); // Valida el correo al cambiar
         }
         setDatosFormulario({ ...datosFormulario, [name]: value });
     };
 
     const manejarEnvio = async (e) => {
         e.preventDefault();
-        const errorContrasena = validarContrasena(datosFormulario.contrasena);
-        if (mensajeValidacion !== 'Contraseña segura.') {
+        // Primero validamos el correo
+        if (mensajeCorreo) {
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
-                text: mensajeValidacion,
+                text: mensajeCorreo,
             });
             return;
         }
-        try {
-            // Encripta la contraseña antes de enviarla
-            const contrasenaEncriptada = encriptarContrasena(datosFormulario.contrasena);
+        
+        // Luego validamos la contraseña
+    const errorContrasena = validarContrasena(datosFormulario.contrasena);
+    if (mensajeValidacion !== 'Contraseña segura.') {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: mensajeValidacion,
+        });
+        return;
+    }
 
-            const datosAEnviar = {
-                ...datosFormulario,
-                contrasena: contrasenaEncriptada // Guarda la contraseña encriptada
-            };
+    try {
+        const contrasenaEncriptada = encriptarContrasena(datosFormulario.contrasena);
+        const datosAEnviar = {
+            ...datosFormulario,
+            contrasena: contrasenaEncriptada
+        };
 
-            await axios.post('http://localhost:5000/usuarios', datosAEnviar);
-            Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Cliente registrado con éxito',
-                showConfirmButton: false,
-                timer: 1500
-            });
-            navigate('/login');
-        } catch (error) {
-            console.error('Error al registrar el cliente', error);
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'No se pudo registrar el cliente. Intenta nuevamente.',
-            });
-        }
-    };
+        await axios.post('http://localhost:5000/usuarios', datosAEnviar);
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Cliente registrado con éxito',
+            showConfirmButton: false,
+            timer: 1500
+        });
+        navigate('/login');
+    } catch (error) {
+        console.error('Error al registrar el cliente', error);
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'No se pudo registrar el cliente. Intenta nuevamente.',
+        });
+    }
+};
 
     return (
         <div className="relative min-h-screen flex items-center justify-center">
@@ -144,6 +165,7 @@ const RegistroCliente = () => {
                                         className="block text-sm font-medium text-gray-900 flex"
                                     >
                                         Correo Electrónico <p className='text-red-500'>*</p>
+                                        <p className='text-red-500'>(debe ser un correo gmail)</p>
 
                                     </label>
                                     <input

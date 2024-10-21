@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
+import { FaArrowLeft } from 'react-icons/fa'; // Importamos el ícono de react-icons
+
 
 const Profile = () => {
     const [userData, setUserData] = useState({
@@ -18,6 +21,8 @@ const Profile = () => {
     const [editedData, setEditedData] = useState({ ...userData });
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [userId, setUserId] = useState('');
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = () => {
@@ -219,7 +224,14 @@ const Profile = () => {
             }
         }
     };    
-    
+
+    const handleBack = () => {
+        // Usar window.history.back() si no usas React Router
+        // window.history.back();
+
+        // O usa navigate si usas react-router-dom
+        navigate(-1);
+    };
 
     return (
         <div className="max-w-4xl bg-gray-200 mx-auto my-10 p-8 rounded-lg shadow-lg">
@@ -268,6 +280,17 @@ const Profile = () => {
                     Cambiar Contraseña
                 </button>
             </div>
+
+            <div className="mt-8">
+                <button
+                    className="flex px-6 py-2 items-center bg-red-600 text-white font-semibold rounded-lg shadow-md hover:bg-red-700"
+                    onClick={handleBack}
+                >
+                    <FaArrowLeft className="mr-2" /> {/* Icono de flecha hacia la izquierda */}
+                    Volver
+                </button>
+            </div>
+
 
             {isModalOpen && (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
@@ -328,7 +351,9 @@ const Profile = () => {
                         Cancelar
                     </button>
                 </div>
+                
             </form>
+            
         </div>
     </div>
 )}
@@ -336,6 +361,8 @@ const Profile = () => {
 
   
         </div>
+
+        
     );
 };
 
