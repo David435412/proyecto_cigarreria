@@ -2,19 +2,24 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
-import emailjs from 'emailjs-com'; // Asegúrate de tener EmailJS configurado
 import { FaPlus, FaArchive } from 'react-icons/fa';
-
+import emailjs from 'emailjs-com'; // Asegúrate de tener EmailJS configurado
 
 const PedidosCajero = () => {
   const [pedidos, setPedidos] = useState([]);
   const [domiciliarios, setDomiciliarios] = useState([]);
   const [pedidoSeleccionado, setPedidoSeleccionado] = useState(null);
   const navigate = useNavigate();
+  const [filtroBusqueda, setFiltroBusqueda] = useState('');
+  const [filtroFecha, setFiltroFecha] = useState('');
+  const [filtroTotal, setFiltroTotal] = useState('');
 
+  // Paginación
+  const [currentPage, setCurrentPage] = useState(0);
+  const [pageSize] = useState(10); // Tamaño de página fijo
+  const totalPages = Math.ceil(pedidos.length / pageSize);
 
   useEffect(() => {
-    // Función para obtener pedidos desde la API
     const fetchPedidos = async () => {
       try {
         const response = await axios.get('http://localhost:5000/pedidos');
@@ -42,8 +47,47 @@ const PedidosCajero = () => {
     return productos.reduce((total, producto) => total + (parseFloat(producto.precio) * producto.cantidad), 0).toFixed(3);
   };
 
+  const formatearFecha = (fecha) => {
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+    return new Date(fecha).toLocaleDateString('es-CO', options);
+  };
+
+  // Filtros
+  const filteredData = pedidos.filter(pedido => {
+    const matchesNombre = pedido.nombre.toLowerCase().includes(filtroBusqueda.toLowerCase());
+    const matchesFecha = filtroFecha ? formatearFecha(pedido.fecha).includes(filtroFecha) : true;
+    const totalPedido = calcularTotal(pedido.productos);
+    const matchesTotal = filtroTotal ? totalPedido.toString().includes(filtroTotal) : true;
+    return matchesNombre && matchesFecha && matchesTotal;
+  });
+
+ // Datos paginados
+ const paginatedData = filteredData.slice(currentPage * pageSize, (currentPage + 1) * pageSize);
+
+// Funciones de paginación
+const nextPage = () => {
+  if (currentPage < totalPages - 1) {
+    setCurrentPage(prev => prev + 1);
+  }
+};
+
+const previousPage = () => {
+  if (currentPage > 0) {
+    setCurrentPage(prev => prev - 1);
+  }
+};
+
+const firstPage = () => {
+  setCurrentPage(0);
+};
+
+const lastPage = () => {
+  setCurrentPage(totalPages - 1);
+};
+
+
   const mostrarDetalles = (pedido) => {
-    setPedidoSeleccionado(pedidoSeleccionado && pedidoSeleccionado.id === pedido.id ? null : pedido);
+    setPedidoSeleccionado(pedidoSeleccionado?.id === pedido.id ? null : pedido);
   };
 
   const asignarPedido = async (pedido) => {
@@ -102,25 +146,44 @@ const PedidosCajero = () => {
     }
   };
 
-  const formatearFecha = (fecha, mostrarHora = false) => {
-    const fechaObj = new Date(fecha);
-    return mostrarHora ? fechaObj.toLocaleString() : fechaObj.toLocaleDateString();
-  };
+  
 
   return (
     <div className="container mx-auto p-4 my-16">
-            <h1 className="text-3xl font-bold mb-4 text-center text-black">Gestión de Pedidos</h1>
-            <p className="mb-8 text-center text-gray-600">
-                En esta sección podrás encontrar toda la información de los pedidos que tiene actualmente la empresa.
-            </p>
-            <div className="mb-4 flex space-x-4 place-content-center">
-                <button
-                    onClick={() => navigate('/registro-pedido-cajero')}
-                    className="bg-green-800 text-white px-4 py-2 rounded hover:bg-green-900"
-                >
-                    <FaPlus className="inline-block mr-2" /> Registrar Nuevo Pedido
-                </button>
-            </div>
+      <h1 className="text-3xl font-bold mb-4 text-center text-black">Gestión de Pedidos</h1>
+      <p className="mb-8 text-center text-gray-600">
+        En esta sección podrás encontrar toda la información de los pedidos que tiene actualmente la empresa.
+      </p>
+      <div className="mb-4 flex space-x-4 place-content-center">
+        <button
+          onClick={() => navigate('/registro-pedido-cajero')}
+          className="bg-green-800 text-white px-4 py-2 rounded hover:bg-green-900"
+        >
+          <FaPlus className="inline-block mr-2" /> Registrar Nuevo Pedido
+        </button>
+      </div>
+
+      <div className="mb-4 text-center">
+        <input
+          type="text"
+          placeholder="Buscar por nombre"
+          className="p-2 border border-gray-400 rounded"
+          value={filtroBusqueda}
+          onChange={(e) => setFiltroBusqueda(e.target.value)} />
+        <input
+          type="text"
+          placeholder="Fecha"
+          className="p-2 border border-gray-400 rounded ml-2"
+          value={filtroFecha}
+          onChange={(e) => setFiltroFecha(e.target.value)} />
+        <input
+          type="text"
+          placeholder="Buscar por total"
+          className="p-2 border border-gray-400 rounded ml-2"
+          value={filtroTotal}
+          onChange={(e) => setFiltroTotal(e.target.value)} />
+      </div>
+
       <table className="min-w-full bg-gray-300 border border-gray-200 rounded-lg">
         <thead className="bg-green-600 border-b border-gray-200">
           <tr className="text-white">
@@ -132,8 +195,8 @@ const PedidosCajero = () => {
           </tr>
         </thead>
         <tbody>
-          {pedidos.length > 0 ? (
-            pedidos.map(pedido => (
+          {paginatedData.length > 0 ? (
+            paginatedData.map(pedido => (
               <React.Fragment key={pedido.id}>
                 <tr>
                   <td className="py-2 px-4 border-b border-gray-200">{pedido.nombre}</td>
@@ -183,11 +246,27 @@ const PedidosCajero = () => {
             ))
           ) : (
             <tr>
-              <td colSpan="5" className="py-2 px-4 text-center">No hay pedidos pendientes</td>
+              <td colSpan="5" className="text-center py-4">No hay pedidos pendientes.</td>
             </tr>
           )}
         </tbody>
       </table>
+
+      <div className="flex justify-between items-center mt-4">
+        <button onClick={firstPage} disabled={currentPage === 0} className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+          {'<<'}
+        </button>
+        <button onClick={previousPage} disabled={currentPage === 0} className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+          {'<'}
+        </button>
+        <span className="px-4 py-2">Página {currentPage + 1} de {totalPages}</span>
+        <button onClick={nextPage} disabled={currentPage === totalPages - 1} className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+          {'>'}
+        </button>
+        <button onClick={lastPage} disabled={currentPage === totalPages - 1} className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+          {'>>'}
+        </button>
+      </div>
     </div>
   );
 };

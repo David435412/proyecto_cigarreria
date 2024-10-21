@@ -12,6 +12,15 @@ const DomiciliarioDashboard = () => {
     const [pedidos, setPedidos] = useState([]);
     const [pedidoSeleccionado, setPedidoSeleccionado] = useState(null);
     const [pedidoAConfirmar, setPedidoAConfirmar] = useState(null);
+    const [filtroBusqueda, setFiltroBusqueda] = useState('');
+    const [filtroFecha, setFiltroFecha] = useState('');
+    const [filtroTotal, setFiltroTotal] = useState('');
+
+      // Paginación
+    const [currentPage, setCurrentPage] = useState(0);
+    const [pageSize] = useState(10); // Tamaño de página fijo
+    const totalPages = Math.ceil(pedidos.length / pageSize);
+
 
     useEffect(() => {
         const storedName = localStorage.getItem('name');
@@ -38,6 +47,50 @@ const DomiciliarioDashboard = () => {
     const calcularTotal = (productos) => {
         return productos.reduce((total, producto) => total + (parseFloat(producto.precio) * producto.cantidad), 0).toFixed(3);
     };
+
+    const formatFecha = (fecha) => {
+        return format(new Date(fecha), 'dd/MM/yyyy HH:mm:ss');
+    };
+
+    const formatearFecha = (fecha) => {
+        const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+        return new Date(fecha).toLocaleDateString('es-CO', options);
+      };
+
+    // Filtros
+    const filteredData = pedidos.filter(pedido => {
+    const matchesNombre = pedido.nombre.toLowerCase().includes(filtroBusqueda.toLowerCase());
+    const matchesFecha = filtroFecha ? formatearFecha(pedido.fecha).includes(filtroFecha) : true;
+    const totalPedido = calcularTotal(pedido.productos);
+    const matchesTotal = filtroTotal ? totalPedido.toString().includes(filtroTotal) : true;
+        return matchesNombre && matchesFecha && matchesTotal;
+    });
+
+     // Datos paginados
+     const paginatedData = filteredData.slice(currentPage * pageSize, (currentPage + 1) * pageSize);
+
+    // Funciones de paginación
+    const nextPage = () => {
+        if (currentPage < totalPages - 1) {
+        setCurrentPage(prev => prev + 1);
+        }
+    };
+    
+    const previousPage = () => {
+        if (currentPage > 0) {
+        setCurrentPage(prev => prev - 1);
+        }
+    };
+    
+    const firstPage = () => {
+        setCurrentPage(0);
+    };
+    
+    const lastPage = () => {
+        setCurrentPage(totalPages - 1);
+    };
+
+  
 
     const manejarEstadoEntrega = (pedido) => {
         setPedidoAConfirmar(pedido);
@@ -97,11 +150,6 @@ const DomiciliarioDashboard = () => {
         setPedidoSeleccionado(pedidoSeleccionado && pedidoSeleccionado.id === pedido.id ? null : pedido);
     };
 
-    // Función para formatear la fecha
-    const formatFecha = (fecha) => {
-        return format(new Date(fecha), 'dd/MM/yyyy HH:mm:ss');
-    };
-
     return (
         <>
             <div className="bg-black text-white pb-5">
@@ -122,6 +170,30 @@ const DomiciliarioDashboard = () => {
                         <p className="text-gray-700">
                             Consulta y modifica el estado de los pedidos realizados por los clientes. Gestiona el campo de estado de entrega para asegurar un seguimiento adecuado.
                         </p>
+
+
+                        <div className="my-5  text-center">
+                            <input
+                            type="text"
+                            placeholder="Buscar por nombre"
+                            className="p-2 border border-gray-400 rounded"
+                            value={filtroBusqueda}
+                            onChange={(e) => setFiltroBusqueda(e.target.value)} />
+                            <input
+                            type="text"
+                            placeholder="Fecha"
+                            className="p-2 border border-gray-400 rounded ml-2"
+                            value={filtroFecha}
+                            onChange={(e) => setFiltroFecha(e.target.value)} />
+                            <input
+                            type="text"
+                            placeholder="Buscar por total"
+                            className="p-2 border border-gray-400 rounded ml-2"
+                            value={filtroTotal}
+                            onChange={(e) => setFiltroTotal(e.target.value)} />
+                        </div>
+
+
                         <table className="min-w-full bg-gray-300 border border-gray-200 rounded-lg mt-4">
                             <thead className="bg-green-600 border-b border-gray-200">
                                 <tr className="text-white">
@@ -133,12 +205,12 @@ const DomiciliarioDashboard = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {pedidos.length > 0 ? (
-                                    pedidos.map(pedido => (
+                            {paginatedData.length > 0 ? (
+                                paginatedData.map(pedido => (
                                         <React.Fragment key={pedido.id}>
                                             <tr>
                                                 <td className="py-2 px-4 border-b">{pedido.nombre}</td>
-                                                <td className="py-2 px-4 border-b">{formatFecha(pedido.fecha)}</td>
+                                                <td className="py-2 px-4 border-b border-gray-200">{formatearFecha(pedido.fecha)}</td>
                                                 <td className="py-2 px-4 border-b">${calcularTotal(pedido.productos)}</td>
                                                 <td className="py-2 px-4 border-b">{pedido.estadoPedido}</td>
                                                 <td className="py-2 px-4 border-b text-center">
@@ -164,7 +236,7 @@ const DomiciliarioDashboard = () => {
                                                         <h2 className="text-xl font-semibold mb-2">Detalles del Pedido</h2>
                                                         <p><strong>Nombre del Cliente:</strong> {pedidoSeleccionado.nombre}</p>
                                                         <p><strong>Correo Electrónico:</strong> {pedidoSeleccionado.correo}</p>
-                                                        <p><strong>Fecha:</strong> {formatFecha(pedidoSeleccionado.fecha)}</p>
+                                                        <p><strong>Fecha:</strong> {formatearFecha(pedidoSeleccionado.fecha, true)}</p>
                                                         <p><strong>Dirección de Entrega:</strong> {pedidoSeleccionado.direccion}</p>
                                                         <p><strong>Estado:</strong> {pedidoSeleccionado.estadoPedido}</p>
                                                         <h3 className="text-lg font-semibold mt-2">Productos:</h3>
@@ -191,6 +263,22 @@ const DomiciliarioDashboard = () => {
                                 )}
                             </tbody>
                         </table>
+
+                        <div className="flex justify-between items-center mt-4">
+                            <button onClick={firstPage} disabled={currentPage === 0} className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+                            {'<<'}
+                            </button>
+                            <button onClick={previousPage} disabled={currentPage === 0} className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+                            {'<'}
+                            </button>
+                            <span className="px-4 py-2">Página {currentPage + 1} de {totalPages}</span>
+                            <button onClick={nextPage} disabled={currentPage === totalPages - 1} className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+                            {'>'}
+                            </button>
+                            <button onClick={lastPage} disabled={currentPage === totalPages - 1} className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+                            {'>>'}
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

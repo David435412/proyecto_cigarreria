@@ -96,7 +96,7 @@
       "descripcion": "Tipo de cerveza: Lager. País de origen: Colombia. ABV: 4,0%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440018-1600-1600?v=638043996576070000&width=1600&height=1600&aspect=true",
       "categoria": "Licores",
-      "cantidad": 111,
+      "cantidad": 110,
       "marca": "Babaria",
       "estado": "activo"
     },
@@ -129,7 +129,7 @@
       "descripcion": "Combinación del más delicioso chocolate, galleta, arroz crujiente, caramelo, maní y almendras para llenar de sensaciones tu boca.",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/194548-1600-1600?v=637814055458900000&width=1600&height=1600&aspect=true",
       "categoria": "Confitería",
-      "cantidad": 113,
+      "cantidad": 112,
       "marca": "GOL",
       "estado": "activo"
     },
@@ -140,7 +140,7 @@
       "descripcion": "Deliciosa barra de chocolate de leche * Rellena de maní, cremoso caramelo y nougat",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/367867-1600-1600?v=637889251308670000&width=1600&height=1600&aspect=true",
       "categoria": "Confitería",
-      "cantidad": 372,
+      "cantidad": 367,
       "marca": "Snickers",
       "estado": "activo"
     },
@@ -162,7 +162,7 @@
       "descripcion": "Lomos de atún (thunnus albacares), Aceite vegetal de soya, Agua, Sal, Pescado",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/381411-1600-1600?v=637923060574430000&width=1600&height=1600&aspect=true",
       "categoria": "Enlatados",
-      "cantidad": 197,
+      "cantidad": 196,
       "marca": "CUISINE & CO NBE MP",
       "estado": "activo"
     },
@@ -206,7 +206,7 @@
       "descripcion": "Helado de leche con grasa vegetal, sabor a vainilla con cubierta sabor a Chocolate.",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/219111-1600-1600?v=637816519431570000&width=1600&height=1600&aspect=true",
       "categoria": "Helados",
-      "cantidad": "100",
+      "cantidad": 99,
       "marca": "CREM-HELADO",
       "estado": "activo"
     },
@@ -261,7 +261,7 @@
       "descripcion": "Cerveza Heineken 6 pack lata x269ml. El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994.",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/435457-1600-1600?v=638023180358170000&width=1600&height=1600&aspect=true",
       "categoria": "Licores",
-      "cantidad": 124,
+      "cantidad": 123,
       "marca": "Babaria",
       "estado": "activo"
     },
@@ -393,7 +393,7 @@
       "descripcion": "VapoRub libera vapores medicinales que pasan a través de las vías respiratorias aliviando la tos y la congestión nasal.\n\nA su vez, VapoRub alivia los dolores musculares causados por gripes o resfriados comunes.",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/640015-1600-1600?v=638555260663800000&width=1600&height=1600&aspect=true",
       "categoria": "Drogas",
-      "cantidad": 120,
+      "cantidad": 115,
       "marca": "VICK",
       "estado": "activo"
     },
@@ -437,7 +437,7 @@
       "descripcion": "Pack x 6 und de Mini Polet, mezcla de paletas de Cookies and Cream y Frutos del bosque.\nLa mejor combinación de dulzura y elegancia para disfrutar en compañía o solo.",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/522592-1600-1600?v=638307581187130000&width=1600&height=1600&aspect=true",
       "categoria": "Helados",
-      "cantidad": "100",
+      "cantidad": 99,
       "marca": "POLET",
       "estado": "activo"
     },
@@ -470,7 +470,7 @@
       "descripcion": "Ingredientes\n\nLeche, Agua, Leche en polvo, Glucosa, Azúcar, Grasa vegetal, Suero en polvo, Almidón modificado, Emulsificante - estabilizante mono y diglicéridos de ácidos grasos, Emulsificante - estabilizante goma guar, Emulsificante - estabilizante goma xantana, Emulsificante-estabilizante goma de celulosa, Emulsificante - estabilizante alga euchema elaborada, Emulsificante - estabilizante goma tara, Emulsificante - estabilizante carragenina, Emulsificante - estabilizante maltodextrina, Emulsificante - estabilizante goma arábiga, Maltodextrina, Saborizante artificial, Acidulante ácido cítrico, Colorante natural carmín, Colorante natural anato",
       "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/202383-1600-1600?v=637814158338570000&width=1600&height=1600&aspect=true",
       "categoria": "Helados",
-      "cantidad": "35",
+      "cantidad": 34,
       "marca": "CREM-HELADO",
       "estado": "activo"
     }
@@ -619,12 +619,12 @@
   ],
   "pedidos": [
     {
-      "id": "b229",
+      "id": "5739",
       "usuarioId": "4115",
-      "direccion": "call 122# 100A-02",
-      "nombre": "jeisson",
-      "correo": "davidm435465123@gmail.com",
-      "telefono": "31081281312",
+      "direccion": "call 137 # 100 B - 01",
+      "nombre": "murciaq",
+      "correo": "david@gmail.com",
+      "telefono": "3138382398",
       "productos": [
         {
           "id": "105c",
@@ -638,93 +638,96 @@
           "estado": "activo"
         }
       ],
-      "fecha": "2024-09-17T14:37:05.589Z",
+      "fecha": "2024-10-20T22:28:03.001Z",
       "estadoPedido": "entregado",
       "estado": "activo",
       "metodoPago": "efectivo",
       "asignado": "dca3"
     },
     {
-      "id": "5dc5",
+      "id": "3efc",
       "usuarioId": "4115",
-      "direccion": "call 137# 128B-01",
-      "nombre": "jeisson",
-      "correo": "davidm435465123@gmail.com",
-      "telefono": "3133138027",
+      "direccion": "call 137 # 100 B - 01",
+      "nombre": "murcia",
+      "correo": "david@gmail.com",
+      "telefono": "3138382398",
       "productos": [
         {
-          "id": "3445",
-          "nombre": "Cerveza Coronita botella x6und x210ml",
-          "precio": "7.500",
-          "descripcion": "Tipo de cerveza: Lager. País de Origen: México ABV: 4,5%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
-          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440069-1600-1600?v=638043996740100000&width=1600&height=1600&aspect=true",
-          "categoria": "Licores",
-          "cantidad": 1,
-          "marca": "Babaria",
-          "estado": "activo"
-        },
-        {
-          "id": "12ef",
-          "nombre": "Chocolatina Jet Leche x12und x132g",
-          "precio": "12.750",
-          "descripcion": "Regálate a ti mismo o a tus seres queridos un momento de felicidad con los productos que Jet trae para ti.",
-          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/653021-1600-1600?v=638582162050400000&width=1600&height=1600&aspect=true",
+          "id": "0dc7",
+          "nombre": "Galleta Gol chocolate x3und x93g cu",
+          "precio": "4.690",
+          "descripcion": "Combinación del más delicioso chocolate, galleta, arroz crujiente, caramelo, maní y almendras para llenar de sensaciones tu boca.",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/194548-1600-1600?v=637814055458900000&width=1600&height=1600&aspect=true",
           "categoria": "Confitería",
           "cantidad": 1,
-          "marca": "Jet",
+          "marca": "GOL",
           "estado": "activo"
         }
       ],
-      "fecha": "2024-09-17T14:38:50.105Z",
-      "estadoPedido": "pendiente",
-      "estado": "activo",
-      "metodoPago": "efectivo",
-      "asignado": "3428"
-    },
-    {
-      "id": "2212",
-      "usuarioId": "4115",
-      "direccion": "call 137# 128B-01",
-      "nombre": "jeisson",
-      "correo": "davidm435465123@gmail.com",
-      "telefono": "3133138027",
-      "productos": [
-        {
-          "id": "3445",
-          "nombre": "Cerveza Coronita botella x6und x210ml",
-          "precio": "7.500",
-          "descripcion": "Tipo de cerveza: Lager. País de Origen: México ABV: 4,5%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
-          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440069-1600-1600?v=638043996740100000&width=1600&height=1600&aspect=true",
-          "categoria": "Licores",
-          "cantidad": 1,
-          "marca": "Babaria",
-          "estado": "activo"
-        },
-        {
-          "id": "12ef",
-          "nombre": "Chocolatina Jet Leche x12und x132g",
-          "precio": "12.750",
-          "descripcion": "Regálate a ti mismo o a tus seres queridos un momento de felicidad con los productos que Jet trae para ti.",
-          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/653021-1600-1600?v=638582162050400000&width=1600&height=1600&aspect=true",
-          "categoria": "Confitería",
-          "cantidad": 1,
-          "marca": "Jet",
-          "estado": "activo"
-        }
-      ],
-      "fecha": "2024-09-17T14:38:53.177Z",
+      "fecha": "2024-10-15T22:32:54.418Z",
       "estadoPedido": "pendiente",
       "estado": "activo",
       "metodoPago": "efectivo",
       "asignado": "dca3"
     },
     {
-      "id": "569e",
+      "id": "c136",
       "usuarioId": "fcf0",
-      "direccion": "calle 183 #281",
+      "direccion": "calle 183 #28",
       "nombre": "james  rodriguez",
       "correo": "davidm435465123@gmail.com",
       "telefono": "2108108213",
+      "productos": [
+        {
+          "id": "fd3f",
+          "nombre": "Helado Crem Helado choco cono x 90g",
+          "precio": "3.590",
+          "descripcion": "Helado de leche con grasa vegetal, sabor a vainilla con cubierta sabor a Chocolate.",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/219111-1600-1600?v=637816519431570000&width=1600&height=1600&aspect=true",
+          "categoria": "Helados",
+          "cantidad": 1,
+          "marca": "CREM-HELADO",
+          "estado": "activo"
+        }
+      ],
+      "fecha": "2024-10-20T22:43:38.962Z",
+      "estadoPedido": "entregado",
+      "estado": "activo",
+      "metodoPago": "efectivo",
+      "asignado": "dca3"
+    },
+    {
+      "id": "3de9",
+      "usuarioId": "fcf0",
+      "direccion": "calle 183 #28",
+      "nombre": "james  rodriguez",
+      "correo": "davidm435465123@gmail.com",
+      "telefono": "2108108213",
+      "productos": [
+        {
+          "id": "3e7d",
+          "nombre": "Dulce Chocobreak tradicional x30und x 150g",
+          "precio": "10.000",
+          "descripcion": "Disfruta de Choco Break Tradicional x 30 x 150g en cualquier lugar y cualquier momento.",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/652155-1600-1600?v=638578553904400000&width=1600&height=1600&aspect=true",
+          "categoria": "Confitería",
+          "cantidad": 1,
+          "marca": "colanta",
+          "estado": "activo"
+        }
+      ],
+      "fecha": "2024-10-20T22:44:13.448Z",
+      "estadoPedido": "cancelado",
+      "estado": "inactivo",
+      "metodoPago": "efectivo"
+    },
+    {
+      "id": "35cb",
+      "usuarioId": "4115",
+      "direccion": "call 137 # 128 B - 01",
+      "nombre": "murcia",
+      "correo": "david@gmail.com",
+      "telefono": "3138382398",
       "productos": [
         {
           "id": "ce57",
@@ -738,160 +741,110 @@
           "estado": "activo"
         }
       ],
-      "fecha": "2024-09-17T14:45:13.810Z",
+      "fecha": "2024-10-20T22:45:01.130Z",
       "estadoPedido": "pendiente",
       "estado": "activo",
       "metodoPago": "efectivo"
     },
     {
-      "id": "2176",
-      "usuarioId": "fcf0",
-      "direccion": "calle 183 #281",
-      "nombre": "james  rodriguez",
-      "correo": "davidm435465123@gmail.com",
-      "telefono": "2108108213",
+      "id": "279b",
+      "usuarioId": "4115",
+      "direccion": "K 12 N 41",
+      "nombre": "wilmer",
+      "correo": "w@gmail.com",
+      "telefono": "1287123",
       "productos": [
         {
-          "id": "ce57",
-          "nombre": "Snickers barra de chocolate y maní x52.7g",
-          "precio": "6.090",
-          "descripcion": "Deliciosa barra de chocolate de leche * Rellena de maní, cremoso caramelo y nougat",
-          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/367867-1600-1600?v=637889251308670000&width=1600&height=1600&aspect=true",
-          "categoria": "Confitería",
+          "id": "65d3",
+          "nombre": "Helado Crem Helado vainilla fresa x5l",
+          "precio": "49.790",
+          "descripcion": "Ingredientes\n\nLeche, Agua, Leche en polvo, Glucosa, Azúcar, Grasa vegetal, Suero en polvo, Almidón modificado, Emulsificante - estabilizante mono y diglicéridos de ácidos grasos, Emulsificante - estabilizante goma guar, Emulsificante - estabilizante goma xantana, Emulsificante-estabilizante goma de celulosa, Emulsificante - estabilizante alga euchema elaborada, Emulsificante - estabilizante goma tara, Emulsificante - estabilizante carragenina, Emulsificante - estabilizante maltodextrina, Emulsificante - estabilizante goma arábiga, Maltodextrina, Saborizante artificial, Acidulante ácido cítrico, Colorante natural carmín, Colorante natural anato",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/202383-1600-1600?v=637814158338570000&width=1600&height=1600&aspect=true",
+          "categoria": "Helados",
           "cantidad": 1,
-          "marca": "Snickers",
+          "marca": "CREM-HELADO",
           "estado": "activo"
         }
       ],
-      "fecha": "2024-09-17T14:45:16.180Z",
+      "fecha": "2024-10-21T01:51:22.006Z",
       "estadoPedido": "pendiente",
       "estado": "activo",
       "metodoPago": "efectivo"
     },
     {
-      "id": "636b",
+      "id": "84b0",
+      "usuarioId": "4115",
+      "direccion": "K 12 N 41",
+      "nombre": "wilmer",
+      "correo": "w@gmail.com",
+      "telefono": "93218938",
+      "productos": [
+        {
+          "id": "383f",
+          "nombre": " Atún Cuisine&Co lomo aceite soya x4und x160g c-u",
+          "precio": "4.490",
+          "descripcion": "Lomos de atún (thunnus albacares), Aceite vegetal de soya, Agua, Sal, Pescado",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/381411-1600-1600?v=637923060574430000&width=1600&height=1600&aspect=true",
+          "categoria": "Enlatados",
+          "cantidad": 1,
+          "marca": "CUISINE & CO NBE MP",
+          "estado": "activo"
+        }
+      ],
+      "fecha": "2024-10-21T01:52:08.394Z",
+      "estadoPedido": "pendiente",
+      "estado": "activo",
+      "metodoPago": "efectivo"
+    },
+    {
+      "id": "849e",
+      "usuarioId": "4115",
+      "direccion": "K 12 N 41",
+      "nombre": "wilmer",
+      "correo": "w@gmail.com",
+      "telefono": "93218938",
+      "productos": [
+        {
+          "id": "fa53",
+          "nombre": " Helado Polet mini surtido x6und x45g",
+          "precio": "20.890",
+          "descripcion": "Pack x 6 und de Mini Polet, mezcla de paletas de Cookies and Cream y Frutos del bosque.\nLa mejor combinación de dulzura y elegancia para disfrutar en compañía o solo.",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/522592-1600-1600?v=638307581187130000&width=1600&height=1600&aspect=true",
+          "categoria": "Helados",
+          "cantidad": 1,
+          "marca": "POLET",
+          "estado": "activo"
+        }
+      ],
+      "fecha": "2024-10-21T03:10:26.074Z",
+      "estadoPedido": "pendiente",
+      "estado": "activo",
+      "metodoPago": "efectivo"
+    },
+    {
+      "id": "d6b2",
       "usuarioId": "fcf0",
-      "direccion": "calle 183 #281",
+      "direccion": "calle 183 #28",
       "nombre": "james  rodriguez",
       "correo": "davidm435465123@gmail.com",
       "telefono": "2108108213",
       "productos": [
         {
-          "id": "3445",
-          "nombre": "Cerveza Coronita botella x6und x210ml",
-          "precio": "7.500",
-          "descripcion": "Tipo de cerveza: Lager. País de Origen: México ABV: 4,5%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
-          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440069-1600-1600?v=638043996740100000&width=1600&height=1600&aspect=true",
+          "id": "123f",
+          "nombre": "Cerveza Heineken 6 pack lata x269ml",
+          "precio": "19.400",
+          "descripcion": "Cerveza Heineken 6 pack lata x269ml. El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994.",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/435457-1600-1600?v=638023180358170000&width=1600&height=1600&aspect=true",
           "categoria": "Licores",
           "cantidad": 1,
           "marca": "Babaria",
           "estado": "activo"
         }
       ],
-      "fecha": "2024-09-17T14:54:34.909Z",
+      "fecha": "2024-10-21T04:08:21.059Z",
       "estadoPedido": "pendiente",
       "estado": "activo",
       "metodoPago": "efectivo"
-    },
-    {
-      "id": "2003",
-      "usuarioId": "fcf0",
-      "direccion": "calle 183 #281",
-      "nombre": "james  rodriguez",
-      "correo": "davidm435465123@gmail.com",
-      "telefono": "2108108213",
-      "productos": [
-        {
-          "id": "3445",
-          "nombre": "Cerveza Coronita botella x6und x210ml",
-          "precio": "7.500",
-          "descripcion": "Tipo de cerveza: Lager. País de Origen: México ABV: 4,5%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
-          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/440069-1600-1600?v=638043996740100000&width=1600&height=1600&aspect=true",
-          "categoria": "Licores",
-          "cantidad": 1,
-          "marca": "Babaria",
-          "estado": "activo"
-        }
-      ],
-      "fecha": "2024-09-17T14:54:39.028Z",
-      "estadoPedido": "pendiente",
-      "estado": "activo",
-      "metodoPago": "efectivo"
-    },
-    {
-      "id": "9ec6",
-      "usuarioId": "fcf0",
-      "direccion": "calle 183 #281",
-      "nombre": "james  rodriguez",
-      "correo": "davidm435465123@gmail.com",
-      "telefono": "2108108213",
-      "productos": [
-        {
-          "id": "3598",
-          "nombre": "Ungüento Vick Vaporub Topico x100g",
-          "precio": "35.890",
-          "descripcion": "VapoRub libera vapores medicinales que pasan a través de las vías respiratorias aliviando la tos y la congestión nasal.\n\nA su vez, VapoRub alivia los dolores musculares causados por gripes o resfriados comunes.",
-          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/640015-1600-1600?v=638555260663800000&width=1600&height=1600&aspect=true",
-          "categoria": "Drogas",
-          "cantidad": 1,
-          "marca": "VICK",
-          "estado": "activo"
-        }
-      ],
-      "fecha": "2024-09-17T15:33:22.896Z",
-      "estadoPedido": "pendiente",
-      "estado": "activo",
-      "metodoPago": "tarjeta"
-    },
-    {
-      "id": "b349",
-      "usuarioId": "fcf0",
-      "direccion": "calle 183 #281",
-      "nombre": "james  rodriguez",
-      "correo": "davidm435465123@gmail.com",
-      "telefono": "2108108213",
-      "productos": [
-        {
-          "id": "3598",
-          "nombre": "Ungüento Vick Vaporub Topico x100g",
-          "precio": "35.890",
-          "descripcion": "VapoRub libera vapores medicinales que pasan a través de las vías respiratorias aliviando la tos y la congestión nasal.\n\nA su vez, VapoRub alivia los dolores musculares causados por gripes o resfriados comunes.",
-          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/640015-1600-1600?v=638555260663800000&width=1600&height=1600&aspect=true",
-          "categoria": "Drogas",
-          "cantidad": 1,
-          "marca": "VICK",
-          "estado": "activo"
-        }
-      ],
-      "fecha": "2024-09-17T15:33:25.304Z",
-      "estadoPedido": "pendiente",
-      "estado": "activo",
-      "metodoPago": "tarjeta"
-    },
-    {
-      "id": "831a",
-      "usuarioId": "fcf0",
-      "direccion": "cra7 #58",
-      "nombre": "james  rodriguez",
-      "correo": "davidm435465123@gmail.com",
-      "telefono": "2108108213",
-      "productos": [
-        {
-          "id": "b5c6",
-          "nombre": "Cerveza Aguila Original lata x6und x330ml",
-          "precio": "18.000",
-          "descripcion": "Tipo de cerveza: Lager. País de origen: Colombia. ABV: 4,0%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
-          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/439991-1600-1600?v=638043996501300000&width=1600&height=1600&aspect=true",
-          "categoria": "Licores",
-          "cantidad": 1,
-          "marca": "Babaria",
-          "estado": "activo"
-        }
-      ],
-      "fecha": "2024-09-17T15:34:05.489Z",
-      "estadoPedido": "pendiente",
-      "estado": "activo",
-      "metodoPago": "Nequi"
     }
   ],
   "ventas": [
@@ -1288,6 +1241,27 @@
       "numeroDocumento": "1031653106",
       "total": 127.5,
       "fechaVenta": "18/10/2024",
+      "metodoPago": "Efectivo",
+      "estado": "activo"
+    },
+    {
+      "id": "8cbf",
+      "productos": [
+        {
+          "id": "ce57",
+          "nombre": "Snickers barra de chocolate y maní x52.7g",
+          "precio": "6.090",
+          "descripcion": "Deliciosa barra de chocolate de leche * Rellena de maní, cremoso caramelo y nougat",
+          "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/367867-1600-1600?v=637889251308670000&width=1600&height=1600&aspect=true",
+          "categoria": "Confitería",
+          "cantidad": 1,
+          "marca": "Snickers",
+          "estado": "activo"
+        }
+      ],
+      "numeroDocumento": "1031808326",
+      "total": 6.09,
+      "fechaVenta": "24/10/2024",
       "metodoPago": "Efectivo",
       "estado": "activo"
     }

@@ -27,13 +27,20 @@ const GestionVentas = () => {
     }, [fetchVentas]);
 
     useEffect(() => {
-        const filtered = ventas.filter(venta =>
-            (mostrarInactivas ? venta.estado === 'inactivo' : venta.estado === 'activo') &&
-            (venta.numeroDocumento.toLowerCase().includes(filterInput.toLowerCase()) ||
-            venta.fechaVenta.toLowerCase().includes(filterInput.toLowerCase()))
-        );
+        const filtered = ventas.filter(venta => {
+            // Convierte la fecha que deseas buscar al formato adecuado
+            const fechaBuscada = '2024-10-20'; // Cambia esto al formato correspondiente si es necesario
+    
+            return (
+                (mostrarInactivas ? venta.estado === 'inactivo' : venta.estado === 'activo') &&
+                (venta.numeroDocumento.toLowerCase().includes(filterInput.toLowerCase()) ||
+                venta.fechaVenta === fechaBuscada || // Compara directamente con la fecha
+                venta.fechaVenta.toLowerCase().includes(filterInput.toLowerCase()))
+            );
+        });
         setFilteredVentas(filtered);
     }, [filterInput, ventas, mostrarInactivas]);
+    
 
     const handleFilterChange = e => {
         setFilterInput(e.target.value || '');

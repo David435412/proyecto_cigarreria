@@ -7,6 +7,13 @@ const Pedidos = () => {
     const [error, setError] = useState('');
     const [mostrarModal, setMostrarModal] = useState(false); // Estado para el modal de confirmación de cancelación
     const [pedidoACancelar, setPedidoACancelar] = useState(null); // Estado para el pedido a cancelar
+    const [filtroFecha, setFiltroFecha] = useState(''); // Estado para el filtro de fecha
+    const [filtroTotal, setFiltroTotal] = useState(''); // Estado para el filtro de total
+
+    // Paginación
+    const [currentPage, setCurrentPage] = useState(0);
+    const [pageSize] = useState(10); // Tamaño de página fijo
+    const totalPages = Math.ceil(pedidos.length / pageSize);
 
     useEffect(() => {
         const usuarioId = localStorage.getItem('userId');
@@ -26,6 +33,44 @@ const Pedidos = () => {
         const total = productos.reduce((total, producto) => total + producto.precio * producto.cantidad, 0);
         return total.toFixed(3);
     };
+
+    const formatearFecha = (fecha) => {
+        const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+        return new Date(fecha).toLocaleDateString('es-CO', options);
+      };
+    
+     // Filtros
+    const filteredData = pedidos.filter(pedido => {
+    const matchesFecha = filtroFecha ? formatearFecha(pedido.fecha).includes(filtroFecha) : true;
+    const totalPedido = calcularTotal(pedido.productos);
+    const matchesTotal = filtroTotal ? totalPedido.toString().includes(filtroTotal) : true;
+        return matchesFecha && matchesTotal;
+    });
+
+     // Datos paginados
+    const paginatedData = filteredData.slice(currentPage * pageSize, (currentPage + 1) * pageSize);
+
+    // Funciones de paginación
+    const nextPage = () => {
+        if (currentPage < totalPages - 1) {
+        setCurrentPage(prev => prev + 1);
+        }
+    };
+    
+    const previousPage = () => {
+        if (currentPage > 0) {
+        setCurrentPage(prev => prev - 1);
+        }
+    };
+    
+    const firstPage = () => {
+        setCurrentPage(0);
+    };
+    
+    const lastPage = () => {
+        setCurrentPage(totalPages - 1);
+    };
+
 
     const mostrarDetalles = (pedido) => {
         setPedidoSeleccionado(pedidoSeleccionado && pedidoSeleccionado.id === pedido.id ? null : pedido);
@@ -74,6 +119,22 @@ const Pedidos = () => {
         <div className="container mx-auto px-4 py-8 my-5">
             <h1 className="text-3xl font-semibold mb-6">Mis Pedidos</h1>
             {error && <p className="text-red-500 mb-4">{error}</p>}
+
+            <div className="mb-4 text-center">
+                <input
+                    type="text"
+                    placeholder="Fecha"
+                    className="p-2 border border-gray-400 rounded ml-2"
+                    value={filtroFecha}
+                    onChange={(e) => setFiltroFecha(e.target.value)} />
+                <input
+                    type="text"
+                    placeholder="Buscar por total"
+                    className="p-2 border border-gray-400 rounded ml-2"
+                    value={filtroTotal}
+                    onChange={(e) => setFiltroTotal(e.target.value)} />
+            </div>
+
             {pedidos.length === 0 ? (
                 <p className="text-center text-xl">No tienes pedidos realizados aún.</p>
             ) : (
@@ -87,10 +148,11 @@ const Pedidos = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {pedidos.map((pedido) => (
+                    {paginatedData.length > 0 ? (
+                        paginatedData.map(pedido => (
                             <React.Fragment key={pedido.id}>
                                 <tr>
-                                    <td className="py-4 px-4 border-b text-center">{new Date(pedido.fecha).toLocaleDateString()}</td>
+                                    <td className="py-2 px-4 border-b text-center border-gray-200">{formatearFecha(pedido.fecha)}</td>
                                     <td className="py-4 px-4 border-b text-center">${calcularTotal(pedido.productos)}</td>
                                     <td className="py-4 px-4 border-b text-center">{pedido.estadoPedido}</td>
                                     <td className="py-4 px-4 border-b text-center">
@@ -106,7 +168,7 @@ const Pedidos = () => {
                                     <tr>
                                         <td colSpan="4" className="py-4 px-4 border-b bg-gray-100">
                                             <h2 className="text-xl font-semibold mb-2">Detalles del Pedido</h2>
-                                            <p><strong>Fecha:</strong> {new Date(pedidoSeleccionado.fecha).toLocaleDateString()}</p>
+                                            <p><strong>Fecha:</strong> {formatearFecha(pedidoSeleccionado.fecha, true)}</p>
                                             <p><strong>Estado:</strong> {pedidoSeleccionado.estadoPedido}</p>
                                             <h3 className="text-lg font-semibold mt-2">Productos:</h3>
                                             <ul>
@@ -133,7 +195,12 @@ const Pedidos = () => {
                                     </tr>
                                 )}
                             </React.Fragment>
-                        ))}
+                        ))
+                    ):(
+                        <tr>
+                            <td colSpan="5" className="text-center py-4">No hay pedidos pendientes.</td>
+                        </tr>
+                    )}
                     </tbody>
                 </table>
             )}
@@ -160,6 +227,22 @@ const Pedidos = () => {
                     </div>
                 </div>
             )}
+
+            <div className="flex justify-between items-center mt-4">
+                <button onClick={firstPage} disabled={currentPage === 0} className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+                {'<<'}
+                </button>
+                <button onClick={previousPage} disabled={currentPage === 0} className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+                {'<'}
+                </button>
+                <span className="px-4 py-2">Página {currentPage + 1} de {totalPages}</span>
+                <button onClick={nextPage} disabled={currentPage === totalPages - 1} className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+                {'>'}
+                </button>
+                <button onClick={lastPage} disabled={currentPage === totalPages - 1} className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+                {'>>'}
+                </button>
+            </div>
         </div>
     );
 };

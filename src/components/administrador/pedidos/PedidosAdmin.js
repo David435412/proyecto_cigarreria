@@ -11,6 +11,9 @@ const PedidosAdmin = () => {
   const [pedidoAConfirmar, setPedidoAConfirmar] = useState(null);
   const [filtroEstado, setFiltroEstado] = useState('todos');
   const [filtroBusqueda, setFiltroBusqueda] = useState('');
+  const [filtroFecha, setFiltroFecha] = useState('');
+  const [filtroTotal, setFiltroTotal] = useState('');
+
 
   useEffect(() => {
     const fetchPedidos = async () => {
@@ -100,16 +103,47 @@ const PedidosAdmin = () => {
   };
 
   const formatearFecha = (fecha) => {
-    return new Date(fecha).toLocaleDateString();
+    // Verificar si la fecha es un objeto Date
+    if (fecha instanceof Date) {
+      return `${fecha.getDate().toString().padStart(2, '0')}/${(fecha.getMonth() + 1).toString().padStart(2, '0')}/${fecha.getFullYear()} ${fecha.getHours().toString().padStart(2, '0')}:${fecha.getMinutes().toString().padStart(2, '0')}`;
+    }
+  
+    // Verificar si la fecha está en formato ISO 8601
+    if (typeof fecha === 'string' && fecha.includes('T')) {
+      const fechaObj = new Date(fecha);
+      if (!isNaN(fechaObj.getTime())) {
+        return `${fechaObj.getDate().toString().padStart(2, '0')}/${(fechaObj.getMonth() + 1).toString().padStart(2, '0')}/${fechaObj.getFullYear()} ${fechaObj.getHours().toString().padStart(2, '0')}:${fechaObj.getMinutes().toString().padStart(2, '0')}`;
+      } else {
+        console.error('Fecha no válida:', fecha);
+        return 'Fecha inválida';
+      }
+    }
+  
+    const [dia, mes, anio] = fecha.split('/');
+    return new Date(`${anio}-${mes}-${dia}`).toLocaleString();
   };
+    
+  
 
   // Filtrar y ordenar los pedidos
-  const pedidosFiltrados = useMemo(() =>
-    pedidos.filter(pedido => 
-      (filtroEstado === 'todos' || pedido.estadoPedido === filtroEstado) &&
-      (pedido.nombre.toLowerCase().includes(filtroBusqueda.toLowerCase()))
-    ), [pedidos, filtroEstado, filtroBusqueda] // Dependencias de useMemo
-  );
+  const pedidosFiltrados = useMemo(() => {
+    const resultado = pedidos.filter(pedido => {
+        // Formatear la fecha del pedido a formato "dd/mm/yyyy"
+        const fechaPedidoFormateada = formatearFecha(new Date(pedido.fecha)).split(' ')[0]; // Solo la parte de la fecha
+
+        return (
+            (filtroEstado === 'todos' || pedido.estadoPedido === filtroEstado) &&
+            (pedido.nombre.toLowerCase().includes(filtroBusqueda.toLowerCase())) &&
+            (filtroFecha === '' || fechaPedidoFormateada.includes(filtroFecha)) && // Cambia a includes para búsqueda parcial
+            (filtroTotal === '' || calcularTotal(pedido.productos).toString().includes(filtroTotal))
+        );
+    });
+
+    console.log('Pedidos filtrados:', resultado); // Imprime los pedidos filtrados
+    return resultado;
+}, [pedidos, filtroEstado, filtroBusqueda, filtroFecha, filtroTotal]);
+                    
+  
 
   // Configuración de la tabla con react-table
   const columns = useMemo(() => [
@@ -153,8 +187,7 @@ const PedidosAdmin = () => {
     gotoPage,
     nextPage,
     previousPage,
-    setPageSize,
-    state: { pageIndex, pageSize }
+    state: { pageIndex }
   } = useTable(
     {
       columns,
@@ -199,15 +232,33 @@ const PedidosAdmin = () => {
         </button>
       </div>
 
-      <div className="mb-4">
+      <div className="mb-4 text-center">
         <input
           type="text"
           placeholder="Buscar por nombre"
-          className="p-2 border border-gray-300 rounded"
+          className="p-2 border border-gray-400 rounded"
           value={filtroBusqueda}
           onChange={(e) => setFiltroBusqueda(e.target.value)}
         />
+        <input
+          type="text"
+          placeholder="Fecha"
+          className="p-2 border border-gray-400 rounded ml-2"
+          value={filtroFecha}
+          onChange={(e) => {
+            const value = e.target.value;
+            setFiltroFecha(value); // Permitir cualquier entrada
+          }}
+        />
+        <input
+          type="text"
+          placeholder="Buscar por total"
+          className="p-2 border border-gray-400 rounded ml-2"
+          value={filtroTotal}
+          onChange={(e) => setFiltroTotal(e.target.value)}
+        />
       </div>
+
 
       <div className="overflow-x-auto">
         <table className="min-w-full bg-gray-300 border border-gray-200 rounded-lg shadow-md" {...getTableProps()}>
@@ -222,66 +273,68 @@ const PedidosAdmin = () => {
               </tr>
             ))}
           </thead>
-          <tbody>
-            {pedidosFiltrados.length > 0 ? (
-              pedidosFiltrados.map(pedido => (
-                <React.Fragment key={pedido.id}>
-                  <tr className="border-b border-gray-200">
-                    <td className="p-4">{pedido.nombre}</td>
-                    <td className="p-4">{formatearFecha(pedido.fecha)}</td>
-                    <td className="p-4">${calcularTotal(pedido.productos)}</td>
-                    <td className="p-4">{pedido.estadoPedido}</td>
-                    <td className="p-4 flex gap-2">
-                      <button
-                        onClick={() => mostrarDetalles(pedido)}
-                        className={`bg-blue-500 text-white py-1 px-2 rounded hover:bg-blue-600 ${pedidoSeleccionado && pedidoSeleccionado.id === pedido.id ? 'bg-blue-600' : ''}`}
-                      >
-                        {pedidoSeleccionado && pedidoSeleccionado.id === pedido.id ? 'Ocultar Detalles' : 'Detalles'}
-                      </button>
-                      {pedido.estadoPedido === 'pendiente' && (
-                          <button
-                            onClick={() => manejarEstadoEntrega(pedido)}
-                            className="bg-gray-500 text-white py-1 px-2 rounded hover:bg-gray-600"
-                          >
-                            <FaCheckCircle className="inline-block mr-1" /> Marcar Entregado
-                          </button>
-                        )}
-                    </td>
-                  </tr>
-                  {pedidoSeleccionado && pedidoSeleccionado.id === pedido.id && (
-                    <tr>
-                      <td colSpan="5" className="p-4 bg-gray-100">
-                        <h2 className="text-xl font-semibold mb-2">Detalles del Pedido</h2>
-                        <p><strong>Nombre del Cliente:</strong> {pedidoSeleccionado.nombre}</p>
-                        <p><strong>Correo Electrónico:</strong> {pedidoSeleccionado.correo}</p> 
-                        <p><strong>Fecha:</strong> {formatearFecha(pedidoSeleccionado.fecha)}</p>
-                        <p><strong>Dirección de Entrega:</strong> {pedidoSeleccionado.direccion}</p>
-                        <p><strong>Estado:</strong> {pedidoSeleccionado.estadoPedido}</p>
-                        <h3 className="text-lg font-semibold mt-2">Productos:</h3>
-                        <ul>
-                          {pedidoSeleccionado.productos.map((producto, index) => (
-                            <li key={index} className="flex items-center mb-2">
-                              {producto.imagen && (
-                                <img src={producto.imagen} alt={producto.nombre} className="w-16 h-16 object-cover mr-2" />
-                              )}
-                              <p>{producto.nombre} - ${producto.precio} x {producto.cantidad}</p>
-                            </li>
-                          ))}
-                        </ul>
-                        <h2 className="text-xl font-semibold mt-2">Subtotal: ${calcularTotal(pedidoSeleccionado.productos)}</h2>
+          <tbody {...getTableBodyProps()}>
+  {page.length > 0 ? (
+    page.map(row => {
+      prepareRow(row);
+      return (
+        <React.Fragment key={row.id}>
+          <tr {...row.getRowProps()} className="border-b border-gray-200">
+            <td className="p-4">{row.original.nombre}</td>
+            <td className="p-4">{formatearFecha(row.original.fecha)}</td>
+            <td className="p-4">${calcularTotal(row.original.productos)}</td>
+            <td className="p-4">{row.original.estadoPedido}</td>
+            <td className="p-4 flex gap-2">
+              <button
+                onClick={() => mostrarDetalles(row.original)}
+                className={`bg-blue-500 text-white py-1 px-2 rounded hover:bg-blue-600 ${pedidoSeleccionado && pedidoSeleccionado.id === row.original.id ? 'bg-blue-600' : ''}`}
+              >
+                {pedidoSeleccionado && pedidoSeleccionado.id === row.original.id ? 'Ocultar Detalles' : 'Detalles'}
+              </button>
+              {row.original.estadoPedido === 'pendiente' && (
+                <button
+                  onClick={() => manejarEstadoEntrega(row.original)}
+                  className="bg-gray-500 text-white py-1 px-2 rounded hover:bg-gray-600"
+                >
+                  <FaCheckCircle className="inline-block mr-1" /> Marcar Entregado
+                </button>
+              )}
+            </td>
+          </tr>
+          {pedidoSeleccionado && pedidoSeleccionado.id === row.original.id && (
+            <tr>
+              <td colSpan="5" className="p-4 bg-gray-100">
+                <h2 className="text-xl font-semibold mb-2">Detalles del Pedido</h2>
+                <p><strong>Nombre del Cliente:</strong> {pedidoSeleccionado.nombre}</p>
+                <p><strong>Correo Electrónico:</strong> {pedidoSeleccionado.correo}</p>
+                <p><strong>Fecha:</strong> {formatearFecha(pedidoSeleccionado.fecha)}</p>
+                <p><strong>Dirección de Entrega:</strong> {pedidoSeleccionado.direccion}</p>
+                <p><strong>Estado:</strong> {pedidoSeleccionado.estadoPedido}</p>
+                <h3 className="text-lg font-semibold mt-2">Productos:</h3>
+                <ul>
+                  {pedidoSeleccionado.productos.map((producto, index) => (
+                    <li key={index} className="flex items-center mb-2">
+                      {producto.imagen && (
+                        <img src={producto.imagen} alt={producto.nombre} className="w-16 h-16 object-cover mr-2" />
+                      )}
+                      <p>{producto.nombre} - ${producto.precio} x {producto.cantidad}</p>
+                    </li>
+                  ))}
+                </ul>
+                <h2 className="text-xl font-semibold mt-2">Subtotal: ${calcularTotal(pedidoSeleccionado.productos)}</h2>
+              </td>
+            </tr>
+          )}
+        </React.Fragment>
+      );
+    })
+  ) : (
+    <tr>
+      <td colSpan="5" className="p-4 text-center">No hay pedidos disponibles.</td>
+    </tr>
+  )}
+</tbody>
 
-                       
-                      </td>
-                    </tr>
-                  )}
-                </React.Fragment>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="5" className="p-4 text-center">No hay pedidos disponibles.</td>
-              </tr>
-            )}
-          </tbody>
         </table>
       </div>
 

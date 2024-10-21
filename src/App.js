@@ -55,7 +55,6 @@ import DetalleProductoCajero from './components/cajero/pedidos/DetallesProductoC
 import DatosEntregaCajero from './components/cajero/pedidos/DatosEntregaCajero';
 import ConfirmacionCajero from './components/cajero/pedidos/Confirmacion';
 import DomiciliarioDashboard from './components/domiciliario/DomiciliarioDash';
-import PedidosDomiciliario from './components/domiciliario/pedidos/PedidosDomiciliario';
 import Footer from './components/comun/Footer';
 import Inicio from './pages/Inicio';
 import PedidosAntes from './components/comun/Pedidos';
@@ -135,7 +134,6 @@ const App = () => {
             <Route path="/DatosEntregaCajero" element={<DatosEntregaCajero />} />
             <Route path="/ConfirmacionCajero" element={<ConfirmacionCajero />} />
             <Route path="/domiciliario-dash" element={<DomiciliarioDashboard />} />
-            <Route path="/pedidos-domiciliario" element={<PedidosDomiciliario />} />
           </Routes>
         </main>
         {showNavBarFooter && <Footer />}
