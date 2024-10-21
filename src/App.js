@@ -14,6 +14,8 @@ import Perfil from './components/comun/Perfil';
 import DetalleProductoSinLoggear from './pages/DetallesProductoSinLoggear';
 import RegistroCliente from './components/auth/RegistroCliente';
 import Login from './components/auth/Login';
+import Recuperacion from './components/auth/RecuperacionContra';
+import IngresarCod from './components/auth/IngresarCod';
 import AdminDash from './components/administrador/AdminDash';
 import GestionProductos from './components/administrador/productos/GestionProductos';
 import RegistroProductos from './components/administrador/productos/RegistroProductos';
@@ -66,7 +68,7 @@ const App = () => {
 
   const LocationBasedLayout = () => {
     const location = useLocation();
-    const showNavBarFooter = !['/login', '/registro-cliente'].includes(location.pathname);
+    const showNavBarFooter = !['/login', '/registro-cliente', '/recuperacion_contra', '/ingresar_codigo'].includes(location.pathname);
 
     let NavBarComponent = Header; // Valor por defecto
 
@@ -92,6 +94,8 @@ const App = () => {
             <Route path="/carrito-a" element={<CartAntes />} />
             <Route path="/registro-cliente" element={<RegistroCliente />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/recuperacion_contra" element={<Recuperacion />} />
+            <Route path="/ingresar_codigo" element={<IngresarCod />} />
             <Route path="/perfil" element={<Perfil />} />
             <Route path="/admin-dash" element={<AdminDash />} />
             <Route path="/gestion-productos" element={<GestionProductos />} />

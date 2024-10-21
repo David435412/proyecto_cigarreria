@@ -37,7 +37,8 @@
       "telefono": "319012913",
       "direccion": "call 137# 100A-02",
       "rol": "domiciliario",
-      "estado": "activo"
+      "estado": "activo",
+      "codigoRecuperacion": "282834"
     },
     {
       "id": "fcf0",
