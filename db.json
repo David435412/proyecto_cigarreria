@@ -24,7 +24,8 @@
       "telefono": "3133138027",
       "direccion": "call 137# 128B-01",
       "rol": "cajero",
-      "estado": "activo"
+      "estado": "activo",
+      "codigoRecuperacion": "638388"
     },
     {
       "id": "dca3",
@@ -37,8 +38,7 @@
       "telefono": "319012913",
       "direccion": "call 137# 100A-02",
       "rol": "domiciliario",
-      "estado": "activo",
-      "codigoRecuperacion": "282834"
+      "estado": "activo"
     },
     {
       "id": "fcf0",

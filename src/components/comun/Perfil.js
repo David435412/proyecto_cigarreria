@@ -21,6 +21,7 @@ const Profile = () => {
     const [editedData, setEditedData] = useState({ ...userData });
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [userId, setUserId] = useState('');
+    const [emailError, setEmailError] = useState('');
 
     const navigate = useNavigate();
 
@@ -70,9 +71,24 @@ const Profile = () => {
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
 
+    const validateEmail = (email) => {
+        // Verificar si el correo tiene el dominio @gmail.com
+        const regex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+        return regex.test(email);
+    };
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setEditedData((prevData) => ({ ...prevData, [name]: value }));
+
+        // Validar el correo si el campo modificado es el correo
+        if (name === 'correo') {
+            if (!validateEmail(value)) {
+                setEmailError('El correo debe ser una dirección válida de Gmail (@gmail.com).');
+            } else {
+                setEmailError(''); // Limpiar el mensaje de error si es válido
+            }
+        }
     };
 
     const handleSelectChange = (e) => {
@@ -81,9 +97,21 @@ const Profile = () => {
     };
 
     const handleSaveChanges = async () => {
+        // Verifica si hay errores de validación
+        if (emailError) {
+            Swal.fire({
+                title: 'Error',
+                text: 'Por favor, corrige los errores antes de continuar.',
+                icon: 'error',
+                confirmButtonText: 'Aceptar',
+                confirmButtonColor: '#2563eb'
+            });
+            return; // Detiene la ejecución si hay errores
+        }
+    
         try {
             await axios.put(`http://localhost:5000/usuarios/${userId}`, editedData);
-
+    
             localStorage.setItem('name', editedData.nombre);
             localStorage.setItem('username', editedData.nombreUsuario);
             localStorage.setItem('email', editedData.correo);
@@ -94,13 +122,20 @@ const Profile = () => {
             localStorage.setItem('password', editedData.contrasena);
             localStorage.setItem('role', editedData.rol);
             localStorage.setItem('status', editedData.estado);
-
+    
             setUserData(editedData);
             closeModal();
         } catch (error) {
             console.error('Error al actualizar el perfil:', error);
+            Swal.fire({
+                title: 'Error',
+                text: 'No se pudo actualizar el perfil. Inténtalo nuevamente.',
+                icon: 'error',
+                confirmButtonText: 'Aceptar'
+            });
         }
     };  
+    
     
 
     const encriptarContrasena = (contrasena) => {
@@ -309,6 +344,7 @@ const Profile = () => {
                         value={editedData.correo}
                         onChange={handleInputChange}
                     />
+                    {emailError && <p className="text-red-500 text-xs italic">{emailError}</p>} {/* Mensaje de error */}
                 </div>
                 <div className="col-span-2">
                     <label className="block text-gray-700 font-bold mb-2" htmlFor="telefono">

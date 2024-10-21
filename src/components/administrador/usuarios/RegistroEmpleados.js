@@ -29,6 +29,13 @@ const validarContrasena = (contrasena) => {
     };
 };
 
+// Validación del correo
+const validarCorreo = (correo) => {
+    const regexCorreo = /^[^\s@]+@gmail\.com$/;
+    return regexCorreo.test(correo);
+};
+
+
 const RegistroEmpleado = () => {
     const [formData, setFormData] = useState({
         nombre: '',
@@ -50,6 +57,8 @@ const RegistroEmpleado = () => {
         numeros: false
     });
 
+    const [validacionCorreo, setValidacionCorreo] = useState(false);
+
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -60,6 +69,10 @@ const RegistroEmpleado = () => {
             const validaciones = validarContrasena(value);
             setValidacionesContrasena(validaciones);
         }
+
+        if (name === 'correo') {
+            setValidacionCorreo(validarCorreo(value));
+        }
     };
 
     const handleSubmit = async (e) => {
@@ -67,7 +80,7 @@ const RegistroEmpleado = () => {
 
         // Validar la contraseña antes de enviar el formulario
         const validaciones = validarContrasena(formData.contrasena);
-        if (validaciones.longitud && validaciones.mayusculas && validaciones.minusculas && validaciones.numeros) {
+        if (validaciones.longitud && validaciones.mayusculas && validaciones.minusculas && validaciones.numeros && validacionCorreo) {
             try {
                 // Encripta la contraseña antes de enviarla
                 const contrasenaEncriptada = encriptarContrasena(formData.contrasena);
@@ -99,6 +112,16 @@ const RegistroEmpleado = () => {
                     confirmButtonText: 'Aceptar'
                 });
             }
+        }
+        else {
+            // Mostrar alerta de error si las validaciones no son correctas
+            Swal.fire({
+                icon: 'error',
+                title: 'Error de validación',
+                text: 'Por favor, asegúrate de que la contraseña cumpla con los requisitos y que el correo sea válido.',
+                confirmButtonColor: '#d33', // Rojo
+                confirmButtonText: 'Aceptar'
+            });
         }
     };
 
@@ -186,6 +209,14 @@ const RegistroEmpleado = () => {
                                 placeholder="Correo electrónico"
                                 required
                             />
+                            {!validacionCorreo && formData.correo && (
+                                <div className="mt-2 text-red-600 text-sm flex items-center">
+                                    <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    El correo electrónico debe ser (@gmail.com)
+                                </div>
+                            )}
                         </div>
                         <div>
                             <label htmlFor="telefono" className="block mb-2 text-sm font-medium text-gray-900">
@@ -287,7 +318,7 @@ const RegistroEmpleado = () => {
                         </div>
                         <button
                             type="submit"
-                            className="bg-green-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-green-700 w-full"                        >
+                            className="bg-green-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-green-700 w-full">
                             Registrar
                         </button>
                     </form>
