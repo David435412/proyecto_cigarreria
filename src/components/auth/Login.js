@@ -182,6 +182,9 @@ const Login = () => {
                         <p className="text-sm text-gray-600">
                             ¿Aún no tienes cuenta? <a href="/registro-cliente" className="text-sm font-bold text-black">Regístrate</a>
                         </p>
+                        <p className="text-sm text-gray-600">
+                            ¿Olvidaste tu contraseña? <a href="/recuperacion_contra" className="text-sm font-bold text-black">Haz clic aqui</a>
+                        </p>
                     </div>
                 </section>
             </div>
