@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom"; // Importa useLocation
 import { FaBars, FaTimes } from "react-icons/fa";
 import Logo from '../../assets/images/Logo.png';
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const location = useLocation(); // Obtiene la ubicación actual
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -29,28 +30,32 @@ const Header = () => {
                     {/* Menú desplegable en móviles */}
                     <div className={`lg:hidden fixed top-0 left-0 w-full bg-gray-200 border-b border-gray-300 py-4 px-6 transition-transform transform ${isOpen ? "translate-y-0" : "-translate-y-full"} z-50`}>
                         <ul className="space-y-4">
-                            <li>
-                                <Link to="/inicio" className="block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300" onClick={toggleMenu}>Inicio</Link>
-                            </li>
-                            <li>
-                                <Link to="/pedidos-a" className="block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300" onClick={toggleMenu}>Pedidos</Link>
-                            </li>
-                            <li>
-                                <Link to="/carrito-a" className="block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300" onClick={toggleMenu}>Carrito</Link>
-                            </li>
+                            {['/inicio', '/pedidos-a', '/carrito-a'].map((path) => (
+                                <li key={path}>
+                                    <Link 
+                                        to={path} 
+                                        className={`block py-2 px-4 text-gray-900 hover:bg-gray-300 rounded-lg transition duration-300 ${location.pathname === path ? 'bg-gray-400' : ''}`} // Cambia el color de fondo si es la ruta activa
+                                        onClick={toggleMenu}
+                                    >
+                                        {path === '/inicio' ? 'Inicio' : path === '/pedidos-a' ? 'Pedidos' : 'Carrito'}
+                                    </Link>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                     <div className="hidden lg:flex lg:w-auto">
                         <ul className="flex flex-col mt-2 space-y-1 font-medium lg:flex-row lg:space-x-8 lg:space-y-0 lg:mt-0">
-                            <li>
-                                <Link to="/inicio" className="block py-2 px-4 text-gray-900 hover:bg-gray-200 rounded-lg transition duration-300" aria-current="page">Inicio</Link>
-                            </li>
-                            <li>
-                                <Link to="/pedidos-a" className="block py-2 px-4 text-gray-900 hover:bg-gray-200 rounded-lg transition duration-300">Pedidos</Link>
-                            </li>
-                            <li>
-                                <Link to="/carrito-a" className="block py-2 px-4 text-gray-900 hover:bg-gray-200 rounded-lg transition duration-300">Carrito</Link>
-                            </li>
+                            {['/inicio', '/pedidos-a', '/carrito-a'].map((path) => (
+                                <li key={path}>
+                                    <Link 
+                                        to={path} 
+                                        className={`block py-2 px-4 text-gray-900 hover:bg-gray-200 rounded-lg transition duration-300 ${location.pathname === path ? 'bg-gray-400' : ''}`} // Cambia el color de fondo si es la ruta activa
+                                        aria-current={location.pathname === path ? "page" : undefined}
+                                    >
+                                        {path === '/inicio' ? 'Inicio' : path === '/pedidos-a' ? 'Pedidos' : 'Carrito'}
+                                    </Link>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                 </div>
