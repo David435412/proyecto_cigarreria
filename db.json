@@ -234,17 +234,6 @@
       "estado": "activo"
     },
     {
-      "id": "6230",
-      "nombre": "Cerveza Budweiser lata x6und x269ml c-u",
-      "precio": "16.900",
-      "descripcion": "Tipo de cerveza: Lager País de origen: Estados Unidos ABV: 5,0%.El exceso de alcohol es perjudicial para la salud. Ley 30 de 1986. Prohíbase el expendio de bebidas embriagantes a menores de edad ley 124 1994",
-      "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/514736-1600-1600?v=638296987754100000&width=1600&height=1600&aspect=true",
-      "categoria": "Licores",
-      "cantidad": "69",
-      "marca": "Babaria",
-      "estado": "activo"
-    },
-    {
       "id": "794a",
       "nombre": "Cerveza Corona lata x6unds x269ml",
       "precio": "19.890",
@@ -419,18 +408,7 @@
       "cantidad": "80",
       "marca": "NORAVER",
       "estado": "activo"
-    },
-    {
-      "id": "d0b1",
-      "nombre": "Ungüento Vick VapoRub 2 tarros x50g",
-      "precio": "32.500",
-      "descripcion": "Es un medicamento. No exceder su consumo. Si los síntomas persisten consulte a su médico. Leer indicaciones y contraindicaciones en la etiqueta. Reg. San. INVIMA 2009 M-013296-R1. Vick VapoRub es un ungüento tópico que combina mentol, alcanfor y eucalipto en un suave bálsamo y ayuda a calmar algunos síntomas del resfriado común. Vick VapoRub es un tratamiento coadyuvante de los síntomas del resfriado común.",
-      "imagen": "https://jumbocolombiaio.vtexassets.com/arquivos/ids/639855-1600-1600?v=638555260337000000&width=1600&height=1600&aspect=true",
-      "categoria": "Drogas",
-      "cantidad": "110",
-      "marca": "VICK",
-      "estado": "activo"
-    },
+    },    
     {
       "id": "fa53",
       "nombre": " Helado Polet mini surtido x6und x45g",
